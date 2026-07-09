@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitBuddy - 分析报告</title>
+<style>
+:root {
+  --primary: #FF6B35; --primary-light: rgba(255,107,53,0.08);
+  --accent: #36CFC9; --accent-light: rgba(54,207,201,0.08);
+  --bg: #F9FAFB; --card: #FFFFFF;
+  --text-primary: #1F2937; --text-secondary: #6B7280;
+  --border: #E5E7EB; --success: #10B981; --warning: #F59E0B;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+  background: #F0F2F5; display: flex; justify-content: center; min-height: 100vh;
+}
+.app-container { width: 100%; max-width: 430px; min-height: 100vh; background: var(--bg); }
+.top-bar {
+  padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+  background: var(--card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10;
+}
+.btn-back {
+  width: 36px; height: 36px; border: none; background: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; color: var(--text-primary);
+  border-radius: 8px; transition: background 0.2s;
+}
+.btn-back:hover { background: var(--border); }
+.top-bar-title { font-size: 17px; font-weight: 600; color: var(--text-primary); }
+.hero-banner {
+  background: linear-gradient(135deg, #FF6B35 0%, #FF8C5A 50%, #36CFC9 100%);
+  padding: 32px 24px; text-align: center; color: #FFF;
+}
+.hero-emoji { font-size: 48px; margin-bottom: 8px; }
+.hero-title { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.hero-subtitle { font-size: 13px; opacity: 0.9; font-weight: 400; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 20px 24px; }
+.stat-card {
+  background: var(--card); border-radius: 12px; padding: 16px;
+  border: 1px solid var(--border); text-align: center;
+}
+.stat-value { font-size: 22px; font-weight: 700; color: var(--primary); }
+.stat-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; font-weight: 400; }
+.stat-card.highlight { border-color: var(--accent); background: var(--accent-light); }
+.stat-card.highlight .stat-value { color: var(--accent); }
+.section-wrap { padding: 0 24px 20px; }
+.section-title { font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.section-title::before { content: ''; width: 3px; height: 16px; background: var(--primary); border-radius: 2px; }
+.info-list { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+.info-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 16px; border-bottom: 1px solid var(--border);
+}
+.info-item:last-child { border-bottom: none; }
+.info-key { font-size: 14px; color: var(--text-secondary); font-weight: 400; }
+.info-value { font-size: 14px; color: var(--text-primary); font-weight: 600; }
+.advice-card {
+  background: var(--card); border-radius: 12px; padding: 16px; margin-bottom: 10px;
+  border: 1px solid var(--border);
+}
+.advice-card h4 { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+.advice-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; font-weight: 400; }
+.caution-box {
+  background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 10px;
+  padding: 14px 16px; margin-top: 16px;
+}
+.caution-box h4 { font-size: 14px; font-weight: 600; color: #92400E; margin-bottom: 6px; }
+.caution-box p { font-size: 13px; color: #A16207; line-height: 1.5; font-weight: 400; }
+.bottom-nav { padding: 8px 24px 32px; }
+.btn-primary {
+  width: 100%; height: 50px; background: var(--primary); color: #FFF;
+  border: none; border-radius: 12px; font-size: 16px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-primary:hover { background: #E55A2B; }
+.btn-primary:active { transform: scale(0.98); }
+.timeline-est { text-align: center; font-size: 13px; color: var(--text-secondary); margin-top: 12px; font-weight: 400; }
+</style>
+</head>
+<body>
+<div class="app-container">
+  <div class="top-bar">
+    <button class="btn-back" onclick="navigateTo('training-experience')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <span class="top-bar-title">你的分析报告</span>
+  </div>
+
+  <div class="hero-banner">
+    <div class="hero-emoji">&#x1F4CA;</div>
+    <h2 class="hero-title">档案分析完成！</h2>
+    <p class="hero-subtitle">基于你的数据，AI已生成个性化分析报告</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-value">24.2</div><div class="stat-label">BMI 指数</div></div>
+    <div class="stat-card"><div class="stat-value">1,400</div><div class="stat-label">基础代谢 (kcal)</div></div>
+    <div class="stat-card"><div class="stat-value">1,600</div><div class="stat-label">每日建议热量</div></div>
+    <div class="stat-card highlight"><div class="stat-value">110g</div><div class="stat-label">每日蛋白质摄入</div></div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="section-title">身体数据分析</div>
+    <div class="info-list">
+      <div class="info-item"><span class="info-key">性别</span><span class="info-value">女</span></div>
+      <div class="info-item"><span class="info-key">身高 / 体重</span><span class="info-value">165cm / 66kg</span></div>
+      <div class="info-item"><span class="info-key">目标体重</span><span class="info-value">55kg</span></div>
+      <div class="info-item"><span class="info-key">体脂率</span><span class="info-value">28%</span></div>
+      <div class="info-item"><span class="info-key">BMI 状态</span><span class="info-value" style="color:#F59E0B">偏胖（正常18.5-24）</span></div>
+      <div class="info-item"><span class="info-key">腰臀比</span><span class="info-value">0.84</span></div>
+      <div class="info-item"><span class="info-key">每日饮水量</span><span class="info-value">2.0L</span></div>
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="section-title">目标预估</div>
+    <div class="info-list">
+      <div class="info-item"><span class="info-key">预计减脂速度</span><span class="info-value">0.5-0.8 kg/周</span></div>
+      <div class="info-item"><span class="info-key">预计达标时间</span><span class="info-value" style="color:var(--primary)">约 14-22 周</span></div>
+      <div class="info-item"><span class="info-key">月目标减重</span><span class="info-value">2-3 kg/月</span></div>
+      <div class="info-item"><span class="info-key">周训练次数</span><span class="info-value">4次/周</span></div>
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="section-title">训练建议</div>
+    <div class="advice-card">
+      <h4>&#x1F3AF; 训练重点</h4>
+      <p>以力量训练+有氧结合为主，重点训练臀腿大肌群提高基础代谢，配合核心训练收紧腰腹。</p>
+    </div>
+    <div class="advice-card">
+      <h4>&#x1F4AA; 强度建议</h4>
+      <p>新手初期以低强度适应为主，前2周建立运动习惯，之后逐步增加强度。力量训练从自重开始，逐步加入弹力带和哑铃。</p>
+    </div>
+    <div class="advice-card">
+      <h4>&#x1F4CB; 训练安排</h4>
+      <p>周一：臀腿力量 · 周三：上肢+核心 · 周五：HIIT燃脂 · 周六：全身综合+拉伸</p>
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="section-title">注意事项</div>
+    <div class="caution-box">
+      <h4>&#x26A0; 重要提示</h4>
+      <p>1. 新手期以动作标准为首要目标，不追求重量和次数<br>2. 每次训练前充分热身，训练后认真拉伸<br>3. 保持每日饮水量2L以上<br>4. 保证充足睡眠（7-8小时）促进恢复<br>5. 饮食控制与训练同等重要，建议记录每日饮食</p>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="btn-primary" onclick="navigateTo('dashboard')">开始我的训练之旅</button>
+    <div class="timeline-est">坚持就是胜利，FitBuddy 会一直陪着你！</div>
+  </div>
+</div>
+<script>
+var PAGE_URLS={welcome:'./welcome_PROTOTYPE_AE8BF0C677F44D11.html','basic-info':'./basic-info_PROTOTYPE_577C9CE5800B46B7.html','training-goals':'./training-goals_PROTOTYPE_68BE44E236D64BAE.html','training-experience':'./training-experience_PROTOTYPE_04D1896309714B02.html','analysis-report':'./analysis-report_PROTOTYPE_E80F0FC4A99749C1.html',dashboard:'./dashboard_PROTOTYPE_523E0C225CFA4A85.html','training-plan':'./training-plan_PROTOTYPE_C3EB8FC4A69843CB.html','daily-workout':'./daily-workout_PROTOTYPE_CD3F0A439A594F46.html','exercise-detail':'./exercise-detail_PROTOTYPE_5EFB86B43407489A.html','daily-checkin':'./daily-checkin_PROTOTYPE_1417AAC5029941B3.html','progress-tracking':'./progress-tracking_PROTOTYPE_F808929A2BD0425E.html','diet-plan':'./diet-plan_PROTOTYPE_BFCEFD02D1B5446B.html',profile:'./profile_PROTOTYPE_E7708D8D96F84C50.html'};
+function navigateTo(page) { if(PAGE_URLS[page]) window.location.href=PAGE_URLS[page]; }
+function retryImage(img) {
+  var c=parseInt(img.getAttribute('data-retry-count'))||0,m=parseInt(img.getAttribute('data-max-retry'))||10;
+  if(c<m){img.setAttribute('data-retry-count',c+1);img.src=img.src.replace(/retry=\d+/,'retry='+(c+1))+'&t='+Date.now();}
+  else{img.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0U1RTdFQiIvPjwvc3ZnPg==';img.onerror=null;}
+}
+</script>
+</body>
+</html>

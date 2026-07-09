@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitBuddy - 今日训练</title>
+<style>
+:root {
+  --primary: #FF6B35; --primary-light: rgba(255,107,53,0.08);
+  --accent: #36CFC9; --accent-light: rgba(54,207,201,0.08);
+  --bg: #F9FAFB; --card: #FFFFFF;
+  --text-primary: #1F2937; --text-secondary: #6B7280;
+  --border: #E5E7EB; --success: #10B981; --warning: #F59E0B;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+  background: #F0F2F5; display: flex; justify-content: center; min-height: 100vh;
+}
+.app-container { width: 100%; max-width: 430px; min-height: 100vh; background: var(--bg); padding-bottom: 100px; }
+.top-bar {
+  padding: 14px 20px; display: flex; align-items: center; gap: 12px;
+  background: var(--card); border-bottom: 1px solid var(--border);
+}
+.btn-back {
+  width: 36px; height: 36px; border: none; background: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; color: var(--text-primary);
+  border-radius: 8px;
+}
+.btn-back:hover { background: var(--border); }
+.top-bar-title { font-size: 17px; font-weight: 600; color: var(--text-primary); }
+.workout-header {
+  margin: 16px 20px; background: linear-gradient(135deg, #FF6B35, #FF8C5A);
+  border-radius: 14px; padding: 20px; color: #FFF;
+}
+.workout-header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.workout-header h2 { font-size: 20px; font-weight: 700; }
+.workout-header p { font-size: 13px; opacity: 0.9; margin-top: 4px; font-weight: 400; }
+.workout-meta { display: flex; gap: 20px; margin-top: 14px; }
+.workout-meta-item { text-align: center; }
+.workout-meta-val { font-size: 18px; font-weight: 700; }
+.workout-meta-lbl { font-size: 11px; opacity: 0.8; font-weight: 400; }
+.phase-section { padding: 0 20px; margin-bottom: 16px; }
+.phase-title {
+  font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.phase-icon {
+  width: 28px; height: 28px; border-radius: 8px; display: flex;
+  align-items: center; justify-content: center; font-size: 14px;
+}
+.phase-icon.warmup { background: #FEF3C7; }
+.phase-icon.main { background: var(--primary-light); }
+.phase-icon.stretch { background: var(--accent-light); }
+.exercise-card {
+  background: var(--card); border-radius: 12px; padding: 16px; margin-bottom: 10px;
+  border: 1px solid var(--border); display: flex; gap: 14px; align-items: flex-start;
+  cursor: pointer; transition: all 0.2s;
+}
+.exercise-card:hover { border-color: var(--primary); }
+.exercise-card.completed { border-color: var(--success); background: rgba(16,185,129,0.03); }
+.exercise-num {
+  width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center;
+  justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0;
+  background: var(--primary-light); color: var(--primary);
+}
+.exercise-card.completed .exercise-num { background: rgba(16,185,129,0.15); color: var(--success); }
+.exercise-info { flex: 1; }
+.exercise-name { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+.exercise-detail { font-size: 13px; color: var(--text-secondary); font-weight: 400; }
+.exercise-sets { font-size: 13px; font-weight: 600; color: var(--primary); margin-top: 4px; }
+.exercise-card.completed .exercise-sets { color: var(--success); }
+.exercise-rest { font-size: 11px; color: var(--text-secondary); margin-top: 2px; font-weight: 400; }
+.exercise-arrow {
+  flex-shrink: 0; color: var(--text-secondary); display: flex; align-items: center;
+}
+.flow-arrow { text-align: center; color: var(--border); font-size: 16px; margin: 4px 0; }
+.stretch-card {
+  background: var(--accent-light); border-radius: 12px; padding: 16px; margin-bottom: 10px;
+  border: 1px solid rgba(54,207,201,0.3); display: flex; gap: 12px; align-items: center;
+}
+.stretch-card .exercise-num { background: rgba(54,207,201,0.15); color: var(--accent); }
+.total-calories {
+  margin: 16px 20px; background: var(--card); border-radius: 14px; padding: 18px;
+  border: 1px solid var(--border); display: flex; justify-content: space-around; text-align: center;
+}
+.total-item-val { font-size: 20px; font-weight: 700; color: var(--primary); }
+.total-item-lbl { font-size: 12px; color: var(--text-secondary); font-weight: 400; margin-top: 2px; }
+.bottom-bar {
+  position: fixed; bottom: 0; width: 100%; max-width: 430px;
+  background: var(--card); border-top: 1px solid var(--border);
+  padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 8px));
+  display: flex; gap: 12px; z-index: 100;
+}
+.btn-outline {
+  flex: 1; height: 48px; border: 2px solid var(--primary); border-radius: 12px;
+  background: var(--card); color: var(--primary); font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-outline:hover { background: var(--primary-light); }
+.btn-primary {
+  flex: 1; height: 48px; border: none; border-radius: 12px;
+  background: var(--primary); color: #FFF; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-primary:hover { background: #E55A2B; }
+.btn-primary:active, .btn-outline:active { transform: scale(0.98); }
+</style>
+</head>
+<body>
+<div class="app-container">
+  <div class="top-bar">
+    <button class="btn-back" onclick="navigateTo('training-plan')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <span class="top-bar-title">今日训练</span>
+  </div>
+
+  <div class="workout-header">
+    <div class="workout-header-top">
+      <div>
+        <h2>臀腿力量训练</h2>
+        <p>周三 · 力量训练 · 重点激活臀大肌</p>
+      </div>
+    </div>
+    <div class="workout-meta">
+      <div class="workout-meta-item"><div class="workout-meta-val">35</div><div class="workout-meta-lbl">分钟</div></div>
+      <div class="workout-meta-item"><div class="workout-meta-val">4+2</div><div class="workout-meta-lbl">动作+拉伸</div></div>
+      <div class="workout-meta-item"><div class="workout-meta-val">280</div><div class="workout-meta-lbl">预计消耗(kcal)</div></div>
+    </div>
+  </div>
+
+  <div class="phase-section">
+    <div class="phase-title"><span class="phase-icon warmup">&#x1F525;</span>热身激活（5分钟）</div>
+    <div class="exercise-card completed">
+      <div class="exercise-num">&#10003;</div>
+      <div class="exercise-info">
+        <div class="exercise-name">动态热身</div>
+        <div class="exercise-detail">开合跳 · 高抬腿 · 髋关节环绕 · 踝关节活动</div>
+        <div class="exercise-sets">完成热身</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-section">
+    <div class="phase-title"><span class="phase-icon main">&#x1F4AA;</span>正式训练（25分钟）</div>
+
+    <div class="exercise-card completed" onclick="navigateTo('exercise-detail')">
+      <div class="exercise-num">&#10003;</div>
+      <div class="exercise-info">
+        <div class="exercise-name">自重深蹲</div>
+        <div class="exercise-detail">经典下肢训练动作，主要训练臀大肌和股四头肌</div>
+        <div class="exercise-sets">3组 × 12次</div>
+        <div class="exercise-rest">组间休息 60秒</div>
+      </div>
+      <div class="exercise-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+
+    <div class="flow-arrow">&#x2193;</div>
+
+    <div class="exercise-card" onclick="navigateTo('exercise-detail')">
+      <div class="exercise-num">2</div>
+      <div class="exercise-info">
+        <div class="exercise-name">臀桥</div>
+        <div class="exercise-detail">针对臀大肌的孤立训练，改善臀部形态</div>
+        <div class="exercise-sets">3组 × 15次</div>
+        <div class="exercise-rest">组间休息 45秒</div>
+      </div>
+      <div class="exercise-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+
+    <div class="flow-arrow">&#x2193;</div>
+
+    <div class="exercise-card" onclick="navigateTo('exercise-detail')">
+      <div class="exercise-num">3</div>
+      <div class="exercise-info">
+        <div class="exercise-name">弓步蹲</div>
+        <div class="exercise-detail">单侧训练动作，改善腿部不平衡，加强核心稳定</div>
+        <div class="exercise-sets">3组 × 12次（每侧）</div>
+        <div class="exercise-rest">组间休息 60秒</div>
+      </div>
+      <div class="exercise-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+
+    <div class="flow-arrow">&#x2193;</div>
+
+    <div class="exercise-card" onclick="navigateTo('exercise-detail')">
+      <div class="exercise-num">4</div>
+      <div class="exercise-info">
+        <div class="exercise-name">侧卧抬腿</div>
+        <div class="exercise-detail">训练臀中肌，改善髋部稳定性和臀部侧方线条</div>
+        <div class="exercise-sets">3组 × 15次（每侧）</div>
+        <div class="exercise-rest">组间休息 30秒</div>
+      </div>
+      <div class="exercise-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+  </div>
+
+  <div class="phase-section">
+    <div class="phase-title"><span class="phase-icon stretch">&#x1F9D8;</span>训练后拉伸（8分钟）</div>
+    <div class="stretch-card">
+      <div class="exercise-num">1</div>
+      <div class="exercise-info">
+        <div class="exercise-name">股四头肌拉伸</div>
+        <div class="exercise-detail">每侧保持30秒 × 2组</div>
+      </div>
+    </div>
+    <div class="stretch-card">
+      <div class="exercise-num">2</div>
+      <div class="exercise-info">
+        <div class="exercise-name">腘绳肌拉伸</div>
+        <div class="exercise-detail">每侧保持30秒 × 2组</div>
+      </div>
+    </div>
+    <div class="stretch-card">
+      <div class="exercise-num">3</div>
+      <div class="exercise-info">
+        <div class="exercise-name">臀大肌拉伸</div>
+        <div class="exercise-detail">每侧保持30秒 × 2组</div>
+      </div>
+    </div>
+    <div class="stretch-card">
+      <div class="exercise-num">4</div>
+      <div class="exercise-info">
+        <div class="exercise-name">婴儿式放松</div>
+        <div class="exercise-detail">保持60秒，深呼吸放松全身</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="total-calories">
+    <div class="total-item"><div class="total-item-val">280</div><div class="total-item-lbl">预计消耗(kcal)</div></div>
+    <div class="total-item"><div class="total-item-val">35</div><div class="total-item-lbl">训练时长(分钟)</div></div>
+    <div class="total-item"><div class="total-item-val">12</div><div class="total-item-lbl">总组数</div></div>
+  </div>
+</div>
+
+<div class="bottom-bar">
+  <button class="btn-outline" onclick="navigateTo('exercise-detail')">查看动作详解</button>
+  <button class="btn-primary" onclick="navigateTo('daily-checkin')">完成训练 · 去打卡</button>
+</div>
+
+<script>
+var PAGE_URLS={welcome:'./welcome_PROTOTYPE_AE8BF0C677F44D11.html','basic-info':'./basic-info_PROTOTYPE_577C9CE5800B46B7.html','training-goals':'./training-goals_PROTOTYPE_68BE44E236D64BAE.html','training-experience':'./training-experience_PROTOTYPE_04D1896309714B02.html','analysis-report':'./analysis-report_PROTOTYPE_E80F0FC4A99749C1.html',dashboard:'./dashboard_PROTOTYPE_523E0C225CFA4A85.html','training-plan':'./training-plan_PROTOTYPE_C3EB8FC4A69843CB.html','daily-workout':'./daily-workout_PROTOTYPE_CD3F0A439A594F46.html','exercise-detail':'./exercise-detail_PROTOTYPE_5EFB86B43407489A.html','daily-checkin':'./daily-checkin_PROTOTYPE_1417AAC5029941B3.html','progress-tracking':'./progress-tracking_PROTOTYPE_F808929A2BD0425E.html','diet-plan':'./diet-plan_PROTOTYPE_BFCEFD02D1B5446B.html',profile:'./profile_PROTOTYPE_E7708D8D96F84C50.html'};
+function navigateTo(page) { if(PAGE_URLS[page]) window.location.href=PAGE_URLS[page]; }
+function retryImage(img) {
+  var c=parseInt(img.getAttribute('data-retry-count'))||0,m=parseInt(img.getAttribute('data-max-retry'))||10;
+  if(c<m){img.setAttribute('data-retry-count',c+1);img.src=img.src.replace(/retry=\d+/,'retry='+(c+1))+'&t='+Date.now();}
+  else{img.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0U1RTdFQiIvPjwvc3ZnPg==';img.onerror=null;}
+}
+</script>
+</body>
+</html>

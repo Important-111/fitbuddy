@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitBuddy - 基础信息</title>
+<style>
+:root {
+  --primary: #FF6B35; --primary-light: rgba(255,107,53,0.08);
+  --bg: #F9FAFB; --card: #FFFFFF;
+  --text-primary: #1F2937; --text-secondary: #6B7280;
+  --border: #E5E7EB; --success: #10B981;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+  background: #F0F2F5; display: flex; justify-content: center; min-height: 100vh;
+}
+.app-container { width: 100%; max-width: 430px; min-height: 100vh; background: var(--bg); }
+.top-bar {
+  padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+  background: var(--card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10;
+}
+.btn-back {
+  width: 36px; height: 36px; border: none; background: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; color: var(--text-primary);
+  border-radius: 8px; transition: background 0.2s;
+}
+.btn-back:hover { background: var(--border); }
+.top-bar-title { font-size: 17px; font-weight: 600; color: var(--text-primary); }
+.progress-bar-wrap { padding: 16px 24px; background: var(--card); }
+.progress-steps { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.progress-step {
+  width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; background: var(--border); color: var(--text-secondary);
+}
+.progress-step.active { background: var(--primary); color: #FFFFFF; }
+.progress-step.done { background: var(--success); color: #FFFFFF; }
+.progress-bar-bg { height: 4px; background: var(--border); border-radius: 2px; margin-top: 8px; }
+.progress-bar-fill { height: 100%; background: var(--primary); border-radius: 2px; transition: width 0.3s; }
+.progress-label { text-align: center; font-size: 13px; color: var(--text-secondary); margin-top: 8px; font-weight: 400; }
+.form-section { padding: 20px 24px; }
+.section-title { font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+.section-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; font-weight: 400; line-height: 1.5; }
+.form-group { margin-bottom: 18px; }
+.form-label { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; display: block; }
+.form-label span { color: var(--text-secondary); font-weight: 400; font-size: 12px; }
+.gender-group { display: flex; gap: 12px; }
+.gender-option {
+  flex: 1; height: 48px; border: 2px solid var(--border); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-size: 15px; color: var(--text-secondary); cursor: pointer; transition: all 0.2s;
+  background: var(--card); font-weight: 400;
+}
+.gender-option.selected { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+.gender-option svg { width: 20px; height: 20px; }
+.form-input {
+  width: 100%; height: 48px; border: 1px solid var(--border); border-radius: 10px;
+  padding: 0 14px; font-size: 15px; color: var(--text-primary); background: var(--card);
+  outline: none; transition: border-color 0.2s;
+}
+.form-input:focus { border-color: var(--primary); border-width: 2px; }
+.form-input::placeholder { color: #9CA3AF; }
+.input-with-unit { position: relative; }
+.input-with-unit .form-input { padding-right: 50px; }
+.input-unit { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--text-secondary); font-weight: 400; }
+.form-row { display: flex; gap: 12px; }
+.form-row .form-group { flex: 1; }
+.bmi-display {
+  background: var(--primary-light); border-radius: 10px; padding: 14px 16px;
+  display: flex; align-items: center; justify-content: space-between; margin-top: 4px;
+}
+.bmi-label { font-size: 14px; color: var(--text-secondary); font-weight: 400; }
+.bmi-value { font-size: 22px; font-weight: 700; color: var(--primary); }
+.bmi-category { font-size: 12px; color: var(--text-secondary); padding: 4px 8px; background: var(--card); border-radius: 6px; }
+.form-tip { font-size: 12px; color: var(--text-secondary); margin-top: 4px; font-weight: 400; }
+.bottom-nav { padding: 16px 24px 32px; background: var(--card); border-top: 1px solid var(--border); }
+.btn-primary {
+  width: 100%; height: 50px; background: var(--primary); color: #FFF;
+  border: none; border-radius: 12px; font-size: 16px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-primary:hover { background: #E55A2B; }
+.btn-primary:active { transform: scale(0.98); }
+</style>
+</head>
+<body>
+ <div class="app-container">
+  <div class="top-bar">
+    <button class="btn-back" onclick="navigateTo('welcome')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <span class="top-bar-title">建立你的档案</span>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-steps">
+      <div class="progress-step active">1</div>
+      <div class="progress-step">2</div>
+      <div class="progress-step">3</div>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:33%"></div></div>
+    <div class="progress-label">步骤 1/3 · 基础身体信息</div>
+  </div>
+  <div class="form-section">
+    <h2 class="section-title">基础信息</h2>
+    <p class="section-desc">请如实填写以下信息，这将帮助我们为你制定最合适的训练计划</p>
+    <div class="form-group">
+      <label class="form-label">性别</label>
+      <div class="gender-group">
+        <div class="gender-option selected" onclick="selectGender(this,'male')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="7" r="5"/><path d="M22 2L14 10"/><path d="M14 2h8v8"/></svg>
+          男
+        </div>
+        <div class="gender-option" onclick="selectGender(this,'female')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="5"/><path d="M12 14v7"/><path d="M9 18h6"/></svg>
+          女
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">年龄</label>
+        <div class="input-with-unit"><input type="number" class="form-input" placeholder="25" id="age" oninput="calcBMI()"><span class="input-unit">岁</span></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">身高</label>
+        <div class="input-with-unit"><input type="number" class="form-input" placeholder="170" id="height" oninput="calcBMI()"><span class="input-unit">cm</span></div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">当前体重</label>
+        <div class="input-with-unit"><input type="number" class="form-input" placeholder="70" id="weight" oninput="calcBMI()"><span class="input-unit">kg</span></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">目标体重</label>
+        <div class="input-with-unit"><input type="number" class="form-input" placeholder="60"><span class="input-unit">kg</span></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">BMI <span>（自动计算）</span></label>
+      <div class="bmi-display">
+        <span class="bmi-label">身体质量指数</span>
+        <div style="text-align:right"><div class="bmi-value" id="bmiValue">--</div><span class="bmi-category" id="bmiCat">请输入身高体重</span></div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">腰围 <span>（选填）</span></label>
+        <div class="input-with-unit"><input type="number" class="form-input" placeholder="80"><span class="input-unit">cm</span></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">臀围 <span>（选填）</span></label>
+        <div class="input-with-unit"><input type="number" class="form-input" placeholder="95"><span class="input-unit">cm</span></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">体脂率 <span>（不知道可跳过）</span></label>
+      <div class="input-with-unit"><input type="number" class="form-input" placeholder="25"><span class="input-unit">%</span></div>
+      <div class="form-tip">可使用体脂秤测量，没有可跳过</div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <button class="btn-primary" onclick="navigateTo('training-goals')">下一步：选择训练目标</button>
+  </div>
+</div>
+<script>
+function selectGender(el, gender) {
+  document.querySelectorAll('.gender-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function calcBMI() {
+  var h = parseFloat(document.getElementById('height').value);
+  var w = parseFloat(document.getElementById('weight').value);
+  var bmiEl = document.getElementById('bmiValue');
+  var catEl = document.getElementById('bmiCat');
+  if (h>0 && w>0) {
+    var bmi = (w/((h/100)*(h/100))).toFixed(1);
+    bmiEl.textContent = bmi;
+    var cat=''; if(bmi<18.5)cat='偏瘦'; else if(bmi<24)cat='正常'; else if(bmi<28)cat='偏胖'; else cat='肥胖';
+    catEl.textContent = cat;
+  } else { bmiEl.textContent='--'; catEl.textContent='请输入身高体重'; }
+}
+var PAGE_URLS={welcome:'./welcome_PROTOTYPE_AE8BF0C677F44D11.html','basic-info':'./basic-info_PROTOTYPE_577C9CE5800B46B7.html','training-goals':'./training-goals_PROTOTYPE_68BE44E236D64BAE.html','training-experience':'./training-experience_PROTOTYPE_04D1896309714B02.html','analysis-report':'./analysis-report_PROTOTYPE_E80F0FC4A99749C1.html',dashboard:'./dashboard_PROTOTYPE_523E0C225CFA4A85.html','training-plan':'./training-plan_PROTOTYPE_C3EB8FC4A69843CB.html','daily-workout':'./daily-workout_PROTOTYPE_CD3F0A439A594F46.html','exercise-detail':'./exercise-detail_PROTOTYPE_5EFB86B43407489A.html','daily-checkin':'./daily-checkin_PROTOTYPE_1417AAC5029941B3.html','progress-tracking':'./progress-tracking_PROTOTYPE_F808929A2BD0425E.html','diet-plan':'./diet-plan_PROTOTYPE_BFCEFD02D1B5446B.html',profile:'./profile_PROTOTYPE_E7708D8D96F84C50.html'};
+function navigateTo(page) { if(PAGE_URLS[page]) window.location.href=PAGE_URLS[page]; }
+function retryImage(img) {
+  var c=parseInt(img.getAttribute('data-retry-count'))||0,m=parseInt(img.getAttribute('data-max-retry'))||10;
+  if(c<m){img.setAttribute('data-retry-count',c+1);img.src=img.src.replace(/retry=\d+/,'retry='+(c+1))+'&t='+Date.now();}
+  else{img.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0U1RTdFQiIvPjwvc3ZnPg==';img.onerror=null;}
+}
+</script> 
+</body>
+</html>
