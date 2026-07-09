@@ -75,6 +75,12 @@
   display: flex;
   gap: 12px;
 }
+.bottom-bar .btn-outline,
+.bottom-bar .btn-primary {
+  flex: 1;
+  width: auto;
+  min-width: 0;
+}
 
 .stretch-card {
   background: var(--card);
