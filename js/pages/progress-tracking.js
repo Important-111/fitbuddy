@@ -1,5 +1,7 @@
 /* ===== 进度追踪页 ===== */
 
+var _periodFilter = 'week';   // 'week' | 'month' | 'all'
+
 function renderProgressTracking() {
   var p = Store.getProfile() || {};
   var records = Store.getCheckins();
@@ -11,9 +13,26 @@ function renderProgressTracking() {
   var streak = Store.getStreakDays();
   var completionRate = Store.getCompletionRate();
 
+  // 按时间段过滤记录
+  var filterDate = new Date(0);
+  if (_periodFilter === 'week') {
+    filterDate = getMonday(new Date());
+  } else if (_periodFilter === 'month') {
+    var n = new Date();
+    filterDate = new Date(n.getFullYear(), n.getMonth(), 1);
+  }
+  var filteredRecords = records.filter(function(r) { return new Date(r.date) >= filterDate; });
+  var filteredWeightHistory = weightHistory.filter(function(w) { return new Date(w.date) >= filterDate; });
+  totalWorkouts = filteredRecords.length;
+  totalMinutes = totalWorkouts * 35;
+  totalCal = totalWorkouts * 280;
+  var compSum = 0;
+  filteredRecords.forEach(function(r) { compSum += (r.completion || 100); });
+  completionRate = filteredRecords.length > 0 ? Math.round(compSum / filteredRecords.length) : 0;
+
   // 生成体重变化图表条
   var chartBars = '';
-  var displayWeights = weightHistory.slice(-7);
+  var displayWeights = filteredWeightHistory.slice(-7);
   if (displayWeights.length === 0) {
     // 模拟数据
     chartBars =
@@ -51,8 +70,8 @@ function renderProgressTracking() {
   var weekWorkouts = 0;
   var today = new Date();
   var monday = getMonday(today);
-  for (var i = 0; i < records.length; i++) {
-    var rd = new Date(records[i].date);
+  for (var i = 0; i < filteredRecords.length; i++) {
+    var rd = new Date(filteredRecords[i].date);
     if (rd >= monday) weekWorkouts++;
   }
 
@@ -62,6 +81,11 @@ function renderProgressTracking() {
         '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>' +
       '</button>' +
       '<span class="top-bar-title">进度追踪</span>' +
+    '</div>' +
+    '<div class="filter-tabs">' +
+      '<div class="filter-tab' + (_periodFilter === 'week' ? ' active' : '') + '" onclick="switchPeriodFilter(\'week\')">本周</div>' +
+      '<div class="filter-tab' + (_periodFilter === 'month' ? ' active' : '') + '" onclick="switchPeriodFilter(\'month\')">本月</div>' +
+      '<div class="filter-tab' + (_periodFilter === 'all' ? ' active' : '') + '" onclick="switchPeriodFilter(\'all\')">全部</div>' +
     '</div>' +
     '<div class="overview-cards">' +
       '<div class="overview-card"><div class="overview-val">' + (records.length > 0 ? streak : '--') + '</div><div class="overview-lbl">连续打卡</div></div>' +
@@ -74,7 +98,7 @@ function renderProgressTracking() {
     '<div class="milestone-section">' +
       '<div class="section-title">里程碑成就</div>' +
       '<div class="milestone-scroll">' +
-        '<div class="milestone-card' + (records.length >= 1 ? ' achieved' : '') + '"><div class="milestone-icon">&#x1F389;</div><div class="milestone-name">首次训练</div><div class="milestone-date">' + (records.length >= 1 ? '已达成' : '未达成') + '</div></div>' +
+        '<div class="milestone-card' + (totalWorkouts >= 1 ? ' achieved' : '') + '"><div class="milestone-icon">&#x1F389;</div><div class="milestone-name">首次训练</div><div class="milestone-date">' + (totalWorkouts >= 1 ? '已达成' : '未达成') + '</div></div>' +
         '<div class="milestone-card' + (streak >= 7 ? ' achieved' : '') + '"><div class="milestone-icon">&#x1F525;</div><div class="milestone-name">连续7天</div><div class="milestone-date">' + (streak >= 7 ? '已达成' : '还差 ' + (7 - streak) + ' 天') + '</div></div>' +
         '<div class="milestone-card' + (totalWorkouts >= 10 ? ' achieved' : '') + '"><div class="milestone-icon">&#x2B50;</div><div class="milestone-name">累计10次</div><div class="milestone-date">' + (totalWorkouts >= 10 ? '已达成' : '还差 ' + (10 - totalWorkouts) + ' 次') + '</div></div>' +
         '<div class="milestone-card' + (streak >= 30 ? ' achieved' : '') + '"><div class="milestone-icon">&#x1F3AF;</div><div class="milestone-name">连续30天</div><div class="milestone-date">' + (streak >= 30 ? '已达成' : '还差 ' + (30 - streak) + ' 天') + '</div></div>' +
@@ -129,4 +153,9 @@ function renderProgressTracking() {
         '<span class="analysis-status status-good">' + (weekWorkouts >= (p.daysPerWeek || 4) ? '增加' : '保持') + '</span>' +
       '</div>' +
     '</div>';
+}
+
+function switchPeriodFilter(filter) {
+  _periodFilter = filter;
+  renderProgressTracking();
 }

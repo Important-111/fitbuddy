@@ -741,3 +741,40 @@ body {
 .video-info { flex: 1; min-width: 0; }
 .video-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .video-meta { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-tertiary); font-weight: 400; }
+
+/* ===== 进度追踪 - 筛选切换 ===== */
+.filter-tabs { display: flex; gap: 6px; padding: 0 20px; margin-bottom: 12px; }
+.filter-tab { padding: 6px 16px; border-radius: 16px; font-size: 12px; font-weight: 400; cursor: pointer; border: 1px solid var(--border); background: var(--card); color: var(--text-secondary); transition: all 0.2s; }
+.filter-tab.active { background: var(--primary); color: #FFF; border-color: var(--primary); }
+
+/* ===== 宏量营养素环形图 ===== */
+.macro-ring-card { display: flex; flex-direction: column; gap: 12px; }
+.macro-ring-wrap { display: flex; align-items: center; gap: 16px; padding: 8px 0; }
+.macro-ring-wrap svg { flex-shrink: 0; }
+.macro-ring-legend { display: flex; flex-direction: column; gap: 6px; }
+.ring-legend-item { font-size: 12px; color: var(--text-primary); display: flex; align-items: center; gap: 6px; }
+.ring-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.ring-dot.protein { background: #FF6B35; }
+.ring-dot.carb { background: #36CFC9; }
+.ring-dot.fat { background: #F59E0B; }
+.macro-bars { display: flex; flex-direction: column; gap: 8px; }
+
+/* ===== 饮食记录（手动录入）===== */
+.diet-log-meal { margin-bottom: 8px; }
+.diet-log-meal-header { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; color: var(--text-primary); padding: 6px 0; border-bottom: 1px solid var(--border); margin-bottom: 4px; }
+.diet-log-meal-cal { font-size: 12px; color: var(--text-secondary); font-weight: 400; }
+.diet-log-item { display: flex; align-items: center; gap: 6px; padding: 6px 8px; margin: 2px 0; background: var(--bg); border-radius: 8px; font-size: 12px; }
+.diet-log-item-name { flex: 1; font-weight: 500; }
+.diet-log-item-nutri { font-size: 11px; color: var(--text-secondary); }
+.diet-log-item-cal { font-weight: 600; color: var(--text-primary); min-width: 48px; text-align: right; }
+.diet-log-item-del { cursor: pointer; color: #EF4444; font-size: 14px; opacity: 0.6; padding: 2px; }
+.diet-log-item-del:hover { opacity: 1; }
+.diet-log-add-bar { text-align: center; padding: 10px 0; }
+.diet-log-form { background: var(--bg); border-radius: 12px; padding: 14px; margin-top: 8px; border: 1px solid var(--border); }
+.diet-form-row { margin-bottom: 8px; }
+.diet-form-row-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.diet-form-row-grid.diet-form-row-grid-three { grid-template-columns: 1fr 1fr 1fr; }
+.diet-input { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; background: var(--card); color: var(--text-primary); font-family: inherit; box-sizing: border-box; }
+.diet-input:focus { outline: none; border-color: var(--primary); }
+.diet-form-actions { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 0; }
+.btn-sm { height: 34px; padding: 0 16px; font-size: 12px; border-radius: 8px; }

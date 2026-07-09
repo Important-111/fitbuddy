@@ -147,10 +147,49 @@ var Store = {
     Store.saveWorkoutProgress(progress);
   },
 
+  /** 获取饮食日志记录 */
+  getDietLogs: function() {
+    try {
+      var data = localStorage.getItem('fitbuddy_diet_logs');
+      return data ? JSON.parse(data) : [];
+    } catch(e) { return []; }
+  },
+
+  /** 保存饮食日志记录 */
+  saveDietLogs: function(records) {
+    localStorage.setItem('fitbuddy_diet_logs', JSON.stringify(records));
+  },
+
+  /** 添加一条饮食日志 */
+  addDietLog: function(record) {
+    var records = Store.getDietLogs();
+    record.id = Date.now();
+    record.createdAt = todayStr();
+    records.push(record);
+    Store.saveDietLogs(records);
+    return records;
+  },
+
+  /** 删除一条饮食日志 */
+  removeDietLog: function(id) {
+    var records = Store.getDietLogs();
+    records = records.filter(function(r) { return r.id !== id; });
+    Store.saveDietLogs(records);
+    return records;
+  },
+
+  /** 获取今天的饮食日志 */
+  getTodayDietLogs: function() {
+    var all = Store.getDietLogs();
+    var today = todayStr();
+    return all.filter(function(r) { return r.createdAt === today; });
+  },
+
   /** 清除所有数据 */
   clearAll: function() {
     localStorage.removeItem('fitbuddy_profile');
     localStorage.removeItem('fitbuddy_checkins');
     localStorage.removeItem('fitbuddy_workout_progress');
+    localStorage.removeItem('fitbuddy_diet_logs');
   }
 };

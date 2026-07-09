@@ -1,13 +1,17 @@
 /* ===== 训练计划页 ===== */
 
+var _weekOffset = 0;          // 0=本周, 1=下周, ...
+
 function renderTrainingPlan() {
   var p = Store.getProfile() || {};
   var progress = Store.getWorkoutProgress();
   var checkins = Store.getCheckins();
 
-  // 周数据
+  // 周数据（按偏移量计算）
   var now = new Date();
-  var monday = getMonday(now);
+  var weekStart = new Date(now);
+  weekStart.setDate(weekStart.getDate() + _weekOffset * 7);
+  var monday = getMonday(weekStart);
   var weekDays = [];
   for (var i = 0; i < 7; i++) {
     var d = new Date(monday);
@@ -113,8 +117,9 @@ function renderTrainingPlan() {
       '</div>' +
     '</div>' +
     '<div class="week-tabs" id="weekTabs">' +
-      '<div class="week-tab active">本周</div>' +
-      '<div class="week-tab">下周</div>' +
+      '<div class="week-tab' + (_weekOffset === 0 ? ' active' : '') + '" onclick="switchWeek(0)">本周</div>' +
+      '<div class="week-tab' + (_weekOffset === 1 ? ' active' : '') + '" onclick="switchWeek(1)">下周</div>' +
+      '<div class="week-tab' + (_weekOffset === 2 ? ' active' : '') + '" onclick="switchWeek(2)">下下周</div>' +
     '</div>' +
     '<div class="week-schedule" id="weekSchedule">' +
       dayCards +
@@ -133,11 +138,14 @@ function renderTrainingPlan() {
   var tabs = document.querySelectorAll('.week-tab');
   tabs.forEach(function(tab, idx) {
     tab.addEventListener('click', function() {
-      tabs.forEach(function(t) { t.classList.remove('active'); });
-      tab.classList.add('active');
-      showToast('切换至' + tab.textContent);
+      switchWeek(idx);
     });
   });
+}
+
+function switchWeek(offset) {
+  _weekOffset = offset;
+  renderTrainingPlan();
 }
 
 function getWorkoutTemplates(goal) {
