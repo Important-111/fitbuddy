@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitBuddy - 每日打卡</title>
+<style>
+:root {
+  --primary: #FF6B35; --primary-light: rgba(255,107,53,0.08);
+  --accent: #36CFC9; --bg: #F9FAFB; --card: #FFFFFF;
+  --text-primary: #1F2937; --text-secondary: #6B7280;
+  --border: #E5E7EB; --success: #10B981; --danger: #EF4444; --warning: #F59E0B;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+  background: #F0F2F5; display: flex; justify-content: center; min-height: 100vh;
+}
+.app-container { width: 100%; max-width: 430px; min-height: 100vh; background: var(--bg); padding-bottom: 32px; }
+.top-bar {
+  padding: 14px 20px; display: flex; align-items: center; gap: 12px;
+  background: var(--card); border-bottom: 1px solid var(--border);
+}
+.btn-back {
+  width: 36px; height: 36px; border: none; background: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; color: var(--text-primary);
+  border-radius: 8px;
+}
+.btn-back:hover { background: var(--border); }
+.top-bar-title { font-size: 17px; font-weight: 600; color: var(--text-primary); }
+.checkin-hero {
+  margin: 16px 20px; background: linear-gradient(135deg, #FF6B35, #FF8C5A);
+  border-radius: 14px; padding: 24px; text-align: center; color: #FFF;
+}
+.checkin-hero-emoji { font-size: 48px; margin-bottom: 8px; }
+.checkin-hero h2 { font-size: 20px; font-weight: 700; }
+.checkin-hero p { font-size: 13px; opacity: 0.9; margin-top: 4px; font-weight: 400; }
+.rating-section { padding: 0 20px; margin-bottom: 16px; }
+.rating-label { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
+.rating-stars { display: flex; gap: 10px; justify-content: center; }
+.rating-star {
+  width: 48px; height: 48px; border-radius: 12px; border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center; font-size: 22px;
+  cursor: pointer; transition: all 0.2s; background: var(--card);
+}
+.rating-star.selected { border-color: var(--primary); background: var(--primary-light); transform: scale(1.1); }
+#completeStars .rating-star { width: 56px; font-size: 15px; font-weight: 600; }
+.form-section { padding: 0 20px; margin-bottom: 16px; }
+.form-group { margin-bottom: 14px; }
+.form-label { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; display: block; }
+.form-input {
+  width: 100%; height: 48px; border: 1px solid var(--border); border-radius: 10px;
+  padding: 0 14px; font-size: 15px; color: var(--text-primary); background: var(--card);
+  outline: none; transition: border-color 0.2s;
+}
+.form-input:focus { border-color: var(--primary); border-width: 2px; }
+.input-with-unit { position: relative; }
+.input-with-unit .form-input { padding-right: 50px; }
+.input-unit { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--text-secondary); font-weight: 400; }
+.radio-group { display: flex; gap: 8px; }
+.radio-chip {
+  flex: 1; height: 44px; border: 2px solid var(--border); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+  color: var(--text-secondary); cursor: pointer; transition: all 0.2s;
+  background: var(--card); font-weight: 400;
+}
+.radio-chip.selected { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+.pain-section {
+  margin: 0 20px 20px; background: #FFFBEB; border: 1px solid #FDE68A;
+  border-radius: 12px; padding: 14px 16px;
+}
+.pain-section h4 { font-size: 14px; font-weight: 600; color: #92400E; margin-bottom: 8px; }
+.pain-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.pain-tag {
+  padding: 8px 14px; border-radius: 8px; font-size: 13px; cursor: pointer;
+  transition: all 0.2s; border: 2px solid var(--border); background: var(--card);
+  color: var(--text-secondary); font-weight: 400;
+}
+.pain-tag.selected { border-color: var(--warning); color: #92400E; background: #FEF3C7; }
+.pain-tag.none { border-color: var(--success); color: var(--success); }
+.pain-tag.none.selected { background: rgba(16,185,129,0.1); }
+.motivation-modal {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;
+}
+.motivation-modal.show { display: flex; }
+.motivation-content {
+  background: var(--card); border-radius: 20px; padding: 32px 24px;
+  text-align: center; max-width: 340px; margin: 20px; width: 100%;
+}
+.motivation-emoji { font-size: 64px; margin-bottom: 12px; }
+.motivation-content h2 { font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+.motivation-content p { font-size: 14px; color: var(--text-secondary); margin-bottom: 6px; font-weight: 400; line-height: 1.6; }
+.motivation-stats { background: var(--primary-light); border-radius: 12px; padding: 16px; margin: 16px 0; }
+.motivation-stat-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 13px; }
+.motivation-stat-val { font-weight: 600; color: var(--primary); }
+.btn-submit {
+  width: 100%; height: 48px; background: var(--primary); color: #FFF;
+  border: none; border-radius: 12px; font-size: 16px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; margin-top: 12px;
+}
+.btn-submit:hover { background: #E55A2B; }
+.btn-submit:active { transform: scale(0.98); }
+.btn-modal {
+  width: 100%; height: 46px; background: var(--primary); color: #FFF;
+  border: none; border-radius: 10px; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; margin-top: 16px;
+}
+.btn-modal:hover { background: #E55A2B; }
+.btn-modal:active { transform: scale(0.98); }
+</style>
+</head>
+<body>
+<div class="app-container">
+  <div class="top-bar">
+    <a class="btn-back" href="./每日训练详情页_PROTOTYPE_CD3F0A439A594F46.html">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </a>
+    <span class="top-bar-title">训练打卡</span>
+  </div>
+
+  <div class="checkin-hero">
+    <div class="checkin-hero-emoji">&#x1F3CB;&#x200D;&#x2640;&#xFE0F;</div>
+    <h2>今天的训练完成了吗？</h2>
+    <p>记录你的训练数据，让FitBuddy更好地为你调整计划</p>
+  </div>
+
+  <div class="rating-section">
+    <div class="rating-label">训练完成度</div>
+    <div class="rating-stars" id="completeStars">
+      <div class="rating-star" onclick="selectStar(this,'completeStars')" data-val="20">20%</div>
+      <div class="rating-star" onclick="selectStar(this,'completeStars')" data-val="40">40%</div>
+      <div class="rating-star" onclick="selectStar(this,'completeStars')" data-val="60">60%</div>
+      <div class="rating-star" onclick="selectStar(this,'completeStars')" data-val="80">80%</div>
+      <div class="rating-star selected" onclick="selectStar(this,'completeStars')" data-val="100">100%</div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-group">
+      <label class="form-label">今日体重</label>
+      <div class="input-with-unit"><input type="number" class="form-input" placeholder="66.0" value="65.4"><span class="input-unit">kg</span></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">今日饮水</label>
+      <div class="input-with-unit"><input type="number" class="form-input" placeholder="2000" value="1800"><span class="input-unit">ml</span></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">昨晚睡眠</label>
+      <div class="input-with-unit"><input type="number" class="form-input" placeholder="8" value="7.5"><span class="input-unit">小时</span></div>
+    </div>
+  </div>
+
+  <div class="rating-section">
+    <div class="rating-label">今日疲劳程度</div>
+    <div class="rating-stars" id="fatigueStars">
+      <div class="rating-star" onclick="selectStar(this,'fatigueStars')" data-val="1">1</div>
+      <div class="rating-star" onclick="selectStar(this,'fatigueStars')" data-val="3">3</div>
+      <div class="rating-star selected" onclick="selectStar(this,'fatigueStars')" data-val="5">5</div>
+      <div class="rating-star" onclick="selectStar(this,'fatigueStars')" data-val="7">7</div>
+      <div class="rating-star" onclick="selectStar(this,'fatigueStars')" data-val="10">10</div>
+    </div>
+    <div style="text-align:center;font-size:11px;color:var(--text-secondary);margin-top:6px">1=精力充沛 · 5=正常 · 10=极度疲劳</div>
+  </div>
+
+  <div class="rating-section">
+    <div class="rating-label">今日心情</div>
+    <div class="rating-stars" id="moodStars">
+      <div class="rating-star" onclick="selectStar(this,'moodStars')" data-val="1">&#x1F629;</div>
+      <div class="rating-star" onclick="selectStar(this,'moodStars')" data-val="3">&#x1F615;</div>
+      <div class="rating-star" onclick="selectStar(this,'moodStars')" data-val="5">&#x1F610;</div>
+      <div class="rating-star selected" onclick="selectStar(this,'moodStars')" data-val="7">&#x1F60A;</div>
+      <div class="rating-star" onclick="selectStar(this,'moodStars')" data-val="10">&#x1F929;</div>
+    </div>
+  </div>
+
+  <div class="pain-section">
+    <h4>&#x1FA7A; 训练后是否出现疼痛？（可多选）</h4>
+    <div class="pain-tags">
+      <span class="pain-tag none selected" onclick="togglePainTag(this)">没有疼痛</span>
+      <span class="pain-tag" onclick="togglePainTag(this)">膝盖</span>
+      <span class="pain-tag" onclick="togglePainTag(this)">腰部</span>
+      <span class="pain-tag" onclick="togglePainTag(this)">肩颈</span>
+      <span class="pain-tag" onclick="togglePainTag(this)">手腕</span>
+      <span class="pain-tag" onclick="togglePainTag(this)">脚踝</span>
+      <span class="pain-tag" onclick="togglePainTag(this)">其它</span>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <button class="btn-submit" onclick="openMotivation()">提交打卡</button>
+  </div>
+</div>
+
+<div class="motivation-modal" id="motivationModal">
+  <div class="motivation-content">
+    <div class="motivation-emoji">&#x1F525;</div>
+    <h2>训练完成！太棒了！</h2>
+    <p>今天的努力离目标又近了一步</p>
+    <div class="motivation-stats">
+      <div class="motivation-stat-row"><span>连续打卡</span><span class="motivation-stat-val">12 天</span></div>
+      <div class="motivation-stat-row"><span>累计消耗</span><span class="motivation-stat-val">4,230 kcal</span></div>
+      <div class="motivation-stat-row"><span>距离目标还差</span><span class="motivation-stat-val">6.8 kg</span></div>
+      <div class="motivation-stat-row"><span>预计达标</span><span class="motivation-stat-val">约 32 天后</span></div>
+    </div>
+    <p style="font-size:13px;color:var(--text-secondary)">保持现在的节奏，你预计将在<br><strong style="color:var(--primary)">32天后</strong>达到目标体重！</p>
+    <button class="btn-modal" onclick="closeMotivation()">继续加油 &#x1F4AA;</button>
+  </div>
+</div>
+
+<script>
+function selectStar(el, groupId) {
+  document.querySelectorAll('#'+groupId+' .rating-star').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function togglePainTag(el) {
+  if (el.classList.contains('none')) {
+    document.querySelectorAll('.pain-tag').forEach(t => { if (!t.classList.contains('none')) t.classList.remove('selected'); });
+    el.classList.toggle('selected');
+  } else {
+    document.querySelector('.pain-tag.none').classList.remove('selected');
+    el.classList.toggle('selected');
+  }
+}
+function openMotivation() { document.getElementById('motivationModal').classList.add('show'); }
+function closeMotivation() { document.getElementById('motivationModal').classList.remove('show'); navigateTo('dashboard'); }
+var PAGE_URLS={welcome:'./欢迎引导页_PROTOTYPE_AE8BF0C677F44D11.html','basic-info':'./基础信息采集页_PROTOTYPE_577C9CE5800B46B7.html','training-goals':'./训练目标选择页_PROTOTYPE_68BE44E236D64BAE.html','training-experience':'./训练经验与条件页_PROTOTYPE_04D1896309714B02.html','analysis-report':'./用户分析报告页_PROTOTYPE_E80F0FC4A99749C1.html',dashboard:'./首页仪表盘_PROTOTYPE_523E0C225CFA4A85.html','training-plan':'./训练计划页_PROTOTYPE_C3EB8FC4A69843CB.html','daily-workout':'./每日训练详情页_PROTOTYPE_CD3F0A439A594F46.html','exercise-detail':'./动作说明页_PROTOTYPE_5EFB86B43407489A.html','daily-checkin':'./每日打卡页_PROTOTYPE_1417AAC5029941B3.html','progress-tracking':'./进度追踪页_PROTOTYPE_F808929A2BD0425E.html','diet-plan':'./饮食建议页_PROTOTYPE_BFCEFD02D1B5446B.html',profile:'./个人中心页_PROTOTYPE_E7708D8D96F84C50.html'};
+function navigateTo(page) { if(PAGE_URLS[page]) window.location.href=PAGE_URLS[page]; }
+function retryImage(img) {
+  var c=parseInt(img.getAttribute('data-retry-count'))||0,m=parseInt(img.getAttribute('data-max-retry'))||10;
+  if(c<m){img.setAttribute('data-retry-count',c+1);img.src=img.src.replace(/retry=\d+/,'retry='+(c+1))+'&t='+Date.now();}
+  else{img.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0U1RTdFQiIvPjwvc3ZnPg==';img.onerror=null;}
+}
+</script>
+</body>
+</html>

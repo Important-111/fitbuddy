@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitBuddy - 训练条件</title>
+<style>
+:root {
+  --primary: #FF6B35; --primary-light: rgba(255,107,53,0.08);
+  --accent: #36CFC9; --bg: #F9FAFB; --card: #FFFFFF;
+  --text-primary: #1F2937; --text-secondary: #6B7280;
+  --border: #E5E7EB; --success: #10B981; --danger: #EF4444;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+  background: #F0F2F5; display: flex; justify-content: center; min-height: 100vh;
+}
+.app-container { width: 100%; max-width: 430px; min-height: 100vh; background: var(--bg); }
+.top-bar {
+  padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+  background: var(--card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10;
+}
+.btn-back {
+  width: 36px; height: 36px; border: none; background: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; color: var(--text-primary);
+  border-radius: 8px; transition: background 0.2s;
+}
+.btn-back:hover { background: var(--border); }
+.top-bar-title { font-size: 17px; font-weight: 600; color: var(--text-primary); }
+.progress-bar-wrap { padding: 16px 24px; background: var(--card); }
+.progress-steps { display: flex; justify-content: space-between; }
+.progress-step {
+  width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; background: var(--border); color: var(--text-secondary);
+}
+.progress-step.active { background: var(--primary); color: #FFF; }
+.progress-step.done { background: var(--success); color: #FFF; }
+.progress-bar-bg { height: 4px; background: var(--border); border-radius: 2px; margin-top: 8px; }
+.progress-bar-fill { height: 100%; background: var(--primary); border-radius: 2px; }
+.progress-label { text-align: center; font-size: 13px; color: var(--text-secondary); margin-top: 8px; font-weight: 400; }
+.form-section { padding: 20px 24px; }
+.section-title { font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+.section-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; font-weight: 400; line-height: 1.5; }
+.form-group { margin-bottom: 18px; }
+.form-label { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: block; }
+.option-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.option-chip {
+  padding: 10px 16px; border: 2px solid var(--border); border-radius: 10px;
+  font-size: 14px; color: var(--text-secondary); cursor: pointer; transition: all 0.2s;
+  background: var(--card); font-weight: 400;
+}
+.option-chip.selected { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+.option-chip:hover { border-color: var(--primary); }
+.option-chip:active { transform: scale(0.96); }
+.equip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.equip-chip {
+  padding: 12px; border: 2px solid var(--border); border-radius: 10px;
+  font-size: 13px; color: var(--text-secondary); cursor: pointer; transition: all 0.2s;
+  background: var(--card); font-weight: 400; text-align: center;
+}
+.equip-chip.selected { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+.days-group { display: flex; gap: 8px; }
+.day-chip {
+  width: 42px; height: 42px; border: 2px solid var(--border); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 600; color: var(--text-secondary);
+  cursor: pointer; transition: all 0.2s; background: var(--card);
+}
+.day-chip.selected { border-color: var(--primary); color: #FFF; background: var(--primary); }
+.time-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.time-chip {
+  padding: 10px 16px; border: 2px solid var(--border); border-radius: 10px;
+  font-size: 14px; color: var(--text-secondary); cursor: pointer; transition: all 0.2s;
+  background: var(--card); font-weight: 400;
+}
+.time-chip.selected { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+.health-warning { background: #FEF2F2; border: 1px solid #FECACA; border-radius: 10px; padding: 12px 14px; margin-bottom: 18px; }
+.health-warning p { font-size: 12px; color: #B91C1C; font-weight: 400; line-height: 1.5; }
+.health-warning p strong { font-weight: 600; }
+.bottom-nav { padding: 16px 24px 32px; background: var(--card); border-top: 1px solid var(--border); }
+.btn-primary {
+  width: 100%; height: 50px; background: var(--primary); color: #FFF;
+  border: none; border-radius: 12px; font-size: 16px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-primary:hover { background: #E55A2B; }
+.btn-primary:active { transform: scale(0.98); }
+</style>
+</head>
+<body>
+<div class="app-container">
+  <div class="top-bar">
+    <button class="btn-back" onclick="navigateTo('training-goals')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <span class="top-bar-title">建立你的档案</span>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-steps">
+      <div class="progress-step done">&#10003;</div>
+      <div class="progress-step done">&#10003;</div>
+      <div class="progress-step active">3</div>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%"></div></div>
+    <div class="progress-label">步骤 3/3 · 训练条件与健康状况</div>
+  </div>
+  <div class="form-section">
+    <h2 class="section-title">训练条件</h2>
+    <p class="section-desc">最后一步，让我们了解你的训练环境和身体状况</p>
+
+    <div class="form-group">
+      <label class="form-label">训练经验</label>
+      <div class="option-group">
+        <div class="option-chip selected" onclick="selectChip(this,'.option-chip')">完全小白</div>
+        <div class="option-chip" onclick="selectChip(this,'.option-chip')">训练不足半年</div>
+        <div class="option-chip" onclick="selectChip(this,'.option-chip')">训练1年</div>
+        <div class="option-chip" onclick="selectChip(this,'.option-chip')">训练3年以上</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">训练地点（可多选）</label>
+      <div class="option-group">
+        <div class="option-chip" onclick="toggleChip(this)">家里</div>
+        <div class="option-chip" onclick="toggleChip(this)">健身房</div>
+        <div class="option-chip" onclick="toggleChip(this)">办公室</div>
+        <div class="option-chip" onclick="toggleChip(this)">户外</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">可用器械（可多选）</label>
+      <div class="equip-grid">
+        <div class="equip-chip" onclick="toggleChip(this)">无器械</div>
+        <div class="equip-chip" onclick="toggleChip(this)">瑜伽垫</div>
+        <div class="equip-chip" onclick="toggleChip(this)">弹力带</div>
+        <div class="equip-chip" onclick="toggleChip(this)">哑铃</div>
+        <div class="equip-chip" onclick="toggleChip(this)">壶铃</div>
+        <div class="equip-chip" onclick="toggleChip(this)">引体向上杆</div>
+        <div class="equip-chip" onclick="toggleChip(this)">跳绳</div>
+        <div class="equip-chip" onclick="toggleChip(this)">跑步机</div>
+        <div class="equip-chip" onclick="toggleChip(this)">动感单车</div>
+        <div class="equip-chip" onclick="toggleChip(this)">其它</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">每周训练几天</label>
+      <div class="days-group">
+        <div class="day-chip" onclick="selectChip(this,'.day-chip')">1</div>
+        <div class="day-chip" onclick="selectChip(this,'.day-chip')">2</div>
+        <div class="day-chip selected" onclick="selectChip(this,'.day-chip')">3</div>
+        <div class="day-chip" onclick="selectChip(this,'.day-chip')">4</div>
+        <div class="day-chip" onclick="selectChip(this,'.day-chip')">5</div>
+        <div class="day-chip" onclick="selectChip(this,'.day-chip')">6</div>
+        <div class="day-chip" onclick="selectChip(this,'.day-chip')">7</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">每天可训练多久</label>
+      <div class="time-group">
+        <div class="time-chip" onclick="selectChip(this,'.time-chip')">15分钟</div>
+        <div class="time-chip" onclick="selectChip(this,'.time-chip')">20分钟</div>
+        <div class="time-chip selected" onclick="selectChip(this,'.time-chip')">30分钟</div>
+        <div class="time-chip" onclick="selectChip(this,'.time-chip')">45分钟</div>
+        <div class="time-chip" onclick="selectChip(this,'.time-chip')">60分钟</div>
+        <div class="time-chip" onclick="selectChip(this,'.time-chip')">90分钟</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">健康情况（可多选）</label>
+      <div class="option-group">
+        <div class="option-chip" onclick="toggleChip(this)">膝盖疼</div>
+        <div class="option-chip" onclick="toggleChip(this)">腰疼</div>
+        <div class="option-chip" onclick="toggleChip(this)">肩颈疼</div>
+        <div class="option-chip" onclick="toggleChip(this)">高血压</div>
+        <div class="option-chip" onclick="toggleChip(this)">糖尿病</div>
+        <div class="option-chip" onclick="toggleChip(this)">心脏病</div>
+        <div class="option-chip" onclick="toggleChip(this)">孕期</div>
+        <div class="option-chip" onclick="toggleChip(this)">术后恢复</div>
+        <div class="option-chip" onclick="toggleChip(this)">其它疾病</div>
+        <div class="option-chip selected" onclick="toggleChip(this)" style="border-color:var(--success);color:var(--success);background:rgba(16,185,129,0.08)">没有以上情况</div>
+      </div>
+    </div>
+
+    <div class="health-warning">
+      <p><strong>&#x26A0; 安全提醒：</strong>如果你选择了任何健康问题，AI将自动降低训练强度并调整方案。如有严重健康问题，请先咨询医生。</p>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <button class="btn-primary" onclick="navigateTo('analysis-report')">完成建档，查看分析报告</button>
+  </div>
+</div>
+<script>
+function selectChip(el, selector) {
+  document.querySelectorAll(selector).forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function toggleChip(el) {
+  if (el.textContent.trim() === '没有以上情况') {
+    document.querySelectorAll('.option-group:last-of-type .option-chip').forEach(c => {
+      if (c.textContent.trim() !== '没有以上情况') c.classList.remove('selected');
+    });
+    el.classList.toggle('selected');
+  } else {
+    var noneChip = Array.from(document.querySelectorAll('.option-chip')).find(c => c.textContent.trim() === '没有以上情况');
+    if (noneChip) noneChip.classList.remove('selected');
+    el.classList.toggle('selected');
+  }
+}
+var PAGE_URLS={welcome:'./欢迎引导页_PROTOTYPE_AE8BF0C677F44D11.html','basic-info':'./基础信息采集页_PROTOTYPE_577C9CE5800B46B7.html','training-goals':'./训练目标选择页_PROTOTYPE_68BE44E236D64BAE.html','training-experience':'./训练经验与条件页_PROTOTYPE_04D1896309714B02.html','analysis-report':'./用户分析报告页_PROTOTYPE_E80F0FC4A99749C1.html',dashboard:'./首页仪表盘_PROTOTYPE_523E0C225CFA4A85.html','training-plan':'./训练计划页_PROTOTYPE_C3EB8FC4A69843CB.html','daily-workout':'./每日训练详情页_PROTOTYPE_CD3F0A439A594F46.html','exercise-detail':'./动作说明页_PROTOTYPE_5EFB86B43407489A.html','daily-checkin':'./每日打卡页_PROTOTYPE_1417AAC5029941B3.html','progress-tracking':'./进度追踪页_PROTOTYPE_F808929A2BD0425E.html','diet-plan':'./饮食建议页_PROTOTYPE_BFCEFD02D1B5446B.html',profile:'./个人中心页_PROTOTYPE_E7708D8D96F84C50.html'};
+function navigateTo(page) { if(PAGE_URLS[page]) window.location.href=PAGE_URLS[page]; }
+function retryImage(img) {
+  var c=parseInt(img.getAttribute('data-retry-count'))||0,m=parseInt(img.getAttribute('data-max-retry'))||10;
+  if(c<m){img.setAttribute('data-retry-count',c+1);img.src=img.src.replace(/retry=\d+/,'retry='+(c+1))+'&t='+Date.now();}
+  else{img.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0U1RTdFQiIvPjwvc3ZnPg==';img.onerror=null;}
+}
+</script>
+</body>
+</html>

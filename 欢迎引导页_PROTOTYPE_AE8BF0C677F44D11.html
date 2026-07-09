@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitBuddy - AI健身教练</title>
+<style>
+:root {
+  --primary: #FF6B35;
+  --primary-light: rgba(255,107,53,0.1);
+  --accent: #36CFC9;
+  --accent-light: rgba(54,207,201,0.1);
+  --bg: #F9FAFB;
+  --card: #FFFFFF;
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --text-tertiary: #9CA3AF;
+  --border: #E5E7EB;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+  background: #F0F2F5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.app-container {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  background: var(--bg);
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 40px;
+}
+.welcome-hero {
+  background: linear-gradient(135deg, #FF6B35 0%, #FF8C5A 50%, #FFB088 100%);
+  padding: 60px 24px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.welcome-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: var(--bg);
+  border-radius: 30px 30px 0 0;
+}
+.hero-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 24px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-icon svg { width: 48px; height: 48px; }
+.hero-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+}
+.hero-subtitle {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  font-weight: 400;
+}
+
+/* 基本资料模块 */
+.profile-section {
+  padding: 24px;
+  margin-top: -40px;
+  position: relative;
+  z-index: 2;
+}
+.profile-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  border: 1px solid var(--border);
+}
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border);
+}
+.profile-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.profile-title-icon {
+  width: 24px;
+  height: 24px;
+  background: var(--primary-light);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-title-icon svg { width: 14px; height: 14px; }
+.profile-action {
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.profile-action:hover { opacity: 0.8; }
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 20px;
+}
+.profile-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.profile-item.full { grid-column: span 2; }
+.profile-label {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+.profile-value {
+  font-size: 15px;
+  color: var(--text-primary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.profile-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--accent-light);
+  color: #0E9384;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 400;
+}
+.profile-tag.male { background: rgba(22,93,255,0.1); color: #165DFF; }
+.profile-tag.female { background: rgba(236,72,153,0.1); color: #EC4899; }
+
+.features-section {
+  padding: 16px 24px 24px;
+}
+.features-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+.feature-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid var(--border);
+}
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.feature-icon.orange { background: var(--primary-light); }
+.feature-icon.green { background: var(--accent-light); }
+.feature-icon.blue { background: rgba(22,93,255,0.1); }
+.feature-icon.purple { background: rgba(139,92,246,0.1); }
+.feature-icon svg { width: 22px; height: 22px; }
+.feature-text h3 { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
+.feature-text p { font-size: 12px; color: var(--text-secondary); font-weight: 400; line-height: 1.5; }
+
+/* 视频教程模块 */
+.video-section {
+  padding: 0 24px 24px;
+}
+.video-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.video-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.video-section-more {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.video-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.video-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.video-item:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255,107,53,0.12);
+}
+.video-item:active { transform: scale(0.99); }
+.video-thumb {
+  position: relative;
+  width: 96px;
+  height: 64px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #FF6B35, #FF8C5A);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.video-thumb.green { background: linear-gradient(135deg, #36CFC9, #5DD9C9); }
+.video-thumb.blue { background: linear-gradient(135deg, #165DFF, #4080FF); }
+.video-thumb.purple { background: linear-gradient(135deg, #8B5CF6, #A78BFA); }
+.video-play {
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.video-play svg { width: 14px; height: 14px; margin-left: 2px; }
+.video-duration {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(0,0,0,0.6);
+  color: #FFFFFF;
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 400;
+}
+.video-info {
+  flex: 1;
+  min-width: 0;
+}
+.video-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.video-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+.video-meta-dot { color: var(--border); }
+
+.bottom-cta {
+  padding: 8px 24px 32px;
+}
+.btn-primary {
+  width: 100%;
+  height: 50px;
+  background: var(--primary);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-primary:hover { background: #E55A2B; transform: translateY(-1px); }
+.btn-primary:active { transform: scale(0.98); }
+.privacy-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 12px;
+  font-weight: 400;
+}
+
+/* 弹窗 */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+.modal {
+  background: var(--card);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 380px;
+  transform: scale(0.9);
+  transition: transform 0.2s ease;
+}
+.modal-overlay.show .modal { transform: scale(1); }
+.modal-header {
+  padding: 20px 20px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.modal-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.modal-close {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: var(--bg);
+  border-radius: 50%;
+  font-size: 16px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-close:hover { background: var(--border); }
+.modal-body {
+  padding: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+.modal-footer {
+  padding: 12px 20px 20px;
+  display: flex;
+  gap: 12px;
+}
+.btn-secondary {
+  flex: 1;
+  height: 44px;
+  background: var(--bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-secondary:hover { background: var(--border); }
+.btn-confirm {
+  flex: 1;
+  height: 44px;
+  background: var(--primary);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-confirm:hover { background: #E55A2B; }
+
+/* 表单 */
+.form-row {
+  margin-bottom: 14px;
+}
+.form-row label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  font-weight: 400;
+}
+.form-row input,
+.form-row select {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--card);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.form-row input:focus,
+.form-row select:focus { border-color: var(--primary); }
+.form-row .hint {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+}
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <!-- 顶部欢迎区 -->
+  <div class="welcome-hero">
+    <div class="hero-icon">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8C18 8 22 4 24 4C26 4 30 8 30 8"></path>
+        <path d="M24 4V8"></path>
+        <circle cx="24" cy="24" r="20"></circle>
+        <path d="M18 28C18 28 21 32 24 32C27 32 30 28 30 28"></path>
+        <path d="M16 20L18 22"></path>
+        <path d="M30 20L32 22"></path>
+        <circle cx="20" cy="18" r="1.5" fill="#FFFFFF"></circle>
+        <circle cx="28" cy="18" r="1.5" fill="#FFFFFF"></circle>
+      </svg>
+    </div>
+    <h1 class="hero-title">FitBuddy</h1>
+    <p class="hero-subtitle">你的AI私人健身教练，陪你达成每一个目标</p>
+  </div>
+
+  <!-- 基本资料卡片：与之前填写信息保持一致 -->
+  <div class="profile-section">
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-title">
+          <div class="profile-title-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          我的基本资料
+        </div>
+        <div class="profile-action" onclick="openModal('editProfileModal')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          编辑
+        </div>
+      </div>
+
+      <div class="profile-grid">
+        <div class="profile-item">
+          <span class="profile-label">昵称</span>
+          <span class="profile-value">小宇</span>
+        </div>
+        <div class="profile-item">
+          <span class="profile-label">性别</span>
+          <span class="profile-value">
+            <span class="profile-tag male">男</span>
+          </span>
+        </div>
+        <div class="profile-item">
+          <span class="profile-label">年龄</span>
+          <span class="profile-value">28 岁</span>
+        </div>
+        <div class="profile-item">
+          <span class="profile-label">身高</span>
+          <span class="profile-value">175 cm</span>
+        </div>
+        <div class="profile-item">
+          <span class="profile-label">体重</span>
+          <span class="profile-value">68 kg</span>
+        </div>
+        <div class="profile-item">
+          <span class="profile-label">BMI</span>
+          <span class="profile-value">
+            22.2
+            <span class="profile-tag">正常</span>
+          </span>
+        </div>
+        <div class="profile-item full">
+          <span class="profile-label">健身目标</span>
+          <span class="profile-value">增肌塑形</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 功能特点 -->
+  <div class="features-section">
+    <div class="features-section-title">FitBuddy 能为你做什么</div>
+    <div class="feature-card">
+      <div class="feature-icon orange">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h3>个性化训练计划</h3>
+        <p>基于你的身体数据和目标，AI生成专属每日/每周/每月训练方案</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#36CFC9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h3>动态智能调整</h3>
+        <p>根据训练完成度和身体反馈，每周自动优化训练强度和内容</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#165DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4-4v2"></path><circle cx="9" cy="7" r="4"></circle>
+          <path d="M22 21v-2a4 4 0 00-3-3.87"></path><path d="M16 3.13a4 4 0 010 7.75"></path>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h3>专业动作指导</h3>
+        <p>每个训练动作配有详细说明、常见错误纠正和视频教程推荐</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon purple">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h3>全方位进度追踪</h3>
+        <p>体重、围度、体脂变化一目了然，里程碑激励让你保持动力</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 视频教程：可点击跳转 -->
+  <div class="video-section">
+    <div class="video-section-header">
+      <div class="video-section-title">推荐视频教程</div>
+      <div class="video-section-more" onclick="navigateTo('training-plan')">
+        查看更多
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </div>
+    </div>
+    <div class="video-list">
+      <div class="video-item" onclick="navigateTo('exercise-detail')">
+        <div class="video-thumb">
+          <div class="video-play">
+            <svg viewBox="0 0 24 24" fill="#FF6B35"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="video-duration">3:25</span>
+        </div>
+        <div class="video-info">
+          <div class="video-title">深蹲标准动作教学</div>
+          <div class="video-meta">
+            <span>12.5万次播放</span>
+            <span class="video-meta-dot">·</span>
+            <span>健身入门</span>
+          </div>
+        </div>
+      </div>
+      <div class="video-item" onclick="navigateTo('exercise-detail')">
+        <div class="video-thumb green">
+          <div class="video-play">
+            <svg viewBox="0 0 24 24" fill="#36CFC9"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="video-duration">4:10</span>
+        </div>
+        <div class="video-info">
+          <div class="video-title">平板支撑核心训练</div>
+          <div class="video-meta">
+            <span>8.2万次播放</span>
+            <span class="video-meta-dot">·</span>
+            <span>核心力量</span>
+          </div>
+        </div>
+      </div>
+      <div class="video-item" onclick="navigateTo('exercise-detail')">
+        <div class="video-thumb blue">
+          <div class="video-play">
+            <svg viewBox="0 0 24 24" fill="#165DFF"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="video-duration">5:48</span>
+        </div>
+        <div class="video-info">
+          <div class="video-title">哑铃卧推完整指南</div>
+          <div class="video-meta">
+            <span>15.6万次播放</span>
+            <span class="video-meta-dot">·</span>
+            <span>胸部训练</span>
+          </div>
+        </div>
+      </div>
+      <div class="video-item" onclick="navigateTo('exercise-detail')">
+        <div class="video-thumb purple">
+          <div class="video-play">
+            <svg viewBox="0 0 24 24" fill="#8B5CF6"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="video-duration">6:32</span>
+        </div>
+        <div class="video-info">
+          <div class="video-title">硬拉动作细节分解</div>
+          <div class="video-meta">
+            <span>9.8万次播放</span>
+            <span class="video-meta-dot">·</span>
+            <span>背部训练</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部操作 -->
+  <div class="bottom-cta">
+    <button class="btn-primary" onclick="navigateTo('analysis-report')">查看我的分析报告</button>
+    <p class="privacy-note">你的数据仅用于制定训练计划，不会被分享</p>
+  </div>
+</div>
+
+<!-- 编辑资料弹窗 -->
+<div class="modal-overlay" id="editProfileModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">编辑基本资料</div>
+      <button class="modal-close" onclick="closeModal('editProfileModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <label>昵称</label>
+        <input type="text" id="nickname" value="小宇">
+      </div>
+      <div class="form-row">
+        <label>性别</label>
+        <select id="gender">
+          <option value="male" selected>男</option>
+          <option value="female">女</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>年龄</label>
+        <input type="number" id="age" value="28">
+        <div class="hint">单位：岁</div>
+      </div>
+      <div class="form-row">
+        <label>身高</label>
+        <input type="number" id="height" value="175">
+        <div class="hint">单位：cm</div>
+      </div>
+      <div class="form-row">
+        <label>体重</label>
+        <input type="number" id="weight" value="68">
+        <div class="hint">单位：kg</div>
+      </div>
+      <div class="form-row">
+        <label>健身目标</label>
+        <select id="goal">
+          <option value="增肌塑形" selected>增肌塑形</option>
+          <option value="减脂瘦身">减脂瘦身</option>
+          <option value="提升体能">提升体能</option>
+          <option value="保持健康">保持健康</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal('editProfileModal')">取消</button>
+      <button class="btn-confirm" onclick="saveProfile()">保存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var PAGE_URLS = {
+  welcome: './欢迎引导页_PROTOTYPE_AE8BF0C677F44D11.html',
+  'basic-info': './基础信息采集页_PROTOTYPE_577C9CE5800B46B7.html',
+  'training-goals': './训练目标选择页_PROTOTYPE_68BE44E236D64BAE.html',
+  'training-experience': './训练经验与条件页_PROTOTYPE_04D1896309714B02.html',
+  'analysis-report': './用户分析报告页_PROTOTYPE_E80F0FC4A99749C1.html',
+  dashboard: './首页仪表盘_PROTOTYPE_523E0C225CFA4A85.html',
+  'training-plan': './训练计划页_PROTOTYPE_C3EB8FC4A69843CB.html',
+  'daily-workout': './每日训练详情页_PROTOTYPE_CD3F0A439A594F46.html',
+  'exercise-detail': './动作说明页_PROTOTYPE_5EFB86B43407489A.html',
+  'daily-checkin': './每日打卡页_PROTOTYPE_1417AAC5029941B3.html',
+  'progress-tracking': './进度追踪页_PROTOTYPE_F808929A2BD0425E.html',
+  'diet-plan': './饮食建议页_PROTOTYPE_BFCEFD02D1B5446B.html',
+  profile: './个人中心页_PROTOTYPE_E7708D8D96F84C50.html'
+};
+
+// 与之前填写信息保持一致的标准化基本资料
+// 此处为「唯一真实来源」，所有页面（含分析报告）必须同步此数据
+var USER_PROFILE = {
+  nickname: '小宇',
+  gender: 'male',
+  age: 28,
+  height: 175,
+  weight: 68,
+  goal: '增肌塑形'
+};
+
+function navigateTo(page) {
+  if (PAGE_URLS[page]) {
+    sessionStorage.setItem('user_profile', JSON.stringify(USER_PROFILE));
+    window.location.href = PAGE_URLS[page];
+  }
+}
+
+function openModal(id) {
+  var modal = document.getElementById(id);
+  if (modal) {
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    // 同步当前资料到表单
+    if (id === 'editProfileModal') {
+      document.getElementById('nickname').value = USER_PROFILE.nickname;
+      document.getElementById('gender').value = USER_PROFILE.gender;
+      document.getElementById('age').value = USER_PROFILE.age;
+      document.getElementById('height').value = USER_PROFILE.height;
+      document.getElementById('weight').value = USER_PROFILE.weight;
+      document.getElementById('goal').value = USER_PROFILE.goal;
+    }
+  }
+}
+
+function closeModal(id) {
+  var modal = document.getElementById(id);
+  if (modal) {
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+}
+
+function saveProfile() {
+  // 保存并刷新资料卡片，确保与后续分析报告同步
+  USER_PROFILE = {
+    nickname: document.getElementById('nickname').value || '用户',
+    gender: document.getElementById('gender').value,
+    age: parseInt(document.getElementById('age').value) || 0,
+    height: parseInt(document.getElementById('height').value) || 0,
+    weight: parseInt(document.getElementById('weight').value) || 0,
+    goal: document.getElementById('goal').value
+  };
+  renderProfile();
+  closeModal('editProfileModal');
+}
+
+function renderProfile() {
+  var p = USER_PROFILE;
+  var bmi = p.height > 0 ? (p.weight / Math.pow(p.height / 100, 2)).toFixed(1) : '--';
+  var bmiTag = '';
+  var bmiVal = parseFloat(bmi);
+  if (!isNaN(bmiVal)) {
+    if (bmiVal < 18.5) bmiTag = '<span class="profile-tag" style="background:rgba(22,93,255,0.1);color:#165DFF;">偏瘦</span>';
+    else if (bmiVal < 24) bmiTag = '<span class="profile-tag">正常</span>';
+    else if (bmiVal < 28) bmiTag = '<span class="profile-tag" style="background:rgba(245,158,11,0.1);color:#F59E0B;">偏胖</span>';
+    else bmiTag = '<span class="profile-tag" style="background:rgba(239,68,68,0.1);color:#EF4444;">肥胖</span>';
+  }
+  var genderTag = p.gender === 'male'
+    ? '<span class="profile-tag male">男</span>'
+    : '<span class="profile-tag female">女</span>';
+
+  var grid = document.querySelector('.profile-grid');
+  if (grid) {
+    grid.innerHTML =
+      '<div class="profile-item"><span class="profile-label">昵称</span><span class="profile-value">' + escapeHtml(p.nickname) + '</span></div>' +
+      '<div class="profile-item"><span class="profile-label">性别</span><span class="profile-value">' + genderTag + '</span></div>' +
+      '<div class="profile-item"><span class="profile-label">年龄</span><span class="profile-value">' + p.age + ' 岁</span></div>' +
+      '<div class="profile-item"><span class="profile-label">身高</span><span class="profile-value">' + p.height + ' cm</span></div>' +
+      '<div class="profile-item"><span class="profile-label">体重</span><span class="profile-value">' + p.weight + ' kg</span></div>' +
+      '<div class="profile-item"><span class="profile-label">BMI</span><span class="profile-value">' + bmi + ' ' + bmiTag + '</span></div>' +
+      '<div class="profile-item full"><span class="profile-label">健身目标</span><span class="profile-value">' + escapeHtml(p.goal) + '</span></div>';
+  }
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, function(c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+
+// 弹窗点击遮罩关闭
+document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeModal(overlay.id);
+  });
+});
+
+// ESC 关闭弹窗
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.show').forEach(function(m) {
+      closeModal(m.id);
+    });
+  }
+});
+
+function retryImage(img) {
+  var c = parseInt(img.getAttribute('data-retry-count')) || 0;
+  var m = parseInt(img.getAttribute('data-max-retry')) || 10;
+  if (c < m) {
+    img.setAttribute('data-retry-count', c + 1);
+    img.src = img.src.replace(/retry=\d+/, 'retry=' + (c + 1)) + '&t=' + Date.now();
+  } else {
+    img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0U1RTdFQiIvPjwvc3ZnPg==';
+    img.onerror = null;
+  }
+}
+</script>
+</body>
+</html>
