@@ -5,8 +5,8 @@
   </view>
 
   <!-- Nutrition Banner -->
-  <view class="nutri-banner" style="background:linear-gradient(135deg,#36CFC9,#2BB0AB)">
-    <text style="font-size:18px;font-weight:700;display:block;margin-bottom:12px">今日营养目标</text>
+  <view class="nutri-banner" style="background:linear-gradient(135deg,#FF6B35,#E0481E);">
+    <text style="font-size:18px;font-weight:700;display:block;margin-bottom:12px;text-shadow:0 1px 3px rgba(0,0,0,0.12)">今日营养目标</text>
     <view class="nutri-row">
       <view class="nutri-item">
         <text class="nutri-val">{{nutrition.calories}}</text>
@@ -46,67 +46,19 @@
     >塑形</view>
   </view>
 
-  <!-- Meal Cards -->
+  <!-- Meal Cards (dynamic based on goal tab) -->
   <view class="meal-section">
     <view class="section-title">今日饮食方案</view>
 
-    <!-- Breakfast -->
-    <view class="meal-card">
+    <view class="meal-card" wx:for="{{mealPlan}}" wx:key="name">
       <view class="meal-header">
-        <text class="meal-time"><text class="meal-emoji">🌞</text>早餐 · 7:30</text>
-        <text class="meal-cal">~430 kcal</text>
+        <text class="meal-time"><text class="meal-emoji">{{item.emoji}}</text>{{item.name}} · {{item.time}}</text>
+        <text class="meal-cal">~{{item.calories}} kcal</text>
       </view>
       <view class="meal-items">
-        <text class="meal-item">全麦面包 2片</text>
-        <text class="meal-item">水煮蛋 2个</text>
-        <text class="meal-item">牛奶 250ml</text>
-        <text class="meal-item">小番茄 100g</text>
+        <text class="meal-item" wx:for="{{item.foods}}" wx:for-item="food" wx:key="*this">{{food}}</text>
       </view>
-      <text class="meal-note">蛋白质 28g · 碳水 45g · 脂肪 15g</text>
-    </view>
-
-    <!-- Lunch -->
-    <view class="meal-card">
-      <view class="meal-header">
-        <text class="meal-time"><text class="meal-emoji">☀️</text>午餐 · 12:00</text>
-        <text class="meal-cal">~500 kcal</text>
-      </view>
-      <view class="meal-items">
-        <text class="meal-item">糙米饭 150g</text>
-        <text class="meal-item">鸡胸肉 150g</text>
-        <text class="meal-item">西兰花 100g</text>
-        <text class="meal-item">橄榄油 5ml</text>
-      </view>
-      <text class="meal-note">蛋白质 42g · 碳水 55g · 脂肪 12g</text>
-    </view>
-
-    <!-- Snack -->
-    <view class="meal-card">
-      <view class="meal-header">
-        <text class="meal-time"><text class="meal-emoji">🌿</text>加餐 · 15:30</text>
-        <text class="meal-cal">~200 kcal</text>
-      </view>
-      <view class="meal-items">
-        <text class="meal-item">希腊酸奶 150g</text>
-        <text class="meal-item">坚果 20g</text>
-        <text class="meal-item">蓝莓 50g</text>
-      </view>
-      <text class="meal-note">蛋白质 15g · 碳水 18g · 脂肪 8g</text>
-    </view>
-
-    <!-- Dinner -->
-    <view class="meal-card">
-      <view class="meal-header">
-        <text class="meal-time"><text class="meal-emoji">🌙</text>晚餐 · 18:30</text>
-        <text class="meal-cal">~400 kcal</text>
-      </view>
-      <view class="meal-items">
-        <text class="meal-item">蒸鱼 150g</text>
-        <text class="meal-item">杂粮饭 100g</text>
-        <text class="meal-item">时蔬沙拉</text>
-        <text class="meal-item">豆腐汤 1碗</text>
-      </view>
-      <text class="meal-note">蛋白质 38g · 碳水 40g · 脂肪 10g</text>
+      <text class="meal-note">蛋白质 {{item.protein}}g · 碳水 {{item.carbs}}g · 脂肪 {{item.fat}}g</text>
     </view>
   </view>
 

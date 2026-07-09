@@ -1,8 +1,10 @@
 .nutri-banner {
   margin: 16px 20px;
-  border-radius: 14px;
-  padding: 20px;
+  border-radius: 16px;
+  padding: 22px;
   color: #FFF;
+  box-shadow: 0 4px 20px rgba(255,107,53,0.25);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.12);
 }
 .nutri-banner h2 {
   font-size: 18px;

@@ -11,6 +11,27 @@ const {
   getGoalEmoji
 } = require('../../utils/store');
 
+const MEAL_PLANS = {
+  '减脂': [
+    { name: '早餐', time: '7:30', emoji: '🌞', calories: 350, protein: 28, carbs: 38, fat: 10, foods: ['全麦面包 1片', '水煮蛋 1个', '脱脂牛奶 200ml', '小番茄 100g'] },
+    { name: '午餐', time: '12:00', emoji: '☀️', calories: 400, protein: 38, carbs: 42, fat: 8, foods: ['糙米饭 100g', '鸡胸肉 120g', '西兰花 150g', '橄榄油 3ml'] },
+    { name: '加餐', time: '15:30', emoji: '🌿', calories: 150, protein: 10, carbs: 20, fat: 5, foods: ['苹果 1个', '坚果 15g'] },
+    { name: '晚餐', time: '18:30', emoji: '🌙', calories: 350, protein: 35, carbs: 30, fat: 12, foods: ['蒸鱼 120g', '杂粮饭 80g', '时蔬沙拉', '豆腐汤 1碗'] }
+  ],
+  '增肌': [
+    { name: '早餐', time: '7:30', emoji: '🌞', calories: 550, protein: 45, carbs: 55, fat: 15, foods: ['全麦面包 3片', '水煮蛋 3个', '全脂牛奶 300ml', '香蕉 1根'] },
+    { name: '午餐', time: '12:00', emoji: '☀️', calories: 650, protein: 52, carbs: 60, fat: 18, foods: ['糙米饭 200g', '鸡胸肉 200g', '西兰花 150g', '橄榄油 10ml'] },
+    { name: '加餐', time: '15:30', emoji: '🌿', calories: 350, protein: 30, carbs: 25, fat: 12, foods: ['蛋白粉 1勺', '坚果 30g', '全麦饼干 2片'] },
+    { name: '晚餐', time: '18:30', emoji: '🌙', calories: 600, protein: 48, carbs: 45, fat: 20, foods: ['牛排 150g', '红薯 200g', '混合蔬菜', '牛油果 1/4个'] }
+  ],
+  '塑形': [
+    { name: '早餐', time: '7:30', emoji: '🌞', calories: 430, protein: 28, carbs: 45, fat: 15, foods: ['全麦面包 2片', '水煮蛋 2个', '牛奶 250ml', '小番茄 100g'] },
+    { name: '午餐', time: '12:00', emoji: '☀️', calories: 500, protein: 42, carbs: 55, fat: 12, foods: ['糙米饭 150g', '鸡胸肉 150g', '西兰花 100g', '橄榄油 5ml'] },
+    { name: '加餐', time: '15:30', emoji: '🌿', calories: 200, protein: 15, carbs: 18, fat: 8, foods: ['希腊酸奶 150g', '坚果 20g', '蓝莓 50g'] },
+    { name: '晚餐', time: '18:30', emoji: '🌙', calories: 400, protein: 38, carbs: 40, fat: 10, foods: ['蒸鱼 150g', '杂粮饭 100g', '时蔬沙拉', '豆腐汤 1碗'] }
+  ]
+};
+
 Page({
   data: {
     goalTab: '',
@@ -37,6 +58,7 @@ Page({
       currentCarbs: 0,
       currentFat: 0
     },
+    mealPlan: [],
     dietLogs: [],
     dietFormVisible: false,
     mealTypeOptions: ['早餐', '午餐', '晚餐', '加餐'],
@@ -154,7 +176,9 @@ Page({
       return { mealType: mt, logs, totalCal };
     });
 
-    this.setData({ nutrition, macro, dietLogs, goalTab });
+    const mealPlan = MEAL_PLANS[goalTab] || MEAL_PLANS['塑形'];
+
+    this.setData({ nutrition, macro, dietLogs, goalTab, mealPlan });
   },
 
   onSelectGoalTab(e) {
