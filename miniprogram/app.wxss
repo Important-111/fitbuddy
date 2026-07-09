@@ -271,11 +271,14 @@ page {
 .week-tab { padding: 8px 16px; border-radius: 20px; font-size: 13px; border: 1px solid var(--border); background: var(--card); color: var(--text-secondary); white-space: nowrap; }
 .week-tab.active { background: var(--primary); color: #FFF; border-color: var(--primary); }
 .week-schedule { padding: 0 20px; }
-.day-card { background: var(--card); border-radius: 12px; padding: 16px; margin-bottom: 10px; border: 1px solid var(--border); display: flex; align-items: center; gap: 14px; }
-.day-card.today { border-color: var(--primary); background: var(--primary-light); }
+.day-card { background: var(--card); border-radius: 12px; padding: 16px; margin-bottom: 10px; border: 1px solid var(--border); display: flex; align-items: center; gap: 14px; position: relative; }
+.day-card::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 3px; border-radius: 0 3px 3px 0; background: transparent; transition: background 0.2s; }
+.day-card.today { border-color: var(--primary); background: rgba(255,107,53,0.05); }
+.day-card.today::before { background: var(--primary); }
 .day-card.done .day-num { background: var(--success); color: #FFF; }
 .day-card.rest .day-num { background: #E5E7EB; color: var(--text-secondary); }
 .day-num { width: 44px; height: 44px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--border); color: var(--text-secondary); flex-shrink: 0; }
+.day-card.today .day-num { background: var(--primary); color: #FFF; }
 .day-num-name { font-size: 13px; font-weight: 600; }
 .day-num-date { font-size: 10px; }
 .day-info { flex: 1; }

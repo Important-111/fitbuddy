@@ -59,9 +59,9 @@
 
 .day-meta-item {
   font-size: 11px;
-  color: var(--text-secondary);
-  background: var(--bg);
-  padding: 2px 8px;
+  color: var(--primary);
+  background: rgba(255,107,53,0.08);
+  padding: 2px 10px;
   border-radius: 4px;
 }
 
@@ -74,7 +74,9 @@
   font-size: 15px;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  padding-left: 10px;
+  border-left: 3px solid var(--primary);
 }
 
 .summary-card {
@@ -93,7 +95,7 @@
 .summary-item-val {
   font-size: 18px;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--primary);
 }
 
 .summary-item-lbl {
