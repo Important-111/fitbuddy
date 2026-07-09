@@ -263,9 +263,9 @@ page {
 .progress-card { background: var(--card); border-radius: 14px; padding: 18px; border: 1px solid var(--border); }
 
 /* ===== 训练计划 ===== */
-.month-goal-card { margin: 16px 20px; border-radius: 16px; padding: 22px; color: #FFF; box-shadow: 0 4px 20px rgba(255,107,53,0.25); }
+.month-goal-card { margin: 16px 20px; border-radius: 16px; padding: 22px; color: #FFF; box-shadow: 0 4px 20px rgba(255,107,53,0.25); text-shadow: 0 1px 3px rgba(0,0,0,0.12); }
 .month-goal-title { font-size: 14px; opacity: 0.9; }
-.month-goal-main { font-size: 22px; font-weight: 700; margin: 6px 0; }
+.month-goal-main { font-size: 22px; font-weight: 700; margin: 6px 0; line-height: 1.4; }
 .month-goal-sub { font-size: 13px; opacity: 0.85; }
 .week-tabs { display: flex; padding: 0 20px; gap: 6px; margin-bottom: 16px; overflow-x: auto; }
 .week-tab { padding: 8px 16px; border-radius: 20px; font-size: 13px; border: 1px solid var(--border); background: var(--card); color: var(--text-secondary); white-space: nowrap; }

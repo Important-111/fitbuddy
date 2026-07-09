@@ -5,7 +5,7 @@
   </view>
 
   <!-- 月目标卡片 -->
-  <view class="month-goal-card" style="background:linear-gradient(135deg,#FF6B35,#E55A2B,#FF8C5A);">
+  <view class="month-goal-card" style="background:linear-gradient(135deg,#FF6B35 0%,#E0481E 100%);">
     <view class="month-goal-header">
       <text class="month-goal-title">{{monthTitle}}</text>
       <text class="month-goal-badge">{{monthRate}}%</text>
