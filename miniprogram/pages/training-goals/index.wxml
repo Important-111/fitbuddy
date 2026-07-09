@@ -1,0 +1,41 @@
+<view class="page-container no-tab">
+  <!-- 顶部导航 -->
+  <view class="top-bar">
+    <view class="btn-back" bindtap="goBack">
+      <text style="font-size:20px;">‹</text>
+    </view>
+    <text class="top-bar-title">建立你的档案</text>
+  </view>
+
+  <!-- 进度条 -->
+  <view class="progress-bar-wrap">
+    <view class="progress-steps">
+      <view class="progress-step done">✓</view>
+      <view class="progress-step active">2</view>
+      <view class="progress-step">3</view>
+    </view>
+    <view class="progress-bar-bg">
+      <view class="progress-bar-fill" style="width:66%"></view>
+    </view>
+    <text class="progress-label">步骤 2/3 · 选择训练目标（可多选）</text>
+  </view>
+
+  <!-- 训练目标 -->
+  <view class="form-section">
+    <text class="section-title-inline">训练目标</text>
+    <text class="section-desc">选择你想要达成的目标，AI将据此制定个性化训练计划</text>
+
+    <view class="goal-grid">
+      <view wx:for="{{goals}}" wx:key="name" class="goal-card {{item.selected ? 'selected' : ''}}" bindtap="toggleGoal" data-index="{{index}}">
+        <view class="goal-icon">{{item.emoji}}</view>
+        <view class="goal-name">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-nav">
+    <button class="btn-primary" bindtap="saveGoals">下一步：训练经验与条件</button>
+    <text class="selected-count">已选择 {{selectedCount}} 个目标</text>
+  </view>
+</view>

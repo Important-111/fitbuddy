@@ -1,0 +1,93 @@
+/* Training goals page styles */
+.progress-bar-wrap {
+  padding: 16px 24px;
+  background: var(--card);
+}
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.progress-step {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--border);
+  color: var(--text-secondary);
+}
+.progress-step.active {
+  background: var(--primary);
+  color: #FFF;
+}
+.progress-step.done {
+  background: var(--success);
+  color: #FFF;
+}
+.progress-label {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+.form-section {
+  padding: 20px 24px;
+}
+.section-title-inline {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  display: block;
+}
+.section-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.5;
+  display: block;
+}
+.goal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.goal-card {
+  padding: 16px 14px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  text-align: center;
+}
+.goal-card.selected {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+.goal-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+.goal-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.goal-card.selected .goal-name {
+  color: var(--primary);
+}
+.selected-count {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 10px;
+  display: block;
+}
+.bottom-nav {
+  padding: 16px 24px 32px;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+}

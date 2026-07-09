@@ -1,13 +1,23 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/welcome/index",
+    "pages/basic-info/index",
+    "pages/training-goals/index",
+    "pages/training-experience/index",
+    "pages/analysis-report/index",
+    "pages/dashboard/index",
+    "pages/training-plan/index",
+    "pages/daily-workout/index",
+    "pages/exercise-detail/index",
+    "pages/daily-checkin/index",
+    "pages/progress-tracking/index",
+    "pages/diet-plan/index",
+    "pages/profile/index"
   ],
   "window": {
-    "navigationBarTitleText": "FitBuddy 健身教练",
-    "navigationBarBackgroundColor": "#1a1a2e",
-    "navigationBarTextStyle": "white",
-    "backgroundColor": "#1a1a2e"
+    "navigationStyle": "custom",
+    "backgroundColor": "#F0F2F5"
   },
-  "requiredBackgroundModes": [],
-  "lazyCodeLoading": "requiredComponents"
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

@@ -1,0 +1,46 @@
+/* Welcome page - most styles are in app.wxss, just add page-specific overrides */
+.profile-header-mod {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border);
+}
+.profile-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 20px;
+}
+.profile-item.full {
+  grid-column: span 2;
+}
+.feature-text-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 2px;
+}
+.feature-text-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  display: block;
+}
+.profile-tag.male {
+  background: rgba(22,93,255,0.1);
+  color: #165DFF;
+}
+.profile-tag.female {
+  background: rgba(236,72,153,0.1);
+  color: #EC4899;
+}

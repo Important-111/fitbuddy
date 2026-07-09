@@ -1,0 +1,110 @@
+<view class="page-container no-tab">
+  <!-- 欢迎 Hero -->
+  <view class="welcome-hero" style="background:linear-gradient(135deg, #FF6B35 0%, #FF8C5A 50%, #FFB088 100%);">
+    <view class="hero-icon" style="background:rgba(255,255,255,0.2);">
+      <text style="font-size:48px;color:#FFF;">🏋️</text>
+    </view>
+    <text class="hero-title">FitBuddy</text>
+    <text class="hero-subtitle">你的AI私人健身教练，陪你达成每一个目标</text>
+  </view>
+
+  <!-- 已有档案：资料卡片 -->
+  <view wx:if="{{hasProfile}}" class="profile-section">
+    <view class="profile-card">
+      <view class="profile-header-mod">
+        <view class="profile-title">
+          <view class="profile-title-icon" style="background:var(--primary-light);border-radius:6px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;">
+            <text style="color:var(--primary);font-size:14px;">👤</text>
+          </view>
+          <text>我的基本资料</text>
+        </view>
+        <view class="profile-action" bindtap="onEditProfile" style="font-size:13px;color:var(--primary);display:flex;align-items:center;gap:2px;">
+          <text>✏️ 编辑</text>
+        </view>
+      </view>
+      <view class="profile-grid">
+        <view class="profile-item">
+          <text class="profile-label">昵称</text>
+          <text class="profile-value">{{profile.nickname}}</text>
+        </view>
+        <view class="profile-item">
+          <text class="profile-label">性别</text>
+          <view class="profile-value">
+            <text class="profile-tag {{profile.gender === 'male' ? 'male' : 'female'}}">{{profile.gender === 'male' ? '男' : '女'}}</text>
+          </view>
+        </view>
+        <view class="profile-item">
+          <text class="profile-label">年龄</text>
+          <text class="profile-value">{{profile.age}} 岁</text>
+        </view>
+        <view class="profile-item">
+          <text class="profile-label">身高</text>
+          <text class="profile-value">{{profile.height}} cm</text>
+        </view>
+        <view class="profile-item">
+          <text class="profile-label">体重</text>
+          <text class="profile-value">{{profile.weight}} kg</text>
+        </view>
+        <view class="profile-item">
+          <text class="profile-label">BMI</text>
+          <view class="profile-value">
+            <text>{{bmi.value}}</text>
+            <text class="profile-tag {{bmiTagClass}}" style="{{bmiTagStyle}}">{{bmi.categoryCN}}</text>
+          </view>
+        </view>
+        <view class="profile-item full">
+          <text class="profile-label">健身目标</text>
+          <text class="profile-value">{{profile.goal}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能介绍 -->
+  <view class="features-section">
+    <text class="features-section-title">FitBuddy 能为你做什么</text>
+    <view class="feature-card">
+      <view class="feature-icon orange" style="background:var(--primary-light);">
+        <text style="font-size:22px;color:#FF6B35;">📊</text>
+      </view>
+      <view class="feature-text">
+        <text class="feature-text-title">个性化训练计划</text>
+        <text class="feature-text-desc">基于你的身体数据和目标，AI生成专属每日/每周/每月训练方案</text>
+      </view>
+    </view>
+    <view class="feature-card">
+      <view class="feature-icon green" style="background:var(--accent-light);">
+        <text style="font-size:22px;color:#36CFC9;">🔄</text>
+      </view>
+      <view class="feature-text">
+        <text class="feature-text-title">动态智能调整</text>
+        <text class="feature-text-desc">根据训练完成度和身体反馈，每周自动优化训练强度和内容</text>
+      </view>
+    </view>
+    <view class="feature-card">
+      <view class="feature-icon blue" style="background:rgba(22,93,255,0.1);">
+        <text style="font-size:22px;color:#165DFF;">👥</text>
+      </view>
+      <view class="feature-text">
+        <text class="feature-text-title">专业动作指导</text>
+        <text class="feature-text-desc">每个训练动作配有详细说明、常见错误纠正和视频教程推荐</text>
+      </view>
+    </view>
+    <view class="feature-card">
+      <view class="feature-icon purple" style="background:rgba(139,92,246,0.1);">
+        <text style="font-size:22px;color:#8B5CF6;">📈</text>
+      </view>
+      <view class="feature-text">
+        <text class="feature-text-title">全方位进度追踪</text>
+        <text class="feature-text-desc">体重、围度、体脂变化一目了然，里程碑激励让你保持动力</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="bottom-cta">
+    <button wx:if="{{hasProfile}}" class="btn-primary" bindtap="goToAnalysis">查看我的分析报告</button>
+    <button wx:else class="btn-primary" bindtap="goToBasicInfo">开始建档</button>
+    <text class="privacy-note">你的数据仅用于制定训练计划，不会被分享</text>
+  </view>
+</view>

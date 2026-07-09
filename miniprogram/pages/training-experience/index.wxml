@@ -1,0 +1,113 @@
+<view class="page-container no-tab">
+  <!-- 顶部导航 -->
+  <view class="top-bar">
+    <view class="btn-back" bindtap="goBack">
+      <text style="font-size:20px;">‹</text>
+    </view>
+    <text class="top-bar-title">建立你的档案</text>
+  </view>
+
+  <!-- 进度条 -->
+  <view class="progress-bar-wrap">
+    <view class="progress-steps">
+      <view class="progress-step done">✓</view>
+      <view class="progress-step done">✓</view>
+      <view class="progress-step active">3</view>
+    </view>
+    <view class="progress-bar-bg">
+      <view class="progress-bar-fill" style="width:100%"></view>
+    </view>
+    <text class="progress-label">步骤 3/3 · 训练条件与健康状况</text>
+  </view>
+
+  <!-- 表单 -->
+  <view class="form-section">
+    <text class="section-title-inline">训练条件</text>
+    <text class="section-desc">最后一步，让我们了解你的训练环境和身体状况</text>
+
+    <!-- 训练经验 -->
+    <view class="form-group">
+      <text class="form-label">训练经验</text>
+      <view class="option-group">
+        <view wx:for="{{experienceOptions}}" wx:key="value"
+          class="option-chip {{item.selected ? 'selected' : ''}}"
+          bindtap="selectSingle" data-group="exp" data-value="{{item.value}}">
+          {{item.label}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 训练地点 -->
+    <view class="form-group">
+      <text class="form-label">训练地点（可多选）</text>
+      <view class="option-group">
+        <view wx:for="{{locationOptions}}" wx:key="value"
+          class="option-chip {{item.selected ? 'selected' : ''}}"
+          bindtap="toggleMulti" data-group="loc" data-value="{{item.value}}">
+          {{item.label}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 可用器械 -->
+    <view class="form-group">
+      <text class="form-label">可用器械（可多选）</text>
+      <view class="equip-grid">
+        <view wx:for="{{equipOptions}}" wx:key="value"
+          class="equip-chip {{item.selected ? 'selected' : ''}}"
+          bindtap="toggleMulti" data-group="equip" data-value="{{item.value}}">
+          {{item.label}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 每周训练天数 -->
+    <view class="form-group">
+      <text class="form-label">每周训练几天</text>
+      <view class="days-group">
+        <view wx:for="{{dayOptions}}" wx:key="value"
+          class="day-chip {{item.selected ? 'selected' : ''}}"
+          bindtap="selectSingle" data-group="days" data-value="{{item.value}}">
+          {{item.value}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 每天训练时长 -->
+    <view class="form-group">
+      <text class="form-label">每天可训练多久</text>
+      <view class="time-group">
+        <view wx:for="{{timeOptions}}" wx:key="value"
+          class="time-chip {{item.selected ? 'selected' : ''}}"
+          bindtap="selectSingle" data-group="time" data-value="{{item.value}}">
+          {{item.label}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 健康情况 -->
+    <view class="form-group">
+      <text class="form-label">健康情况（可多选）</text>
+      <view class="option-group" id="healthGroup">
+        <view wx:for="{{healthOptions}}" wx:key="value"
+          class="option-chip {{item.selected ? 'selected' : ''}}"
+          style="{{item.selected && item.value === '没有以上情况' ? 'border-color:var(--success);color:var(--success);background:rgba(16,185,129,0.08);' : ''}}"
+          bindtap="toggleHealth" data-value="{{item.value}}">
+          {{item.label}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 安全提醒 -->
+    <view class="health-warning">
+      <text>
+        <text style="font-weight:600;">⚠️ 安全提醒：</text>如果你选择了任何健康问题，AI将自动降低训练强度并调整方案。如有严重健康问题，请先咨询医生。
+      </text>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-nav">
+    <button class="btn-primary" bindtap="saveExperience">完成建档，查看分析报告</button>
+  </view>
+</view>

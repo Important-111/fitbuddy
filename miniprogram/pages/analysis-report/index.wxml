@@ -1,0 +1,144 @@
+<view class="page-container no-tab">
+  <!-- 顶部导航 -->
+  <view class="top-bar">
+    <view class="btn-back" bindtap="goBack">
+      <text style="font-size:20px;">‹</text>
+    </view>
+    <text class="top-bar-title">你的分析报告</text>
+  </view>
+
+  <!-- Hero Banner -->
+  <view class="hero-banner" style="background:linear-gradient(135deg, #FF6B35 0%, #FF8C5A 50%, #36CFC9 100%);padding:32px 24px;text-align:center;color:#FFF;">
+    <view class="hero-emoji" style="font-size:48px;margin-bottom:8px;">📊</view>
+    <text class="hero-title" style="font-size:28px;font-weight:700;color:#FFF;display:block;margin-bottom:8px;">档案分析完成！</text>
+    <text class="hero-subtitle" style="font-size:14px;color:rgba(255,255,255,0.85);display:block;">基于你的数据，AI已生成个性化分析报告</text>
+  </view>
+
+  <!-- Stats Grid -->
+  <view class="stats-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:20px 24px;">
+    <view class="stat-card" style="background:var(--card);border-radius:12px;padding:16px;border:1px solid var(--border);text-align:center;">
+      <text class="stat-value" style="font-size:22px;font-weight:700;color:var(--primary);display:block;">{{bmi.value}}</text>
+      <text class="stat-label" style="font-size:12px;color:var(--text-secondary);margin-top:4px;display:block;">BMI 指数</text>
+    </view>
+    <view class="stat-card" style="background:var(--card);border-radius:12px;padding:16px;border:1px solid var(--border);text-align:center;">
+      <text class="stat-value" style="font-size:22px;font-weight:700;color:var(--primary);display:block;">{{bmr}}</text>
+      <text class="stat-label" style="font-size:12px;color:var(--text-secondary);margin-top:4px;display:block;">基础代谢 (kcal)</text>
+    </view>
+    <view class="stat-card" style="background:var(--card);border-radius:12px;padding:16px;border:1px solid var(--border);text-align:center;">
+      <text class="stat-value" style="font-size:22px;font-weight:700;color:var(--primary);display:block;">{{dailyCal}}</text>
+      <text class="stat-label" style="font-size:12px;color:var(--text-secondary);margin-top:4px;display:block;">每日建议热量</text>
+    </view>
+    <view class="stat-card highlight" style="background:var(--accent-light);border-radius:12px;padding:16px;border:1px solid var(--accent);text-align:center;">
+      <text class="stat-value" style="font-size:22px;font-weight:700;color:var(--accent);display:block;">{{protein}}g</text>
+      <text class="stat-label" style="font-size:12px;color:var(--text-secondary);margin-top:4px;display:block;">每日蛋白质摄入</text>
+    </view>
+  </view>
+
+  <!-- 身体数据分析 -->
+  <view class="section-wrap" style="padding:0 24px 20px;">
+    <text class="section-title" style="font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+      <text style="width:3px;height:14px;background:var(--primary);border-radius:2px;display:inline-block;"></text>
+      身体数据分析
+    </text>
+    <view class="info-list" style="background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;">
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary);">性别</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:600;">{{genderText}}</text>
+      </view>
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary);">身高 / 体重</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:600;">{{height}}cm / {{weight}}kg</text>
+      </view>
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary);">目标体重</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:600;">{{targetWeightDisplay}}</text>
+      </view>
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary);">体脂率</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:600;">{{bodyFatDisplay}}</text>
+      </view>
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary);">BMI 状态</text>
+        <text class="info-value" style="font-size:14px;font-weight:600;{{bmiStatusStyle}}">{{bmiStatusText}}</text>
+      </view>
+      <view wx:if="{{hasWaistHip}}" class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary);">腰臀比</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:600;">{{waistHipRatio}}</text>
+      </view>
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary);">每日饮水量</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:600;">{{water}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 目标预估 -->
+  <view class="section-wrap" style="padding:0 24px 20px;">
+    <text class="section-title" style="font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+      <text style="width:3px;height:14px;background:var(--primary);border-radius:2px;display:inline-block;"></text>
+      目标预估
+    </text>
+    <view class="info-list" style="background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;">
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary);">预计减脂速度</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:600;">{{weeklyLoss}} kg/周</text>
+      </view>
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary);">预计达标时间</text>
+        <text class="info-value" style="font-size:14px;color:var(--primary);font-weight:600;">约 {{weeksToGoal}} 周</text>
+      </view>
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary);">月目标减重</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:600;">2-3 kg/月</text>
+      </view>
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary);">周训练次数</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:600;">{{daysPerWeek}}次/周</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 训练建议 -->
+  <view class="section-wrap" style="padding:0 24px 20px;">
+    <text class="section-title" style="font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+      <text style="width:3px;height:14px;background:var(--primary);border-radius:2px;display:inline-block;"></text>
+      训练建议
+    </text>
+    <view class="advice-card" style="background:var(--card);border-radius:12px;padding:16px;margin-bottom:10px;border:1px solid var(--border);">
+      <text style="font-size:14px;font-weight:600;color:var(--text-primary);display:block;margin-bottom:6px;">🎯 训练重点</text>
+      <text style="font-size:13px;color:var(--text-secondary);line-height:1.6;display:block;">{{trainingDetail}}，配合核心训练。</text>
+    </view>
+    <view class="advice-card" style="background:var(--card);border-radius:12px;padding:16px;margin-bottom:10px;border:1px solid var(--border);">
+      <text style="font-size:14px;font-weight:600;color:var(--text-primary);display:block;margin-bottom:6px;">💪 强度建议</text>
+      <text style="font-size:13px;color:var(--text-secondary);line-height:1.6;display:block;">新手初期以低强度适应为主，前2周建立运动习惯，之后逐步增加强度。力量训练从自重开始，逐步加入弹力带和哑铃。</text>
+    </view>
+    <view class="advice-card" style="background:var(--card);border-radius:12px;padding:16px;margin-bottom:10px;border:1px solid var(--border);">
+      <text style="font-size:14px;font-weight:600;color:var(--text-primary);display:block;margin-bottom:6px;">📋 训练安排</text>
+      <text style="font-size:13px;color:var(--text-secondary);line-height:1.6;display:block;">周一：{{mondayWorkout}} · 周三：上肢+核心 · 周五：{{fridayWorkout}} · 周六：全身综合+拉伸</text>
+    </view>
+  </view>
+
+  <!-- 注意事项 -->
+  <view class="section-wrap" style="padding:0 24px 20px;">
+    <text class="section-title" style="font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+      <text style="width:3px;height:14px;background:var(--primary);border-radius:2px;display:inline-block;"></text>
+      注意事项
+    </text>
+    <view class="caution-box" style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:14px 16px;margin-top:16px;">
+      <text style="font-size:14px;font-weight:600;color:#92400E;display:block;margin-bottom:6px;">⚠️ 重要提示</text>
+      <text style="font-size:13px;color:#A16207;line-height:1.5;display:block;">
+        1. 新手期以动作标准为首要目标，不追求重量和次数
+        2. 每次训练前充分热身，训练后认真拉伸
+        3. 保持每日饮水量2L以上
+        4. 保证充足睡眠（7-8小时）促进恢复
+        5. 饮食控制与训练同等重要，建议记录每日饮食
+      </text>
+    </view>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="bottom-nav" style="padding:16px 24px 32px;background:var(--card);border-top:1px solid var(--border);">
+    <button class="btn-primary" bindtap="goToDashboard">开始我的训练之旅</button>
+    <text style="text-align:center;font-size:13px;color:var(--text-secondary);margin-top:12px;display:block;">坚持就是胜利，FitBuddy 会一直陪着你！</text>
+  </view>
+</view>

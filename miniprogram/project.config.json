@@ -1,5 +1,5 @@
 {
-  "description": "FitBuddy 健身教练 - 小程序壳",
+  "description": "FitBuddy 健身教练 - 原生小程序版",
   "packOptions": {
     "ignore": [],
     "include": []
@@ -8,8 +8,14 @@
     "bundle": false,
     "userConfirmedBundleSwitch": false,
     "urlCheck": true,
-    "scopeDataCheck": false
+    "scopeDataCheck": false,
+    "cloudfunctionRoot": "cloudfunctions/",
+    "minified": true,
+    "es6": true,
+    "postcss": true,
+    "preloadBackgroundData": false
   },
+  "cloudfunctionTemplateRoot": "cloudfunctions/",
   "compileType": "miniprogram",
   "libVersion": "3.7.3",
   "appid": "wxf89088e51a471eef",
