@@ -1,0 +1,6 @@
+/* FitBuddy MiniProgram - Global Styles */
+page {
+  margin: 0;
+  padding: 0;
+  background-color: #1a1a2e;
+}
