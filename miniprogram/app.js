@@ -2,10 +2,14 @@
 
 App({
   onLaunch() {
-    wx.cloud.init({
-      env: 'cloudbase-d2gh39c9caffcf418',
-      traceUser: true
-    });
+    try {
+      wx.cloud.init({
+        env: 'cloudbase-d2gh39c9caffcf418',
+        traceUser: true
+      });
+    } catch (e) {
+      console.log('[FitBuddy] 云开发未配置，使用本地存储模式');
+    }
 
     const sysInfo = wx.getSystemInfoSync();
     this.globalData.systemInfo = sysInfo;

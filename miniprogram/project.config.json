@@ -9,13 +9,11 @@
     "userConfirmedBundleSwitch": false,
     "urlCheck": true,
     "scopeDataCheck": false,
-    "cloudfunctionRoot": "cloudfunctions/",
     "minified": true,
     "es6": true,
     "postcss": true,
     "preloadBackgroundData": false
   },
-  "cloudfunctionTemplateRoot": "cloudfunctions/",
   "compileType": "miniprogram",
   "libVersion": "3.7.3",
   "appid": "wxf89088e51a471eef",
