@@ -5,10 +5,14 @@
   </view>
 
   <!-- 月目标卡片 -->
-  <view class="month-goal-card" style="background:linear-gradient(135deg,#FF6B35,#E55A2B);">
-    <view class="month-goal-title">{{monthTitle}}</view>
+  <view class="month-goal-card" style="background:linear-gradient(135deg,#FF6B35,#E55A2B,#FF8C5A);">
+    <view class="month-goal-header">
+      <text class="month-goal-title">{{monthTitle}}</text>
+      <text class="month-goal-badge">{{monthRate}}%</text>
+    </view>
     <view class="month-goal-main">{{monthGoal}}</view>
     <view class="month-goal-sub">{{monthSub}}</view>
+    <view class="month-goal-divider"></view>
     <view class="month-goals">
       <view class="month-goal-item">
         <view class="month-goal-item-val">{{monthTargetCount}}</view>
@@ -19,12 +23,8 @@
         <view class="month-goal-item-lbl">已完成</view>
       </view>
       <view class="month-goal-item">
-        <view class="month-goal-item-val">{{monthRate}}%</view>
-        <view class="month-goal-item-lbl">完成率</view>
-      </view>
-      <view class="month-goal-item">
         <view class="month-goal-item-val">{{monthRemainDays}}</view>
-        <view class="month-goal-item-lbl">剩余天</view>
+        <view class="month-goal-item-lbl">剩余天数</view>
       </view>
     </view>
   </view>
