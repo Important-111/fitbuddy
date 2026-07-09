@@ -1,0 +1,89 @@
+<view class="page-container">
+  <!-- 顶部栏 -->
+  <view class="top-bar">
+    <text class="top-bar-title">训练计划</text>
+  </view>
+
+  <!-- 月目标卡片 -->
+  <view class="month-goal-card" style="background:linear-gradient(135deg,#FF6B35,#E55A2B);">
+    <view class="month-goal-title">{{monthTitle}}</view>
+    <view class="month-goal-main">{{monthGoal}}</view>
+    <view class="month-goal-sub">{{monthSub}}</view>
+    <view class="month-goals">
+      <view class="month-goal-item">
+        <view class="month-goal-item-val">{{monthTargetCount}}</view>
+        <view class="month-goal-item-lbl">目标次数</view>
+      </view>
+      <view class="month-goal-item">
+        <view class="month-goal-item-val">{{monthDoneCount}}</view>
+        <view class="month-goal-item-lbl">已完成</view>
+      </view>
+      <view class="month-goal-item">
+        <view class="month-goal-item-val">{{monthRate}}%</view>
+        <view class="month-goal-item-lbl">完成率</view>
+      </view>
+      <view class="month-goal-item">
+        <view class="month-goal-item-val">{{monthRemainDays}}</view>
+        <view class="month-goal-item-lbl">剩余天</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 周切换标签 -->
+  <view class="week-tabs">
+    <view
+      wx:for="{{weekTabs}}"
+      wx:key="offset"
+      class="week-tab {{item.offset === weekOffset ? 'active' : ''}}"
+      bindtap="switchWeek"
+      data-offset="{{item.offset}}"
+    >{{item.label}}</view>
+  </view>
+
+  <!-- 周日程 -->
+  <view class="week-schedule">
+    <view
+      wx:for="{{dayCards}}"
+      wx:key="weekday"
+      class="{{item.cardClass}}"
+      bindtap="onDayCardTap"
+      data-rest="{{item.isRest}}"
+    >
+      <view class="day-num">
+        <text class="day-num-name">{{item.weekday}}</text>
+        <text class="day-num-date">{{item.month}}/{{item.dayNum}}</text>
+      </view>
+      <view class="day-info">
+        <view class="day-type">{{item.workoutName}}</view>
+        <view class="day-desc">{{item.workoutDesc}}</view>
+        <view class="day-meta">
+          <text wx:for="{{item.metaItems}}" wx:key="*this" class="day-meta-item">{{item}}</text>
+        </view>
+      </view>
+      <text class="day-status {{item.statusClass}}">{{item.statusText}}</text>
+    </view>
+  </view>
+
+  <!-- 本周统计 -->
+  <view class="summary-section">
+    <view class="summary-title">本周统计</view>
+    <view class="summary-card">
+      <view class="summary-item">
+        <view class="summary-item-val">{{weekDone}}/{{weekTotal}}</view>
+        <view class="summary-item-lbl">完成训练</view>
+      </view>
+      <view class="summary-item">
+        <view class="summary-item-val">{{weekMinutes}}</view>
+        <view class="summary-item-lbl">训练分钟</view>
+      </view>
+      <view class="summary-item">
+        <view class="summary-item-val">{{weekCalories}}</view>
+        <view class="summary-item-lbl">消耗热量</view>
+      </view>
+      <view class="summary-item">
+        <view class="summary-item-val">{{weekCheckinRate}}%</view>
+        <view class="summary-item-lbl">完成率</view>
+      </view>
+    </view>
+  </view>
+</view>

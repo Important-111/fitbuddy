@@ -1,0 +1,120 @@
+<view class="page-container">
+  <!-- 顶部栏 -->
+  <view class="top-bar justify-between">
+    <view>
+      <view class="top-greeting">{{greeting}} 🌞</view>
+      <view class="top-name">{{nickname}}</view>
+    </view>
+    <view class="top-avatar">{{avatar}}</view>
+  </view>
+
+  <!-- 连续打卡横幅 -->
+  <view class="streak-banner" style="background:linear-gradient(135deg,#FF6B35,#FF8F65);">
+    <view class="streak-header">
+      <view>
+        <view class="streak-fire">🔥</view>
+        <view class="streak-label">连续打卡</view>
+      </view>
+      <view style="text-align:right">
+        <view class="streak-days">{{streakDays}}</view>
+        <view class="streak-label">天</view>
+      </view>
+    </view>
+    <view class="streak-stats">
+      <view class="streak-stat">
+        <view class="streak-stat-val">{{totalWorkouts}}</view>
+        <view class="streak-stat-lbl">累计训练</view>
+      </view>
+      <view class="streak-stat">
+        <view class="streak-stat-val">{{totalMinutes}}</view>
+        <view class="streak-stat-lbl">累计时长</view>
+      </view>
+      <view class="streak-stat">
+        <view class="streak-stat-val">{{totalCal}}</view>
+        <view class="streak-stat-lbl">消耗热量</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日训练 -->
+  <view class="today-section">
+    <view class="section-header">
+      <text class="section-title-inline">今日训练</text>
+      <text class="section-link" bindtap="navigateTo" data-url="/pages/training-plan/index">查看周计划</text>
+    </view>
+    <view class="today-card">
+      <view class="today-card-header">
+        <text class="today-day">{{todayName}} · {{goal}}</text>
+        <text class="today-type">综合训练</text>
+      </view>
+      <view class="today-goal">今日目标：完成4个动作，重点激活目标肌群</view>
+      <view class="today-meta">
+        <view class="today-meta-item">
+          <view class="today-meta-val">35</view>
+          <view class="today-meta-lbl">预计分钟</view>
+        </view>
+        <view class="today-meta-item">
+          <view class="today-meta-val">4</view>
+          <view class="today-meta-lbl">训练动作</view>
+        </view>
+        <view class="today-meta-item">
+          <view class="today-meta-val">280</view>
+          <view class="today-meta-lbl">预计消耗(kcal)</view>
+        </view>
+      </view>
+      <button class="btn-start" bindtap="navigateTo" data-url="/pages/daily-workout/index">开始今日训练</button>
+    </view>
+  </view>
+
+  <!-- 快捷操作 -->
+  <view class="quick-actions">
+    <view class="quick-action" bindtap="navigateTo" data-url="/pages/daily-checkin/index">
+      <view class="quick-action-icon">✅</view>
+      <view class="quick-action-text">打卡</view>
+    </view>
+    <view class="quick-action" bindtap="navigateTo" data-url="/pages/diet-plan/index">
+      <view class="quick-action-icon">🍲</view>
+      <view class="quick-action-text">饮食</view>
+    </view>
+    <view class="quick-action" bindtap="navigateTo" data-url="/pages/progress-tracking/index">
+      <view class="quick-action-icon">📈</view>
+      <view class="quick-action-text">进度</view>
+    </view>
+    <view class="quick-action" bindtap="navigateTo" data-url="/pages/profile/index">
+      <view class="quick-action-icon">⚙</view>
+      <view class="quick-action-text">我的</view>
+    </view>
+  </view>
+
+  <!-- 目标进度 -->
+  <view class="progress-section">
+    <view class="section-header">
+      <text class="section-title-inline">目标进度</text>
+      <text class="section-link" bindtap="navigateTo" data-url="/pages/progress-tracking/index">详细数据</text>
+    </view>
+    <view class="progress-card">
+      <view class="progress-row">
+        <view class="progress-item">
+          <text class="progress-label">体重变化</text>
+          <view class="progress-bar-wrap-sm">
+            <view class="progress-bar-fill-sm" style="width:{{weightProgress}}%"></view>
+          </view>
+        </view>
+        <text class="progress-value">{{weightLost}}kg / -{{weightTarget}}kg</text>
+      </view>
+      <view class="progress-row">
+        <view class="progress-item">
+          <text class="progress-label">训练完成率</text>
+          <view class="progress-bar-wrap-sm">
+            <view class="progress-bar-fill-sm" style="width:{{completionRate}}%"></view>
+          </view>
+        </view>
+        <text class="progress-value" style="color:var(--success)">{{completionRate}}%</text>
+      </view>
+      <view class="weight-trend">
+        <text style="color:var(--text-secondary)">本周体重</text>
+        <text class="weight-down">{{weightTrend}}</text>
+      </view>
+    </view>
+  </view>
+</view>

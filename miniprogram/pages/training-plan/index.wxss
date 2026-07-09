@@ -1,0 +1,79 @@
+/* 训练计划页 - 补充样式 */
+
+.month-goal-item {
+  text-align: center;
+}
+
+.month-goal-item-val {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.month-goal-item-lbl {
+  font-size: 11px;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+.month-goals {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.status-rest {
+  background: #F3F4F6;
+  color: var(--text-secondary);
+}
+
+.day-meta {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.day-meta-item {
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: var(--bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.summary-section {
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.summary-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.summary-card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  display: flex;
+  justify-content: space-around;
+}
+
+.summary-item {
+  text-align: center;
+}
+
+.summary-item-val {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.summary-item-lbl {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}

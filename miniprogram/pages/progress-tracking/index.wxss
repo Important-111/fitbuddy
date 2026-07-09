@@ -1,0 +1,222 @@
+.filter-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 0 20px;
+  margin-bottom: 12px;
+}
+.filter-tab {
+  padding: 6px 16px;
+  border-radius: 16px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-secondary);
+}
+.filter-tab.active {
+  background: var(--primary);
+  color: #FFF;
+  border-color: var(--primary);
+}
+.overview-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  padding: 0 20px 16px;
+}
+.overview-card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.overview-val {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+  display: block;
+}
+.overview-lbl {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  display: block;
+}
+.chart-section {
+  padding: 0 20px;
+  margin-bottom: 16px;
+}
+.chart-card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid var(--border);
+}
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.chart-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.chart-period {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.chart-placeholder {
+  height: 160px;
+  background: #F9FAFB;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 20px 10px;
+  border: 1px dashed var(--border);
+}
+.chart-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.chart-bar {
+  width: 28px;
+  border-radius: 6px 6px 0 0;
+  background: var(--primary);
+}
+.chart-bar-label {
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+.chart-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+  justify-content: center;
+}
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.chart-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.chart-legend-dot.primary {
+  background: var(--primary);
+}
+.chart-legend-dot.accent {
+  background: var(--accent);
+}
+.milestone-section {
+  padding: 0 20px;
+  margin-bottom: 16px;
+}
+.milestone-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  text-align: center;
+  min-width: 110px;
+  opacity: 0.5;
+}
+.milestone-card.achieved {
+  opacity: 1;
+  border-color: var(--success);
+  background: rgba(16,185,129,0.04);
+}
+.milestone-icon {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+.milestone-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: block;
+}
+.milestone-date {
+  font-size: 11px;
+  color: var(--text-secondary);
+  display: block;
+  margin-top: 4px;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.data-tr {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+}
+.data-tr:last-child {
+  border-bottom: none;
+}
+.data-th .data-td {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.data-td {
+  flex: 1;
+  padding: 10px 8px;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+.weekly-analysis {
+  padding: 0 20px;
+  margin-bottom: 24px;
+}
+.analysis-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.analysis-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.analysis-info {
+  flex: 1;
+}
+.analysis-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: block;
+}
+.analysis-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: block;
+  margin-top: 2px;
+}
+.analysis-status {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.analysis-status.status-good {
+  background: rgba(16,185,129,0.1);
+  color: var(--success);
+}
+.analysis-status.status-warn {
+  background: rgba(239,68,68,0.1);
+  color: var(--danger);
+}

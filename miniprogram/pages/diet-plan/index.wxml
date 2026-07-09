@@ -1,0 +1,252 @@
+<view class="page-container">
+  <!-- Top bar (no back button - tab page) -->
+  <view class="top-bar">
+    <text class="top-bar-title">饮食建议</text>
+  </view>
+
+  <!-- Nutrition Banner -->
+  <view class="nutri-banner" style="background:linear-gradient(135deg,#36CFC9,#2BB0AB)">
+    <text style="font-size:18px;font-weight:700;display:block;margin-bottom:12px">今日营养目标</text>
+    <view class="nutri-row">
+      <view class="nutri-item">
+        <text class="nutri-val">{{nutrition.calories}}</text>
+        <text class="nutri-lbl">热量(kcal)</text>
+      </view>
+      <view class="nutri-item">
+        <text class="nutri-val">{{nutrition.protein}}g</text>
+        <text class="nutri-lbl">蛋白质</text>
+      </view>
+      <view class="nutri-item">
+        <text class="nutri-val">{{nutrition.carbs}}g</text>
+        <text class="nutri-lbl">碳水</text>
+      </view>
+      <view class="nutri-item">
+        <text class="nutri-val">{{nutrition.fat}}g</text>
+        <text class="nutri-lbl">脂肪</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Goal Tabs -->
+  <view class="goal-tabs" style="display:flex;gap:6px;padding:0 20px;margin-bottom:16px">
+    <view
+      class="goal-tab {{goalTab === '减脂' ? 'active' : ''}}"
+      data-goal="减脂"
+      bindtap="onSelectGoalTab"
+    >减脂</view>
+    <view
+      class="goal-tab {{goalTab === '增肌' ? 'active' : ''}}"
+      data-goal="增肌"
+      bindtap="onSelectGoalTab"
+    >增肌</view>
+    <view
+      class="goal-tab {{goalTab === '塑形' ? 'active' : ''}}"
+      data-goal="塑形"
+      bindtap="onSelectGoalTab"
+    >塑形</view>
+  </view>
+
+  <!-- Meal Cards -->
+  <view class="meal-section">
+    <view class="section-title">今日饮食方案</view>
+
+    <!-- Breakfast -->
+    <view class="meal-card">
+      <view class="meal-header">
+        <text class="meal-time"><text class="meal-emoji">🌞</text>早餐 · 7:30</text>
+        <text class="meal-cal">~430 kcal</text>
+      </view>
+      <view class="meal-items">
+        <text class="meal-item">全麦面包 2片</text>
+        <text class="meal-item">水煮蛋 2个</text>
+        <text class="meal-item">牛奶 250ml</text>
+        <text class="meal-item">小番茄 100g</text>
+      </view>
+      <text class="meal-note">蛋白质 28g · 碳水 45g · 脂肪 15g</text>
+    </view>
+
+    <!-- Lunch -->
+    <view class="meal-card">
+      <view class="meal-header">
+        <text class="meal-time"><text class="meal-emoji">☀️</text>午餐 · 12:00</text>
+        <text class="meal-cal">~500 kcal</text>
+      </view>
+      <view class="meal-items">
+        <text class="meal-item">糙米饭 150g</text>
+        <text class="meal-item">鸡胸肉 150g</text>
+        <text class="meal-item">西兰花 100g</text>
+        <text class="meal-item">橄榄油 5ml</text>
+      </view>
+      <text class="meal-note">蛋白质 42g · 碳水 55g · 脂肪 12g</text>
+    </view>
+
+    <!-- Snack -->
+    <view class="meal-card">
+      <view class="meal-header">
+        <text class="meal-time"><text class="meal-emoji">🌿</text>加餐 · 15:30</text>
+        <text class="meal-cal">~200 kcal</text>
+      </view>
+      <view class="meal-items">
+        <text class="meal-item">希腊酸奶 150g</text>
+        <text class="meal-item">坚果 20g</text>
+        <text class="meal-item">蓝莓 50g</text>
+      </view>
+      <text class="meal-note">蛋白质 15g · 碳水 18g · 脂肪 8g</text>
+    </view>
+
+    <!-- Dinner -->
+    <view class="meal-card">
+      <view class="meal-header">
+        <text class="meal-time"><text class="meal-emoji">🌙</text>晚餐 · 18:30</text>
+        <text class="meal-cal">~400 kcal</text>
+      </view>
+      <view class="meal-items">
+        <text class="meal-item">蒸鱼 150g</text>
+        <text class="meal-item">杂粮饭 100g</text>
+        <text class="meal-item">时蔬沙拉</text>
+        <text class="meal-item">豆腐汤 1碗</text>
+      </view>
+      <text class="meal-note">蛋白质 38g · 碳水 40g · 脂肪 10g</text>
+    </view>
+  </view>
+
+  <!-- Macro Ring Chart & Progress Bars -->
+  <view class="macro-section">
+    <view class="section-title">宏量营养素配比</view>
+    <view class="macro-card">
+      <!-- SVG Ring Chart -->
+      <view class="macro-ring-wrap" style="display:flex;gap:20px;align-items:center;margin-bottom:20px">
+        <view style="flex-shrink:0">
+          <svg width="140" height="140" viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="{{macro.ringR}}" fill="none" stroke="#F3F4F6" stroke-width="3"/>
+            <circle cx="18" cy="18" r="{{macro.ringR}}" fill="none" stroke="#FF6B35" stroke-width="3" transform="rotate(-90 18 18)" stroke-dasharray="{{macro.proteinStroke}}" stroke-dashoffset="0"/>
+            <circle cx="18" cy="18" r="{{macro.ringR}}" fill="none" stroke="#F59E0B" stroke-width="3" transform="rotate(-90 18 18)" stroke-dasharray="{{macro.carbStroke}}" stroke-dashoffset="{{macro.carbOffset}}"/>
+            <circle cx="18" cy="18" r="{{macro.ringR}}" fill="none" stroke="#36CFC9" stroke-width="3" transform="rotate(-90 18 18)" stroke-dasharray="{{macro.fatStroke}}" stroke-dashoffset="{{macro.fatOffset}}"/>
+            <text x="18" y="17" text-anchor="middle" font-size="5" font-weight="bold" fill="var(--text-primary)">{{nutrition.calories}}</text>
+            <text x="18" y="22" text-anchor="middle" font-size="2.8" fill="var(--text-secondary)">kcal</text>
+          </svg>
+        </view>
+        <view class="macro-ring-legend" style="flex:1">
+          <view class="ring-legend-item">
+            <view class="ring-dot" style="background:#FF6B35"></view>
+            <text>蛋白质 {{macro.proteinPct}}%</text>
+          </view>
+          <view class="ring-legend-item">
+            <view class="ring-dot" style="background:#F59E0B"></view>
+            <text>碳水 {{macro.carbPct}}%</text>
+          </view>
+          <view class="ring-legend-item">
+            <view class="ring-dot" style="background:#36CFC9"></view>
+            <text>脂肪 {{macro.fatPct}}%</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Macro Progress Bars -->
+      <view class="macro-bars">
+        <view class="macro-row">
+          <text class="macro-label">蛋白质</text>
+          <view class="macro-bar-wrap">
+            <view class="macro-bar protein" style="width:{{macro.proteinPercent}}%"></view>
+          </view>
+          <text class="macro-value">{{macro.currentProtein}}g / {{nutrition.protein}}g</text>
+        </view>
+        <view class="macro-row">
+          <text class="macro-label">碳水</text>
+          <view class="macro-bar-wrap">
+            <view class="macro-bar carb" style="width:{{macro.carbPercent}}%"></view>
+          </view>
+          <text class="macro-value">{{macro.currentCarbs}}g / {{nutrition.carbs}}g</text>
+        </view>
+        <view class="macro-row">
+          <text class="macro-label">脂肪</text>
+          <view class="macro-bar-wrap">
+            <view class="macro-bar fat" style="width:{{macro.fatPercent}}%"></view>
+          </view>
+          <text class="macro-value">{{macro.currentFat}}g / {{nutrition.fat}}g</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Diet Logs -->
+  <view class="meal-section">
+    <view class="section-title">
+      今日饮食记录
+      <text style="font-size:11px;color:var(--text-secondary);font-weight:400">（手动记录）</text>
+    </view>
+
+    <view wx:if="{{dietLogs.length === 0}}" class="empty-state">
+      <text style="color:var(--text-secondary);font-size:13px">暂无记录，点击下方按钮添加</text>
+    </view>
+
+    <view wx:for="{{dietLogs}}" wx:key="id">
+      <view class="diet-log-meal" wx:if="{{item.logs.length > 0}}">
+        <view class="diet-log-meal-header">
+          <text>{{item.mealType}}</text>
+          <text class="diet-log-meal-cal">{{item.totalCal}} kcal</text>
+        </view>
+        <view wx:for="{{item.logs}}" wx:for-item="log" wx:key="id" class="diet-log-item">
+          <text class="diet-log-item-name">{{log.foodName}}</text>
+          <text class="diet-log-item-nutri">P{{log.protein || 0}} C{{log.carbs || 0}} F{{log.fat || 0}}</text>
+          <text class="diet-log-item-cal">{{log.calories || 0}}kcal</text>
+          <text class="diet-log-item-del" data-id="{{log.id}}" bindtap="onDeleteDietLog">✕</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Add Diet Log Button -->
+    <view class="diet-log-add-bar" wx:if="{{!dietFormVisible}}">
+      <button class="btn-outline btn-sm" bindtap="onToggleDietForm">+ 添加饮食记录</button>
+    </view>
+
+    <!-- Diet Log Form -->
+    <view class="diet-log-form" wx:if="{{dietFormVisible}}" style="margin-top:12px">
+      <view class="diet-form-row">
+        <input class="diet-input" placeholder="食物名称" value="{{dietForm.foodName}}" bindinput="onFormFoodNameInput" />
+      </view>
+      <view class="diet-form-row diet-form-row-grid">
+        <picker class="diet-input" mode="selector" range="{{mealTypeOptions}}" value="{{dietForm.mealTypeIndex}}" bindchange="onFormMealTypeChange">
+          <view>{{dietForm.mealTypeLabel}}</view>
+        </picker>
+        <input class="diet-input" type="number" placeholder="卡路里" value="{{dietForm.calories}}" bindinput="onFormCaloriesInput" />
+      </view>
+      <view class="diet-form-row diet-form-row-grid">
+        <input class="diet-input" type="number" placeholder="蛋白质(g)" value="{{dietForm.protein}}" bindinput="onFormProteinInput" />
+        <input class="diet-input" type="number" placeholder="碳水(g)" value="{{dietForm.carbs}}" bindinput="onFormCarbsInput" />
+        <input class="diet-input" type="number" placeholder="脂肪(g)" value="{{dietForm.fat}}" bindinput="onFormFatInput" />
+      </view>
+      <view class="diet-form-row diet-form-actions" style="display:flex;gap:8px">
+        <button class="btn-confirm btn-sm" style="flex:1" bindtap="onSubmitDietLog">保存</button>
+        <button class="btn-secondary btn-sm" style="flex:1" bindtap="onToggleDietForm">取消</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- Water Reminder -->
+  <view class="water-section" style="padding:0 20px;margin-bottom:16px">
+    <view class="water-card" style="background:var(--card);border-radius:14px;padding:16px;border:1px solid var(--border);display:flex;align-items:center;gap:12px">
+      <view class="water-icon" style="font-size:28px">💧</view>
+      <view class="water-info" style="flex:1">
+        <text style="font-size:14px;font-weight:600;color:var(--text-primary);display:block">饮水提醒</text>
+        <text style="font-size:12px;color:var(--text-secondary);display:block;margin-top:2px">今日目标 2.0L · 已完成 1.2L</text>
+      </view>
+      <view class="water-progress">
+        <text style="font-size:14px;font-weight:600;color:var(--primary)">60%</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Diet Tips -->
+  <view class="meal-section">
+    <view class="section-title">饮食小贴士</view>
+    <view class="meal-card">
+      <view class="meal-header">
+        <text class="meal-time">💡 减脂期饮食原则</text>
+      </view>
+      <view class="meal-note" style="font-size:12px;line-height:1.8">
+        <text>1. 保证蛋白质摄入充足（每kg体重1.6g），防止肌肉流失\n2. 碳水选择低GI食物（全麦、糙米、燕麦）\n3. 每天喝足2L水，促进代谢\n4. 晚餐尽量在19:00前完成\n5. 减少加工食品和含糖饮料\n6. 每周可安排1次自由餐，避免过度压抑</text>
+      </view>
+    </view>
+  </view>
+</view>

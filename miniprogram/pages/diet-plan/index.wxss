@@ -1,0 +1,269 @@
+.nutri-banner {
+  margin: 16px 20px;
+  border-radius: 14px;
+  padding: 20px;
+  color: #FFF;
+}
+.nutri-banner h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.nutri-row {
+  display: flex;
+  justify-content: space-around;
+}
+.nutri-item {
+  text-align: center;
+}
+.nutri-val {
+  font-size: 20px;
+  font-weight: 700;
+  display: block;
+}
+.nutri-lbl {
+  font-size: 11px;
+  opacity: 0.85;
+  margin-top: 2px;
+  display: block;
+}
+.goal-tab {
+  flex: 1;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  background: var(--card);
+  color: var(--text-secondary);
+}
+.goal-tab.active {
+  background: var(--primary);
+  color: #FFF;
+  border-color: var(--primary);
+}
+.meal-section {
+  padding: 0 20px;
+  margin-bottom: 16px;
+}
+.meal-card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+}
+.meal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.meal-time {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.meal-emoji {
+  font-size: 18px;
+}
+.meal-cal {
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 600;
+  background: var(--primary-light);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+.meal-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.meal-item {
+  padding: 6px 12px;
+  background: #F9FAFB;
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+.meal-note {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  display: block;
+}
+.macro-section {
+  padding: 0 20px;
+  margin-bottom: 16px;
+}
+.macro-card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid var(--border);
+}
+.macro-ring-wrap {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.ring-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.ring-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.macro-bars {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+.macro-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.macro-row:last-child {
+  margin-bottom: 0;
+}
+.macro-label {
+  min-width: 60px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.macro-bar-wrap {
+  flex: 1;
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0 10px;
+}
+.macro-bar {
+  height: 100%;
+  border-radius: 4px;
+}
+.macro-bar.protein {
+  background: var(--primary);
+}
+.macro-bar.carb {
+  background: var(--warning);
+}
+.macro-bar.fat {
+  background: var(--accent);
+}
+.macro-value {
+  min-width: 100px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: right;
+}
+.diet-log-meal {
+  margin-bottom: 10px;
+}
+.diet-log-meal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--bg);
+  border-radius: 10px 10px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.diet-log-meal-cal {
+  color: var(--primary);
+  font-weight: 600;
+}
+.diet-log-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.diet-log-item:last-child {
+  border-radius: 0 0 10px 10px;
+  border-bottom: none;
+}
+.diet-log-item-name {
+  flex: 1;
+  color: var(--text-primary);
+}
+.diet-log-item-nutri {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-right: 12px;
+}
+.diet-log-item-cal {
+  color: var(--text-secondary);
+  margin-right: 10px;
+  min-width: 50px;
+  text-align: right;
+}
+.diet-log-item-del {
+  color: var(--danger);
+  font-size: 14px;
+  padding: 4px;
+}
+.diet-log-add-bar {
+  text-align: center;
+  margin-top: 12px;
+}
+.diet-log-form {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid var(--border);
+}
+.diet-form-row {
+  margin-bottom: 10px;
+}
+.diet-form-row:last-child {
+  margin-bottom: 0;
+}
+.diet-form-row-grid {
+  display: flex;
+  gap: 8px;
+}
+.diet-form-row-grid .diet-input {
+  flex: 1;
+}
+.diet-input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--card);
+  box-sizing: border-box;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+}
+.diet-form-actions {
+  display: flex;
+  gap: 8px;
+}
+.empty-state {
+  padding: 20px;
+  text-align: center;
+}

@@ -1,0 +1,138 @@
+<view class="page-container">
+  <!-- Top bar (no back button - tab page) -->
+  <view class="top-bar">
+    <text class="top-bar-title">训练打卡</text>
+  </view>
+
+  <!-- Hero Section -->
+  <view class="checkin-hero" style="background:linear-gradient(135deg,#FF6B35,#E55A2B)">
+    <view class="checkin-hero-emoji">🏋️‍♀️</view>
+    <text class="checkin-hero-title">今天的训练完成了吗？</text>
+    <text class="checkin-hero-desc">记录你的训练数据，让FitBuddy更好地为你调整计划</text>
+  </view>
+
+  <!-- Completion Rating -->
+  <view class="rating-section">
+    <text class="rating-label">训练完成度</text>
+    <view class="rating-stars">
+      <view
+        wx:for="{{completionOptions}}"
+        wx:key="index"
+        class="rating-star {{item.selected ? 'selected' : ''}}"
+        data-val="{{item.val}}"
+        bindtap="onSelectCompletion"
+      >
+        <text>{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Form Section: Weight / Water / Sleep -->
+  <view class="form-section" style="padding:0 20px 16px">
+    <view class="form-group">
+      <text class="form-label">今日体重</text>
+      <view class="input-with-unit">
+        <input class="form-input" type="digit" placeholder="{{defaultWeight}}" value="{{weight}}" bindinput="onWeightInput" />
+        <text class="input-unit">kg</text>
+      </view>
+    </view>
+    <view class="form-group">
+      <text class="form-label">今日饮水</text>
+      <view class="input-with-unit">
+        <input class="form-input" type="number" placeholder="2000" value="{{water}}" bindinput="onWaterInput" />
+        <text class="input-unit">ml</text>
+      </view>
+    </view>
+    <view class="form-group">
+      <text class="form-label">昨晚睡眠</text>
+      <view class="input-with-unit">
+        <input class="form-input" type="digit" placeholder="8" value="{{sleep}}" bindinput="onSleepInput" />
+        <text class="input-unit">小时</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Fatigue Rating -->
+  <view class="rating-section">
+    <text class="rating-label">今日疲劳程度</text>
+    <view class="rating-stars">
+      <view
+        wx:for="{{fatigueOptions}}"
+        wx:key="index"
+        class="rating-star {{item.selected ? 'selected' : ''}}"
+        data-val="{{item.val}}"
+        bindtap="onSelectFatigue"
+      >
+        <text>{{item.label}}</text>
+      </view>
+    </view>
+    <view class="rating-hint">1=精力充沛 · 5=正常 · 10=极度疲劳</view>
+  </view>
+
+  <!-- Mood Rating -->
+  <view class="rating-section">
+    <text class="rating-label">今日心情</text>
+    <view class="rating-stars">
+      <view
+        wx:for="{{moodOptions}}"
+        wx:key="index"
+        class="rating-star {{item.selected ? 'selected' : ''}}"
+        data-val="{{item.val}}"
+        bindtap="onSelectMood"
+      >
+        <text>{{item.emoji}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Pain Areas -->
+  <view class="pain-section" style="padding:0 20px 16px">
+    <view class="pain-title">🩺 训练后是否出现疼痛？（可多选）</view>
+    <view class="pain-tags">
+      <view
+        wx:for="{{painOptions}}"
+        wx:key="index"
+        class="pain-tag {{item.selected ? 'selected' : ''}} {{item.isNone ? 'none' : ''}}"
+        data-index="{{index}}"
+        bindtap="onTogglePain"
+      >
+        <text>{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Submit Button -->
+  <view class="form-section" style="padding:0 20px 24px">
+    <button class="btn-submit" bindtap="onSubmitCheckin">提交打卡</button>
+  </view>
+
+  <!-- Motivation Modal -->
+  <view class="modal-overlay {{motivationShow ? 'show' : ''}}" bindtap="onCloseMotivationOuter">
+    <view class="modal motivation-modal">
+      <view class="motivation-body" style="text-align:center;padding:32px 24px">
+        <view class="motivation-emoji" style="font-size:56px;margin-bottom:12px">🔥</view>
+        <text style="font-size:22px;font-weight:700;color:var(--text-primary);display:block">训练完成！太棒了！</text>
+        <text style="font-size:14px;color:var(--text-secondary);display:block;margin:8px 0 20px">今天的努力离目标又近了一步</text>
+        <view class="motivation-stats">
+          <view class="motivation-stat-row">
+            <text>连续打卡</text>
+            <text class="motivation-stat-val">{{motivationData.streak}} 天</text>
+          </view>
+          <view class="motivation-stat-row">
+            <text>累计消耗</text>
+            <text class="motivation-stat-val">{{motivationData.totalCal}} kcal</text>
+          </view>
+          <view class="motivation-stat-row">
+            <text>距离目标还差</text>
+            <text class="motivation-stat-val">{{motivationData.targetDiff}} kg</text>
+          </view>
+          <view class="motivation-stat-row">
+            <text>预计达标</text>
+            <text class="motivation-stat-val">约 {{motivationData.daysToGoal}} 天后</text>
+          </view>
+        </view>
+        <button class="btn-primary" style="margin-top:24px" bindtap="onCloseMotivation">继续加油 💪</button>
+      </view>
+    </view>
+  </view>
+</view>

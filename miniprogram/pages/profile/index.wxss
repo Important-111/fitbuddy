@@ -1,0 +1,167 @@
+.profile-header-card {
+  margin: 16px 20px;
+  border-radius: 16px;
+  padding: 24px;
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  flex-shrink: 0;
+}
+.profile-name {
+  font-size: 20px;
+  font-weight: 700;
+}
+.profile-goal {
+  font-size: 13px;
+  opacity: 0.85;
+  margin-top: 2px;
+  display: block;
+}
+.profile-tags {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.profile-tag {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  background: rgba(255,255,255,0.2);
+}
+.menu-section {
+  padding: 0 20px;
+  margin-bottom: 16px;
+}
+.menu-card {
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.menu-item:last-child {
+  border-bottom: none;
+}
+.menu-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+.menu-text {
+  flex: 1;
+}
+.menu-title {
+  font-size: 14px;
+  color: var(--text-primary);
+  display: block;
+}
+.menu-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  display: block;
+}
+.menu-arrow {
+  font-size: 20px;
+  color: var(--text-tertiary);
+}
+.version-text {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+}
+.info-section .info-item:last-child {
+  border-bottom: none !important;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal-overlay.show {
+  display: flex;
+}
+.modal {
+  background: var(--card);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 380px;
+}
+.modal-header {
+  padding: 20px 20px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.modal-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.modal-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+.modal-body {
+  padding: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+.modal-footer {
+  padding: 12px 20px 20px;
+  display: flex;
+  gap: 12px;
+}
+.btn-settings {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+.goal-card-mini {
+  transition: all 0.2s;
+}
+.goal-card-mini:active {
+  opacity: 0.8;
+}

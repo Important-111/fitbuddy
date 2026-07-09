@@ -1,0 +1,97 @@
+<view class="page-container no-tab">
+  <!-- 顶部栏 with 返回按钮 -->
+  <view class="top-bar">
+    <button class="btn-back" bindtap="navigateBack">
+      <text style="font-size:20px;line-height:1;">‹</text>
+    </button>
+    <text class="top-bar-title">动作详解</text>
+  </view>
+
+  <!-- 动作主图区 -->
+  <view class="exercise-hero" style="background:linear-gradient(135deg,#FF6B35,#FF8F65);">
+    🧍
+  </view>
+
+  <!-- 动作名称与标签 -->
+  <view class="exercise-name-section">
+    <view class="exercise-main-name">{{exerciseName}}</view>
+    <view class="exercise-eng-name">{{exerciseEngName}}</view>
+    <view class="exercise-tags">
+      <text
+        wx:for="{{tags}}"
+        wx:key="text"
+        class="exercise-tag {{item.class}}"
+      >{{item.icon}}{{item.text}}</text>
+    </view>
+  </view>
+
+  <!-- 动作信息卡 -->
+  <view class="info-section">
+    <view class="info-title">动作概要</view>
+    <view class="info-card">
+      <view wx:for="{{infoRows}}" wx:key="key" class="info-row">
+        <text class="info-key">{{item.key}}</text>
+        <text class="info-value" style="{{item.highlight ? 'color:var(--primary);font-weight:600;' : ''}}">{{item.value}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 目标肌群 -->
+  <view class="info-section">
+    <view class="info-title">目标肌群</view>
+    <view class="muscle-group">
+      <text wx:for="{{muscleGroups}}" wx:key="*this" class="muscle-tag">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 动作要点 -->
+  <view class="info-section">
+    <view class="info-title">动作要点</view>
+    <view class="info-card">
+      <view class="points-list">
+        <view wx:for="{{steps}}" wx:key="num">
+          <text class="point-num">{{item.num}}</text>
+          <text>{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 呼吸方式 -->
+  <view class="info-section">
+    <view class="info-title">呼吸方式</view>
+    <view class="info-card">
+      <text style="font-size:13px;color:var(--text-primary);line-height:1.6;display:block;">
+        💪 下蹲时：用鼻子深吸气，感受腹部扩张
+      </text>
+      <text style="font-size:13px;color:var(--text-primary);line-height:1.6;display:block;margin-top:4px;">
+        💪 站起时：用嘴巴缓缓呼气，收紧核心
+      </text>
+    </view>
+  </view>
+
+  <!-- 常见错误 -->
+  <view class="info-section">
+    <view class="info-title">常见错误</view>
+    <view class="info-card">
+      <view class="points-list caution-list">
+        <view wx:for="{{cautions}}" wx:key="*this">
+          <text class="point-num">!</text>
+          <text>{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 视频教程推荐 -->
+  <view class="video-section">
+    <view class="info-title">视频教程推荐</view>
+    <view wx:for="{{videos}}" wx:key="platform" class="video-card">
+      <text class="video-platform {{item.platformClass}}">{{item.platform}}</text>
+      <view class="video-info">
+        <view class="video-title">{{item.title}}</view>
+        <view class="video-desc">{{item.desc}}</view>
+      </view>
+    </view>
+  </view>
+</view>

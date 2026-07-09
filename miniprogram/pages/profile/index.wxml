@@ -1,0 +1,251 @@
+<view class="page-container">
+  <!-- Top bar (no back button - tab page) -->
+  <view class="top-bar justify-between">
+    <text class="top-bar-title">个人中心</text>
+    <view class="btn-settings" bindtap="onOpenSettingsPanel">
+      <text style="font-size:22px">⚙️</text>
+    </view>
+  </view>
+
+  <!-- Profile Header -->
+  <view class="profile-header-card" style="background:linear-gradient(135deg,#FF6B35,#E55A2B)">
+    <view class="profile-avatar">{{avatar}}</view>
+    <view class="profile-info" style="flex:1">
+      <text class="profile-name">{{nickname}}</text>
+      <text class="profile-goal">{{goalText}}</text>
+      <view class="profile-tags">
+        <text wx:for="{{tags}}" wx:key="index" class="profile-tag">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Goal Cards -->
+  <view class="goal-cards" style="padding:0 20px;margin-bottom:16px">
+    <view class="goal-cards-row" style="display:flex;gap:10px">
+      <view class="goal-card-mini" style="flex:1;background:var(--card);border-radius:12px;padding:14px;text-align:center;border:1px solid var(--border)" bindtap="onGoalCardTap" data-goal="减脂">
+        <view class="goal-card-icon" style="background:#FEE2E2;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 8px">🔥</view>
+        <text class="goal-card-title" style="font-size:14px;font-weight:600;color:var(--text-primary);display:block">减脂</text>
+        <text class="goal-card-desc" style="font-size:11px;color:var(--text-secondary);display:block;margin-top:2px">燃烧脂肪 · 塑造线条</text>
+      </view>
+      <view class="goal-card-mini" style="flex:1;background:var(--card);border-radius:12px;padding:14px;text-align:center;border:1px solid var(--border)" bindtap="onGoalCardTap" data-goal="增肌">
+        <view class="goal-card-icon" style="background:#DBEAFE;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 8px">💪</view>
+        <text class="goal-card-title" style="font-size:14px;font-weight:600;color:var(--text-primary);display:block">增肌</text>
+        <text class="goal-card-desc" style="font-size:11px;color:var(--text-secondary);display:block;margin-top:2px">增加肌肉 · 提升力量</text>
+      </view>
+      <view class="goal-card-mini" style="flex:1;background:var(--card);border-radius:12px;padding:14px;text-align:center;border:1px solid var(--border)" bindtap="onGoalCardTap" data-goal="塑形">
+        <view class="goal-card-icon" style="background:#F3E8FF;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 8px">🌟</view>
+        <text class="goal-card-title" style="font-size:14px;font-weight:600;color:var(--text-primary);display:block">塑形</text>
+        <text class="goal-card-desc" style="font-size:11px;color:var(--text-secondary);display:block;margin-top:2px">优化体态 · 完美曲线</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Stat Summary -->
+  <view class="stat-summary" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;padding:0 20px;margin-bottom:16px">
+    <view class="stat-summary-item" style="background:var(--card);border-radius:12px;padding:14px;text-align:center;border:1px solid var(--border)">
+      <text class="stat-summary-val" style="font-size:22px;font-weight:700;color:var(--primary);display:block">{{stats.workouts}}</text>
+      <text class="stat-summary-lbl" style="font-size:11px;color:var(--text-secondary);display:block;margin-top:4px">训练次数</text>
+    </view>
+    <view class="stat-summary-item" style="background:var(--card);border-radius:12px;padding:14px;text-align:center;border:1px solid var(--border)">
+      <text class="stat-summary-val" style="font-size:22px;font-weight:700;color:var(--primary);display:block">{{stats.minutes}}</text>
+      <text class="stat-summary-lbl" style="font-size:11px;color:var(--text-secondary);display:block;margin-top:4px">总时长(min)</text>
+    </view>
+    <view class="stat-summary-item" style="background:var(--card);border-radius:12px;padding:14px;text-align:center;border:1px solid var(--border)">
+      <text class="stat-summary-val" style="font-size:22px;font-weight:700;color:var(--primary);display:block">{{stats.calories}}</text>
+      <text class="stat-summary-lbl" style="font-size:11px;color:var(--text-secondary);display:block;margin-top:4px">消耗(kcal)</text>
+    </view>
+    <view class="stat-summary-item" style="background:var(--card);border-radius:12px;padding:14px;text-align:center;border:1px solid var(--border)">
+      <text class="stat-summary-val" style="font-size:22px;font-weight:700;color:var(--primary);display:block">{{stats.bmr}}</text>
+      <text class="stat-summary-lbl" style="font-size:11px;color:var(--text-secondary);display:block;margin-top:4px">BMR(kcal)</text>
+    </view>
+  </view>
+
+  <!-- Body Data Info -->
+  <view class="info-section" style="padding:0 20px;margin-bottom:16px">
+    <view class="section-title">身体数据档案</view>
+    <view class="info-list" style="background:var(--card);border-radius:14px;border:1px solid var(--border);overflow:hidden">
+      <view class="info-item editable" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)" bindtap="onQuickEdit" data-field="nickname">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary)">昵称</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:500">{{profileData.nickname}}</text>
+      </view>
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary)">身高</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:500">{{profileData.height}} cm</text>
+      </view>
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary)">当前体重</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:500">{{profileData.weight}} kg</text>
+      </view>
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary)">目标体重</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:500">{{profileData.targetWeight}} kg</text>
+      </view>
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary)">BMI</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:500">{{profileData.bmi}}</text>
+      </view>
+      <view wx:if="{{profile.waist}}" class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary)">腰围 / 臀围</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:500">{{profile.waist}}cm / {{profile.hip || '--'}}cm</text>
+      </view>
+      <view wx:if="{{profile.bodyFat}}" class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary)">体脂率</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:500">{{profile.bodyFat}}%</text>
+      </view>
+      <view class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px">
+        <text class="info-key" style="font-size:14px;color:var(--text-secondary)">基础代谢</text>
+        <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:500">{{profileData.bmrValue}} kcal</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Menu Section -->
+  <view class="menu-section">
+    <view class="section-title">功能设置</view>
+    <view class="menu-card">
+      <view class="menu-item" bindtap="onMenuTap" data-menu="reminder">
+        <view class="menu-icon" style="background:#E0F2FE">🔔</view>
+        <view class="menu-text">
+          <text class="menu-title">训练提醒</text>
+          <text class="menu-desc">每日训练时间提醒</text>
+        </view>
+        <view class="menu-arrow">›</view>
+      </view>
+      <view class="menu-item" bindtap="onMenuTap" data-menu="export">
+        <view class="menu-icon" style="background:#FEF3C7">📊</view>
+        <view class="menu-text">
+          <text class="menu-title">数据导出</text>
+          <text class="menu-desc">导出训练和身体数据</text>
+        </view>
+        <view class="menu-arrow">›</view>
+      </view>
+      <view class="menu-item" bindtap="onMenuTap" data-menu="goals">
+        <view class="menu-icon" style="background:var(--primary-light)">🎯</view>
+        <view class="menu-text">
+          <text class="menu-title">重新设定目标</text>
+          <text class="menu-desc">修改训练目标和计划</text>
+        </view>
+        <view class="menu-arrow">›</view>
+      </view>
+      <view class="menu-item" bindtap="onMenuTap" data-menu="feedback">
+        <view class="menu-icon" style="background:#F3E8FF">💬</view>
+        <view class="menu-text">
+          <text class="menu-title">反馈建议</text>
+          <text class="menu-desc">帮助我们做得更好</text>
+        </view>
+        <view class="menu-arrow">›</view>
+      </view>
+      <view class="menu-item" bindtap="onMenuTap" data-menu="help">
+        <view class="menu-icon" style="background:#FEE2E2">❓</view>
+        <view class="menu-text">
+          <text class="menu-title">帮助与支持</text>
+          <text class="menu-desc">常见问题和联系客服</text>
+        </view>
+        <view class="menu-arrow">›</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Logout Button -->
+  <view style="padding:8px 20px 16px">
+    <button class="btn-secondary" bindtap="onLogout">退出登录</button>
+  </view>
+  <view class="version-text">FitBuddy v1.0.0 · AI Fitness Coach</view>
+
+  <!-- Settings Panel Modal -->
+  <view class="modal-overlay {{settingsShow ? 'show' : ''}}" bindtap="onCloseSettingsOuter">
+    <view class="modal" style="max-width:340px">
+      <view class="modal-header">
+        <text class="modal-title">设置</text>
+        <text class="modal-close" bindtap="onCloseSettings">✕</text>
+      </view>
+      <view class="modal-body">
+        <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
+          <text style="font-size:14px;color:var(--text-primary)">训练提醒</text>
+          <switch checked="{{settings.trainReminder}}" bindchange="onToggleSetting" data-key="trainReminder" color="#FF6B35" />
+        </view>
+        <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
+          <text style="font-size:14px;color:var(--text-primary)">饮食提醒</text>
+          <switch checked="{{settings.dietReminder}}" bindchange="onToggleSetting" data-key="dietReminder" color="#FF6B35" />
+        </view>
+        <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
+          <text style="font-size:14px;color:var(--text-primary)">喝水提醒</text>
+          <switch checked="{{settings.waterReminder}}" bindchange="onToggleSetting" data-key="waterReminder" color="#FF6B35" />
+        </view>
+        <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0">
+          <text style="font-size:14px;color:var(--text-primary)">夜间勿扰模式</text>
+          <switch checked="{{settings.nightMode}}" bindchange="onToggleSetting" data-key="nightMode" color="#FF6B35" />
+        </view>
+      </view>
+      <view class="modal-footer" style="justify-content:center">
+        <button class="btn-secondary" bindtap="onCloseSettings">关闭</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- Edit Profile Modal -->
+  <view class="modal-overlay {{editProfileShow ? 'show' : ''}}" bindtap="onCloseEditProfileOuter">
+    <view class="modal">
+      <view class="modal-header">
+        <text class="modal-title">编辑基本资料</text>
+        <text class="modal-close" bindtap="onCloseEditProfile">✕</text>
+      </view>
+      <view class="modal-body">
+        <view class="form-group">
+          <text class="form-label">昵称</text>
+          <input class="form-input" type="text" value="{{editForm.nickname}}" bindinput="onEditFormInput" data-field="nickname" />
+        </view>
+        <view class="form-group">
+          <text class="form-label">性别</text>
+          <view class="gender-group">
+            <view
+              class="gender-option {{editForm.gender === 'male' ? 'selected' : ''}}"
+              data-gender="male"
+              bindtap="onEditGenderSelect"
+            >男</view>
+            <view
+              class="gender-option {{editForm.gender === 'female' ? 'selected' : ''}}"
+              data-gender="female"
+              bindtap="onEditGenderSelect"
+            >女</view>
+          </view>
+        </view>
+        <view class="form-row">
+          <view class="form-group">
+            <text class="form-label">年龄</text>
+            <view class="input-with-unit">
+              <input class="form-input" type="number" value="{{editForm.age}}" bindinput="onEditFormInput" data-field="age" />
+              <text class="input-unit">岁</text>
+            </view>
+          </view>
+          <view class="form-group">
+            <text class="form-label">身高</text>
+            <view class="input-with-unit">
+              <input class="form-input" type="number" value="{{editForm.height}}" bindinput="onEditFormInput" data-field="height" />
+              <text class="input-unit">cm</text>
+            </view>
+          </view>
+        </view>
+        <view class="form-row">
+          <view class="form-group">
+            <text class="form-label">体重</text>
+            <view class="input-with-unit">
+              <input class="form-input" type="number" value="{{editForm.weight}}" bindinput="onEditFormInput" data-field="weight" />
+              <text class="input-unit">kg</text>
+            </view>
+          </view>
+          <view class="form-group">
+            <text class="form-label">健身目标</text>
+            <picker class="form-input" mode="selector" range="{{goalOptions}}" value="{{editForm.goalIndex}}" bindchange="onEditGoalChange" style="display:flex;align-items:center">
+              <view>{{editForm.goalLabel}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="btn-secondary" bindtap="onCloseEditProfile">取消</button>
+        <button class="btn-confirm" bindtap="onConfirmEditProfile">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

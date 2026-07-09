@@ -1,0 +1,191 @@
+<view class="page-container">
+  <!-- Top bar (no back button - tab page) -->
+  <view class="top-bar">
+    <text class="top-bar-title">进度追踪</text>
+  </view>
+
+  <!-- Period Filter Tabs -->
+  <view class="filter-tabs">
+    <view
+      class="filter-tab {{periodFilter === 'week' ? 'active' : ''}}"
+      data-filter="week"
+      bindtap="onSwitchFilter"
+    >本周</view>
+    <view
+      class="filter-tab {{periodFilter === 'month' ? 'active' : ''}}"
+      data-filter="month"
+      bindtap="onSwitchFilter"
+    >本月</view>
+    <view
+      class="filter-tab {{periodFilter === 'all' ? 'active' : ''}}"
+      data-filter="all"
+      bindtap="onSwitchFilter"
+    >全部</view>
+  </view>
+
+  <!-- Overview Cards -->
+  <view class="overview-cards">
+    <view class="overview-card">
+      <text class="overview-val">{{overview.streak}}</text>
+      <text class="overview-lbl">连续打卡</text>
+    </view>
+    <view class="overview-card">
+      <text class="overview-val">{{overview.workouts}}</text>
+      <text class="overview-lbl">累计次数</text>
+    </view>
+    <view class="overview-card">
+      <text class="overview-val">{{overview.minutes}}</text>
+      <text class="overview-lbl">累计时长</text>
+    </view>
+    <view class="overview-card">
+      <text class="overview-val">{{overview.calories}}</text>
+      <text class="overview-lbl">累计消耗(kcal)</text>
+    </view>
+    <view class="overview-card">
+      <text class="overview-val">{{overview.completionRate}}%</text>
+      <text class="overview-lbl">完成率</text>
+    </view>
+    <view class="overview-card">
+      <text class="overview-val">{{overview.streak}}</text>
+      <text class="overview-lbl">连续打卡</text>
+    </view>
+  </view>
+
+  <!-- Milestone Section -->
+  <view class="milestone-section" style="padding:0 20px;margin-bottom:16px">
+    <view class="section-title">里程碑成就</view>
+    <scroll-view class="milestone-scroll" scroll-x style="display:flex;overflow-x:auto;white-space:nowrap;padding:4px 0">
+      <view
+        wx:for="{{milestones}}"
+        wx:key="index"
+        class="milestone-card {{item.achieved ? 'achieved' : ''}}"
+        style="display:inline-block;margin-right:10px"
+      >
+        <view class="milestone-icon">{{item.icon}}</view>
+        <text class="milestone-name">{{item.name}}</text>
+        <text class="milestone-date">{{item.status}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- Weight Trend Chart -->
+  <view class="chart-section">
+    <view class="chart-card">
+      <view class="chart-header">
+        <text class="chart-title">体重变化趋势</text>
+        <text class="chart-period">近{{chartData.count}}天</text>
+      </view>
+      <view class="chart-placeholder">
+        <view
+          wx:for="{{chartData.bars}}"
+          wx:key="index"
+          class="chart-bar-wrap"
+        >
+          <view class="chart-bar" style="height:{{item.height}}%"></view>
+          <text class="chart-bar-label">{{item.label}}</text>
+        </view>
+      </view>
+      <view class="chart-legend">
+        <view class="chart-legend-item">
+          <view class="chart-legend-dot primary"></view>
+          <text>体重 (kg)</text>
+        </view>
+        <view wx:if="{{targetWeight}}" class="chart-legend-item">
+          <view class="chart-legend-dot accent"></view>
+          <text>目标 ({{targetWeight}}kg)</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Measurements Table -->
+  <view class="chart-section">
+    <view class="chart-card">
+      <view class="chart-header">
+        <text class="chart-title">围度变化</text>
+        <text class="chart-period">累计</text>
+      </view>
+      <view style="overflow-x:auto">
+        <view class="data-table">
+          <view class="data-tr data-th">
+            <text class="data-td">指标</text>
+            <text class="data-td">初始</text>
+            <text class="data-td">当前</text>
+            <text class="data-td">变化</text>
+          </view>
+          <view class="data-tr">
+            <text class="data-td">体重</text>
+            <text class="data-td">{{measurements.initialWeight}}kg</text>
+            <text class="data-td">{{measurements.currentWeight}}kg</text>
+            <text class="data-td" style="{{measurements.weightChangeStyle}}">{{measurements.weightChangeDisplay}}</text>
+          </view>
+          <view class="data-tr">
+            <text class="data-td">BMI</text>
+            <text class="data-td">{{measurements.initialBMI}}</text>
+            <text class="data-td">{{measurements.currentBMI}}</text>
+            <text class="data-td" style="color:var(--success)">{{measurements.bmiChange}}</text>
+          </view>
+          <view wx:if="{{profile.waist}}" class="data-tr">
+            <text class="data-td">腰围</text>
+            <text class="data-td">{{profile.waist}}cm</text>
+            <text class="data-td">{{profile.waist}}cm</text>
+            <text class="data-td" style="color:var(--success)">--</text>
+          </view>
+          <view wx:if="{{profile.hip}}" class="data-tr">
+            <text class="data-td">臀围</text>
+            <text class="data-td">{{profile.hip}}cm</text>
+            <text class="data-td">{{profile.hip}}cm</text>
+            <text class="data-td" style="color:var(--success)">--</text>
+          </view>
+          <view wx:if="{{profile.bodyFat}}" class="data-tr">
+            <text class="data-td">体脂率</text>
+            <text class="data-td">{{profile.bodyFat}}%</text>
+            <text class="data-td">{{profile.bodyFat}}%</text>
+            <text class="data-td" style="color:var(--success)">--</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Weekly Analysis -->
+  <view class="weekly-analysis" style="padding:0 20px;margin-bottom:24px">
+    <view class="section-title">本周AI分析</view>
+
+    <view class="analysis-card">
+      <view class="analysis-icon">📊</view>
+      <view class="analysis-info">
+        <text class="analysis-title">训练完成率</text>
+        <text class="analysis-desc">本周完成 {{analysis.weekWorkouts}}/{{analysis.daysPerWeek}} 次训练</text>
+      </view>
+      <text class="analysis-status {{analysis.weekRateClass}}">{{analysis.weekRate}}%</text>
+    </view>
+
+    <view class="analysis-card">
+      <view class="analysis-icon">⚡</view>
+      <view class="analysis-info">
+        <text class="analysis-title">体重变化</text>
+        <text class="analysis-desc">{{analysis.weightDesc}}</text>
+      </view>
+      <text class="analysis-status {{analysis.weightClass}}">{{analysis.weightDisplay}}</text>
+    </view>
+
+    <view class="analysis-card">
+      <view class="analysis-icon">💪</view>
+      <view class="analysis-info">
+        <text class="analysis-title">疲劳恢复</text>
+        <text class="analysis-desc">{{analysis.fatigueDesc}}</text>
+      </view>
+      <text class="analysis-status status-good">正常</text>
+    </view>
+
+    <view class="analysis-card">
+      <view class="analysis-icon">💡</view>
+      <view class="analysis-info">
+        <text class="analysis-title">调整建议</text>
+        <text class="analysis-desc">{{analysis.suggestion}}</text>
+      </view>
+      <text class="analysis-status status-good">{{analysis.suggestionLabel}}</text>
+    </view>
+  </view>
+</view>

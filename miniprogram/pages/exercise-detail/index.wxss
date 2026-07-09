@@ -1,0 +1,167 @@
+/* 动作说明页 - 补充样式 */
+
+.exercise-name-section {
+  padding: 0 20px;
+  margin-bottom: 16px;
+}
+
+.exercise-main-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.exercise-eng-name {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.exercise-tags {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.exercise-tag {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.tag-level {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.tag-muscle {
+  background: #DBEAFE;
+  color: #2563EB;
+}
+
+.tag-type {
+  background: #F3E8FF;
+  color: #7C3AED;
+}
+
+.muscle-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.muscle-tag {
+  padding: 8px 16px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.points-list {
+  /* 容器样式 */
+}
+
+.points-list > view {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.points-list > view:last-child {
+  margin-bottom: 0;
+}
+
+.point-num {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #FFF;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.caution-list .point-num {
+  background: var(--danger);
+}
+
+.video-section {
+  padding: 0 20px 20px;
+}
+
+.video-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 8px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.video-platform {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #FFF;
+  flex-shrink: 0;
+}
+
+.pl-yt {
+  background: #FF0000;
+}
+
+.pl-bl {
+  background: #00A1D6;
+}
+
+.pl-kp {
+  background: #333333;
+}
+
+.pl-xs {
+  background: #FF2442;
+}
+
+.video-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.video-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.video-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.exercise-hero {
+  margin: 16px 20px;
+  border-radius: 14px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  font-size: 48px;
+}

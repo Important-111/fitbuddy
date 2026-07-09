@@ -1,0 +1,118 @@
+<view class="page-container">
+  <!-- 顶部栏 with 返回按钮 -->
+  <view class="top-bar">
+    <button class="btn-back" bindtap="navigateBack">
+      <text style="font-size:20px;line-height:1;">‹</text>
+    </button>
+    <text class="top-bar-title">今日训练</text>
+  </view>
+
+  <!-- 训练头部渐变区 -->
+  <view class="workout-header" style="background:linear-gradient(135deg,#FF6B35,#FF8F65);">
+    <view class="workout-header-top">
+      <view>
+        <text style="font-size:20px;font-weight:700;">{{workoutName}}</text>
+        <text style="font-size:13px;opacity:0.9;display:block;margin-top:4px;">{{workoutSub}}</text>
+      </view>
+    </view>
+    <view class="workout-meta">
+      <view class="workout-meta-item">
+        <view class="workout-meta-val">{{workoutMinutes}}</view>
+        <view class="workout-meta-lbl">分钟</view>
+      </view>
+      <view class="workout-meta-item">
+        <view class="workout-meta-val">{{exercises.length}}+{{stretches.length}}</view>
+        <view class="workout-meta-lbl">动作+拉伸</view>
+      </view>
+      <view class="workout-meta-item">
+        <view class="workout-meta-val">{{workoutCalories}}</view>
+        <view class="workout-meta-lbl">预计消耗(kcal)</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 热身激活阶段 -->
+  <view class="phase-section">
+    <view class="phase-title">
+      <text class="phase-icon warmup">🔥</text>
+      <text>热身激活（5分钟）</text>
+    </view>
+    <view
+      wx:for="{{warmups}}"
+      wx:key="name"
+      class="exercise-card {{item.done ? 'completed' : ''}}"
+    >
+      <view class="exercise-num">
+        <text wx:if="{{item.done}}">✓</text>
+        <text wx:else>W</text>
+      </view>
+      <view class="exercise-info">
+        <view class="exercise-name">{{item.name}}</view>
+        <view class="exercise-detail">{{item.detail}}</view>
+        <view class="exercise-sets" wx:if="{{item.sets}}">{{item.sets}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 正式训练阶段 -->
+  <view class="phase-section">
+    <view class="phase-title">
+      <text class="phase-icon main">💪</text>
+      <text>正式训练（35分钟）</text>
+    </view>
+    <view wx:for="{{exercises}}" wx:key="num">
+      <view
+        class="exercise-card"
+        bindtap="navigateTo"
+        data-url="/pages/exercise-detail/index"
+      >
+        <view class="exercise-num">{{item.num}}</view>
+        <view class="exercise-info">
+          <view class="exercise-name">{{item.name}}</view>
+          <view class="exercise-detail">{{item.detail}}</view>
+          <view class="exercise-sets">{{item.sets}}</view>
+          <view class="exercise-rest" wx:if="{{item.rest}}">{{item.rest}}</view>
+        </view>
+        <view class="exercise-arrow">›</view>
+      </view>
+      <view wx:if="{{index < exercises.length - 1}}" class="flow-arrow">↓</view>
+    </view>
+  </view>
+
+  <!-- 训练后拉伸阶段 -->
+  <view class="phase-section">
+    <view class="phase-title">
+      <text class="phase-icon stretch">🧘</text>
+      <text>训练后拉伸（8分钟）</text>
+    </view>
+    <view wx:for="{{stretches}}" wx:for-index="idx" wx:key="name" class="stretch-card">
+      <view class="exercise-num">{{idx + 1}}</view>
+      <view class="exercise-info">
+        <view class="exercise-name">{{item.name}}</view>
+        <view class="exercise-detail">{{item.detail}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 总消耗统计 -->
+  <view class="total-calories">
+    <view class="total-item">
+      <view class="total-item-val">{{workoutCalories}}</view>
+      <view class="total-item-lbl">预计消耗(kcal)</view>
+    </view>
+    <view class="total-item">
+      <view class="total-item-val">{{workoutMinutes}}</view>
+      <view class="total-item-lbl">训练时长(分钟)</view>
+    </view>
+    <view class="total-item">
+      <view class="total-item-val">{{totalSets}}</view>
+      <view class="total-item-lbl">总组数</view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <button class="btn-outline" bindtap="navigateTo" data-url="/pages/exercise-detail/index">查看动作详解</button>
+    <button class="btn-primary" bindtap="navigateTo" data-url="/pages/daily-checkin/index">完成训练 · 去打卡</button>
+  </view>
+</view>
