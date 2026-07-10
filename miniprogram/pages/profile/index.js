@@ -137,19 +137,31 @@ Page({
 
   onMenuTap(e) {
     const menu = e.currentTarget.dataset.menu;
-    const labels = {
-      reminder: '训练提醒',
-      export: '数据导出',
-      goals: '重新设定目标',
-      feedback: '反馈建议',
-      help: '帮助与支持'
-    };
-    wx.showToast({ title: labels[menu] || menu, icon: 'none' });
+    switch (menu) {
+      case 'goals':
+        wx.navigateTo({ url: '/pages/training-goals/index' });
+        break;
+      case 'export':
+        wx.showToast({ title: '导出功能开发中', icon: 'none' });
+        break;
+      case 'feedback':
+        wx.showToast({ title: '感谢你的反馈！', icon: 'none' });
+        break;
+      case 'help':
+        wx.showToast({ title: '帮助文档开发中', icon: 'none' });
+        break;
+      default:
+        wx.showToast({ title: '功能开发中', icon: 'none' });
+    }
   },
 
   onGoalCardTap(e) {
     const goal = e.currentTarget.dataset.goal;
-    wx.showToast({ title: goal, icon: 'none' });
+    const p = Store.getProfile() || {};
+    p.goal = goal;
+    Store.saveProfile(p);
+    wx.showToast({ title: '目标已切换至' + goal, icon: 'none' });
+    this.loadData();
   },
 
   onLogout() {

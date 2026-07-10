@@ -65,14 +65,6 @@ Page({
   },
 
   onEditProfile() {
-    const profile = Store.getProfile();
-    if (!profile) return;
-    wx.showModal({
-      title: '编辑基本资料',
-      editable: true,
-      placeholderText: '此功能将在后续版本完善',
-      showCancel: false,
-      confirmText: '知道了'
-    });
+    wx.navigateTo({ url: '/pages/profile/index' });
   }
 });

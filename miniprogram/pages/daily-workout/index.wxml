@@ -1,10 +1,10 @@
 <view class="page-container">
-  <!-- 顶部栏 with 返回按钮 -->
+  <!-- 顶部栏 -->
   <view class="top-bar">
-    <button class="btn-back" bindtap="navigateBack">
-      <text style="font-size:20px;line-height:1;">‹</text>
-    </button>
-    <text class="top-bar-title">今日训练</text>
+    <view class="nav-back" bindtap="navigateBack">
+      <text style="font-size:22px;font-weight:300;line-height:1;color:var(--text-primary);margin-top:-2px;">‹</text>
+    </view>
+    <text class="top-bar-title" style="flex:1;text-align:center;margin-right:36px;">今日训练</text>
   </view>
 
   <!-- 训练头部渐变区 -->

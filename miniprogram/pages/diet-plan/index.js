@@ -85,10 +85,13 @@ Page({
     const p = Store.getProfile() || {};
     const goal = p.goal || '';
 
-    // Determine goal tab
-    let goalTab = '塑形';
-    if (goal.indexOf('减脂') >= 0) goalTab = '减脂';
-    else if (goal.indexOf('增肌') >= 0) goalTab = '增肌';
+    // Determine goal tab — only from profile on initial load, preserve manual switches
+    let goalTab = this.data.goalTab;
+    if (!goalTab) {
+      goalTab = '塑形';
+      if (goal.indexOf('减脂') >= 0) goalTab = '减脂';
+      else if (goal.indexOf('增肌') >= 0) goalTab = '增肌';
+    }
 
     const bmr = calcBMR(p.gender, p.weight, p.height, p.age);
     let dailyCal = calcDailyCalories(bmr, goal);

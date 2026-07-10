@@ -5,7 +5,8 @@
       <text style="font-size:48px;color:#FFF;">🏋️</text>
     </view>
     <text class="hero-title">FitBuddy</text>
-    <text class="hero-subtitle">你的AI私人健身教练，陪你达成每一个目标</text>
+    <text class="hero-title2">你的AI私人健身教练</text>
+    <text class="hero-subtitle">陪你达成每一个目标</text>
   </view>
 
   <!-- 已有档案：资料卡片 -->
