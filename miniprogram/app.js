@@ -11,10 +11,12 @@ App({
       console.log('[FitBuddy] 云开发未配置，使用本地存储模式');
     }
 
-    const sysInfo = wx.getSystemInfoSync();
-    this.globalData.systemInfo = sysInfo;
-    this.globalData.statusBarHeight = sysInfo.statusBarHeight;
-    this.globalData.screenWidth = sysInfo.screenWidth;
+    const windowInfo = wx.getWindowInfo();
+    const deviceInfo = wx.getDeviceInfo();
+    const appBaseInfo = wx.getAppBaseInfo();
+    this.globalData.systemInfo = { ...windowInfo, ...deviceInfo, ...appBaseInfo, platform: deviceInfo.platform };
+    this.globalData.statusBarHeight = windowInfo.statusBarHeight;
+    this.globalData.screenWidth = windowInfo.screenWidth;
   },
 
   globalData: {
