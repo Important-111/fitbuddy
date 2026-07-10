@@ -14,7 +14,7 @@
       <text class="profile-name">{{nickname}}</text>
       <text class="profile-goal">{{goalText}}</text>
       <view class="profile-tags">
-        <text wx:for="{{tags}}" wx:key="index" class="profile-tag">{{item}}</text>
+        <text wx:for="{{tags}}" wx:key="*this" class="profile-tag">{{item}}</text>
       </view>
     </view>
   </view>

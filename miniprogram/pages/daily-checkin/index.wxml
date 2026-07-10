@@ -17,7 +17,7 @@
     <view class="rating-stars">
       <view
         wx:for="{{completionOptions}}"
-        wx:key="index"
+        wx:key="val"
         class="rating-star {{item.selected ? 'selected' : ''}}"
         data-val="{{item.val}}"
         bindtap="onSelectCompletion"
@@ -58,7 +58,7 @@
     <view class="rating-stars">
       <view
         wx:for="{{fatigueOptions}}"
-        wx:key="index"
+        wx:key="val"
         class="rating-star {{item.selected ? 'selected' : ''}}"
         data-val="{{item.val}}"
         bindtap="onSelectFatigue"
@@ -75,7 +75,7 @@
     <view class="rating-stars">
       <view
         wx:for="{{moodOptions}}"
-        wx:key="index"
+        wx:key="val"
         class="rating-star {{item.selected ? 'selected' : ''}}"
         data-val="{{item.val}}"
         bindtap="onSelectMood"
@@ -91,7 +91,7 @@
     <view class="pain-tags">
       <view
         wx:for="{{painOptions}}"
-        wx:key="index"
+        wx:key="val"
         class="pain-tag {{item.selected ? 'selected' : ''}} {{item.isNone ? 'none' : ''}}"
         data-index="{{index}}"
         bindtap="onTogglePain"

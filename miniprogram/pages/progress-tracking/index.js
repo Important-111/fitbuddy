@@ -102,7 +102,7 @@ Page({
       const labels = ['--', '--', '--', '--', '--'];
       const heights = [90, 85, 80, 75, 70];
       for (let i = 0; i < 5; i++) {
-        bars.push({ height: heights[i], label: labels[i] });
+        bars.push({ height: heights[i], label: labels[i], key: 'p' + i });
       }
     } else {
       let maxW = 0, minW = Infinity;
@@ -111,9 +111,9 @@ Page({
         if (w.weight < minW) minW = w.weight;
       });
       const range = (maxW - minW) || 1;
-      displayWeights.forEach(w => {
+      displayWeights.forEach((w, idx) => {
         const h = 40 + ((maxW - w.weight) / range) * 60;
-        bars.push({ height: Math.round(h), label: String(w.weight.toFixed(1)) });
+        bars.push({ height: Math.round(h), label: String(w.weight.toFixed(1)), key: 'b' + idx });
       });
     }
 

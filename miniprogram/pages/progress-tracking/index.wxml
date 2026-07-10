@@ -57,7 +57,7 @@
     <scroll-view class="milestone-scroll" scroll-x style="display:flex;overflow-x:auto;white-space:nowrap;padding:4px 0">
       <view
         wx:for="{{milestones}}"
-        wx:key="index"
+        wx:key="name"
         class="milestone-card {{item.achieved ? 'achieved' : ''}}"
         style="display:inline-block;margin-right:10px"
       >
@@ -78,7 +78,7 @@
       <view class="chart-placeholder">
         <view
           wx:for="{{chartData.bars}}"
-          wx:key="index"
+          wx:key="key"
           class="chart-bar-wrap"
         >
           <view class="chart-bar" style="height:{{item.height}}%"></view>
