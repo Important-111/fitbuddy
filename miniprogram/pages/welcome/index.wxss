@@ -1,4 +1,32 @@
 /* Welcome page - most styles are in app.wxss, just add page-specific overrides */
+.welcome-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 60px 24px 48px;
+}
+.welcome-hero .hero-title {
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  margin-bottom: 8px !important;
+  line-height: 1.2 !important;
+}
+.welcome-hero .hero-title2 {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  color: rgba(255,255,255,0.95) !important;
+  margin-bottom: 6px !important;
+  line-height: 1.4 !important;
+}
+.welcome-hero .hero-subtitle {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: rgba(255,255,255,0.8) !important;
+  line-height: 1.5 !important;
+}
+
 .profile-header-mod {
   display: flex;
   align-items: center;
