@@ -19,5 +19,6 @@
     "backgroundColor": "#F0F2F5"
   },
   "usingComponents": {},
+  "lazyCodeLoading": "requiredComponents",
   "sitemapLocation": "sitemap.json"
 }
