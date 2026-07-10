@@ -30,11 +30,13 @@
       <text class="form-label">性别</text>
       <view class="gender-group">
         <view class="gender-option {{gender === 'male' ? 'selected' : ''}}" bindtap="selectGender" data-gender="male">
-          <text style="font-size:20px;">♂</text>
+          <image wx:if="{{gender === 'male'}}" style="width:22px;height:22px;display:block;" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY2QjM1IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTAiIGN5PSI3IiByPSI1Ii8+PHBhdGggZD0iTTIyIDJMMTQgMTAiLz48cGF0aCBkPSJNMTQgMmg4djgiLz48L3N2Zz4="/>
+          <image wx:else style="width:22px;height:22px;display:block;" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNkI3MjgwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTAiIGN5PSI3IiByPSI1Ii8+PHBhdGggZD0iTTIyIDJMMTQgMTAiLz48cGF0aCBkPSJNMTQgMmg4djgiLz48L3N2Zz4="/>
           <text>男</text>
         </view>
         <view class="gender-option {{gender === 'female' ? 'selected' : ''}}" bindtap="selectGender" data-gender="female">
-          <text style="font-size:20px;">♀</text>
+          <image wx:if="{{gender === 'female'}}" style="width:22px;height:22px;display:block;" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY2QjM1IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTIiIGN5PSI5IiByPSI1Ii8+PHBhdGggZD0iTTEyIDE0djciLz48cGF0aCBkPSJNOSAxOGg2Ii8+PC9zdmc+"/>
+          <image wx:else style="width:22px;height:22px;display:block;" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNkI3MjgwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTIiIGN5PSI5IiByPSI1Ii8+PHBhdGggZD0iTTEyIDE0djciLz48cGF0aCBkPSJNOSAxOGg2Ii8+PC9zdmc+"/>
           <text>女</text>
         </view>
       </view>
