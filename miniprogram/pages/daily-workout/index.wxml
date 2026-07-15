@@ -51,6 +51,21 @@
         <view class="exercise-detail">{{item.detail}}</view>
         <view class="exercise-sets" wx:if="{{item.sets}}">{{item.sets}}</view>
       </view>
+
+      <!-- 倒计时器 -->
+      <view
+        class="exercise-timer {{item.timerState}}"
+        catchtap="noop"
+        data-idx="{{index}}"
+        data-list="warmups"
+      >
+        <text class="timer-display">{{item.timerDisplay}}</text>
+        <view class="timer-controls">
+          <view class="timer-btn adjust" catchtap="adjustTimer" data-list="warmups" data-idx="{{index}}" data-delta="-15">−15s</view>
+          <view class="timer-btn start" catchtap="toggleTimer" data-list="warmups" data-idx="{{index}}">{{item.timerBtnLabel}}</view>
+          <view class="timer-btn adjust" catchtap="adjustTimer" data-list="warmups" data-idx="{{index}}" data-delta="15">+15s</view>
+        </view>
+      </view>
     </view>
   </view>
 

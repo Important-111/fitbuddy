@@ -166,6 +166,14 @@ body {
         <div class="exercise-detail">开合跳 · 高抬腿 · 髋关节环绕 · 踝关节活动</div>
         <div class="exercise-sets">完成热身</div>
       </div>
+      <div class="exercise-timer" data-seconds="300">
+        <div class="timer-display">05:00</div>
+        <div class="timer-controls">
+          <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
+          <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
+          <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -1,12 +1,13 @@
 const { Store } = require('../../utils/store');
 
 const DEFAULT_TIMER_SEC = 30;
+const WARMUP_TIMER_SEC = 300;
 
-function parseRestSeconds(text) {
-  if (!text) return DEFAULT_TIMER_SEC;
+function parseRestSeconds(text, fallback) {
+  if (!text) return (fallback !== undefined ? fallback : DEFAULT_TIMER_SEC);
   const m = String(text).match(/(\d+)\s*秒/);
   if (m) return Math.max(5, parseInt(m[1]));
-  return DEFAULT_TIMER_SEC;
+  return (fallback !== undefined ? fallback : DEFAULT_TIMER_SEC);
 }
 
 function formatTimer(s) {
@@ -16,9 +17,9 @@ function formatTimer(s) {
   return (m < 10 ? '0' : '') + m + ':' + (sec < 10 ? '0' : '') + sec;
 }
 
-function withTimer(items) {
+function withTimer(items, fallback) {
   return (items || []).map(it => {
-    const sec = parseRestSeconds(it.rest || it.detail);
+    const sec = parseRestSeconds(it.rest || it.detail, fallback);
     return Object.assign({}, it, {
       timerDefaultSec: sec,
       timerSec: sec,
@@ -121,6 +122,7 @@ Page({
 
     exercises = withTimer(exercises);
     stretches = withTimer(stretches);
+    warmups = withTimer(warmups, WARMUP_TIMER_SEC);
 
     // 计算总组数
     let totalSets = 0;
