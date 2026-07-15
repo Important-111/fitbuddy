@@ -84,6 +84,9 @@
         <text class="info-key" style="font-size:14px;color:var(--text-secondary)">BMI</text>
         <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:500">{{profileData.bmi}}</text>
       </view>
+      <view style="padding:6px 16px 10px;background:var(--accent-light, #FFF7ED);border-bottom:1px solid var(--border)">
+        <text style="font-size:11px;color:var(--text-tertiary);display:block;line-height:1.4;">BMI 正常范围 18.5-24，超出或低于此范围请关注。</text>
+      </view>
       <view wx:if="{{profile.waist}}" class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)">
         <text class="info-key" style="font-size:14px;color:var(--text-secondary)">腰围 / 臀围</text>
         <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:500">{{profile.waist}}cm / {{profile.hip || '--'}}cm</text>

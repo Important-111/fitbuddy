@@ -145,7 +145,22 @@ Page({
         wx.showToast({ title: '导出功能开发中', icon: 'none' });
         break;
       case 'feedback':
-        wx.navigateTo({ url: '/pages/feedback/index' });
+        wx.navigateTo({
+          url: '/pages/feedback/index',
+          success: () => {
+            console.log('[feedback] navigateTo success');
+          },
+          fail: (err) => {
+            console.error('[feedback] navigateTo fail:', err);
+            wx.reLaunch({
+              url: '/pages/feedback/index',
+              fail: (e2) => {
+                console.error('[feedback] reLaunch also fail:', e2);
+                wx.showToast({ title: '跳转失败：' + (e2.errMsg || '未知错误'), icon: 'none', duration: 3000 });
+              }
+            });
+          }
+        });
         break;
       case 'help':
         wx.showToast({ title: '帮助文档开发中', icon: 'none' });
