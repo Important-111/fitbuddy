@@ -130,7 +130,7 @@
         </view>
         <view class="menu-arrow">›</view>
       </view>
-      <view class="menu-item" bindtap="onMenuTap" data-menu="feedback">
+      <view class="menu-item" bindtap="jumpToFeedback" style="position:relative;">
         <view class="menu-icon" style="background:#F3E8FF">💬</view>
         <view class="menu-text">
           <text class="menu-title">反馈建议</text>

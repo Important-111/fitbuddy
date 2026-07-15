@@ -109,9 +109,11 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
+  pointer-events: none;
 }
 .modal-overlay.show {
   display: flex;
+  pointer-events: auto;
 }
 .modal {
   background: var(--card);

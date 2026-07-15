@@ -145,22 +145,7 @@ Page({
         wx.showToast({ title: '导出功能开发中', icon: 'none' });
         break;
       case 'feedback':
-        wx.navigateTo({
-          url: '/pages/feedback/index',
-          success: () => {
-            console.log('[feedback] navigateTo success');
-          },
-          fail: (err) => {
-            console.error('[feedback] navigateTo fail:', err);
-            wx.reLaunch({
-              url: '/pages/feedback/index',
-              fail: (e2) => {
-                console.error('[feedback] reLaunch also fail:', e2);
-                wx.showToast({ title: '跳转失败：' + (e2.errMsg || '未知错误'), icon: 'none', duration: 3000 });
-              }
-            });
-          }
-        });
+        this.jumpToFeedback();
         break;
       case 'help':
         wx.showToast({ title: '帮助文档开发中', icon: 'none' });
@@ -168,6 +153,41 @@ Page({
       default:
         wx.showToast({ title: '功能开发中', icon: 'none' });
     }
+  },
+
+  jumpToFeedback() {
+    const url = '/pages/feedback/index';
+    wx.showLoading({ title: '打开反馈...', mask: true });
+    wx.navigateTo({
+      url,
+      success: () => {
+        wx.hideLoading();
+        console.log('[feedback] navigateTo success');
+      },
+      fail: (err) => {
+        console.error('[feedback] navigateTo fail:', err);
+        wx.redirectTo({
+          url,
+          success: () => { wx.hideLoading(); console.log('[feedback] redirectTo success'); },
+          fail: (err2) => {
+            console.error('[feedback] redirectTo fail:', err2);
+            wx.reLaunch({
+              url,
+              success: () => { wx.hideLoading(); console.log('[feedback] reLaunch success'); },
+              fail: (err3) => {
+                wx.hideLoading();
+                console.error('[feedback] ALL FAIL:', err3);
+                wx.showModal({
+                  title: '跳转失败',
+                  content: '反馈页跳转失败：' + (err3.errMsg || JSON.stringify(err3)) + '\n\n请截图此弹窗反馈给开发者。',
+                  showCancel: false
+                });
+              }
+            });
+          }
+        });
+      }
+    });
   },
 
   onGoalCardTap(e) {
