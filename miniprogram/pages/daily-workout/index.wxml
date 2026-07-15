@@ -161,4 +161,29 @@
     <button class="btn-outline" bindtap="navigateTo" data-url="/pages/exercise-detail/index">查看动作详解</button>
     <button class="btn-primary" bindtap="navigateTo" data-url="/pages/daily-checkin/index">完成训练 · 去打卡</button>
   </view>
+
+  <!-- 最后5秒全屏倒数 -->
+  <view class="countdown-overlay {{countdownPulse ? 'show pulse' : (countdownShow ? 'show' : '')}}" wx:if="{{countdownShow}}">
+    <view class="countdown-number">{{countdownNum}}</view>
+  </view>
+
+  <!-- 组进度弹窗 -->
+  <view class="set-progress-modal {{setProgressShow ? 'show' : ''}}" wx:if="{{setProgressShow}}">
+    <view class="set-progress-content">
+      <view class="set-progress-emoji">{{setProgress.isLast ? '🎉' : '🔥'}}</view>
+      <view class="set-progress-title">{{setProgress.isLast ? '本动作全部完成！' : '本组完成！'}}</view>
+      <view class="set-progress-sub">{{setProgress.exerciseName}}{{setProgress.isLast ? ' · 太棒了' : ' · 准备下一组'}}</view>
+      <view class="set-progress-bar-wrap">
+        <view class="set-progress-bar" style="width:{{setProgress.percent}}%"></view>
+      </view>
+      <view class="set-progress-labels">
+        <text>已完成 <strong>{{setProgress.done}}</strong> 组</text>
+        <text>共 <strong>{{setProgress.total > 0 ? setProgress.total : '—'}}</strong> 组</text>
+      </view>
+      <view class="set-progress-actions">
+        <view class="btn-secondary" bindtap="closeSetProgress">查看动作</view>
+        <view class="btn-primary-cta" bindtap="nextSet">{{setProgress.isLast ? '查看动作' : '下一组 ›'}}</view>
+      </view>
+    </view>
+  </view>
 </view>

@@ -10,6 +10,16 @@ function parseRestSeconds(text, fallback) {
   return (fallback !== undefined ? fallback : DEFAULT_TIMER_SEC);
 }
 
+function parseTotalSets(item) {
+  const sources = [item.sets, item.detail];
+  for (let i = 0; i < sources.length; i++) {
+    if (!sources[i]) continue;
+    const m = String(sources[i]).match(/(\d+)\s*组/);
+    if (m) return parseInt(m[1]);
+  }
+  return 0;
+}
+
 function formatTimer(s) {
   s = Math.max(0, Math.floor(s));
   const m = Math.floor(s / 60);
@@ -20,12 +30,15 @@ function formatTimer(s) {
 function withTimer(items, fallback) {
   return (items || []).map(it => {
     const sec = parseRestSeconds(it.rest || it.detail, fallback);
+    const total = parseTotalSets(it);
     return Object.assign({}, it, {
       timerDefaultSec: sec,
       timerSec: sec,
       timerDisplay: formatTimer(sec),
       timerState: '',
-      timerBtnLabel: '开始'
+      timerBtnLabel: '开始',
+      totalSets: total,
+      completedSets: 0
     });
   });
 }
@@ -39,7 +52,23 @@ Page({
     totalSets: 0,
     warmups: [],
     exercises: [],
-    stretches: []
+    stretches: [],
+    // 最后5秒倒数
+    countdownShow: false,
+    countdownPulse: false,
+    countdownNum: 5,
+    // 组进度弹窗
+    setProgressShow: false,
+    setProgress: {
+      exerciseName: '',
+      done: 0,
+      total: 0,
+      percent: 0,
+      isLast: false
+    },
+    // 当前活跃 timer 定位（用于 nextSet 重置）
+    _activeList: '',
+    _activeIdx: -1
   },
 
   onLoad() {
@@ -49,10 +78,12 @@ Page({
 
   onUnload() {
     this.clearAllTimers();
+    this.setData({ countdownShow: false, setProgressShow: false });
   },
 
   onHide() {
     this.clearAllTimers();
+    this.setData({ countdownShow: false, setProgressShow: false });
   },
 
   clearAllTimers() {
@@ -180,17 +211,34 @@ Page({
         const curItem = Object.assign({}, cur[idx]);
         curItem.timerSec = Math.max(0, (parseInt(curItem.timerSec) || 0) - 1);
         curItem.timerDisplay = formatTimer(curItem.timerSec);
+
+        // 最后5秒全屏倒数
+        if (curItem.timerSec > 0 && curItem.timerSec <= 5) {
+          self.showCountdownPulse(curItem.timerSec);
+        }
+
         if (curItem.timerSec <= 0) {
           clearInterval(self._timers[tickKey]);
           self._timers[tickKey] = null;
           curItem.timerState = 'finished';
           curItem.timerBtnLabel = '完成';
-          try { wx.vibrateShort && wx.vibrateShort({ type: 'medium' }); } catch (e2) {}
-          wx.showToast({
-            title: '⏰ ' + (curItem.name || '本组') + ' 倒计时完成',
-            icon: 'none',
-            duration: 1800
-          });
+          // 完成组数 +1
+          const total = parseInt(curItem.totalSets) || 0;
+          let done = parseInt(curItem.completedSets) || 0;
+          if (total > 0) {
+            done = Math.min(done + 1, total);
+          } else {
+            done = done + 1;
+          }
+          curItem.completedSets = done;
+          cur[idx] = curItem;
+          const dataPatch = {};
+          dataPatch[list] = cur;
+          self.setData(dataPatch);
+          // 关闭倒数层，弹组进度
+          self.setData({ countdownShow: false, countdownPulse: false });
+          self.showSetProgress(list, idx);
+          return;
         }
         cur[idx] = curItem;
         const patch = {};
@@ -198,6 +246,70 @@ Page({
         self.setData(patch);
       }, 1000);
     }
+    items[idx] = it;
+    const patch = {};
+    patch[list] = items;
+    this.setData(patch);
+  },
+
+  showCountdownPulse(num) {
+    // 重启 pulse 动画：先 false 再 true
+    this.setData({ countdownShow: true, countdownPulse: false, countdownNum: num });
+    try { wx.vibrateShort && wx.vibrateShort({ type: 'light' }); } catch (e) {}
+    const self = this;
+    setTimeout(function() {
+      self.setData({ countdownPulse: true });
+    }, 30);
+  },
+
+  showSetProgress(list, idx) {
+    const items = this.data[list] || [];
+    const it = items[idx];
+    if (!it) return;
+    const total = parseInt(it.totalSets) || 0;
+    const done = parseInt(it.completedSets) || 0;
+    const isLast = total > 0 && done >= total;
+    const percent = total > 0 ? Math.min(100, Math.round((done / total) * 100)) : 100;
+    this._activeList = list;
+    this._activeIdx = idx;
+    this.setData({
+      setProgressShow: true,
+      setProgress: {
+        exerciseName: it.name || '本组',
+        done: done,
+        total: total,
+        percent: percent,
+        isLast: isLast
+      }
+    });
+    try { wx.vibrateShort && wx.vibrateShort({ type: 'medium' }); } catch (e) {}
+  },
+
+  closeSetProgress() {
+    this.setData({ setProgressShow: false });
+  },
+
+  nextSet() {
+    this.setData({ setProgressShow: false });
+    const list = this._activeList;
+    const idx = this._activeIdx;
+    if (!list || idx < 0) return;
+    const items = (this.data[list] || []).slice();
+    const it = Object.assign({}, items[idx]);
+    // 若已完成全部组数，则不重置（按钮文案为"查看动作"）
+    const total = parseInt(it.totalSets) || 0;
+    const done = parseInt(it.completedSets) || 0;
+    if (total > 0 && done >= total) {
+      // 已完成 — 跳转动作详情
+      wx.navigateTo({ url: '/pages/exercise-detail/index' });
+      return;
+    }
+    // 重置该 timer 为默认时长
+    const reset = parseInt(it.timerDefaultSec) || DEFAULT_TIMER_SEC;
+    it.timerSec = reset;
+    it.timerDisplay = formatTimer(reset);
+    it.timerState = '';
+    it.timerBtnLabel = '开始';
     items[idx] = it;
     const patch = {};
     patch[list] = items;

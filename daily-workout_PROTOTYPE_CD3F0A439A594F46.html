@@ -132,6 +132,58 @@ body {
 .timer-btn.adjust { font-size: 10px; color: var(--text-secondary); }
 .timer-btn.adjust:hover { background: var(--border); color: var(--text-primary); }
 .stretch-card .exercise-timer { min-width: 70px; }
+
+/* === 最后5秒全屏倒数 === */
+.countdown-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+  z-index: 1500; display: none; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.countdown-overlay.show { display: flex; }
+.countdown-overlay.show.pulse { animation: cdPulse 0.9s ease-out; }
+@keyframes cdPulse {
+  0%   { transform: scale(0.4); opacity: 0; }
+  35%  { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.85; }
+}
+.countdown-number {
+  font-size: 200px; font-weight: 900; color: #FF6B35; line-height: 1;
+  text-shadow: 0 0 40px rgba(255,107,53,0.55), 0 6px 14px rgba(0,0,0,0.4);
+  font-variant-numeric: tabular-nums;
+}
+
+/* === 组进度弹窗 === */
+.set-progress-modal {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+  z-index: 1400; display: none; align-items: center; justify-content: center;
+}
+.set-progress-modal.show { display: flex; }
+.set-progress-content {
+  background: var(--card); border-radius: 20px; padding: 28px 24px 20px;
+  text-align: center; max-width: 340px; width: calc(100% - 40px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+.set-progress-emoji { font-size: 56px; margin-bottom: 8px; line-height: 1; }
+.set-progress-title { font-size: 19px; font-weight: 700; color: var(--text-primary); }
+.set-progress-sub { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+.set-progress-bar-wrap {
+  background: var(--bg); height: 10px; border-radius: 5px; overflow: hidden;
+  margin: 16px 0 8px;
+}
+.set-progress-bar { height: 100%; background: linear-gradient(90deg, #FF6B35, #FF8C5A); border-radius: 5px; transition: width 0.4s ease; }
+.set-progress-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-secondary); }
+.set-progress-labels strong { color: var(--primary); font-weight: 700; }
+.set-progress-actions { display: flex; gap: 10px; margin-top: 18px; }
+.set-progress-actions button {
+  flex: 1; height: 44px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  cursor: pointer; border: none; transition: all 0.15s;
+}
+.set-progress-actions .btn-secondary { background: var(--bg); color: var(--text-primary); }
+.set-progress-actions .btn-secondary:hover { background: var(--border); }
+.set-progress-actions .btn-primary-cta { background: var(--primary); color: #FFF; }
+.set-progress-actions .btn-primary-cta:hover { background: #E55A2B; }
+.set-progress-actions .btn-primary-cta:active,
+.set-progress-actions .btn-secondary:active { transform: scale(0.97); }
 </style>
 </head>
 <body>
@@ -339,6 +391,31 @@ body {
   <button class="btn-primary" onclick="navigateTo('daily-checkin')">完成训练 · 去打卡</button>
 </div>
 
+<!-- 最后5秒全屏倒数 -->
+<div class="countdown-overlay" id="countdownOverlay">
+  <div class="countdown-number" id="countdownNumber">5</div>
+</div>
+
+<!-- 组进度弹窗 -->
+<div class="set-progress-modal" id="setProgressModal">
+  <div class="set-progress-content">
+    <div class="set-progress-emoji" id="spEmoji">🔥</div>
+    <div class="set-progress-title" id="spTitle">本组完成！</div>
+    <div class="set-progress-sub" id="spSub">自重深蹲 · 准备下一组</div>
+    <div class="set-progress-bar-wrap">
+      <div class="set-progress-bar" id="spBar" style="width:33%"></div>
+    </div>
+    <div class="set-progress-labels">
+      <span>已完成 <strong id="spDone">1</strong> 组</span>
+      <span>共 <strong id="spTotal">3</strong> 组</span>
+    </div>
+    <div class="set-progress-actions">
+      <button class="btn-secondary" onclick="closeSetProgress()">查看动作</button>
+      <button class="btn-primary-cta" id="spNextBtn" onclick="nextSet()">下一组 ›</button>
+    </div>
+  </div>
+</div>
+
 <script>
 var PAGE_URLS={welcome:'/products/view?code=PROTOTYPE_AE8BF0C677F44D11','basic-info':'/products/view?code=PROTOTYPE_577C9CE5800B46B7','training-goals':'/products/view?code=PROTOTYPE_68BE44E236D64BAE','training-experience':'/products/view?code=PROTOTYPE_04D1896309714B02','analysis-report':'/products/view?code=PROTOTYPE_E80F0FC4A99749C1',dashboard:'/products/view?code=PROTOTYPE_523E0C225CFA4A85','training-plan':'/products/view?code=PROTOTYPE_C3EB8FC4A69843CB','daily-workout':'/products/view?code=PROTOTYPE_CD3F0A439A594F46','exercise-detail':'/products/view?code=PROTOTYPE_5EFB86B43407489A','daily-checkin':'/products/view?code=PROTOTYPE_1417AAC5029941B3','progress-tracking':'/products/view?code=PROTOTYPE_F808929A2BD0425E','diet-plan':'/products/view?code=PROTOTYPE_BFCEFD02D1B5446B',profile:'/products/view?code=PROTOTYPE_E7708D8D96F84C50'};
 function navigateTo(page) { if(PAGE_URLS[page]) window.location.href=PAGE_URLS[page]; }
@@ -358,6 +435,111 @@ function updateTimerDisplay(widget, seconds) {
   if (display) display.textContent = formatTimer(seconds);
   widget.setAttribute('data-seconds', seconds);
 }
+
+/* 解析动作总组数：从卡片内 .exercise-sets 或 .exercise-detail 抽数字 */
+function parseTotalSets(card) {
+  if (!card) return 0;
+  var sources = [card.querySelector('.exercise-sets'), card.querySelector('.exercise-detail')];
+  for (var i = 0; i < sources.length; i++) {
+    if (!sources[i]) continue;
+    var txt = sources[i].textContent || '';
+    // 优先匹配 "3组" / "3 组"
+    var m = txt.match(/(\d+)\s*组/);
+    if (m) return parseInt(m[1]);
+  }
+  return 0;
+}
+
+/* 最后5秒全屏倒数触发 */
+function showCountdownPulse(num) {
+  var ov = document.getElementById('countdownOverlay');
+  var numEl = document.getElementById('countdownNumber');
+  if (!ov || !numEl) return;
+  numEl.textContent = String(num);
+  ov.classList.remove('show', 'pulse');
+  // force reflow to restart animation
+  void ov.offsetWidth;
+  ov.classList.add('show', 'pulse');
+  try { if (navigator.vibrate) navigator.vibrate(60); } catch(e) {}
+  if (num <= 1) {
+    setTimeout(function() { ov.classList.remove('show', 'pulse'); }, 800);
+  }
+}
+
+/* 组进度弹窗 */
+function showSetProgress(widget) {
+  var card = widget.closest('.exercise-card, .stretch-card');
+  var exerciseName = '';
+  if (card) {
+    var nameEl = card.querySelector('.exercise-name');
+    if (nameEl) exerciseName = nameEl.textContent;
+  }
+  var total = parseTotalSets(card);
+  if (!total) total = 0;
+  // 完成组数：累加 widget 上的 data-completed（默认 0）
+  var done = parseInt(widget.getAttribute('data-completed') || '0');
+  done = Math.min(total > 0 ? total : done, total > 0 ? total : done);
+  if (total > 0) {
+    done = Math.min(done + 1, total);
+    widget.setAttribute('data-completed', done);
+  } else {
+    // 无明确组数（如热身5分钟）：显示完成次数
+    done = done + 1;
+    widget.setAttribute('data-completed', done);
+  }
+
+  var modal = document.getElementById('setProgressModal');
+  var emojiEl = document.getElementById('spEmoji');
+  var titleEl = document.getElementById('spTitle');
+  var subEl = document.getElementById('spSub');
+  var barEl = document.getElementById('spBar');
+  var doneEl = document.getElementById('spDone');
+  var totalEl = document.getElementById('spTotal');
+  var nextBtn = document.getElementById('spNextBtn');
+
+  if (!modal) return;
+  var isLast = total > 0 && done >= total;
+  emojiEl.textContent = isLast ? '🎉' : '🔥';
+  titleEl.textContent = isLast ? '本动作全部完成！' : '本组完成！';
+  subEl.textContent = exerciseName + (isLast ? ' · 太棒了' : ' · 准备下一组');
+  doneEl.textContent = String(done);
+  totalEl.textContent = total > 0 ? String(total) : '—';
+  var pct = total > 0 ? Math.round((done / total) * 100) : 100;
+  barEl.style.width = pct + '%';
+  nextBtn.textContent = isLast ? '查看动作' : '下一组 ›';
+
+  modal.classList.add('show');
+  try { if (navigator.vibrate) navigator.vibrate(200); } catch(e) {}
+}
+function closeSetProgress() {
+  var modal = document.getElementById('setProgressModal');
+  if (modal) modal.classList.remove('show');
+}
+function nextSet() {
+  var modal = document.getElementById('setProgressModal');
+  if (modal) modal.classList.remove('show');
+  // 重置该 widget 倒计时为默认值，方便下一组继续
+  // 找到刚刚活跃的 widget（有 finished class）
+  var finished = document.querySelector('.exercise-timer.finished');
+  if (finished) {
+    var orig = parseInt(finished.getAttribute('data-orig') || finished.getAttribute('data-seconds') || '0');
+    if (!orig) {
+      var card = finished.closest('.exercise-card, .stretch-card');
+      // 从 rest 文本再解析一次
+      var restEl = card && card.querySelector('.exercise-rest');
+      if (restEl) {
+        var m = restEl.textContent.match(/(\d+)\s*秒/);
+        if (m) orig = parseInt(m[1]);
+      }
+    }
+    if (!orig) orig = 30;
+    finished.classList.remove('finished');
+    updateTimerDisplay(finished, orig);
+    var startBtn = finished.querySelector('.timer-btn.start');
+    if (startBtn) startBtn.textContent = '开始';
+  }
+}
+
 function toggleTimer(btn) {
   var widget = getTimerWidget(btn);
   if (!widget) return;
@@ -371,7 +553,7 @@ function toggleTimer(btn) {
     }
   } else {
     var cur = parseInt(widget.getAttribute('data-seconds'));
-    if (!cur || cur <= 0) {
+    if (!cur || cur <= 0 || widget.classList.contains('finished')) {
       var orig = parseInt(widget.getAttribute('data-orig') || '0');
       cur = orig > 0 ? orig : 30;
     }
@@ -384,25 +566,17 @@ function toggleTimer(btn) {
       w._timerInterval = setInterval(function() {
         remaining--;
         updateTimerDisplay(w, remaining);
+        // 最后5秒全屏倒数
+        if (remaining > 0 && remaining <= 5) {
+          showCountdownPulse(remaining);
+        }
         if (remaining <= 0) {
           clearInterval(w._timerInterval);
           w._timerInterval = null;
           w.classList.remove('running');
           w.classList.add('finished');
           if (startBtn) startBtn.textContent = '完成';
-          try { if (navigator.vibrate) navigator.vibrate(200); } catch(e) {}
-          var exerciseName = '';
-          var card = w.closest('.exercise-card, .stretch-card');
-          if (card) {
-            var nameEl = card.querySelector('.exercise-name');
-            if (nameEl) exerciseName = nameEl.textContent;
-          }
-          // soft inline toast
-          var toast = document.createElement('div');
-          toast.textContent = '⏰ ' + (exerciseName || '本组') + ' 倒计时完成！';
-          toast.style.cssText = 'position:fixed;top:30%;left:50%;transform:translateX(-50%);background:rgba(16,185,129,0.95);color:#fff;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:600;z-index:9999;box-shadow:0 4px 14px rgba(0,0,0,0.2);';
-          document.body.appendChild(toast);
-          setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 1800);
+          showSetProgress(w);
         }
       }, 1000);
     })(widget, btn, cur);
