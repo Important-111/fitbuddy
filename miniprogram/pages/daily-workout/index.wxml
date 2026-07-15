@@ -65,6 +65,10 @@
           <view class="timer-btn start" catchtap="toggleTimer" data-list="warmups" data-idx="{{index}}">{{item.timerBtnLabel}}</view>
           <view class="timer-btn adjust" catchtap="adjustTimer" data-list="warmups" data-idx="{{index}}" data-delta="15">+15s</view>
         </view>
+        <view class="timer-counter">
+          <block wx:if="{{item.totalSets > 0}}"><text class="counter-done">{{item.completedSets}}</text>/{{item.totalSets}} 组</block>
+          <block wx:else>已完成 {{item.completedSets}} 次</block>
+        </view>
       </view>
     </view>
   </view>
@@ -102,6 +106,10 @@
             <view class="timer-btn start" catchtap="toggleTimer" data-list="exercises" data-idx="{{index}}">{{item.timerBtnLabel}}</view>
             <view class="timer-btn adjust" catchtap="adjustTimer" data-list="exercises" data-idx="{{index}}" data-delta="15">+15s</view>
           </view>
+          <view class="timer-counter">
+            <block wx:if="{{item.totalSets > 0}}"><text class="counter-done">{{item.completedSets}}</text>/{{item.totalSets}} 组</block>
+            <block wx:else>已完成 {{item.completedSets}} 次</block>
+          </view>
         </view>
 
         <view class="exercise-arrow">›</view>
@@ -135,6 +143,10 @@
           <view class="timer-btn adjust" catchtap="adjustTimer" data-list="stretches" data-idx="{{idx}}" data-delta="-15">−15s</view>
           <view class="timer-btn start" catchtap="toggleTimer" data-list="stretches" data-idx="{{idx}}">{{item.timerBtnLabel}}</view>
           <view class="timer-btn adjust" catchtap="adjustTimer" data-list="stretches" data-idx="{{idx}}" data-delta="15">+15s</view>
+        </view>
+        <view class="timer-counter">
+          <block wx:if="{{item.totalSets > 0}}"><text class="counter-done">{{item.completedSets}}</text>/{{item.totalSets}} 组</block>
+          <block wx:else>已完成 {{item.completedSets}} 次</block>
         </view>
       </view>
     </view>
@@ -182,7 +194,7 @@
       </view>
       <view class="set-progress-actions">
         <view class="btn-secondary" bindtap="closeSetProgress">查看动作</view>
-        <view class="btn-primary-cta" bindtap="nextSet">{{setProgress.isLast ? '查看动作' : '下一组 ›'}}</view>
+        <view class="btn-primary-cta" bindtap="nextSet">{{setProgress.isLast ? '完成 ✓' : '下一组 ›'}}</view>
       </view>
     </view>
   </view>

@@ -132,6 +132,13 @@ body {
 .timer-btn.adjust { font-size: 10px; color: var(--text-secondary); }
 .timer-btn.adjust:hover { background: var(--border); color: var(--text-primary); }
 .stretch-card .exercise-timer { min-width: 70px; }
+.timer-counter {
+  font-size: 10px; color: var(--text-secondary); font-weight: 500;
+  line-height: 1; padding-top: 2px;
+}
+.timer-counter strong { color: var(--primary); font-weight: 700; }
+.exercise-timer.finished .timer-counter strong { color: var(--success); }
+.timer-counter.no-total { color: var(--text-secondary); }
 
 /* === 最后5秒全屏倒数 === */
 .countdown-overlay {
@@ -224,7 +231,7 @@ body {
           <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
           <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
           <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
-        </div>
+        </div><div class="timer-counter no-total" data-total="0" data-done="0">−</div>
       </div>
     </div>
   </div>
@@ -246,7 +253,7 @@ body {
           <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
           <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
           <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
-        </div>
+        </div><div class="timer-counter" data-total="3" data-done="0"><strong>0</strong>/3 组</div>
       </div>
       <div class="exercise-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
     </div>
@@ -267,7 +274,7 @@ body {
           <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
           <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
           <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
-        </div>
+        </div><div class="timer-counter" data-total="3" data-done="0"><strong>0</strong>/3 组</div>
       </div>
       <div class="exercise-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
     </div>
@@ -288,7 +295,7 @@ body {
           <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
           <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
           <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
-        </div>
+        </div><div class="timer-counter" data-total="3" data-done="0"><strong>0</strong>/3 组</div>
       </div>
       <div class="exercise-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
     </div>
@@ -309,7 +316,7 @@ body {
           <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
           <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
           <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
-        </div>
+        </div><div class="timer-counter" data-total="3" data-done="0"><strong>0</strong>/3 组</div>
       </div>
       <div class="exercise-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
     </div>
@@ -329,7 +336,7 @@ body {
           <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
           <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
           <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
-        </div>
+        </div><div class="timer-counter" data-total="2" data-done="0"><strong>0</strong>/2 组</div>
       </div>
     </div>
     <div class="stretch-card">
@@ -344,7 +351,7 @@ body {
           <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
           <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
           <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
-        </div>
+        </div><div class="timer-counter" data-total="2" data-done="0"><strong>0</strong>/2 组</div>
       </div>
     </div>
     <div class="stretch-card">
@@ -359,7 +366,7 @@ body {
           <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
           <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
           <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
-        </div>
+        </div><div class="timer-counter" data-total="2" data-done="0"><strong>0</strong>/2 组</div>
       </div>
     </div>
     <div class="stretch-card">
@@ -374,7 +381,7 @@ body {
           <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
           <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
           <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
-        </div>
+        </div><div class="timer-counter no-total" data-total="0" data-done="0">−</div>
       </div>
     </div>
   </div>
@@ -478,7 +485,6 @@ function showSetProgress(widget) {
   if (!total) total = 0;
   // 完成组数：累加 widget 上的 data-completed（默认 0）
   var done = parseInt(widget.getAttribute('data-completed') || '0');
-  done = Math.min(total > 0 ? total : done, total > 0 ? total : done);
   if (total > 0) {
     done = Math.min(done + 1, total);
     widget.setAttribute('data-completed', done);
@@ -486,6 +492,18 @@ function showSetProgress(widget) {
     // 无明确组数（如热身5分钟）：显示完成次数
     done = done + 1;
     widget.setAttribute('data-completed', done);
+  }
+
+  // 同步常驻计数显示
+  var counter = widget.querySelector('.timer-counter');
+  if (counter) {
+    counter.setAttribute('data-done', String(done));
+    counter.setAttribute('data-total', String(total));
+    if (total > 0) {
+      counter.innerHTML = '<strong>' + done + '</strong>/' + total + ' 组';
+    } else {
+      counter.textContent = '已完成 ' + done + ' 次';
+    }
   }
 
   var modal = document.getElementById('setProgressModal');
@@ -506,7 +524,8 @@ function showSetProgress(widget) {
   totalEl.textContent = total > 0 ? String(total) : '—';
   var pct = total > 0 ? Math.round((done / total) * 100) : 100;
   barEl.style.width = pct + '%';
-  nextBtn.textContent = isLast ? '查看动作' : '下一组 ›';
+  // 末状态：右按钮=完成（点击关闭弹窗）；中间状态：右按钮=下一组
+  nextBtn.textContent = isLast ? '完成 ✓' : '下一组 ›';
 
   modal.classList.add('show');
   try { if (navigator.vibrate) navigator.vibrate(200); } catch(e) {}
@@ -518,26 +537,29 @@ function closeSetProgress() {
 function nextSet() {
   var modal = document.getElementById('setProgressModal');
   if (modal) modal.classList.remove('show');
-  // 重置该 widget 倒计时为默认值，方便下一组继续
-  // 找到刚刚活跃的 widget（有 finished class）
   var finished = document.querySelector('.exercise-timer.finished');
-  if (finished) {
-    var orig = parseInt(finished.getAttribute('data-orig') || finished.getAttribute('data-seconds') || '0');
-    if (!orig) {
-      var card = finished.closest('.exercise-card, .stretch-card');
-      // 从 rest 文本再解析一次
-      var restEl = card && card.querySelector('.exercise-rest');
-      if (restEl) {
-        var m = restEl.textContent.match(/(\d+)\s*秒/);
-        if (m) orig = parseInt(m[1]);
-      }
-    }
-    if (!orig) orig = 30;
-    finished.classList.remove('finished');
-    updateTimerDisplay(finished, orig);
-    var startBtn = finished.querySelector('.timer-btn.start');
-    if (startBtn) startBtn.textContent = '开始';
+  if (!finished) return;
+  var total = parseInt(finished.querySelector('.timer-counter')?.getAttribute('data-total') || '0');
+  var done = parseInt(finished.querySelector('.timer-counter')?.getAttribute('data-done') || '0');
+  // 末状态：仅关闭弹窗，不再重置倒计时
+  if (total > 0 && done >= total) {
+    return;
   }
+  // 中间状态：重置该 widget 倒计时为默认值，方便下一组继续
+  var orig = parseInt(finished.getAttribute('data-orig') || finished.getAttribute('data-seconds') || '0');
+  if (!orig) {
+    var card = finished.closest('.exercise-card, .stretch-card');
+    var restEl = card && card.querySelector('.exercise-rest');
+    if (restEl) {
+      var m = restEl.textContent.match(/(\d+)\s*秒/);
+      if (m) orig = parseInt(m[1]);
+    }
+  }
+  if (!orig) orig = 30;
+  finished.classList.remove('finished');
+  updateTimerDisplay(finished, orig);
+  var startBtn = finished.querySelector('.timer-btn.start');
+  if (startBtn) startBtn.textContent = '开始';
 }
 
 function toggleTimer(btn) {

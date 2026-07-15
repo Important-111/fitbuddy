@@ -290,18 +290,19 @@ Page({
   },
 
   nextSet() {
-    this.setData({ setProgressShow: false });
     const list = this._activeList;
     const idx = this._activeIdx;
-    if (!list || idx < 0) return;
+    if (!list || idx < 0) {
+      this.setData({ setProgressShow: false });
+      return;
+    }
     const items = (this.data[list] || []).slice();
     const it = Object.assign({}, items[idx]);
-    // 若已完成全部组数，则不重置（按钮文案为"查看动作"）
+    // 若已完成全部组数 — 仅关闭弹窗，不跳转
     const total = parseInt(it.totalSets) || 0;
     const done = parseInt(it.completedSets) || 0;
     if (total > 0 && done >= total) {
-      // 已完成 — 跳转动作详情
-      wx.navigateTo({ url: '/pages/exercise-detail/index' });
+      this.setData({ setProgressShow: false });
       return;
     }
     // 重置该 timer 为默认时长
@@ -313,6 +314,7 @@ Page({
     items[idx] = it;
     const patch = {};
     patch[list] = items;
+    patch.setProgressShow = false;
     this.setData(patch);
   },
 

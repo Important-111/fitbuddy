@@ -178,6 +178,24 @@
   min-width: 70px;
 }
 
+/* === 计数显示 === */
+.timer-counter {
+  font-size: 10px;
+  color: var(--text-tertiary);
+  text-align: center;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+.timer-counter .counter-done {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 12px;
+}
+.exercise-timer.finished .timer-counter .counter-done {
+  color: #10B981;
+}
+
 /* === 最后5秒全屏倒数 === */
 .countdown-overlay {
   position: fixed;
