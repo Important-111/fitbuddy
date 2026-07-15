@@ -113,7 +113,7 @@ body {
 <body>
 <div class="app-container">
   <div class="top-bar">
-    <a class="btn-back" href="./每日训练详情页_PROTOTYPE_CD3F0A439A594F46.html">
+    <a class="btn-back" href="/products/view?code=PROTOTYPE_CD3F0A439A594F46">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
     </a>
     <span class="top-bar-title">训练打卡</span>
@@ -204,7 +204,7 @@ body {
       <div class="motivation-stat-row"><span>预计达标</span><span class="motivation-stat-val">约 32 天后</span></div>
     </div>
     <p style="font-size:13px;color:var(--text-secondary)">保持现在的节奏，你预计将在<br><strong style="color:var(--primary)">32天后</strong>达到目标体重！</p>
-    <button class="btn-modal" onclick="closeMotivation()">继续加油 &#x1F4AA;</button>
+    <button class="btn-modal" onclick="goHome()">继续加油 &#x1F4AA;</button>
   </div>
 </div>
 
@@ -223,8 +223,14 @@ function togglePainTag(el) {
   }
 }
 function openMotivation() { document.getElementById('motivationModal').classList.add('show'); }
-function closeMotivation() { document.getElementById('motivationModal').classList.remove('show'); navigateTo('dashboard'); }
-var PAGE_URLS={welcome:'./welcome_PROTOTYPE_AE8BF0C677F44D11.html','basic-info':'./basic-info_PROTOTYPE_577C9CE5800B46B7.html','training-goals':'./training-goals_PROTOTYPE_68BE44E236D64BAE.html','training-experience':'./training-experience_PROTOTYPE_04D1896309714B02.html','analysis-report':'./analysis-report_PROTOTYPE_E80F0FC4A99749C1.html',dashboard:'./dashboard_PROTOTYPE_523E0C225CFA4A85.html','training-plan':'./training-plan_PROTOTYPE_C3EB8FC4A69843CB.html','daily-workout':'./daily-workout_PROTOTYPE_CD3F0A439A594F46.html','exercise-detail':'./exercise-detail_PROTOTYPE_5EFB86B43407489A.html','daily-checkin':'./daily-checkin_PROTOTYPE_1417AAC5029941B3.html','progress-tracking':'./progress-tracking_PROTOTYPE_F808929A2BD0425E.html','diet-plan':'./diet-plan_PROTOTYPE_BFCEFD02D1B5446B.html',profile:'./profile_PROTOTYPE_E7708D8D96F84C50.html'};
+function closeMotivation() { document.getElementById('motivationModal').classList.remove('show'); }
+function goHome() {
+  var btn = event && event.currentTarget;
+  if (btn) { btn.textContent = '正在返回首页…'; btn.style.opacity = '0.7'; btn.disabled = true; }
+  document.getElementById('motivationModal').classList.remove('show');
+  setTimeout(function() { navigateTo('dashboard'); }, 350);
+}
+var PAGE_URLS={welcome:'/products/view?code=PROTOTYPE_AE8BF0C677F44D11','basic-info':'/products/view?code=PROTOTYPE_577C9CE5800B46B7','training-goals':'/products/view?code=PROTOTYPE_68BE44E236D64BAE','training-experience':'/products/view?code=PROTOTYPE_04D1896309714B02','analysis-report':'/products/view?code=PROTOTYPE_E80F0FC4A99749C1',dashboard:'/products/view?code=PROTOTYPE_523E0C225CFA4A85','training-plan':'/products/view?code=PROTOTYPE_C3EB8FC4A69843CB','daily-workout':'/products/view?code=PROTOTYPE_CD3F0A439A594F46','exercise-detail':'/products/view?code=PROTOTYPE_5EFB86B43407489A','daily-checkin':'/products/view?code=PROTOTYPE_1417AAC5029941B3','progress-tracking':'/products/view?code=PROTOTYPE_F808929A2BD0425E','diet-plan':'/products/view?code=PROTOTYPE_BFCEFD02D1B5446B',profile:'/products/view?code=PROTOTYPE_E7708D8D96F84C50'};
 function navigateTo(page) { if(PAGE_URLS[page]) window.location.href=PAGE_URLS[page]; }
 function retryImage(img) {
   var c=parseInt(img.getAttribute('data-retry-count'))||0,m=parseInt(img.getAttribute('data-max-retry'))||10;

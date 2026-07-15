@@ -131,7 +131,7 @@
             <text class="motivation-stat-val">约 {{motivationData.daysToGoal}} 天后</text>
           </view>
         </view>
-        <button class="btn-primary" style="margin-top:24px" bindtap="onCloseMotivation">继续加油 💪</button>
+        <button class="btn-primary" style="margin-top:24px" bindtap="onCloseMotivation" disabled="{{jumping}}" loading="{{jumping}}">{{jumping ? '正在返回首页…' : '继续加油 💪'}}</button>
       </view>
     </view>
   </view>
