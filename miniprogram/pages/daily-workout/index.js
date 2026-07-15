@@ -1,5 +1,34 @@
 const { Store } = require('../../utils/store');
 
+const DEFAULT_TIMER_SEC = 30;
+
+function parseRestSeconds(text) {
+  if (!text) return DEFAULT_TIMER_SEC;
+  const m = String(text).match(/(\d+)\s*秒/);
+  if (m) return Math.max(5, parseInt(m[1]));
+  return DEFAULT_TIMER_SEC;
+}
+
+function formatTimer(s) {
+  s = Math.max(0, Math.floor(s));
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return (m < 10 ? '0' : '') + m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+
+function withTimer(items) {
+  return (items || []).map(it => {
+    const sec = parseRestSeconds(it.rest || it.detail);
+    return Object.assign({}, it, {
+      timerDefaultSec: sec,
+      timerSec: sec,
+      timerDisplay: formatTimer(sec),
+      timerState: '',
+      timerBtnLabel: '开始'
+    });
+  });
+}
+
 Page({
   data: {
     workoutName: '臀腿力量训练',
@@ -13,7 +42,27 @@ Page({
   },
 
   onLoad() {
+    this._timers = {};
     this.loadWorkoutData();
+  },
+
+  onUnload() {
+    this.clearAllTimers();
+  },
+
+  onHide() {
+    this.clearAllTimers();
+  },
+
+  clearAllTimers() {
+    if (this._timers) {
+      Object.keys(this._timers).forEach(k => {
+        if (this._timers[k]) {
+          clearInterval(this._timers[k]);
+          this._timers[k] = null;
+        }
+      });
+    }
   },
 
   loadWorkoutData() {
@@ -70,6 +119,9 @@ Page({
       });
     }
 
+    exercises = withTimer(exercises);
+    stretches = withTimer(stretches);
+
     // 计算总组数
     let totalSets = 0;
     exercises.forEach(function(e) {
@@ -83,6 +135,92 @@ Page({
       stretches: stretches,
       totalSets: totalSets
     });
+  },
+
+  noop() {},
+
+  _keyOf(list, idx) {
+    return list + '-' + idx;
+  },
+
+  toggleTimer(e) {
+    const ds = e.currentTarget.dataset;
+    const list = ds.list;
+    const idx = parseInt(ds.idx);
+    const items = (this.data[list] || []).slice();
+    const it = Object.assign({}, items[idx]);
+    const k = this._keyOf(list, idx);
+
+    if (it.timerState === 'running') {
+      // pause
+      it.timerState = '';
+      it.timerBtnLabel = '继续';
+      if (this._timers[k]) {
+        clearInterval(this._timers[k]);
+        this._timers[k] = null;
+      }
+    } else {
+      // start: if finished or 0, reset to default
+      let startSec = parseInt(it.timerSec);
+      if (!startSec || startSec <= 0 || it.timerState === 'finished') {
+        startSec = parseInt(it.timerDefaultSec) || DEFAULT_TIMER_SEC;
+      }
+      it.timerSec = startSec;
+      it.timerDisplay = formatTimer(startSec);
+      it.timerState = 'running';
+      it.timerBtnLabel = '暂停';
+
+      const self = this;
+      const tickKey = k;
+      if (this._timers[tickKey]) clearInterval(this._timers[tickKey]);
+      this._timers[tickKey] = setInterval(function() {
+        const cur = (self.data[list] || []).slice();
+        const curItem = Object.assign({}, cur[idx]);
+        curItem.timerSec = Math.max(0, (parseInt(curItem.timerSec) || 0) - 1);
+        curItem.timerDisplay = formatTimer(curItem.timerSec);
+        if (curItem.timerSec <= 0) {
+          clearInterval(self._timers[tickKey]);
+          self._timers[tickKey] = null;
+          curItem.timerState = 'finished';
+          curItem.timerBtnLabel = '完成';
+          try { wx.vibrateShort && wx.vibrateShort({ type: 'medium' }); } catch (e2) {}
+          wx.showToast({
+            title: '⏰ ' + (curItem.name || '本组') + ' 倒计时完成',
+            icon: 'none',
+            duration: 1800
+          });
+        }
+        cur[idx] = curItem;
+        const patch = {};
+        patch[list] = cur;
+        self.setData(patch);
+      }, 1000);
+    }
+    items[idx] = it;
+    const patch = {};
+    patch[list] = items;
+    this.setData(patch);
+  },
+
+  adjustTimer(e) {
+    const ds = e.currentTarget.dataset;
+    const list = ds.list;
+    const idx = parseInt(ds.idx);
+    const delta = parseInt(ds.delta);
+    const items = (this.data[list] || []).slice();
+    const it = Object.assign({}, items[idx]);
+
+    if (it.timerState === 'running') return; // 运行中不可调
+
+    let next = Math.max(0, (parseInt(it.timerSec) || 0) + delta);
+    it.timerSec = next;
+    it.timerDisplay = formatTimer(next);
+    it.timerState = '';
+    it.timerBtnLabel = '开始';
+    items[idx] = it;
+    const patch = {};
+    patch[list] = items;
+    this.setData(patch);
   },
 
   navigateBack() {

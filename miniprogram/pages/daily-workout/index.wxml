@@ -73,6 +73,22 @@
           <view class="exercise-sets">{{item.sets}}</view>
           <view class="exercise-rest" wx:if="{{item.rest}}">{{item.rest}}</view>
         </view>
+
+        <!-- 倒计时器 -->
+        <view
+          class="exercise-timer {{item.timerState}}"
+          catchtap="noop"
+          data-idx="{{index}}"
+          data-list="exercises"
+        >
+          <text class="timer-display">{{item.timerDisplay}}</text>
+          <view class="timer-controls">
+            <view class="timer-btn adjust" catchtap="adjustTimer" data-list="exercises" data-idx="{{index}}" data-delta="-15">−15s</view>
+            <view class="timer-btn start" catchtap="toggleTimer" data-list="exercises" data-idx="{{index}}">{{item.timerBtnLabel}}</view>
+            <view class="timer-btn adjust" catchtap="adjustTimer" data-list="exercises" data-idx="{{index}}" data-delta="15">+15s</view>
+          </view>
+        </view>
+
         <view class="exercise-arrow">›</view>
       </view>
       <view wx:if="{{index < exercises.length - 1}}" class="flow-arrow">↓</view>
@@ -90,6 +106,21 @@
       <view class="exercise-info">
         <view class="exercise-name">{{item.name}}</view>
         <view class="exercise-detail">{{item.detail}}</view>
+      </view>
+
+      <!-- 倒计时器 -->
+      <view
+        class="exercise-timer {{item.timerState}}"
+        catchtap="noop"
+        data-idx="{{idx}}"
+        data-list="stretches"
+      >
+        <text class="timer-display">{{item.timerDisplay}}</text>
+        <view class="timer-controls">
+          <view class="timer-btn adjust" catchtap="adjustTimer" data-list="stretches" data-idx="{{idx}}" data-delta="-15">−15s</view>
+          <view class="timer-btn start" catchtap="toggleTimer" data-list="stretches" data-idx="{{idx}}">{{item.timerBtnLabel}}</view>
+          <view class="timer-btn adjust" catchtap="adjustTimer" data-list="stretches" data-idx="{{idx}}" data-delta="15">+15s</view>
+        </view>
       </view>
     </view>
   </view>

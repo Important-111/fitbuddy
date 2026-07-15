@@ -117,3 +117,63 @@
   color: var(--text-tertiary);
   padding: 4px 0;
 }
+
+/* === Countdown Timer === */
+.exercise-timer {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.04);
+  border: 1px solid var(--border);
+  min-width: 78px;
+}
+.exercise-card.completed .exercise-timer {
+  opacity: 0.55;
+}
+.exercise-timer.running {
+  background: rgba(255,107,53,0.08);
+  border-color: var(--primary);
+}
+.exercise-timer.finished {
+  background: rgba(16,185,129,0.12);
+  border-color: #10B981;
+}
+.exercise-timer.finished .timer-display {
+  color: #10B981;
+}
+.timer-display {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.3px;
+  line-height: 1.1;
+}
+.timer-controls {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.timer-btn {
+  height: 22px;
+  min-width: 22px;
+  padding: 0 6px;
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.timer-btn.adjust {
+  font-size: 10px;
+}
+.stretch-card .exercise-timer {
+  min-width: 70px;
+}

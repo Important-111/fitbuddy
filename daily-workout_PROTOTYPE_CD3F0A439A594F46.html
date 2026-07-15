@@ -105,6 +105,33 @@ body {
 }
 .btn-primary:hover { background: #E55A2B; }
 .btn-primary:active, .btn-outline:active { transform: scale(0.98); }
+
+/* === Countdown Timer === */
+.exercise-timer {
+  flex-shrink: 0; display: flex; flex-direction: column; align-items: center;
+  gap: 4px; padding: 4px 8px; border-radius: 10px;
+  background: var(--bg); border: 1px solid var(--border);
+  min-width: 78px;
+}
+.exercise-card.completed .exercise-timer { opacity: 0.55; }
+.exercise-timer.running { background: var(--primary-light); border-color: var(--primary); }
+.exercise-timer.finished { background: rgba(16,185,129,0.12); border-color: var(--success); }
+.exercise-timer.finished .timer-display { color: var(--success); }
+.timer-display {
+  font-size: 16px; font-weight: 700; color: var(--primary);
+  font-variant-numeric: tabular-nums; letter-spacing: -0.3px; line-height: 1.1;
+}
+.timer-controls { display: flex; gap: 4px; align-items: center; }
+.timer-btn {
+  height: 22px; min-width: 22px; padding: 0 6px;
+  border: none; border-radius: 6px; background: var(--card);
+  color: var(--text-secondary); font-size: 11px; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center;
+}
+.timer-btn:hover { background: var(--primary); color: #FFF; }
+.timer-btn.adjust { font-size: 10px; color: var(--text-secondary); }
+.timer-btn.adjust:hover { background: var(--border); color: var(--text-primary); }
+.stretch-card .exercise-timer { min-width: 70px; }
 </style>
 </head>
 <body>
@@ -153,6 +180,14 @@ body {
         <div class="exercise-sets">3组 × 12次</div>
         <div class="exercise-rest">组间休息 60秒</div>
       </div>
+      <div class="exercise-timer" data-seconds="60" onclick="event.stopPropagation()">
+        <div class="timer-display">01:00</div>
+        <div class="timer-controls">
+          <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
+          <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
+          <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
+        </div>
+      </div>
       <div class="exercise-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
     </div>
 
@@ -165,6 +200,14 @@ body {
         <div class="exercise-detail">针对臀大肌的孤立训练，改善臀部形态</div>
         <div class="exercise-sets">3组 × 15次</div>
         <div class="exercise-rest">组间休息 45秒</div>
+      </div>
+      <div class="exercise-timer" data-seconds="45" onclick="event.stopPropagation()">
+        <div class="timer-display">00:45</div>
+        <div class="timer-controls">
+          <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
+          <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
+          <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
+        </div>
       </div>
       <div class="exercise-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
     </div>
@@ -179,6 +222,14 @@ body {
         <div class="exercise-sets">3组 × 12次（每侧）</div>
         <div class="exercise-rest">组间休息 60秒</div>
       </div>
+      <div class="exercise-timer" data-seconds="60" onclick="event.stopPropagation()">
+        <div class="timer-display">01:00</div>
+        <div class="timer-controls">
+          <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
+          <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
+          <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
+        </div>
+      </div>
       <div class="exercise-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
     </div>
 
@@ -192,6 +243,14 @@ body {
         <div class="exercise-sets">3组 × 15次（每侧）</div>
         <div class="exercise-rest">组间休息 30秒</div>
       </div>
+      <div class="exercise-timer" data-seconds="30" onclick="event.stopPropagation()">
+        <div class="timer-display">00:30</div>
+        <div class="timer-controls">
+          <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
+          <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
+          <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
+        </div>
+      </div>
       <div class="exercise-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
     </div>
   </div>
@@ -204,12 +263,28 @@ body {
         <div class="exercise-name">股四头肌拉伸</div>
         <div class="exercise-detail">每侧保持30秒 × 2组</div>
       </div>
+      <div class="exercise-timer" data-seconds="30">
+        <div class="timer-display">00:30</div>
+        <div class="timer-controls">
+          <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
+          <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
+          <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
+        </div>
+      </div>
     </div>
     <div class="stretch-card">
       <div class="exercise-num">2</div>
       <div class="exercise-info">
         <div class="exercise-name">腘绳肌拉伸</div>
         <div class="exercise-detail">每侧保持30秒 × 2组</div>
+      </div>
+      <div class="exercise-timer" data-seconds="30">
+        <div class="timer-display">00:30</div>
+        <div class="timer-controls">
+          <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
+          <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
+          <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
+        </div>
       </div>
     </div>
     <div class="stretch-card">
@@ -218,12 +293,28 @@ body {
         <div class="exercise-name">臀大肌拉伸</div>
         <div class="exercise-detail">每侧保持30秒 × 2组</div>
       </div>
+      <div class="exercise-timer" data-seconds="30">
+        <div class="timer-display">00:30</div>
+        <div class="timer-controls">
+          <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
+          <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
+          <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
+        </div>
+      </div>
     </div>
     <div class="stretch-card">
       <div class="exercise-num">4</div>
       <div class="exercise-info">
         <div class="exercise-name">婴儿式放松</div>
         <div class="exercise-detail">保持60秒，深呼吸放松全身</div>
+      </div>
+      <div class="exercise-timer" data-seconds="60">
+        <div class="timer-display">01:00</div>
+        <div class="timer-controls">
+          <button class="timer-btn adjust" onclick="adjustTimer(this,-15)">−15s</button>
+          <button class="timer-btn start" onclick="toggleTimer(this)">开始</button>
+          <button class="timer-btn adjust" onclick="adjustTimer(this,15)">+15s</button>
+        </div>
       </div>
     </div>
   </div>
@@ -241,8 +332,90 @@ body {
 </div>
 
 <script>
-var PAGE_URLS={welcome:'./welcome_PROTOTYPE_AE8BF0C677F44D11.html','basic-info':'./basic-info_PROTOTYPE_577C9CE5800B46B7.html','training-goals':'./training-goals_PROTOTYPE_68BE44E236D64BAE.html','training-experience':'./training-experience_PROTOTYPE_04D1896309714B02.html','analysis-report':'./analysis-report_PROTOTYPE_E80F0FC4A99749C1.html',dashboard:'./dashboard_PROTOTYPE_523E0C225CFA4A85.html','training-plan':'./training-plan_PROTOTYPE_C3EB8FC4A69843CB.html','daily-workout':'./daily-workout_PROTOTYPE_CD3F0A439A594F46.html','exercise-detail':'./exercise-detail_PROTOTYPE_5EFB86B43407489A.html','daily-checkin':'./daily-checkin_PROTOTYPE_1417AAC5029941B3.html','progress-tracking':'./progress-tracking_PROTOTYPE_F808929A2BD0425E.html','diet-plan':'./diet-plan_PROTOTYPE_BFCEFD02D1B5446B.html',profile:'./profile_PROTOTYPE_E7708D8D96F84C50.html'};
+var PAGE_URLS={welcome:'/products/view?code=PROTOTYPE_AE8BF0C677F44D11','basic-info':'/products/view?code=PROTOTYPE_577C9CE5800B46B7','training-goals':'/products/view?code=PROTOTYPE_68BE44E236D64BAE','training-experience':'/products/view?code=PROTOTYPE_04D1896309714B02','analysis-report':'/products/view?code=PROTOTYPE_E80F0FC4A99749C1',dashboard:'/products/view?code=PROTOTYPE_523E0C225CFA4A85','training-plan':'/products/view?code=PROTOTYPE_C3EB8FC4A69843CB','daily-workout':'/products/view?code=PROTOTYPE_CD3F0A439A594F46','exercise-detail':'/products/view?code=PROTOTYPE_5EFB86B43407489A','daily-checkin':'/products/view?code=PROTOTYPE_1417AAC5029941B3','progress-tracking':'/products/view?code=PROTOTYPE_F808929A2BD0425E','diet-plan':'/products/view?code=PROTOTYPE_BFCEFD02D1B5446B',profile:'/products/view?code=PROTOTYPE_E7708D8D96F84C50'};
 function navigateTo(page) { if(PAGE_URLS[page]) window.location.href=PAGE_URLS[page]; }
+
+/* === Countdown Timer === */
+function formatTimer(s) {
+  s = Math.max(0, Math.floor(s));
+  var m = Math.floor(s / 60);
+  var sec = s % 60;
+  return (m < 10 ? '0' : '') + m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+function getTimerWidget(btn) {
+  return btn.closest('.exercise-timer');
+}
+function updateTimerDisplay(widget, seconds) {
+  var display = widget.querySelector('.timer-display');
+  if (display) display.textContent = formatTimer(seconds);
+  widget.setAttribute('data-seconds', seconds);
+}
+function toggleTimer(btn) {
+  var widget = getTimerWidget(btn);
+  if (!widget) return;
+  var running = widget.classList.contains('running');
+  if (running) {
+    widget.classList.remove('running');
+    btn.textContent = '继续';
+    if (widget._timerInterval) {
+      clearInterval(widget._timerInterval);
+      widget._timerInterval = null;
+    }
+  } else {
+    var cur = parseInt(widget.getAttribute('data-seconds'));
+    if (!cur || cur <= 0) {
+      var orig = parseInt(widget.getAttribute('data-orig') || '0');
+      cur = orig > 0 ? orig : 30;
+    }
+    widget.classList.remove('finished');
+    widget.classList.add('running');
+    btn.textContent = '暂停';
+    (function(w, startBtn, secs) {
+      var remaining = secs;
+      if (w._timerInterval) clearInterval(w._timerInterval);
+      w._timerInterval = setInterval(function() {
+        remaining--;
+        updateTimerDisplay(w, remaining);
+        if (remaining <= 0) {
+          clearInterval(w._timerInterval);
+          w._timerInterval = null;
+          w.classList.remove('running');
+          w.classList.add('finished');
+          if (startBtn) startBtn.textContent = '完成';
+          try { if (navigator.vibrate) navigator.vibrate(200); } catch(e) {}
+          var exerciseName = '';
+          var card = w.closest('.exercise-card, .stretch-card');
+          if (card) {
+            var nameEl = card.querySelector('.exercise-name');
+            if (nameEl) exerciseName = nameEl.textContent;
+          }
+          // soft inline toast
+          var toast = document.createElement('div');
+          toast.textContent = '⏰ ' + (exerciseName || '本组') + ' 倒计时完成！';
+          toast.style.cssText = 'position:fixed;top:30%;left:50%;transform:translateX(-50%);background:rgba(16,185,129,0.95);color:#fff;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:600;z-index:9999;box-shadow:0 4px 14px rgba(0,0,0,0.2);';
+          document.body.appendChild(toast);
+          setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 1800);
+        }
+      }, 1000);
+    })(widget, btn, cur);
+  }
+}
+function adjustTimer(btn, delta) {
+  var widget = getTimerWidget(btn);
+  if (!widget) return;
+  if (widget.classList.contains('running')) return; // 锁定运行中不可调
+  var cur = parseInt(widget.getAttribute('data-seconds'));
+  if (!cur) cur = 0;
+  var next = Math.max(0, cur + delta);
+  if (!parseInt(widget.getAttribute('data-orig'))) {
+    widget.setAttribute('data-orig', cur);
+  }
+  widget.classList.remove('finished');
+  updateTimerDisplay(widget, next);
+  var startBtn = widget.querySelector('.timer-btn.start');
+  if (startBtn) startBtn.textContent = '开始';
+}
+
 function retryImage(img) {
   var c=parseInt(img.getAttribute('data-retry-count'))||0,m=parseInt(img.getAttribute('data-max-retry'))||10;
   if(c<m){img.setAttribute('data-retry-count',c+1);img.src=img.src.replace(/retry=\d+/,'retry='+(c+1))+'&t='+Date.now();}
