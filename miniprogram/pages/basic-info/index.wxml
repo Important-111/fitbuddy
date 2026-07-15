@@ -92,6 +92,7 @@
           <text class="bmi-category">{{bmiCategory}}</text>
         </view>
       </view>
+      <text style="font-size:11px;color:var(--text-tertiary);margin-top:6px;display:block;line-height:1.4;">正常范围 18.5-24，低于或高于此范围请关注。</text>
     </view>
 
     <!-- 腰围 + 臀围 -->

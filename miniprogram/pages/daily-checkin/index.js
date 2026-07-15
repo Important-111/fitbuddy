@@ -227,7 +227,7 @@ Page({
 
   onCloseMotivation() {
     this.setData({ motivationShow: false, jumping: true });
-    setTimeout(() => { wx.switchTab({ url: '/pages/dashboard/index' }); }, 350);
+    setTimeout(() => { wx.reLaunch({ url: '/pages/dashboard/index' }); }, 350);
   },
 
   onCloseMotivationOuter(e) {
