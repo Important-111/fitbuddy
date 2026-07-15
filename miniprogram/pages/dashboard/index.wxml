@@ -117,4 +117,5 @@
       </view>
     </view>
   </view>
+<tab-bar active="dashboard"></tab-bar>
 </view>

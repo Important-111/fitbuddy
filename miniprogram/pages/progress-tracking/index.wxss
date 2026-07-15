@@ -220,3 +220,6 @@
   background: rgba(239,68,68,0.1);
   color: var(--danger);
 }
+
+/* === tab-bar bottom padding === */
+.page-container { padding-bottom: calc(76px + env(safe-area-inset-bottom)) !important; }

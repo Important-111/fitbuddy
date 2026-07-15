@@ -188,4 +188,5 @@
       <text class="analysis-status status-good">{{analysis.suggestionLabel}}</text>
     </view>
   </view>
+<tab-bar active="progress-tracking"></tab-bar>
 </view>

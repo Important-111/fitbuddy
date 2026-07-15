@@ -86,4 +86,5 @@
       </view>
     </view>
   </view>
+<tab-bar active="training-plan"></tab-bar>
 </view>

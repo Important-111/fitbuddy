@@ -201,4 +201,5 @@
       </view>
     </view>
   </view>
+<tab-bar active="diet-plan"></tab-bar>
 </view>

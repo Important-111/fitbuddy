@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "进度追踪",
   "navigationStyle": "custom",
-  "usingComponents": {}
+  "usingComponents": {
+    "tab-bar": "/components/tab-bar/index"
+  }
 }

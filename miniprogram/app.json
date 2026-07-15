@@ -12,7 +12,8 @@
     "pages/daily-checkin/index",
     "pages/progress-tracking/index",
     "pages/diet-plan/index",
-    "pages/profile/index"
+    "pages/profile/index",
+    "pages/feedback/index"
   ],
   "window": {
     "navigationStyle": "custom",

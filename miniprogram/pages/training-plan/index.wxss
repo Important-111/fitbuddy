@@ -103,3 +103,6 @@
   color: var(--text-secondary);
   margin-top: 2px;
 }
+
+/* === tab-bar bottom padding === */
+.page-container { padding-bottom: calc(76px + env(safe-area-inset-bottom)) !important; }

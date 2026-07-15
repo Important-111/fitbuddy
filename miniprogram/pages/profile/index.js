@@ -145,7 +145,7 @@ Page({
         wx.showToast({ title: '导出功能开发中', icon: 'none' });
         break;
       case 'feedback':
-        wx.showToast({ title: '感谢你的反馈！', icon: 'none' });
+        wx.navigateTo({ url: '/pages/feedback/index' });
         break;
       case 'help':
         wx.showToast({ title: '帮助文档开发中', icon: 'none' });

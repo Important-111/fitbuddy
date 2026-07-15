@@ -165,3 +165,6 @@
 .goal-card-mini:active {
   opacity: 0.8;
 }
+
+/* === tab-bar bottom padding === */
+.page-container { padding-bottom: calc(76px + env(safe-area-inset-bottom)) !important; }
