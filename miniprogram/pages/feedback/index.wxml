@@ -40,20 +40,27 @@
     </view>
   </view>
 
-  <!-- 联系方式 -->
+  <!-- 开发者联系方式 -->
   <view class="section-wrap">
-    <view class="section-title">联系方式（可选）</view>
-    <view class="input-wrap">
-      <input
-        class="feedback-input"
-        placeholder="微信号 / 邮箱，方便我们回复你"
-        placeholder-class="ph"
-        maxlength="50"
-        value="{{form.contact}}"
-        bindinput="onContactInput"
-      />
+    <view class="section-title">联系我们</view>
+    <view class="contact-card">
+      <view class="contact-row">
+        <text class="contact-icon">✉️</text>
+        <text class="contact-label">邮箱</text>
+        <text class="contact-value" bindlongpress="onCopyEmail">support@fitbuddy.app</text>
+      </view>
+      <view class="contact-row">
+        <text class="contact-icon">☎️</text>
+        <text class="contact-label">客服座机</text>
+        <text class="contact-value" bindlongpress="onCopyPhone">400-888-0000</text>
+      </view>
+      <view class="contact-row">
+        <text class="contact-icon">🕒</text>
+        <text class="contact-label">服务时间</text>
+        <text class="contact-value">工作日 9:00 - 18:00</text>
+      </view>
     </view>
-    <view class="hint-text">填写后我们可在需要时与你确认细节</view>
+    <view class="hint-text">长按邮箱或座机可复制，欢迎随时联系我们</view>
   </view>
 
   <!-- 协议勾选 -->

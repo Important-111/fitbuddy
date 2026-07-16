@@ -32,7 +32,6 @@ Page({
     form: {
       type: 'suggestion',
       content: '',
-      contact: '',
       agreed: false
     },
     submitting: false,
@@ -66,12 +65,26 @@ Page({
     this.setData({ 'form.content': e.detail.value });
   },
 
-  onContactInput(e) {
-    this.setData({ 'form.contact': e.detail.value });
+  onCopyEmail() {
+    wx.setClipboardData({
+      data: 'support@fitbuddy.app',
+      success: () => {
+        wx.showToast({ title: '邮箱已复制', icon: 'success' });
+      }
+    });
+  },
+
+  onCopyPhone() {
+    wx.setClipboardData({
+      data: '400-888-0000',
+      success: () => {
+        wx.showToast({ title: '座机已复制', icon: 'success' });
+      }
+    });
   },
 
   onSubmit() {
-    const { type, content, contact, agreed } = this.data.form;
+    const { type, content, agreed } = this.data.form;
     if (!agreed) {
       wx.showToast({ title: '请先勾选同意协议', icon: 'none' });
       return;
@@ -92,7 +105,7 @@ Page({
       nickname: profile.nickname || '',
       type,
       content: trimmed,
-      contact: (contact || '').trim(),
+      contact: '',
       status: 'pending',
       admin_reply: '',
       device_info: this.getDeviceInfo()
@@ -111,7 +124,7 @@ Page({
     setTimeout(() => {
       this.setData({
         submitting: false,
-        form: { type: 'suggestion', content: '', contact: '', agreed: false }
+        form: { type: 'suggestion', content: '', agreed: false }
       });
       this.loadHistory();
       wx.showToast({ title: '反馈已提交，感谢支持', icon: 'success' });

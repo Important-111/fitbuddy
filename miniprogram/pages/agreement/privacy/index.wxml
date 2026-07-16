@@ -46,11 +46,6 @@
           <view class="info-cell cell-action">仅在您主动点击「授权手机号」按钮并明确同意后，通过微信官方 <text class="code">getPhoneNumber</text> 接口获取</view>
         </view>
         <view class="info-row">
-          <view class="info-cell cell-type">反馈意见中的联系方式（可选）</view>
-          <view class="info-cell cell-purpose">仅当您主动填写时收集，用于我们就反馈内容与您沟通回复。您不填写不影响反馈提交</view>
-          <view class="info-cell cell-action">您主动填写（可选）</view>
-        </view>
-        <view class="info-row">
           <view class="info-cell cell-type">设备信息（系统版本、屏幕尺寸）</view>
           <view class="info-cell cell-purpose">用于优化小程序显示效果与适配</view>
           <view class="info-cell cell-action">微信框架自动读取，不主动收集</view>
@@ -116,8 +111,9 @@
       <view class="section-title">八、联系我们</view>
       <view class="paragraph">如果您对本指引有任何疑问、意见或建议，或需要行使您的个人信息权利，可通过以下方式联系我们：</view>
       <view class="paragraph">- 通过本小程序「我的-反馈建议」功能留言</view>
-      <view class="paragraph">- 我们将在收到您的消息后 7 个工作日内回复</view>
-      <view class="paragraph">个人信息保护负责人邮箱：您可通过反馈功能索取</view>
+      <view class="paragraph">- 客服座机：400-888-0000（工作日 9:00 - 18:00）</view>
+      <view class="paragraph">- 个人信息保护负责人邮箱：support@fitbuddy.app</view>
+      <view class="paragraph">我们将在收到您的消息后 7 个工作日内回复</view>
     </view>
 
     <view class="footer-spacing"></view>
