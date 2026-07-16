@@ -1,0 +1,48 @@
+<view class="phone-auth-mask" wx:if="{{visible}}" catchtap="onMaskTap">
+  <view class="phone-auth-card" catchtap="noop">
+    <view class="card-close" bindtap="onClose">
+      <view class="close-icon"></view>
+    </view>
+
+    <view class="card-icon">📱</view>
+    <view class="card-title">授权手机号</view>
+    <view class="card-desc">为了向您提供账号安全验证、重要服务通知（如系统升级、隐私政策变更）等服务，我们需要获取您的手机号。我们承诺不会将您的手机号用于营销推送或转售给任何第三方。</view>
+
+    <view class="card-list">
+      <view class="card-list-item">
+        <view class="bullet">·</view>
+        <view class="bullet-text">通过微信官方接口安全获取，无需手动输入</view>
+      </view>
+      <view class="card-list-item">
+        <view class="bullet">·</view>
+        <view class="bullet-text">仅用于账号安全与必要服务通知</view>
+      </view>
+      <view class="card-list-item">
+        <view class="bullet">·</view>
+        <view class="bullet-text">您可随时在微信设置中撤回授权</view>
+      </view>
+    </view>
+
+    <view class="agree-row">
+      <view class="check-box {{agreed ? 'checked' : ''}}" bindtap="toggleAgree">
+        <view class="check-icon" wx:if="{{agreed}}">✓</view>
+      </view>
+      <view class="agree-text">
+        我已阅读并同意
+        <text class="link" catchtap="openService">《用户服务协议》</text>
+        和
+        <text class="link" catchtap="openPrivacy">《隐私保护指引》</text>
+      </view>
+    </view>
+
+    <button class="card-btn-primary {{!agreed ? 'disabled' : ''}}"
+            open-type="getPhoneNumber"
+            bindgetphonenumber="onGetPhoneNumber"
+            disabled="{{!agreed}}">
+      授权手机号
+    </button>
+    <view class="card-btn-secondary" bindtap="onClose">暂不授权</view>
+
+    <view class="card-tip">点击「授权手机号」将调用微信官方接口，由微信安全地向本小程序返回您的手机号</view>
+  </view>
+</view>

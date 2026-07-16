@@ -13,7 +13,9 @@
     "pages/progress-tracking/index",
     "pages/diet-plan/index",
     "pages/profile/index",
-    "pages/feedback/index"
+    "pages/feedback/index",
+    "pages/agreement/service/index",
+    "pages/agreement/privacy/index"
   ],
   "window": {
     "navigationStyle": "custom",
@@ -21,5 +23,6 @@
   },
   "usingComponents": {},
   "lazyCodeLoading": "requiredComponents",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "__usePrivacyCheck__": true
 }

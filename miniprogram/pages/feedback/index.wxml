@@ -56,6 +56,21 @@
     <view class="hint-text">填写后我们可在需要时与你确认细节</view>
   </view>
 
+  <!-- 协议勾选 -->
+  <view class="section-wrap">
+    <view class="agree-row" bindtap="toggleAgree">
+      <view class="check-box {{form.agreed ? 'checked' : ''}}">
+        <text wx:if="{{form.agreed}}" class="check-icon">✓</text>
+      </view>
+      <view class="agree-text">
+        我已阅读并同意
+        <text class="agree-link" catchtap="openService">《用户服务协议》</text>
+        和
+        <text class="agree-link" catchtap="openPrivacy">《隐私保护指引》</text>
+      </view>
+    </view>
+  </view>
+
   <!-- 提示 -->
   <view class="info-tip">
     <text class="info-tip-icon">💡</text>
@@ -86,6 +101,6 @@
 
   <!-- 底部按钮 -->
   <view class="bottom-bar">
-    <button class="btn-primary" bindtap="onSubmit" disabled="{{submitting}}">{{submitting ? '提交中...' : '提交反馈'}}</button>
+    <button class="btn-primary" bindtap="onSubmit" disabled="{{submitting || !form.agreed}}">{{submitting ? '提交中...' : (form.agreed ? '提交反馈' : '请先勾选同意协议')}}</button>
   </view>
 </view>

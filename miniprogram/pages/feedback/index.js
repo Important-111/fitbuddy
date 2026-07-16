@@ -32,7 +32,8 @@ Page({
     form: {
       type: 'suggestion',
       content: '',
-      contact: ''
+      contact: '',
+      agreed: false
     },
     submitting: false,
     history: []
@@ -70,7 +71,11 @@ Page({
   },
 
   onSubmit() {
-    const { type, content, contact } = this.data.form;
+    const { type, content, contact, agreed } = this.data.form;
+    if (!agreed) {
+      wx.showToast({ title: '请先勾选同意协议', icon: 'none' });
+      return;
+    }
     const trimmed = (content || '').trim();
     if (trimmed.length < 10) {
       wx.showToast({ title: '请至少填写 10 个字', icon: 'none' });
@@ -106,7 +111,7 @@ Page({
     setTimeout(() => {
       this.setData({
         submitting: false,
-        form: { type: 'suggestion', content: '', contact: '' }
+        form: { type: 'suggestion', content: '', contact: '', agreed: false }
       });
       this.loadHistory();
       wx.showToast({ title: '反馈已提交，感谢支持', icon: 'success' });
@@ -138,5 +143,17 @@ Page({
 
   navigateBack() {
     wx.navigateBack();
+  },
+
+  toggleAgree() {
+    this.setData({ 'form.agreed': !this.data.form.agreed });
+  },
+
+  openService() {
+    wx.navigateTo({ url: '/pages/agreement/service/index' });
+  },
+
+  openPrivacy() {
+    wx.navigateTo({ url: '/pages/agreement/privacy/index' });
   }
 });

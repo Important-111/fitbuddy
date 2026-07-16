@@ -1,0 +1,85 @@
+.agreement-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  padding: 24rpx 32rpx;
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border-bottom: 1rpx solid #F0F2F5;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.btn-back {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.back-arrow {
+  width: 20rpx;
+  height: 20rpx;
+  border-left: 4rpx solid #1F2937;
+  border-bottom: 4rpx solid #1F2937;
+  transform: rotate(45deg);
+}
+
+.top-bar-title {
+  flex: 1;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1F2937;
+  text-align: center;
+  padding-right: 60rpx;
+}
+
+.content {
+  flex: 1;
+  padding: 32rpx;
+  box-sizing: border-box;
+}
+
+.update-time {
+  font-size: 24rpx;
+  color: #9CA3AF;
+  margin-bottom: 32rpx;
+  text-align: center;
+}
+
+.section {
+  margin-bottom: 40rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1F2937;
+  margin-bottom: 16rpx;
+  padding-left: 16rpx;
+  border-left: 6rpx solid #FF6B35;
+}
+
+.paragraph {
+  font-size: 26rpx;
+  color: #4B5563;
+  line-height: 1.7;
+  margin-bottom: 12rpx;
+}
+
+.inline-link {
+  color: #FF6B35;
+  font-weight: 500;
+}
+
+.footer-spacing {
+  height: 80rpx;
+}
