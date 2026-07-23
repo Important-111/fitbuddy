@@ -301,6 +301,162 @@ const EXERCISE_DATA = {
         "臀中肌专项"
       ]
     ]
+  },
+  "jumping-jack": {
+    "name": "开合跳",
+    "eng": "Jumping Jack",
+    "emoji": "🤸",
+    "level": "⭐ 初级",
+    "muscle_label": "全身燃脂",
+    "type_label": "有氧训练",
+    "purpose": "快速提升心率，全身燃脂热身",
+    "primary_muscle": "心肺系统",
+    "secondary_muscle": "肩部、小腿、核心肌群",
+    "level_value": "⭐ 初级",
+    "fit_for": "所有水平，特别适合热身与燃脂",
+    "sets": "3组 × 30秒",
+    "rest": "15秒",
+    "tags": ["心肺", "肩部", "小腿", "核心"],
+    "points": [
+      "双脚并拢站立，双手自然下垂放在身体两侧",
+      "双脚向外跳开约肩宽，同时双手从两侧向上举过头顶",
+      "落地时前脚掌着地，膝盖微屈缓冲",
+      "立刻跳回起始位置，双手放下",
+      "保持稳定节奏，呼吸均匀不要憋气"
+    ],
+    "breath_in": "跳开时",
+    "breath_in_text": "吸气，配合手脚打开",
+    "breath_out": "跳回时",
+    "breath_out_text": "呼气，回到起始位置",
+    "mistakes": [
+      ["落地过重", "全脚掌或脚跟着地冲击大。前脚掌着地，膝盖微屈缓冲"],
+      ["手臂未过头", "手臂举到肩膀高度燃脂效果减半。双手过头顶完整画弧"],
+      ["节奏过快", "为求快导致动作变形。保持中等节奏，动作完整优先"],
+      ["憋气", "紧张时容易憋气。保持自然呼吸节奏"]
+    ],
+    "videos": [
+      ["YouTube", "pl-yt", "Jumping Jack Tutorial", "Proper Form for Cardio"],
+      ["B站", "pl-bl", "开合跳教学", "热身燃脂入门"],
+      ["Keep", "pl-kp", "燃脂热身", "开合跳组合训练"],
+      ["小红书", "pl-xs", "居家燃脂", "开合跳合集"]
+    ]
+  },
+  "high-knees": {
+    "name": "高抬腿",
+    "eng": "High Knees",
+    "emoji": "🏃",
+    "level": "⭐ 初级",
+    "muscle_label": "核心+下肢",
+    "type_label": "有氧训练",
+    "purpose": "提升心肺与下肢爆发力，核心稳定",
+    "primary_muscle": "髂腰肌、腹直肌",
+    "secondary_muscle": "股四头肌、小腿、心肺",
+    "level_value": "⭐ 初级",
+    "fit_for": "所有水平，提升心肺与下肢力量",
+    "sets": "3组 × 30秒",
+    "rest": "15秒",
+    "tags": ["核心", "股四头肌", "小腿", "心肺"],
+    "points": [
+      "双脚并拢站立，双手放在身体两侧或叉腰",
+      "原地交替抬腿，膝盖尽量抬高至髋部高度",
+      "前脚掌着地，快速切换左右腿",
+      "手臂自然摆动配合腿部节奏",
+      "保持核心收紧，上身略微前倾"
+    ],
+    "breath_in": "抬腿时",
+    "breath_in_text": "均匀呼吸，配合抬腿节奏",
+    "breath_out": "落地时",
+    "breath_out_text": "保持稳定节奏，不要憋气",
+    "mistakes": [
+      ["膝盖抬得过低", "未到髋部高度效果减半。尽量抬高至髋部水平"],
+      ["脚跟着地", "脚跟着地冲击大且慢。前脚掌着地快速切换"],
+      ["后仰", "上身向后倾斜减少核心发力。保持上身略前倾，核心收紧"],
+      ["节奏混乱", "忽快忽慢容易疲劳。保持稳定的中等节奏"]
+    ],
+    "videos": [
+      ["YouTube", "pl-yt", "High Knees Tutorial", "Cardio Form Guide"],
+      ["B站", "pl-bl", "高抬腿教学", "核心燃脂训练"],
+      ["Keep", "pl-kp", "HIIT 燃脂", "高抬腿组合"],
+      ["小红书", "pl-xs", "居家有氧", "高抬腿合集"]
+    ]
+  },
+  "jump-squat": {
+    "name": "深蹲跳",
+    "eng": "Jump Squat",
+    "emoji": "🦘",
+    "level": "⭐⭐ 中级",
+    "muscle_label": "下肢爆发力",
+    "type_label": "增强式训练",
+    "purpose": "下肢爆发力训练，大量消耗热量",
+    "primary_muscle": "股四头肌、臀大肌",
+    "secondary_muscle": "小腿、核心肌群",
+    "level_value": "⭐⭐ 中级",
+    "fit_for": "有深蹲基础者，提升爆发力与燃脂",
+    "sets": "3组 × 12次",
+    "rest": "30秒",
+    "tags": ["股四头肌", "臀大肌", "小腿", "核心"],
+    "points": [
+      "双脚与肩同宽，脚尖略微外展 15 度",
+      "下蹲至大腿与地面平行，保持背部挺直",
+      "从底部用爆发力蹬地跳起，尽量向上跳高",
+      "落地时前脚掌着地，膝盖微屈缓冲，立刻进入下一次下蹲",
+      "保持节奏稳定，避免膝盖内扣"
+    ],
+    "breath_in": "下蹲时",
+    "breath_in_text": "吸气，有控制地下蹲",
+    "breath_out": "跳起时",
+    "breath_out_text": "呼气，爆发力向上跳起",
+    "mistakes": [
+      ["落地过重", "全脚掌或伸直膝盖着地冲击大。前脚掌着地，膝盖微屈缓冲"],
+      ["膝盖内扣", "起跳或落地时膝盖向内塌陷。膝盖始终对齐脚尖方向"],
+      ["跳得过高失去控制", "盲目求高度导致落地不稳。中等高度优先保证动作标准"],
+      ["背部弯曲", "下蹲或起跳时弓背。全程保持背部挺直，核心收紧"]
+    ],
+    "videos": [
+      ["YouTube", "pl-yt", "Jump Squat Tutorial", "Plyometric Form"],
+      ["B站", "pl-bl", "深蹲跳教学", "爆发力训练"],
+      ["Keep", "pl-kp", "HIIT 燃脂", "深蹲跳组合"],
+      ["小红书", "pl-xs", "燃脂动作", "深蹲跳合集"]
+    ]
+  },
+  "mountain-climber": {
+    "name": "登山跑",
+    "eng": "Mountain Climber",
+    "emoji": "🏔️",
+    "level": "⭐⭐ 中级",
+    "muscle_label": "核心+全身",
+    "type_label": "有氧+核心",
+    "purpose": "核心稳定与全身燃脂的综合动作",
+    "primary_muscle": "腹直肌、腹横肌",
+    "secondary_muscle": "肩部、股四头肌、心肺",
+    "level_value": "⭐⭐ 中级",
+    "fit_for": "有基础者，提升核心稳定与心肺",
+    "sets": "3组 × 30秒",
+    "rest": "15秒",
+    "tags": ["核心", "腹直肌", "肩部", "心肺"],
+    "points": [
+      "从俯卧撑姿势开始，双手撑地与肩同宽，手臂伸直",
+      "身体从头到脚成一条直线，核心收紧不塌腰",
+      "右膝向胸部靠拢，然后迅速伸回起始位置",
+      "立刻换左膝向胸部靠拢，左右交替如跑步",
+      "保持上身稳定，呼吸均匀不要憋气"
+    ],
+    "breath_in": "伸腿时",
+    "breath_in_text": "吸气，配合腿部伸展",
+    "breath_out": "收腿时",
+    "breath_out_text": "呼气，膝盖向胸部靠拢",
+    "mistakes": [
+      ["塌腰", "腰部下沉导致腰椎压力。核心收紧，身体保持一条直线"],
+      ["臀部过高", "臀部翘起减少核心发力。臀部与身体齐平"],
+      ["手肘外翻", "手肘向外翻影响稳定。手肘微向内夹，肩膀在手腕正上方"],
+      ["节奏过快失去控制", "盲目求快动作变形。保持中等节奏，动作完整优先"]
+    ],
+    "videos": [
+      ["YouTube", "pl-yt", "Mountain Climber Form", "Core + Cardio"],
+      ["B站", "pl-bl", "登山跑教学", "核心燃脂训练"],
+      ["Keep", "pl-kp", "HIIT 核心", "登山跑组合"],
+      ["小红书", "pl-xs", "核心训练", "登山跑合集"]
+    ]
   }
 };
 
@@ -322,7 +478,8 @@ Page({
     steps: [],
     cautions: [],
     videos: [],
-    breath: ''
+    breath: '',
+    breathSteps: []
   },
 
   onLoad(options) {
@@ -350,8 +507,12 @@ Page({
         { key: '组间休息', value: d.rest }
       ],
       muscleTags: d.tags,
-      steps: d.points,
+      steps: d.points.map(function(text, idx) { return { num: idx + 1, text: text }; }),
       breath: '💪 ' + d.breath_in + '：' + d.breath_in_text + '\n' + '💪 ' + d.breath_out + '：' + d.breath_out_text,
+      breathSteps: [
+        { phase: d.breath_in, text: d.breath_in_text },
+        { phase: d.breath_out, text: d.breath_out_text }
+      ],
       cautions: d.mistakes.map(function(m) { return { title: m[0], text: m[1] }; }),
       videos: d.videos.map(function(v) { return { platform: v[0], platformClass: v[1], title: v[2], desc: v[3] }; })
     });

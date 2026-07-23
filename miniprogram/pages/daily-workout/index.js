@@ -108,10 +108,10 @@ Page({
         { name: '动态热身', detail: '开合跳 · 高抬腿 · 髋关节环绕 · 踝关节活动', sets: '完成热身', done: true }
       ];
       exercises = [
-        { num: 1, name: '开合跳', detail: '全身燃脂动作，快速提升心率', sets: '3组 × 30秒', rest: '组间休息 15秒' },
-        { num: 2, name: '高抬腿', detail: '核心+下肢燃脂，提高心肺功能', sets: '3组 × 30秒', rest: '组间休息 15秒' },
-        { num: 3, name: '深蹲跳', detail: '爆发力训练，燃烧大量热量', sets: '3组 × 12次', rest: '组间休息 30秒' },
-        { num: 4, name: '登山跑', detail: '核心+全身综合燃脂动作', sets: '3组 × 30秒', rest: '组间休息 15秒' }
+        { num: 1, exId: 'jumping-jack', name: '开合跳', detail: '全身燃脂动作，快速提升心率', sets: '3组 × 30秒', rest: '组间休息 15秒' },
+        { num: 2, exId: 'high-knees', name: '高抬腿', detail: '核心+下肢燃脂，提高心肺功能', sets: '3组 × 30秒', rest: '组间休息 15秒' },
+        { num: 3, exId: 'jump-squat', name: '深蹲跳', detail: '爆发力训练，燃烧大量热量', sets: '3组 × 12次', rest: '组间休息 30秒' },
+        { num: 4, exId: 'mountain-climber', name: '登山跑', detail: '核心+全身综合燃脂动作', sets: '3组 × 30秒', rest: '组间休息 15秒' }
       ];
       stretches = [
         { name: '股四头肌拉伸', detail: '每侧保持30秒 × 2组' },

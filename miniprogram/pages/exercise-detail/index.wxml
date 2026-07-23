@@ -9,19 +9,17 @@
 
   <!-- 动作主图区 -->
   <view class="exercise-hero" style="background:linear-gradient(135deg,#FF6B35,#FF8F65);">
-    🧍
+    {{exerciseEmoji}}
   </view>
 
   <!-- 动作名称与标签 -->
   <view class="exercise-name-section">
     <view class="exercise-main-name">{{exerciseName}}</view>
-    <view class="exercise-eng-name">{{exerciseEngName}}</view>
+    <view class="exercise-eng-name">{{exerciseEng}}</view>
     <view class="exercise-tags">
-      <text
-        wx:for="{{tags}}"
-        wx:key="text"
-        class="exercise-tag {{item.class}}"
-      >{{item.icon}}{{item.text}}</text>
+      <text class="exercise-tag tag-level">🏆{{levelLabel}}</text>
+      <text class="exercise-tag tag-muscle">💪{{muscleLabel}}</text>
+      <text class="exercise-tag tag-type">🎯{{typeLabel}}</text>
     </view>
   </view>
 
@@ -40,7 +38,7 @@
   <view class="info-section">
     <view class="info-title">目标肌群</view>
     <view class="muscle-group">
-      <text wx:for="{{muscleGroups}}" wx:key="*this" class="muscle-tag">{{item}}</text>
+      <text wx:for="{{muscleTags}}" wx:key="*this" class="muscle-tag">{{item}}</text>
     </view>
   </view>
 
@@ -61,12 +59,10 @@
   <view class="info-section">
     <view class="info-title">呼吸方式</view>
     <view class="info-card">
-      <text style="font-size:13px;color:var(--text-primary);line-height:1.6;display:block;">
-        💪 下蹲时：用鼻子深吸气，感受腹部扩张
-      </text>
-      <text style="font-size:13px;color:var(--text-primary);line-height:1.6;display:block;margin-top:4px;">
-        💪 站起时：用嘴巴缓缓呼气，收紧核心
-      </text>
+      <view wx:for="{{breathSteps}}" wx:key="phase" class="breath-row">
+        <text class="breath-phase">💪 {{item.phase}}</text>
+        <text class="breath-text">{{item.text}}</text>
+      </view>
     </view>
   </view>
 
@@ -75,9 +71,12 @@
     <view class="info-title">常见错误</view>
     <view class="info-card">
       <view class="points-list caution-list">
-        <view wx:for="{{cautions}}" wx:key="*this">
+        <view wx:for="{{cautions}}" wx:key="title" class="caution-item">
           <text class="point-num">!</text>
-          <text>{{item.text}}</text>
+          <view class="caution-body">
+            <text class="caution-title">{{item.title}}</text>
+            <text class="caution-text">{{item.text}}</text>
+          </view>
         </view>
       </view>
     </view>
