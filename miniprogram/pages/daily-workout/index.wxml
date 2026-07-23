@@ -83,7 +83,7 @@
       <view
         class="exercise-card"
         bindtap="navigateTo"
-        data-url="/pages/exercise-detail/index"
+        data-url="/pages/exercise-detail/index?id={{item.exId}}"
       >
         <view class="exercise-num">{{item.num}}</view>
         <view class="exercise-info">
