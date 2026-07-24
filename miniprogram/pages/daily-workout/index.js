@@ -61,6 +61,31 @@ const SWAP_POOL = {
   ]
 };
 
+// 动态热身：可选热身动作池（点「选择动作」弹出，可勾选本次要做的项目）
+const WARMUP_POOL = [
+  { id: 'jumping-jack',  name: '开合跳',     emoji: '⚡', detail: '全身燃脂热身，快速提升心率', sec: 30 },
+  { id: 'high-knees',    name: '高抬腿',     emoji: '🔥', detail: '核心与下肢联动，激活心肺功能', sec: 30 },
+  { id: 'hip-circles',   name: '髋关节环绕', emoji: '🔄', detail: '活动髋关节，预防运动损伤', sec: 30 },
+  { id: 'ankle-circles', name: '踝关节活动', emoji: '🦶', detail: '唤醒踝关节，提升落地稳定性', sec: 20 },
+  { id: 'jog-in-place',  name: '原地慢跑',   emoji: '🏃', detail: '低强度有氧，逐步升高体温', sec: 45 },
+  { id: 'arm-circles',   name: '手臂环绕',   emoji: '🤸', detail: '放松肩袖肌群，改善肩关节活动度', sec: 20 },
+  { id: 'chest-open',    name: '扩胸运动',   emoji: '💪', detail: '打开胸廓，激活胸背肌群', sec: 20 },
+  { id: 'calf-raise',    name: '提踵',       emoji: '🦵', detail: '激活小腿与跟腱，增强踝关节刚性', sec: 20 },
+  { id: 'cat-cow',       name: '猫牛式',     emoji: '🐱', detail: '脊柱灵活热身，舒缓腰背', sec: 30 },
+  { id: 'side-shuffle',  name: '侧滑步',     emoji: '↔️', detail: '动态横向移动，激活臀中肌', sec: 30 }
+];
+const WARMUP_DEFAULT = ['jumping-jack', 'high-knees', 'hip-circles', 'ankle-circles'];
+
+function buildWarmups(selectedIds) {
+  const picked = (selectedIds && selectedIds.length) ? selectedIds : WARMUP_DEFAULT.slice();
+  const items = picked.map(function(id) {
+    const w = WARMUP_POOL.find(function(x) { return x.id === id; }) || WARMUP_POOL[0];
+    const dur = w.sec + '秒';
+    return { id: w.id, name: w.name, emoji: w.emoji, detail: w.detail, rest: dur, sets: dur, done: false };
+  });
+  return withTimer(items, WARMUP_TIMER_SEC);
+}
+
 function parseRestSeconds(text, fallback) {
   if (!text) return (fallback !== undefined ? fallback : DEFAULT_TIMER_SEC);
   const m = String(text).match(/(\d+)\s*秒/);
@@ -132,8 +157,10 @@ Page({
     swapCurrent: { exId: '', name: '', emoji: '💪' },
     swapOptions: [],
     _swapIdx: -1,
-    // v1.10 快速打卡
-    quickCheckinDone: false
+    // 动态热身：选择热身动作
+    warmupSelectShow: false,
+    warmupCandidates: [],
+    warmupSelectedCount: 0
   },
 
   onLoad() {
@@ -169,9 +196,7 @@ Page({
     let warmups, exercises, stretches;
 
     if (isFatLoss) {
-      warmups = [
-        { name: '动态热身', detail: '开合跳 · 高抬腿 · 髋关节环绕 · 踝关节活动', sets: '完成热身', done: true }
-      ];
+      warmups = buildWarmups();
       exercises = [
         { num: 1, exId: 'jumping-jack', name: '开合跳', detail: '全身燃脂动作，快速提升心率', sets: '3组 × 30秒', rest: '组间休息 15秒' },
         { num: 2, exId: 'high-knees', name: '高抬腿', detail: '核心+下肢燃脂，提高心肺功能', sets: '3组 × 30秒', rest: '组间休息 15秒' },
@@ -192,9 +217,7 @@ Page({
         workoutCalories: '250'
       });
     } else {
-      warmups = [
-        { name: '动态热身', detail: '开合跳 · 高抬腿 · 髋关节环绕 · 踝关节活动', sets: '完成热身', done: true }
-      ];
+      warmups = buildWarmups();
       exercises = [
         { num: 1, exId: 'squat', name: '自重深蹲', detail: '经典下肢训练动作，主要训练臀大肌和股四头肌', sets: '3组 × 12次', rest: '组间休息 60秒' },
         { num: 2, exId: 'bridge', name: '臀桥', detail: '针对臀大肌的孤立训练，改善臀部形态', sets: '3组 × 15次', rest: '组间休息 45秒' },
@@ -223,7 +246,7 @@ Page({
       });
     });
     stretches = withTimer(stretches);
-    warmups = withTimer(warmups, WARMUP_TIMER_SEC);
+    warmups = warmups;
 
     // 计算总组数
     let totalSets = 0;
@@ -470,32 +493,50 @@ Page({
     wx.showToast({ title: '已替换为 ' + opt.name, icon: 'success' });
   },
 
-  // ===== v1.10 快速打卡 =====
-  getTodayKey() {
-    const d = new Date();
-    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  // ===== 动态热身：选择热身动作 =====
+  openWarmupSelect() {
+    const curIds = (this.data.warmups || []).map(function(w) { return w.id; });
+    const candidates = WARMUP_POOL.map(function(w) {
+      return {
+        id: w.id,
+        name: w.name,
+        emoji: w.emoji,
+        detail: w.detail,
+        selected: curIds.indexOf(w.id) >= 0
+      };
+    });
+    const count = candidates.filter(function(c) { return c.selected; }).length;
+    this.setData({
+      warmupSelectShow: true,
+      warmupCandidates: candidates,
+      warmupSelectedCount: count
+    });
   },
 
-  quickCheckin() {
-    const today = this.getTodayKey();
-    const key = 'fb_quick_checkin_' + today;
-    const wasAlready = !!wx.getStorageSync(key);
-    const record = {
-      date: today,
-      time: new Date().toISOString(),
-      totalExercises: (this.data.exercises || []).length,
-      workoutName: this.data.workoutName
-    };
-    wx.setStorageSync(key, record);
-    this.setData({ quickCheckinDone: true });
-    try { wx.vibrateShort && wx.vibrateShort({ type: 'light' }); } catch (err) {}
-    wx.showToast({
-      title: wasAlready ? '今日已打卡，继续加油！' : '打卡成功！已记录 🎉',
-      icon: 'success'
-    });
-    const self = this;
-    setTimeout(function() {
-      wx.navigateTo({ url: '/pages/daily-checkin/index' });
-    }, wasAlready ? 800 : 1100);
+  toggleWarmup(e) {
+    const id = e.currentTarget.dataset.id;
+    const candidates = (this.data.warmupCandidates || []).slice();
+    const idx = candidates.findIndex(function(c) { return c.id === id; });
+    if (idx < 0) return;
+    candidates[idx] = Object.assign({}, candidates[idx], { selected: !candidates[idx].selected });
+    const count = candidates.filter(function(c) { return c.selected; }).length;
+    this.setData({ warmupCandidates: candidates, warmupSelectedCount: count });
+  },
+
+  closeWarmupSelect() {
+    this.setData({ warmupSelectShow: false });
+  },
+
+  confirmWarmup() {
+    const selectedIds = (this.data.warmupCandidates || [])
+      .filter(function(c) { return c.selected; })
+      .map(function(c) { return c.id; });
+    if (!selectedIds.length) {
+      wx.showToast({ title: '请至少选择 1 个热身动作', icon: 'none' });
+      return;
+    }
+    const warmups = buildWarmups(selectedIds);
+    this.setData({ warmups: warmups, warmupSelectShow: false });
+    wx.showToast({ title: '已更新热身动作', icon: 'success' });
   }
 });

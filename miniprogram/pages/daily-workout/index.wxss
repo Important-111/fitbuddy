@@ -459,3 +459,91 @@
   background: rgba(0,0,0,0.04);
   color: var(--text-secondary);
 }
+
+/* 阶段标题「选择动作」入口 */
+.phase-edit {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.ex-emoji {
+  margin-right: 6px;
+  font-size: 15px;
+}
+
+/* 动态热身：选择热身动作弹窗 */
+.warmup-content {
+  max-height: 82vh;
+}
+.warmup-tip {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.warmup-list {
+  max-height: 52vh;
+}
+.warmup-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.warmup-opt.on {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+.warmup-opt-emoji {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.warmup-opt-info {
+  flex: 1;
+  min-width: 0;
+}
+.warmup-opt-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.warmup-opt-detail {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+.warmup-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 13px;
+}
+.warmup-check.checked {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.swap-confirm {
+  width: 100%;
+  margin-top: 8px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 0;
+}

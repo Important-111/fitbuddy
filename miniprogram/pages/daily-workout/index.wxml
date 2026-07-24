@@ -35,7 +35,8 @@
   <view class="phase-section">
     <view class="phase-title">
       <text class="phase-icon warmup">🔥</text>
-      <text>热身激活（5分钟）</text>
+      <text>热身激活</text>
+      <view class="phase-edit" catchtap="openWarmupSelect">选择动作 ›</view>
     </view>
     <view
       wx:for="{{warmups}}"
@@ -47,7 +48,7 @@
         <text wx:else>W</text>
       </view>
       <view class="exercise-info">
-        <view class="exercise-name">{{item.name}}</view>
+        <view class="exercise-name"><text class="ex-emoji">{{item.emoji}}</text>{{item.name}}</view>
         <view class="exercise-detail">{{item.detail}}</view>
         <view class="exercise-sets" wx:if="{{item.sets}}">{{item.sets}}</view>
       </view>
@@ -173,7 +174,6 @@
   <!-- 底部操作栏 -->
   <view class="bottom-bar">
     <button class="btn-outline" catchtap="openSwapFromBottom">自由替换动作</button>
-    <button class="btn-outline {{quickCheckinDone ? 'done' : ''}}" catchtap="quickCheckin">{{quickCheckinDone ? '✅ 已打卡' : '快速打卡'}}</button>
     <button class="btn-primary" bindtap="navigateTo" data-url="/pages/daily-checkin/index">完成训练 · 去打卡</button>
   </view>
 
@@ -208,6 +208,34 @@
           </view>
         </view>
       </view>
+    </view>
+  </view>
+
+  <!-- 动态热身：选择热身动作弹窗 -->
+  <view class="swap-modal {{warmupSelectShow ? 'show' : ''}}" wx:if="{{warmupSelectShow}}">
+    <view class="swap-content warmup-content">
+      <view class="swap-header">
+        <view class="swap-title">选择热身动作</view>
+        <view class="swap-close" catchtap="closeWarmupSelect">×</view>
+      </view>
+      <view class="warmup-tip">勾选本次训练前要做的热身项目，点「确定」应用到今日训练</view>
+      <scroll-view scroll-y class="warmup-list">
+        <view
+          wx:for="{{warmupCandidates}}"
+          wx:key="id"
+          class="warmup-opt {{item.selected ? 'on' : ''}}"
+          catchtap="toggleWarmup"
+          data-id="{{item.id}}"
+        >
+          <view class="warmup-opt-emoji">{{item.emoji}}</view>
+          <view class="warmup-opt-info">
+            <view class="warmup-opt-name">{{item.name}}</view>
+            <view class="warmup-opt-detail">{{item.detail}}</view>
+          </view>
+          <view class="warmup-check {{item.selected ? 'checked' : ''}}">{{item.selected ? '✓' : ''}}</view>
+        </view>
+      </scroll-view>
+      <button class="btn-primary swap-confirm" catchtap="confirmWarmup">确定（{{warmupSelectedCount}}）</button>
     </view>
   </view>
 
