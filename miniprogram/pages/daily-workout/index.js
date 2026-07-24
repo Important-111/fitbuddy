@@ -9,55 +9,55 @@ const EX_EMOJI = {
   'jumping-jack': '⚡', 'high-knees': '🔥', 'jump-squat': '⚡', 'mountain-climber': '🔥'
 };
 
-// v2.1 自由替换动作：每个正式训练动作的替身动作池（同肌群）
+// v2.1 自由替换动作：每个正式训练动作的替身动作池（必须和原动作同名/同类型变式）
 const SWAP_POOL = {
   'squat': [
-    { exId: 'wall-sit', name: '靠墙静蹲', emoji: '🧱', detail: '背靠墙壁保持坐姿，对膝关节压力小', sets: '3组 × 45秒', rest: '组间休息 45秒', tags: ['低冲击', '护膝盖'] },
-    { exId: 'bulgarian-split', name: '保加利亚分腿蹲', emoji: '🦵', detail: '单腿后搭高处，强化单侧下肢力量', sets: '3组 × 10次（每侧）', rest: '组间休息 60秒', tags: ['高强度', '单侧训练'] },
+    { exId: 'sumo-squat', name: '相扑深蹲', emoji: '🦵', detail: '宽站距深蹲，重点刺激大腿内侧', sets: '3组 × 15次', rest: '组间休息 45秒', tags: ['内收肌', '塑形'] },
     { exId: 'jump-squat', name: '跳跃深蹲', emoji: '⚡', detail: '爆发力训练，提升心率燃脂效率', sets: '3组 × 12次', rest: '组间休息 45秒', tags: ['燃脂', '高强度'] },
-    { exId: 'sumo-squat', name: '相扑深蹲', emoji: '🦵', detail: '宽站距深蹲，重点刺激大腿内侧', sets: '3组 × 15次', rest: '组间休息 45秒', tags: ['内收肌', '塑形'] }
+    { exId: 'box-squat', name: '箱式深蹲', emoji: '📦', detail: '坐椅式下蹲，强化离心控制', sets: '3组 × 12次', rest: '组间休息 45秒', tags: ['控制', '护膝盖'] },
+    { exId: 'pause-squat', name: '暂停深蹲', emoji: '⏸️', detail: '底部停顿2秒，增加肌张力', sets: '3组 × 10次', rest: '组间休息 60秒', tags: ['肌张力', '进阶'] }
   ],
   'bridge': [
     { exId: 'single-leg-bridge', name: '单腿臀桥', emoji: '🍑', detail: '单腿支撑顶髋，强化臀部力量不平衡', sets: '3组 × 12次（每侧）', rest: '组间休息 45秒', tags: ['进阶', '单侧'] },
-    { exId: 'clamshell', name: '蚌式开合', emoji: '🦪', detail: '侧卧屈膝开合，激活臀中肌', sets: '3组 × 20次（每侧）', rest: '组间休息 30秒', tags: ['臀中肌', '低冲击'] },
-    { exId: 'kneeling-kickback', name: '跪姿后踢腿', emoji: '🍑', detail: '四足跪姿向后上方踢腿，孤立臀大肌', sets: '3组 × 15次（每侧）', rest: '组间休息 30秒', tags: ['孤立训练'] },
-    { exId: 'barbell-bridge', name: '负重臀桥', emoji: '🏋️', detail: '加大负重突破臀大肌力量瓶颈', sets: '4组 × 10次', rest: '组间休息 60秒', tags: ['负重', '进阶'] }
+    { exId: 'feet-elevated-bridge', name: '高位臀桥', emoji: '🪑', detail: '双脚垫高，增大臀大肌拉伸', sets: '3组 × 15次', rest: '组间休息 45秒', tags: ['拉伸', '塑形'] },
+    { exId: 'frog-bridge', name: '蛙式臀桥', emoji: '🐸', detail: '脚心相对，强化臀中肌发力', sets: '3组 × 15次', rest: '组间休息 30秒', tags: ['臀中肌', '激活'] },
+    { exId: 'hold-bridge', name: '静止臀桥', emoji: '⏱️', detail: '顶峰收缩保持，提升臀部耐力', sets: '3组 × 45秒', rest: '组间休息 30秒', tags: ['耐力', '低冲击'] }
   ],
   'lunge': [
-    { exId: 'reverse-lunge', name: '反向弓步', emoji: '🔙', detail: '后撤步弓步，对膝盖压力小于前弓步', sets: '3组 × 12次（每侧）', rest: '组间休息 60秒', tags: ['护膝盖', '低冲击'] },
-    { exId: 'side-lunge', name: '侧弓步', emoji: '↔️', detail: '侧向跨步下蹲，刺激大腿内侧', sets: '3组 × 12次（每侧）', rest: '组间休息 45秒', tags: ['内收肌', '变化方向'] },
-    { exId: 'walking-lunge', name: '行走弓步', emoji: '🚶', detail: '行进间交替弓步，提升平衡能力', sets: '3组 × 20步', rest: '组间休息 60秒', tags: ['功能性', '动态'] },
-    { exId: 'jump-lunge', name: '跳跃弓步', emoji: '⚡', detail: '弓步跳换，爆发力+燃脂双效', sets: '3组 × 10次（每侧）', rest: '组间休息 60秒', tags: ['高强度', '燃脂'] }
+    { exId: 'reverse-lunge', name: '反向弓步蹲', emoji: '🔙', detail: '后撤步弓步，对膝盖压力小于前弓步', sets: '3组 × 12次（每侧）', rest: '组间休息 60秒', tags: ['护膝盖', '低冲击'] },
+    { exId: 'side-lunge', name: '侧弓步蹲', emoji: '↔️', detail: '侧向跨步下蹲，刺激大腿内侧', sets: '3组 × 12次（每侧）', rest: '组间休息 45秒', tags: ['内收肌', '变化方向'] },
+    { exId: 'walking-lunge', name: '行走弓步蹲', emoji: '🚶', detail: '行进间交替弓步，提升平衡能力', sets: '3组 × 20步', rest: '组间休息 60秒', tags: ['功能性', '动态'] },
+    { exId: 'jump-lunge', name: '跳跃弓步蹲', emoji: '⚡', detail: '弓步跳换，爆发力+燃脂双效', sets: '3组 × 10次（每侧）', rest: '组间休息 60秒', tags: ['高强度', '燃脂'] }
   ],
   'side-leg': [
-    { exId: 'clamshell-2', name: '蚌式开合', emoji: '🦪', detail: '屈膝侧卧开合，臀中肌经典动作', sets: '3组 × 20次（每侧）', rest: '组间休息 30秒', tags: ['臀中肌', '经典'] },
+    { exId: 'clamshell', name: '蚌式开合', emoji: '🦪', detail: '侧卧屈膝开合，激活臀中肌', sets: '3组 × 20次（每侧）', rest: '组间休息 30秒', tags: ['臀中肌', '低冲击'] },
     { exId: 'side-plank-leg', name: '侧平板抬腿', emoji: '📊', detail: '侧平板支撑姿态下抬上侧腿，难度进阶', sets: '3组 × 12次（每侧）', rest: '组间休息 45秒', tags: ['高强度', '核心'] },
     { exId: 'standing-side-leg', name: '站姿侧抬腿', emoji: '🧍', detail: '站立位侧向抬腿，可扶墙保持平衡', sets: '3组 × 15次（每侧）', rest: '组间休息 30秒', tags: ['低冲击', '简单'] },
-    { exId: 'resistance-band-walk', name: '弹力带侧走', emoji: '🎟️', detail: '膝盖套弹力带横向螃蟹步行走', sets: '3组 × 20步（每方向）', rest: '组间休息 45秒', tags: ['臀中肌', '需器材'] }
+    { exId: 'kneeling-side-leg', name: '跪姿侧抬腿', emoji: '🧎', detail: '四点支撑位侧向抬腿，更稳定', sets: '3组 × 15次（每侧）', rest: '组间休息 30秒', tags: ['稳定', '臀中肌'] }
   ],
   'jumping-jack': [
     { exId: 'side-jack', name: '侧向开合跳', emoji: '⚡', detail: '左右脚交替侧向开合，减少肩部冲击', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['低冲击', '燃脂'] },
     { exId: 'cross-jack', name: '交叉开合跳', emoji: '🔥', detail: '手脚交叉开合，增加协调难度', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['协调', '燃脂'] },
     { exId: 'squat-jack', name: '深蹲开合跳', emoji: '🦵', detail: '开合同时加入深蹲，强化下肢', sets: '3组 × 20次', rest: '组间休息 20秒', tags: ['下肢', '燃脂'] },
-    { exId: 'star-jack', name: '星跳', emoji: '🌟', detail: '全身展开跳跃，最大心率提升', sets: '3组 × 15次', rest: '组间休息 20秒', tags: ['高强度'] }
+    { exId: 'clap-jack', name: '击掌开合跳', emoji: '👏', detail: '跳起在头顶击掌，增加上肢参与', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['上肢', '燃脂'] }
   ],
   'high-knees': [
-    { exId: 'butt-kick', name: '踢臀跑', emoji: '🔥', detail: '原地快速踢臀，提升步频', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['燃脂', '简单'] },
-    { exId: 'jog-in-place', name: '原地慢跑', emoji: '🏃', detail: '低强度热身跑，易坚持', sets: '3组 × 45秒', rest: '组间休息 15秒', tags: ['低冲击'] },
-    { exId: 'fast-knee', name: '快速高抬膝', emoji: '⚡', detail: '加快频率高抬膝，冲刺感', sets: '3组 × 20秒', rest: '组间休息 15秒', tags: ['高强度'] },
-    { exId: 'ski-jump', name: '滑雪跳', emoji: '🎿', detail: '左右跳跃模拟滑雪，训练灵敏', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['灵敏', '燃脂'] }
+    { exId: 'fast-knee', name: '快速高抬腿', emoji: '⚡', detail: '加快频率高抬膝，冲刺感', sets: '3组 × 20秒', rest: '组间休息 15秒', tags: ['高强度'] },
+    { exId: 'march-knee', name: '原地高抬腿', emoji: '🔥', detail: '控制节奏原地抬膝，稳定心肺', sets: '3组 × 45秒', rest: '组间休息 15秒', tags: ['低冲击'] },
+    { exId: 'punch-knee', name: '高抬腿冲拳', emoji: '👊', detail: '抬膝同时对侧出拳，激活上肢', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['上肢', '协调'] },
+    { exId: 'side-knee', name: '侧向高抬腿', emoji: '↔️', detail: '左右转体抬膝，强化侧腹', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['侧腹', '协调'] }
   ],
   'jump-squat': [
-    { exId: 'lunge-jump', name: '弓步跳', emoji: '🦵', detail: '交替弓步跳，下肢爆发', sets: '3组 × 12次', rest: '组间休息 30秒', tags: ['高强度', '燃脂'] },
-    { exId: 'burpee', name: '波比跳', emoji: '🔥', detail: '深蹲+俯卧撑+跳，全身燃脂', sets: '3组 × 8次', rest: '组间休息 30秒', tags: ['全身', '高强度'] },
-    { exId: 'vertical-jump', name: '纵跳', emoji: '⚡', detail: '原地向上爆发纵跳，训练弹跳', sets: '3组 × 15次', rest: '组间休息 30秒', tags: ['爆发'] },
-    { exId: 'split-jump', name: '交替分腿跳', emoji: '🦵', detail: '左右分腿跳换，动态下肢', sets: '3组 × 20次', rest: '组间休息 30秒', tags: ['燃脂'] }
+    { exId: 'continuous-jump-squat', name: '连续跳跃深蹲', emoji: '🔥', detail: '落地即起，保持连续爆发', sets: '3组 × 15次', rest: '组间休息 30秒', tags: ['燃脂', '爆发'] },
+    { exId: 'turn-jump-squat', name: '转体深蹲跳', emoji: '🔄', detail: '跳起转体180度，增加方向控制', sets: '3组 × 12次', rest: '组间休息 30秒', tags: ['协调', '爆发'] },
+    { exId: 'single-leg-jump-squat', name: '单腿深蹲跳', emoji: '🦵', detail: '单腿落地缓冲，提升单侧爆发', sets: '3组 × 8次（每侧）', rest: '组间休息 30秒', tags: ['单侧', '高强度'] },
+    { exId: 'hands-behind-jump-squat', name: '抱头深蹲跳', emoji: '🤲', detail: '双手抱头深蹲跳，核心参与更多', sets: '3组 × 12次', rest: '组间休息 30秒', tags: ['核心', '爆发'] }
   ],
   'mountain-climber': [
-    { exId: 'plank-shoulder-tap', name: '平板交替摸肩', emoji: '💪', detail: '平板支撑交替摸肩，核心稳定', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['核心', '低冲击'] },
-    { exId: 'spider-climber', name: '蜘蛛式登山', emoji: '🕷️', detail: '膝盖外展提膝，侧腹训练', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['侧腹', '燃脂'] },
-    { exId: 'side-climber', name: '侧向登山', emoji: '🔥', detail: '膝盖向同侧肘部提，旋转核心', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['旋转', '核心'] },
-    { exId: 'cross-climber', name: '交叉登山', emoji: '⚡', detail: '膝盖对角提膝，全身协调', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['协调', '燃脂'] }
+    { exId: 'spider-climber', name: '蜘蛛式登山跑', emoji: '🕷️', detail: '膝盖外展提膝，侧腹训练', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['侧腹', '燃脂'] },
+    { exId: 'side-climber', name: '侧向登山跑', emoji: '🔥', detail: '膝盖向同侧肘部提，旋转核心', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['旋转', '核心'] },
+    { exId: 'cross-climber', name: '交叉登山跑', emoji: '⚡', detail: '膝盖对角提膝，全身协调', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['协调', '燃脂'] },
+    { exId: 'slow-climber', name: '慢速登山跑', emoji: '🐢', detail: '慢速控制提膝，强化核心稳定', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['核心', '低冲击'] }
   ]
 };
 
