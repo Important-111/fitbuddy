@@ -1790,5 +1790,14 @@ Page({
       cautions: d.mistakes.map(function(m) { return { title: m[0], text: m[1] }; }),
       videos: d.videos.map(function(v) { return { platform: v[0], platformClass: v[1], title: v[2], desc: v[3] }; })
     });
+  },
+
+  navigateBack() {
+    wx.navigateBack({
+      delta: 1,
+      fail: function() {
+        wx.switchTab({ url: '/pages/dashboard/index' });
+      }
+    });
   }
 });
