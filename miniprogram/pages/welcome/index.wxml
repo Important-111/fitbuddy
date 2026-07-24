@@ -102,6 +102,39 @@
     </view>
   </view>
 
+  <!-- 推荐视频教程 -->
+  <view class="video-section">
+    <view class="video-section-header">
+      <text class="video-section-title">推荐视频教程</text>
+      <view class="video-section-more" bindtap="goToTrainingPlan">
+        <text>更多</text>
+        <text>›</text>
+      </view>
+    </view>
+    <view class="video-list">
+      <view
+        wx:for="{{videos}}"
+        wx:key="exId"
+        class="video-item"
+        bindtap="onTapVideo"
+        data-exid="{{item.exId}}"
+      >
+        <view class="video-thumb {{item.thumb}}">
+          <view class="video-play">▶</view>
+          <text class="video-duration">{{item.duration}}</text>
+        </view>
+        <view class="video-info">
+          <view class="video-title">{{item.title}}</view>
+          <view class="video-meta">
+            <text>{{item.cat}}</text>
+            <text class="video-meta-dot">·</text>
+            <text>{{item.duration}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
   <!-- 底部操作 -->
   <view class="bottom-cta">
     <button wx:if="{{hasProfile}}" class="btn-primary" bindtap="goToAnalysis">查看我的分析报告</button>

@@ -112,9 +112,11 @@
           </view>
         </view>
 
-        <view class="exercise-arrow">›</view>
-      </view>
-      <view wx:if="{{index < exercises.length - 1}}" class="flow-arrow">↓</view>
+          <view class="swap-btn" catchtap="openSwap" data-exid="{{item.exId}}" wx:if="{{item.swaps.length}}">换</view>
+
+          <view class="exercise-arrow">›</view>
+        </view>
+        <view wx:if="{{index < exercises.length - 1}}" class="flow-arrow">↓</view>
     </view>
   </view>
 
@@ -170,8 +172,43 @@
 
   <!-- 底部操作栏 -->
   <view class="bottom-bar">
-    <button class="btn-outline" bindtap="navigateTo" data-url="/pages/exercise-detail/index">查看动作详解</button>
+    <button class="btn-outline" catchtap="openSwapFromBottom">自由替换动作</button>
+    <button class="btn-outline {{quickCheckinDone ? 'done' : ''}}" catchtap="quickCheckin">{{quickCheckinDone ? '✅ 已打卡' : '快速打卡'}}</button>
     <button class="btn-primary" bindtap="navigateTo" data-url="/pages/daily-checkin/index">完成训练 · 去打卡</button>
+  </view>
+
+  <!-- v2.1 自由替换动作弹窗 -->
+  <view class="swap-modal {{swapShow ? 'show' : ''}}" wx:if="{{swapShow}}">
+    <view class="swap-content">
+      <view class="swap-header">
+        <view class="swap-title">自由替换动作</view>
+        <view class="swap-close" catchtap="closeSwap">×</view>
+      </view>
+      <view class="swap-current">
+        <text class="swap-current-emoji">{{swapCurrent.emoji}}</text>
+        <view>
+          <view class="swap-current-label">当前动作</view>
+          <view class="swap-current-name">{{swapCurrent.name}}</view>
+        </view>
+      </view>
+      <view class="swap-options-title">选择替换动作（同肌群）</view>
+      <view
+        wx:for="{{swapOptions}}"
+        wx:key="exId"
+        class="swap-option"
+        catchtap="applySwap"
+        data-exid="{{item.exId}}"
+      >
+        <view class="swap-option-emoji">{{item.emoji}}</view>
+        <view class="swap-option-info">
+          <view class="swap-option-name">{{item.name}}</view>
+          <view class="swap-option-detail">{{item.detail}}</view>
+          <view class="swap-option-tags">
+            <text wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this" wx:if="{{t}}" class="swap-option-tag">{{t}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 
   <!-- 最后5秒全屏倒数 -->

@@ -6,7 +6,14 @@ Page({
     profile: {},
     bmi: { value: '--', category: '', categoryCN: '' },
     bmiTagClass: '',
-    bmiTagStyle: ''
+    bmiTagStyle: '',
+    // 推荐视频教程（PATCHED: welcome video exId mapping）
+    videos: [
+      { exId: 'squat', title: '自重深蹲动作详解', cat: '力量', duration: '3:25', thumb: '' },
+      { exId: 'bridge', title: '臀桥动作详解', cat: '力量', duration: '4:10', thumb: 'green' },
+      { exId: 'lunge', title: '弓步蹲动作详解', cat: '力量', duration: '5:48', thumb: 'blue' },
+      { exId: 'side-leg', title: '侧卧抬腿动作详解', cat: '力量', duration: '6:32', thumb: 'purple' }
+    ]
   },
 
   onLoad() {
@@ -66,5 +73,16 @@ Page({
 
   onEditProfile() {
     wx.navigateTo({ url: '/pages/profile/index' });
+  },
+
+  // 视频点击 → 跳转到对应动作说明页（exId 映射）
+  onTapVideo(e) {
+    const exId = e.currentTarget.dataset.exid;
+    if (!exId) return;
+    wx.navigateTo({ url: '/pages/exercise-detail/index?id=' + exId });
+  },
+
+  goToTrainingPlan() {
+    wx.navigateTo({ url: '/pages/training-plan/index' });
   }
 });

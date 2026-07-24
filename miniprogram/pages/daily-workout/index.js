@@ -3,6 +3,64 @@ const { Store } = require('../../utils/store');
 const DEFAULT_TIMER_SEC = 30;
 const WARMUP_TIMER_SEC = 300;
 
+// 动作 emoji（用于换动作弹窗的「当前动作」展示）
+const EX_EMOJI = {
+  'squat': '🦵', 'bridge': '🍑', 'lunge': '🦵', 'side-leg': '🍑',
+  'jumping-jack': '⚡', 'high-knees': '🔥', 'jump-squat': '⚡', 'mountain-climber': '🔥'
+};
+
+// v2.1 自由替换动作：每个正式训练动作的替身动作池（同肌群）
+const SWAP_POOL = {
+  'squat': [
+    { exId: 'wall-sit', name: '靠墙静蹲', emoji: '🧱', detail: '背靠墙壁保持坐姿，对膝关节压力小', sets: '3组 × 45秒', rest: '组间休息 45秒', tags: ['低冲击', '护膝盖'] },
+    { exId: 'bulgarian-split', name: '保加利亚分腿蹲', emoji: '🦵', detail: '单腿后搭高处，强化单侧下肢力量', sets: '3组 × 10次（每侧）', rest: '组间休息 60秒', tags: ['高强度', '单侧训练'] },
+    { exId: 'jump-squat', name: '跳跃深蹲', emoji: '⚡', detail: '爆发力训练，提升心率燃脂效率', sets: '3组 × 12次', rest: '组间休息 45秒', tags: ['燃脂', '高强度'] },
+    { exId: 'sumo-squat', name: '相扑深蹲', emoji: '🦵', detail: '宽站距深蹲，重点刺激大腿内侧', sets: '3组 × 15次', rest: '组间休息 45秒', tags: ['内收肌', '塑形'] }
+  ],
+  'bridge': [
+    { exId: 'single-leg-bridge', name: '单腿臀桥', emoji: '🍑', detail: '单腿支撑顶髋，强化臀部力量不平衡', sets: '3组 × 12次（每侧）', rest: '组间休息 45秒', tags: ['进阶', '单侧'] },
+    { exId: 'clamshell', name: '蚌式开合', emoji: '🦪', detail: '侧卧屈膝开合，激活臀中肌', sets: '3组 × 20次（每侧）', rest: '组间休息 30秒', tags: ['臀中肌', '低冲击'] },
+    { exId: 'kneeling-kickback', name: '跪姿后踢腿', emoji: '🍑', detail: '四足跪姿向后上方踢腿，孤立臀大肌', sets: '3组 × 15次（每侧）', rest: '组间休息 30秒', tags: ['孤立训练'] },
+    { exId: 'barbell-bridge', name: '负重臀桥', emoji: '🏋️', detail: '加大负重突破臀大肌力量瓶颈', sets: '4组 × 10次', rest: '组间休息 60秒', tags: ['负重', '进阶'] }
+  ],
+  'lunge': [
+    { exId: 'reverse-lunge', name: '反向弓步', emoji: '🔙', detail: '后撤步弓步，对膝盖压力小于前弓步', sets: '3组 × 12次（每侧）', rest: '组间休息 60秒', tags: ['护膝盖', '低冲击'] },
+    { exId: 'side-lunge', name: '侧弓步', emoji: '↔️', detail: '侧向跨步下蹲，刺激大腿内侧', sets: '3组 × 12次（每侧）', rest: '组间休息 45秒', tags: ['内收肌', '变化方向'] },
+    { exId: 'walking-lunge', name: '行走弓步', emoji: '🚶', detail: '行进间交替弓步，提升平衡能力', sets: '3组 × 20步', rest: '组间休息 60秒', tags: ['功能性', '动态'] },
+    { exId: 'jump-lunge', name: '跳跃弓步', emoji: '⚡', detail: '弓步跳换，爆发力+燃脂双效', sets: '3组 × 10次（每侧）', rest: '组间休息 60秒', tags: ['高强度', '燃脂'] }
+  ],
+  'side-leg': [
+    { exId: 'clamshell-2', name: '蚌式开合', emoji: '🦪', detail: '屈膝侧卧开合，臀中肌经典动作', sets: '3组 × 20次（每侧）', rest: '组间休息 30秒', tags: ['臀中肌', '经典'] },
+    { exId: 'side-plank-leg', name: '侧平板抬腿', emoji: '📊', detail: '侧平板支撑姿态下抬上侧腿，难度进阶', sets: '3组 × 12次（每侧）', rest: '组间休息 45秒', tags: ['高强度', '核心'] },
+    { exId: 'standing-side-leg', name: '站姿侧抬腿', emoji: '🧍', detail: '站立位侧向抬腿，可扶墙保持平衡', sets: '3组 × 15次（每侧）', rest: '组间休息 30秒', tags: ['低冲击', '简单'] },
+    { exId: 'resistance-band-walk', name: '弹力带侧走', emoji: '🎟️', detail: '膝盖套弹力带横向螃蟹步行走', sets: '3组 × 20步（每方向）', rest: '组间休息 45秒', tags: ['臀中肌', '需器材'] }
+  ],
+  'jumping-jack': [
+    { exId: 'side-jack', name: '侧向开合跳', emoji: '⚡', detail: '左右脚交替侧向开合，减少肩部冲击', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['低冲击', '燃脂'] },
+    { exId: 'cross-jack', name: '交叉开合跳', emoji: '🔥', detail: '手脚交叉开合，增加协调难度', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['协调', '燃脂'] },
+    { exId: 'squat-jack', name: '深蹲开合跳', emoji: '🦵', detail: '开合同时加入深蹲，强化下肢', sets: '3组 × 20次', rest: '组间休息 20秒', tags: ['下肢', '燃脂'] },
+    { exId: 'star-jack', name: '星跳', emoji: '🌟', detail: '全身展开跳跃，最大心率提升', sets: '3组 × 15次', rest: '组间休息 20秒', tags: ['高强度'] }
+  ],
+  'high-knees': [
+    { exId: 'butt-kick', name: '踢臀跑', emoji: '🔥', detail: '原地快速踢臀，提升步频', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['燃脂', '简单'] },
+    { exId: 'jog-in-place', name: '原地慢跑', emoji: '🏃', detail: '低强度热身跑，易坚持', sets: '3组 × 45秒', rest: '组间休息 15秒', tags: ['低冲击'] },
+    { exId: 'fast-knee', name: '快速高抬膝', emoji: '⚡', detail: '加快频率高抬膝，冲刺感', sets: '3组 × 20秒', rest: '组间休息 15秒', tags: ['高强度'] },
+    { exId: 'ski-jump', name: '滑雪跳', emoji: '🎿', detail: '左右跳跃模拟滑雪，训练灵敏', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['灵敏', '燃脂'] }
+  ],
+  'jump-squat': [
+    { exId: 'lunge-jump', name: '弓步跳', emoji: '🦵', detail: '交替弓步跳，下肢爆发', sets: '3组 × 12次', rest: '组间休息 30秒', tags: ['高强度', '燃脂'] },
+    { exId: 'burpee', name: '波比跳', emoji: '🔥', detail: '深蹲+俯卧撑+跳，全身燃脂', sets: '3组 × 8次', rest: '组间休息 30秒', tags: ['全身', '高强度'] },
+    { exId: 'vertical-jump', name: '纵跳', emoji: '⚡', detail: '原地向上爆发纵跳，训练弹跳', sets: '3组 × 15次', rest: '组间休息 30秒', tags: ['爆发'] },
+    { exId: 'split-jump', name: '交替分腿跳', emoji: '🦵', detail: '左右分腿跳换，动态下肢', sets: '3组 × 20次', rest: '组间休息 30秒', tags: ['燃脂'] }
+  ],
+  'mountain-climber': [
+    { exId: 'plank-shoulder-tap', name: '平板交替摸肩', emoji: '💪', detail: '平板支撑交替摸肩，核心稳定', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['核心', '低冲击'] },
+    { exId: 'spider-climber', name: '蜘蛛式登山', emoji: '🕷️', detail: '膝盖外展提膝，侧腹训练', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['侧腹', '燃脂'] },
+    { exId: 'side-climber', name: '侧向登山', emoji: '🔥', detail: '膝盖向同侧肘部提，旋转核心', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['旋转', '核心'] },
+    { exId: 'cross-climber', name: '交叉登山', emoji: '⚡', detail: '膝盖对角提膝，全身协调', sets: '3组 × 30秒', rest: '组间休息 15秒', tags: ['协调', '燃脂'] }
+  ]
+};
+
 function parseRestSeconds(text, fallback) {
   if (!text) return (fallback !== undefined ? fallback : DEFAULT_TIMER_SEC);
   const m = String(text).match(/(\d+)\s*秒/);
@@ -68,7 +126,14 @@ Page({
     },
     // 当前活跃 timer 定位（用于 nextSet 重置）
     _activeList: '',
-    _activeIdx: -1
+    _activeIdx: -1,
+    // v2.1 自由替换动作
+    swapShow: false,
+    swapCurrent: { exId: '', name: '', emoji: '💪' },
+    swapOptions: [],
+    _swapIdx: -1,
+    // v1.10 快速打卡
+    quickCheckinDone: false
   },
 
   onLoad() {
@@ -151,7 +216,12 @@ Page({
       });
     }
 
-    exercises = withTimer(exercises);
+    exercises = withTimer(exercises).map(function(e) {
+      return Object.assign({}, e, {
+        emoji: EX_EMOJI[e.exId] || '💪',
+        swaps: SWAP_POOL[e.exId] || []
+      });
+    });
     stretches = withTimer(stretches);
     warmups = withTimer(warmups, WARMUP_TIMER_SEC);
 
@@ -346,5 +416,86 @@ Page({
   navigateTo(e) {
     const url = e.currentTarget.dataset.url;
     wx.navigateTo({ url });
+  },
+
+  // ===== v2.1 自由替换动作 =====
+  openSwap(e) {
+    const exId = e.currentTarget.dataset.exid;
+    const list = this.data.exercises || [];
+    const idx = list.findIndex(function(x) { return x.exId === exId; });
+    if (idx < 0) return;
+    const item = list[idx];
+    const swaps = item.swaps || [];
+    if (!swaps.length) {
+      wx.showToast({ title: '该动作暂无可替换项', icon: 'none' });
+      return;
+    }
+    this.setData({
+      swapShow: true,
+      swapCurrent: { exId: item.exId, name: item.name, emoji: item.emoji || '💪' },
+      swapOptions: swaps,
+      _swapIdx: idx
+    });
+  },
+
+  openSwapFromBottom() {
+    const list = this.data.exercises || [];
+    let idx = list.findIndex(function(x) { return !x.done && x.swaps && x.swaps.length; });
+    if (idx < 0) idx = list.findIndex(function(x) { return x.swaps && x.swaps.length; });
+    if (idx < 0) return;
+    this.openSwap({ currentTarget: { dataset: { exid: list[idx].exId } } });
+  },
+
+  closeSwap() {
+    this.setData({ swapShow: false });
+  },
+
+  applySwap(e) {
+    const newExId = e.currentTarget.dataset.exid;
+    const idx = this.data._swapIdx;
+    if (idx < 0) { this.closeSwap(); return; }
+    const opt = (this.data.swapOptions || []).find(function(s) { return s.exId === newExId; });
+    if (!opt) { this.closeSwap(); return; }
+    const exercises = (this.data.exercises || []).slice();
+    const it = Object.assign({}, exercises[idx]);
+    it.name = opt.name;
+    it.detail = opt.detail;
+    it.sets = opt.sets;
+    it.rest = opt.rest;
+    it.exId = opt.exId;
+    it.emoji = opt.emoji;
+    it.swaps = this.data.swapOptions; // 替身后保持同一替身池，可继续替换/换回
+    exercises[idx] = it;
+    this.setData({ exercises: exercises, swapShow: false });
+    wx.showToast({ title: '已替换为 ' + opt.name, icon: 'success' });
+  },
+
+  // ===== v1.10 快速打卡 =====
+  getTodayKey() {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  },
+
+  quickCheckin() {
+    const today = this.getTodayKey();
+    const key = 'fb_quick_checkin_' + today;
+    const wasAlready = !!wx.getStorageSync(key);
+    const record = {
+      date: today,
+      time: new Date().toISOString(),
+      totalExercises: (this.data.exercises || []).length,
+      workoutName: this.data.workoutName
+    };
+    wx.setStorageSync(key, record);
+    this.setData({ quickCheckinDone: true });
+    try { wx.vibrateShort && wx.vibrateShort({ type: 'light' }); } catch (err) {}
+    wx.showToast({
+      title: wasAlready ? '今日已打卡，继续加油！' : '打卡成功！已记录 🎉',
+      icon: 'success'
+    });
+    const self = this;
+    setTimeout(function() {
+      wx.navigateTo({ url: '/pages/daily-checkin/index' });
+    }, wasAlready ? 800 : 1100);
   }
 });

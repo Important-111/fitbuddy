@@ -72,3 +72,101 @@
   background: rgba(236,72,153,0.1);
   color: #EC4899;
 }
+
+/* 推荐视频教程（PATCHED: welcome video exId mapping） */
+.video-section {
+  padding: 0 24px 24px;
+}
+.video-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.video-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.video-section-more {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.video-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.video-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+}
+.video-thumb {
+  position: relative;
+  width: 96px;
+  height: 64px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #FF6B35, #FF8C5A);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.video-thumb.green { background: linear-gradient(135deg, #36CFC9, #5DD9C9); }
+.video-thumb.blue { background: linear-gradient(135deg, #165DFF, #4080FF); }
+.video-thumb.purple { background: linear-gradient(135deg, #8B5CF6, #A78BFA); }
+.video-play {
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FF6B35;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.video-duration {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(0,0,0,0.6);
+  color: #FFFFFF;
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 400;
+}
+.video-info {
+  flex: 1;
+  min-width: 0;
+}
+.video-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.video-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+.video-meta-dot { color: var(--border); }
