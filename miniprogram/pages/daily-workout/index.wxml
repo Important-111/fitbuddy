@@ -177,11 +177,38 @@
     <button class="btn-primary" bindtap="navigateTo" data-url="/pages/daily-checkin/index">完成训练 · 去打卡</button>
   </view>
 
+  <!-- 底部「自由替换动作」：先选要替换哪个动作 -->
+  <view class="swap-modal {{swapPickShow ? 'show' : ''}}" wx:if="{{swapPickShow}}">
+    <view class="swap-content">
+      <view class="swap-header">
+        <view class="swap-title">选择要替换的动作</view>
+        <view class="swap-close" catchtap="closeSwapPick">×</view>
+      </view>
+      <view class="swap-pick-tip">选择下方某个动作，进入它的可替换列表</view>
+      <view class="swap-pick-list">
+        <view
+          wx:for="{{swapPickList}}"
+          wx:key="exId"
+          class="swap-pick-item"
+          catchtap="openSwapPick"
+          data-exid="{{item.exId}}"
+        >
+          <text class="swap-pick-emoji">{{item.emoji}}</text>
+          <view class="swap-pick-info">
+            <view class="swap-pick-name">{{item.name}}</view>
+            <view class="swap-pick-sets">{{item.sets}}</view>
+          </view>
+          <view class="swap-pick-arrow">›</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
   <!-- v2.1 自由替换动作弹窗 -->
   <view class="swap-modal {{swapShow ? 'show' : ''}}" wx:if="{{swapShow}}">
     <view class="swap-content">
       <view class="swap-header">
-        <view class="swap-title">自由替换动作</view>
+        <view class="swap-title">替换动作 · {{swapCurrent.name}}</view>
         <view class="swap-close" catchtap="closeSwap">×</view>
       </view>
       <view class="swap-current">

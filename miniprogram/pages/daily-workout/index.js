@@ -157,6 +157,9 @@ Page({
     swapCurrent: { exId: '', name: '', emoji: '💪' },
     swapOptions: [],
     _swapIdx: -1,
+    // 底部「自由替换动作」：先选要替换哪个动作
+    swapPickShow: false,
+    swapPickList: [],
     // 动态热身：选择热身动作
     warmupSelectShow: false,
     warmupCandidates: [],
@@ -462,11 +465,25 @@ Page({
   },
 
   openSwapFromBottom() {
-    const list = this.data.exercises || [];
-    let idx = list.findIndex(function(x) { return !x.done && x.swaps && x.swaps.length; });
-    if (idx < 0) idx = list.findIndex(function(x) { return x.swaps && x.swaps.length; });
-    if (idx < 0) return;
-    this.openSwap({ currentTarget: { dataset: { exid: list[idx].exId } } });
+    const list = (this.data.exercises || []).filter(function(x) { return x.swaps && x.swaps.length; });
+    if (!list.length) {
+      wx.showToast({ title: '暂无可替换动作', icon: 'none' });
+      return;
+    }
+    const pickList = list.map(function(x) {
+      return { exId: x.exId, name: x.name, emoji: x.emoji || '💪', sets: x.sets };
+    });
+    this.setData({ swapPickShow: true, swapPickList: pickList });
+  },
+
+  openSwapPick(e) {
+    const exId = e.currentTarget.dataset.exid;
+    this.setData({ swapPickShow: false });
+    this.openSwap({ currentTarget: { dataset: { exid: exId } } });
+  },
+
+  closeSwapPick() {
+    this.setData({ swapPickShow: false });
   },
 
   closeSwap() {
