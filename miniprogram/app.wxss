@@ -38,6 +38,8 @@ page {
 /* ===== 顶部导航 ===== */
 .top-bar {
   padding: 14px 20px;
+  padding-top: calc(14px + constant(safe-area-inset-top));
+  padding-top: calc(14px + env(safe-area-inset-top));
   display: flex;
   align-items: center;
   gap: 12px;

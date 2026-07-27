@@ -66,5 +66,6 @@ Page({
 
   onEditProfile() {
     wx.navigateTo({ url: '/pages/profile/index' });
-  }
+  },
+
 });
