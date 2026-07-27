@@ -82,15 +82,4 @@
     </view>
   </view>
 
-  <!-- 视频教程推荐 -->
-  <view class="video-section">
-    <view class="info-title">视频教程推荐</view>
-    <view wx:for="{{videos}}" wx:key="platform" class="video-card">
-      <text class="video-platform {{item.platformClass}}">{{item.platform}}</text>
-      <view class="video-info">
-        <view class="video-title">{{item.title}}</view>
-        <view class="video-desc">{{item.desc}}</view>
-      </view>
-    </view>
-  </view>
 </view>

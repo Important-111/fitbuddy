@@ -88,7 +88,7 @@
       </view>
       <view class="feature-text">
         <text class="feature-text-title">专业动作指导</text>
-        <text class="feature-text-desc">每个训练动作配有详细说明、常见错误纠正和视频教程推荐</text>
+        <text class="feature-text-desc">每个训练动作配有详细说明与常见错误纠正</text>
       </view>
     </view>
     <view class="feature-card">
@@ -102,38 +102,6 @@
     </view>
   </view>
 
-  <!-- 推荐视频教程 -->
-  <view class="video-section">
-    <view class="video-section-header">
-      <text class="video-section-title">推荐视频教程</text>
-      <view class="video-section-more" bindtap="goToTrainingPlan">
-        <text>更多</text>
-        <text>›</text>
-      </view>
-    </view>
-    <view class="video-list">
-      <view
-        wx:for="{{videos}}"
-        wx:key="exId"
-        class="video-item"
-        bindtap="onTapVideo"
-        data-exid="{{item.exId}}"
-      >
-        <view class="video-thumb {{item.thumb}}">
-          <view class="video-play">▶</view>
-          <text class="video-duration">{{item.duration}}</text>
-        </view>
-        <view class="video-info">
-          <view class="video-title">{{item.title}}</view>
-          <view class="video-meta">
-            <text>{{item.cat}}</text>
-            <text class="video-meta-dot">·</text>
-            <text>{{item.duration}}</text>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
 
   <!-- 底部操作 -->
   <view class="bottom-cta">
