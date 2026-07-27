@@ -48,32 +48,6 @@ const EXERCISE_DATA = {
         "下蹲过浅",
         "只做半程动作，效果大打折扣。尽量蹲至大腿与地面平行"
       ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Bodyweight Squat Tutorial",
-        "How to Do a Perfect Squat"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "徒手深蹲教学",
-        "从零开始学会标准深蹲"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "臀腿燃脂课程",
-        "包含深蹲及其他下肢训练"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "女生臀腿训练",
-        "深蹲变式及臀腿训练合集"
-      ]
     ]
   },
   "bridge": {
@@ -122,32 +96,6 @@ const EXERCISE_DATA = {
       [
         "下落太快",
         "自由落体式下落容易受伤。用 2-3 秒有控制地下落"
-      ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Glute Bridge Tutorial",
-        "Proper Form & Tips"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "臀桥标准动作",
-        "臀部激活教学"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "蜜桃臀训练",
-        "臀桥及变式"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "臀桥合集",
-        "女生臀部训练"
       ]
     ]
   },
@@ -199,32 +147,6 @@ const EXERCISE_DATA = {
         "上身前倾",
         "上身过度前倾减少臀部发力。保持上身直立，核心收紧"
       ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Lunge Tutorial",
-        "How to Do Lunges Correctly"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "弓步蹲教学",
-        "标准动作讲解"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "单腿训练",
-        "弓步蹲及变式"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "弓步蹲合集",
-        "腿部线条训练"
-      ]
     ]
   },
   "side-leg": {
@@ -273,32 +195,6 @@ const EXERCISE_DATA = {
       [
         "下落太快",
         "自由落体式下落效果减半。用 2-3 秒有控制地下落"
-      ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Side Lying Leg Raise",
-        "Gluteus Medius Activation"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "侧卧抬腿教学",
-        "臀中肌训练"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "臀部侧方训练",
-        "臀中肌激活"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "侧臀塌陷改善",
-        "臀中肌专项"
       ]
     ]
   },
@@ -350,32 +246,6 @@ const EXERCISE_DATA = {
         "憋气",
         "紧张时容易憋气。保持自然呼吸节奏"
       ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Jumping Jack Tutorial",
-        "Proper Form for Cardio"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "开合跳教学",
-        "热身燃脂入门"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "燃脂热身",
-        "开合跳组合训练"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "居家燃脂",
-        "开合跳合集"
-      ]
     ]
   },
   "high-knees": {
@@ -425,32 +295,6 @@ const EXERCISE_DATA = {
       [
         "节奏混乱",
         "忽快忽慢容易疲劳。保持稳定的中等节奏"
-      ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "High Knees Tutorial",
-        "Cardio Form Guide"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "高抬腿教学",
-        "核心燃脂训练"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "HIIT 燃脂",
-        "高抬腿组合"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "居家有氧",
-        "高抬腿合集"
       ]
     ]
   },
@@ -502,32 +346,6 @@ const EXERCISE_DATA = {
         "背部弯曲",
         "下蹲或起跳时弓背。全程保持背部挺直，核心收紧"
       ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Jump Squat Tutorial",
-        "Plyometric Form"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "深蹲跳教学",
-        "爆发力训练"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "HIIT 燃脂",
-        "深蹲跳组合"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "燃脂动作",
-        "深蹲跳合集"
-      ]
     ]
   },
   "mountain-climber": {
@@ -578,32 +396,6 @@ const EXERCISE_DATA = {
         "节奏过快失去控制",
         "盲目求快动作变形。保持中等节奏，动作完整优先"
       ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Mountain Climber Form",
-        "Core + Cardio"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "登山跑教学",
-        "核心燃脂训练"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "HIIT 核心",
-        "登山跑组合"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "核心训练",
-        "登山跑合集"
-      ]
     ]
   },
   "wall-sit": {
@@ -652,32 +444,6 @@ const EXERCISE_DATA = {
       [
         "憋气",
         "血压升高。保持自然均匀呼吸"
-      ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Wall Sit Tutorial",
-        "Proper Form Guide"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "靠墙静蹲教学",
-        "护膝必练动作"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "腿部耐力课程",
-        "靠墙静蹲专项"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "护膝训练",
-        "康复静蹲合集"
       ]
     ]
   },
@@ -729,32 +495,6 @@ const EXERCISE_DATA = {
         "后腿借力",
         "减少前腿刺激。重心放在前脚"
       ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Bulgarian Split Squat",
-        "Form Tutorial"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "保加利亚分腿蹲",
-        "单腿训练讲解"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "下肢进阶",
-        "保加利亚蹲课程"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "翘臀不粗腿",
-        "保加利亚蹲合集"
-      ]
     ]
   },
   "sumo-squat": {
@@ -803,32 +543,6 @@ const EXERCISE_DATA = {
       [
         "下蹲过浅",
         "内收肌刺激不足。尽量蹲至大腿平行"
-      ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Sumo Squat Tutorial",
-        "Inner Thigh Focus"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "相扑深蹲",
-        "大腿内侧训练"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "腿部塑形",
-        "相扑蹲课程"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "大腿内侧",
-        "女生塑形合集"
       ]
     ]
   },
@@ -879,32 +593,6 @@ const EXERCISE_DATA = {
         "下落太快",
         "刺激不足。用 2-3 秒有控制地下落"
       ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Single-Leg Glute Bridge",
-        "Form & Tips"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "单腿臀桥",
-        "进阶臀部训练"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "臀部进阶",
-        "单腿臀桥课程"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "翘臀进阶",
-        "单腿臀桥合集"
-      ]
     ]
   },
   "clamshell": {
@@ -954,32 +642,6 @@ const EXERCISE_DATA = {
         "速度太快",
         "靠惯性。用 2 秒打开，2 秒下落"
       ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Clamshell Exercise",
-        "Gluteus Medius"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "蚌式开合",
-        "臀中肌激活"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "臀部激活",
-        "蚌式专项"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "臀中肌训练",
-        "蚌式合集"
-      ]
     ]
   },
   "kneeling-kickback": {
@@ -1027,32 +689,6 @@ const EXERCISE_DATA = {
       [
         "脚跟不向上",
         "刺激不足。脚跟正对天花板"
-      ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Donkey Kick Tutorial",
-        "Glute Isolation"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "跪姿后踢腿",
-        "翘臀必练"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "臀部孤立",
-        "后踢腿课程"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "翘臀不粗腿",
-        "后踢腿合集"
       ]
     ]
   },
@@ -1103,32 +739,6 @@ const EXERCISE_DATA = {
         "下落太快",
         "失去张力。用 2-3 秒有控制地下落"
       ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Barbell Glute Bridge",
-        "Form Tutorial"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "负重臀桥",
-        "进阶臀部训练"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "臀部力量",
-        "负重臀桥课程"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "翘臀进阶",
-        "负重臀桥合集"
-      ]
     ]
   },
   "reverse-lunge": {
@@ -1177,32 +787,6 @@ const EXERCISE_DATA = {
       [
         "后膝触地",
         "冲击力大。后膝向地面靠近但不触地"
-      ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Reverse Lunge Tutorial",
-        "Knee-Friendly"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "后撤弓步",
-        "护膝下肢训练"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "下肢训练",
-        "后撤弓步课程"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "弓步变式",
-        "后撤弓步合集"
       ]
     ]
   },
@@ -1253,32 +837,6 @@ const EXERCISE_DATA = {
         "上身过度前倾",
         "减少内侧刺激。保持上身直立"
       ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Side Lunge Tutorial",
-        "Inner Thigh"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "侧弓步",
-        "腿部多角度训练"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "腿部训练",
-        "侧弓步课程"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "大腿内侧",
-        "侧弓步合集"
-      ]
     ]
   },
   "walking-lunge": {
@@ -1327,32 +885,6 @@ const EXERCISE_DATA = {
       [
         "后膝触地",
         "冲击力大。后膝靠近但不触地"
-      ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Walking Lunge",
-        "Proper Form"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "行走弓步",
-        "功能性训练"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "下肢动态",
-        "行走弓步课程"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "燃脂腿部",
-        "行走弓步合集"
       ]
     ]
   },
@@ -1404,32 +936,6 @@ const EXERCISE_DATA = {
         "节奏过快",
         "容易失去平衡。每次落地稳定后再起跳"
       ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Jump Lunge Tutorial",
-        "Plyometric"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "跳跃弓步",
-        "HIIT动作"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "HIIT训练",
-        "跳跃弓步课程"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "燃脂爆汗",
-        "跳跃弓步合集"
-      ]
     ]
   },
   "clamshell-2": {
@@ -1478,32 +984,6 @@ const EXERCISE_DATA = {
       [
         "脚分离",
         "减弱阻力效果。双脚并拢"
-      ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Banded Clamshell",
-        "Glute Activation"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "阻力带蚌式",
-        "臀中肌进阶"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "阻力带臀部",
-        "蚌式专项"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "臀中肌进阶",
-        "阻力带合集"
       ]
     ]
   },
@@ -1554,32 +1034,6 @@ const EXERCISE_DATA = {
         "憋气",
         "血压升高。保持自然呼吸"
       ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Side Plank Leg Lift",
-        "Advanced Core"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "侧平板抬腿",
-        "复合训练"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "核心进阶",
-        "侧平板课程"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "核心训练",
-        "侧平板合集"
-      ]
     ]
   },
   "standing-side-leg": {
@@ -1629,32 +1083,6 @@ const EXERCISE_DATA = {
         "速度太快",
         "靠惯性。用 2 秒上抬，2 秒下落"
       ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Standing Side Leg Raise",
-        "Balance"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "站姿侧抬腿",
-        "臀中肌训练"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "臀部训练",
-        "站姿侧抬腿课程"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "改善臀凹陷",
-        "站姿侧抬腿合集"
-      ]
     ]
   },
   "resistance-band-walk": {
@@ -1703,32 +1131,6 @@ const EXERCISE_DATA = {
       [
         "阻力带位置不当",
         "刺激不足。套在脚踝或膝盖上方"
-      ]
-    ],
-    
-      [
-        "YouTube",
-        "pl-yt",
-        "Lateral Band Walk",
-        "Gluteus Medius"
-      ],
-      [
-        "B站",
-        "pl-bl",
-        "阻力带侧行走",
-        "臀中肌激活"
-      ],
-      [
-        "Keep",
-        "pl-kp",
-        "阻力带训练",
-        "侧行走课程"
-      ],
-      [
-        "小红书",
-        "pl-xs",
-        "蜜桃臀",
-        "阻力带侧行走合集"
       ]
     ]
   }
