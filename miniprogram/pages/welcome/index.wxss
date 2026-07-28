@@ -1,32 +1,154 @@
-/* Welcome page - most styles are in app.wxss, just add page-specific overrides */
-.welcome-hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 60px 24px 48px;
-}
-.welcome-hero .hero-title {
-  font-size: 32px !important;
-  font-weight: 800 !important;
-  color: #FFFFFF !important;
-  margin-bottom: 8px !important;
-  line-height: 1.2 !important;
-}
-.welcome-hero .hero-title2 {
-  font-size: 20px !important;
-  font-weight: 600 !important;
-  color: rgba(255,255,255,0.95) !important;
-  margin-bottom: 6px !important;
-  line-height: 1.4 !important;
-}
-.welcome-hero .hero-subtitle {
-  font-size: 14px !important;
-  font-weight: 400 !important;
-  color: rgba(255,255,255,0.8) !important;
-  line-height: 1.5 !important;
+/* Welcome page - 杂志编辑风 */
+.page-container.welcome-magazine {
+  background: #FAF6F0;
+  min-height: 100vh;
 }
 
+/* 超大混排标题 */
+.mag-header {
+  padding: 56px 24px 8px;
+}
+.mag-logo {
+  display: block;
+  font-size: 34px;
+  font-weight: 700;
+  color: #D85A30;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+.mag-tagline {
+  display: block;
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #444441;
+}
+.mag-date {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: #888780;
+}
+
+/* 橙色封面大卡 */
+.mag-cover {
+  margin: 18px 24px 0;
+  background: #D85A30;
+  border-radius: 20px;
+  padding: 24px 22px 22px;
+}
+.mag-cover-emoji {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 14px;
+}
+.mag-cover-title {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.35;
+}
+.mag-cover-sub {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+.mag-cover-btn {
+  margin-top: 18px;
+  background: #FFFFFF;
+  color: #D85A30;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 24px;
+  padding: 10px 0;
+  line-height: 1.4;
+}
+
+/* 不对称双卖点卡 */
+.mag-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 24px 0;
+}
+.mag-duo-card {
+  background: #F1EFE8;
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+.mag-duo-num {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #D85A30;
+}
+.mag-duo-label {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #888780;
+}
+
+/* 功能介绍网格 */
+.features-section {
+  padding: 24px 24px 0;
+}
+.features-section-title {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: #26215C;
+  margin-bottom: 14px;
+}
+.mag-feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.mag-feature-card {
+  background: #FFFFFF;
+  border: 1px solid #D3D1C7;
+  border-radius: 14px;
+  padding: 16px 14px;
+}
+.mag-feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.mag-feature-icon.orange { background: #FAECE7; }
+.mag-feature-icon.green { background: #E1F5EE; }
+.mag-feature-icon.blue { background: #E6F1FB; }
+.mag-feature-icon.purple { background: #EEEDFE; }
+.mag-feature-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444441;
+  margin-bottom: 4px;
+}
+.mag-feature-desc {
+  display: block;
+  font-size: 11px;
+  color: #888780;
+  line-height: 1.5;
+}
+
+/* 档案卡片（沿用原结构） */
 .profile-header-mod {
   display: flex;
   align-items: center;
@@ -51,25 +173,20 @@
 .profile-item.full {
   grid-column: span 2;
 }
-.feature-text-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-primary);
-  display: block;
-  margin-bottom: 2px;
-}
-.feature-text-desc {
-  font-size: 12px;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  display: block;
-}
 .profile-tag.male {
-  background: rgba(22,93,255,0.1);
+  background: rgba(22, 93, 255, 0.1);
   color: #165DFF;
 }
 .profile-tag.female {
-  background: rgba(236,72,153,0.1);
+  background: rgba(236, 72, 153, 0.1);
   color: #EC4899;
 }
 
+/* 隐私说明 */
+.privacy-note {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #888780;
+  padding: 20px 24px 32px;
+}
