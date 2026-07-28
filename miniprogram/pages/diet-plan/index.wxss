@@ -89,7 +89,7 @@
 }
 .meal-item {
   padding: 6px 12px;
-  background: #F9FAFB;
+  background: var(--paper);
   border-radius: 8px;
   font-size: 12px;
   color: var(--text-primary);

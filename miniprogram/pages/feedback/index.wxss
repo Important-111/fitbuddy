@@ -212,8 +212,8 @@
 }
 
 .check-box.checked {
-  background: #FF6B35;
-  border-color: #FF6B35;
+  background: var(--primary);
+  border-color: var(--primary);
 }
 
 .check-icon {
@@ -225,13 +225,13 @@
 
 .agree-text {
   font-size: 12px;
-  color: #6B7280;
+  color: var(--text-secondary);
   line-height: 1.5;
   flex: 1;
 }
 
 .agree-link {
-  color: #FF6B35;
+  color: var(--primary);
   font-weight: 500;
 }
 

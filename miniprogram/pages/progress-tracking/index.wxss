@@ -69,7 +69,7 @@
 }
 .chart-placeholder {
   height: 160px;
-  background: #F9FAFB;
+  background: var(--paper);
   border-radius: 8px;
   display: flex;
   align-items: flex-end;

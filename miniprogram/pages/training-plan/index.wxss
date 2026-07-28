@@ -46,7 +46,7 @@
 }
 
 .status-rest {
-  background: #F3F4F6;
+  background: var(--paper);
   color: var(--text-secondary);
 }
 

@@ -9,7 +9,7 @@
   </view>
 
   <!-- 连续打卡横幅 -->
-  <view class="streak-banner" style="background:linear-gradient(135deg,#FF6B35,#FF8F65);">
+  <view class="streak-banner">
     <view class="streak-header">
       <view>
         <view class="streak-fire">🔥</view>

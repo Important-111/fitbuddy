@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   background: #FFFFFF;
-  border-bottom: 1rpx solid #F0F2F5;
+  border-bottom: 1rpx solid var(--paper);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -28,8 +28,8 @@
 .back-arrow {
   width: 20rpx;
   height: 20rpx;
-  border-left: 4rpx solid #1F2937;
-  border-bottom: 4rpx solid #1F2937;
+  border-left: 4rpx solid var(--text-primary);
+  border-bottom: 4rpx solid var(--text-primary);
   transform: rotate(45deg);
 }
 
@@ -37,7 +37,7 @@
   flex: 1;
   font-size: 32rpx;
   font-weight: 600;
-  color: #1F2937;
+  color: var(--text-primary);
   text-align: center;
   padding-right: 60rpx;
 }
@@ -50,7 +50,7 @@
 
 .update-time {
   font-size: 24rpx;
-  color: #9CA3AF;
+  color: var(--text-tertiary);
   text-align: center;
   margin-bottom: 8rpx;
 }
@@ -83,44 +83,44 @@
 .section-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #1F2937;
+  color: var(--text-primary);
   margin-bottom: 16rpx;
   padding-left: 16rpx;
-  border-left: 6rpx solid #FF6B35;
+  border-left: 6rpx solid var(--primary);
 }
 
 .paragraph {
   font-size: 26rpx;
-  color: #4B5563;
+  color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: 12rpx;
 }
 
 .bold {
   font-weight: 600;
-  color: #1F2937;
+  color: var(--text-primary);
 }
 
 .code {
   font-family: 'Courier New', monospace;
-  background: #F3F4F6;
-  color: #FF6B35;
+  background: var(--paper);
+  color: var(--primary);
   padding: 2rpx 8rpx;
   border-radius: 4rpx;
   font-size: 24rpx;
 }
 
 .info-table {
-  background: #F9FAFB;
+  background: var(--paper);
   border-radius: 16rpx;
   overflow: hidden;
-  border: 1rpx solid #E5E7EB;
+  border: 1rpx solid var(--border);
   margin: 16rpx 0;
 }
 
 .info-row {
   display: flex;
-  border-bottom: 1rpx solid #E5E7EB;
+  border-bottom: 1rpx solid var(--border);
 }
 
 .info-row:last-child {
@@ -128,7 +128,7 @@
 }
 
 .info-row-head {
-  background: #FF6B35;
+  background: var(--primary);
 }
 
 .info-row-head .info-cell {
@@ -139,7 +139,7 @@
 .info-cell {
   padding: 16rpx;
   font-size: 24rpx;
-  color: #4B5563;
+  color: var(--text-secondary);
   line-height: 1.5;
 }
 

@@ -100,7 +100,7 @@
 }
 
 .bullet {
-  color: #FF6B35;
+  color: var(--primary);
   font-weight: 700;
   margin-right: 12rpx;
   font-size: 28rpx;
@@ -136,8 +136,8 @@
 }
 
 .check-box.checked {
-  background: #FF6B35;
-  border-color: #FF6B35;
+  background: var(--primary);
+  border-color: var(--primary);
 }
 
 .check-icon {
@@ -154,14 +154,14 @@
 }
 
 .link {
-  color: #FF6B35;
+  color: var(--primary);
   font-weight: 500;
 }
 
 .card-btn-primary {
   width: 100%;
   height: 88rpx;
-  background: #FF6B35;
+  background: var(--primary);
   color: #FFFFFF;
   border: none;
   border-radius: 16rpx;
