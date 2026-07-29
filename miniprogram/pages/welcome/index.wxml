@@ -1,73 +1,25 @@
-<view class="page-container no-tab welcome-magazine">
-  <!-- 超大混排标题 -->
-  <view class="mag-header">
-    <text class="mag-logo">飞特八弟</text>
-    <text class="mag-tagline">你的 AI 私人健身教练</text>
-    <text class="mag-date">每天 20 分钟，轻松练出好体态</text>
-  </view>
-
-  <!-- 橙色封面大卡 -->
-  <view class="mag-cover">
-    <view class="mag-cover-emoji">🏋️</view>
-    <text class="mag-cover-title">今天，从一次训练开始</text>
-    <text class="mag-cover-sub">基于你的身体数据，AI 生成专属每日训练计划</text>
-    <button wx:if="{{hasProfile}}" class="mag-cover-btn" bindtap="goToAnalysis">查看我的分析报告</button>
-    <button wx:else class="mag-cover-btn" bindtap="goToBasicInfo">开始建档</button>
-  </view>
-
-  <!-- 不对称双卖点卡 -->
-  <view class="mag-duo">
-    <view class="mag-duo-card">
-      <text class="mag-duo-num">4 大</text>
-      <text class="mag-duo-label">训练维度覆盖</text>
-    </view>
-    <view class="mag-duo-card">
-      <text class="mag-duo-num">30+</text>
-      <text class="mag-duo-label">标准动作指导</text>
-    </view>
-  </view>
-
-  <!-- 功能介绍 -->
-  <view class="features-section">
-    <text class="features-section-title">飞特八弟 能为你做什么</text>
-    <view class="mag-feature-grid">
-      <view class="mag-feature-card">
-        <view class="mag-feature-icon orange">📊</view>
-        <text class="mag-feature-title">个性化训练计划</text>
-        <text class="mag-feature-desc">基于身体数据与目标，AI 生成每日/每周/每月方案</text>
-      </view>
-      <view class="mag-feature-card">
-        <view class="mag-feature-icon green">🔄</view>
-        <text class="mag-feature-title">动态智能调整</text>
-        <text class="mag-feature-desc">根据完成度与身体反馈，每周自动优化强度</text>
-      </view>
-      <view class="mag-feature-card">
-        <view class="mag-feature-icon blue">📐</view>
-        <text class="mag-feature-title">专业动作指导</text>
-        <text class="mag-feature-desc">每个训练动作配有详细说明与常见错误纠正</text>
-      </view>
-      <view class="mag-feature-card">
-        <view class="mag-feature-icon purple">📈</view>
-        <text class="mag-feature-title">全方位进度追踪</text>
-        <text class="mag-feature-desc">体重、围度、体脂变化一目了然，里程碑激励</text>
-      </view>
+<view class="page-container welcome-page">
+  <!-- 顶部欢迎区 -->
+  <view class="welcome-hero">
+    <view class="hero-icon">
+      <text class="hero-icon-emoji">🏋️</text>
     </view>
     <text class="hero-title">飞特八弟</text>
     <text class="hero-title2">你的AI私人健身教练</text>
     <text class="hero-subtitle">陪你达成每一个目标</text>
   </view>
 
-  <!-- 已有档案：资料卡片 -->
+  <!-- 已有档案：基本资料卡片 -->
   <view wx:if="{{hasProfile}}" class="profile-section">
     <view class="profile-card">
-      <view class="profile-header-mod">
+      <view class="profile-header">
         <view class="profile-title">
-          <view class="profile-title-icon" style="background:var(--primary-light);border-radius:6px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;">
+          <view class="profile-title-icon">
             <text style="color:var(--primary);font-size:14px;">👤</text>
           </view>
           <text>我的基本资料</text>
         </view>
-        <view class="profile-action" bindtap="onEditProfile" style="font-size:13px;color:var(--primary);display:flex;align-items:center;gap:2px;">
+        <view class="profile-action" bindtap="onEditProfile">
           <text>✏️ 编辑</text>
         </view>
       </view>
@@ -109,5 +61,43 @@
     </view>
   </view>
 
-  <text class="privacy-note">你的数据仅用于制定训练计划，不会被分享</text>
+  <!-- 功能特点（横向卡片，对齐原型 feature-card） -->
+  <view class="features-section">
+    <text class="features-section-title">飞特八弟 能为你做什么</text>
+    <view class="feature-card">
+      <view class="feature-icon orange">📊</view>
+      <view class="feature-text">
+        <text class="feature-title">个性化训练计划</text>
+        <text class="feature-desc">基于你的身体数据和目标，AI生成专属每日/每周/每月训练方案</text>
+      </view>
+    </view>
+    <view class="feature-card">
+      <view class="feature-icon green">🔄</view>
+      <view class="feature-text">
+        <text class="feature-title">动态智能调整</text>
+        <text class="feature-desc">根据训练完成度和身体反馈，每周自动优化训练强度和内容</text>
+      </view>
+    </view>
+    <view class="feature-card">
+      <view class="feature-icon blue">📐</view>
+      <view class="feature-text">
+        <text class="feature-title">专业动作指导</text>
+        <text class="feature-desc">每个训练动作配有详细说明与常见错误纠正</text>
+      </view>
+    </view>
+    <view class="feature-card">
+      <view class="feature-icon purple">📈</view>
+      <view class="feature-text">
+        <text class="feature-title">全方位进度追踪</text>
+        <text class="feature-desc">体重、围度、体脂变化一目了然，里程碑激励让你保持动力</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="bottom-cta">
+    <button wx:if="{{hasProfile}}" class="btn-primary" bindtap="goToAnalysis">查看我的分析报告</button>
+    <button wx:else class="btn-primary" bindtap="goToBasicInfo">开始建档</button>
+    <text class="privacy-note">你的数据仅用于制定训练计划，不会被分享</text>
+  </view>
 </view>

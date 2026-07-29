@@ -1,156 +1,80 @@
-/* Welcome page - 暗黑力量 */
-.page-container.welcome-magazine {
-  background: var(--bg);
+/* Welcome page - 暗黑力量（对齐 HTML 原型） */
+.page-container.welcome-page {
+  background:
+    radial-gradient(ellipse 600rpx 400rpx at 80% 0%, rgba(204,255,0,0.10), transparent 60%),
+    radial-gradient(ellipse 500rpx 400rpx at 0% 100%, rgba(255,61,0,0.10), transparent 60%),
+    var(--bg);
   min-height: 100vh;
+  padding-bottom: 40px;
+  overflow-x: hidden;
 }
 
-/* 超大混排标题 */
-.mag-header {
-  padding: 56px 24px 8px;
+/* 顶部欢迎区 */
+.welcome-hero {
+  background:
+    radial-gradient(ellipse 400rpx 200rpx at 50% 0%, rgba(204,255,0,0.15), transparent 70%),
+    linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%);
+  padding: 60px 24px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.mag-logo {
-  display: block;
-  font-size: 34px;
-  font-weight: 700;
-  color: var(--primary);
-  letter-spacing: 1px;
-  line-height: 1.2;
-}
-.mag-tagline {
-  display: block;
-  margin-top: 6px;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-.mag-date {
-  display: block;
-  margin-top: 4px;
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-
-/* 橙色封面大卡 */
-.mag-cover {
-  margin: 18px 24px 0;
-  background: var(--primary);
-  border-radius: 20px;
-  padding: 24px 22px 22px;
-}
-.mag-cover-emoji {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.18);
+.hero-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(204,255,0,0.15);
+  border: 1px solid var(--primary);
+  border-radius: 24px;
+  margin: 0 auto 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
-  margin-bottom: 14px;
+  box-shadow: 0 0 40px rgba(204,255,0,0.4);
 }
-.mag-cover-title {
+.hero-icon-emoji {
+  font-size: 40px;
+  line-height: 1;
+}
+.hero-title {
   display: block;
-  font-size: 22px;
-  font-weight: 700;
-  color: #FFFFFF;
-  line-height: 1.35;
-}
-.mag-cover-sub {
-  display: block;
-  margin-top: 8px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.5;
-}
-.mag-cover-btn {
-  margin-top: 18px;
-  background: #0A0A0A;
+  font-size: 32px;
+  font-weight: 900;
   color: var(--primary);
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 24px;
-  padding: 10px 0;
-  line-height: 1.4;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+  text-shadow: 0 0 20px rgba(204,255,0,0.3);
 }
-
-/* 不对称双卖点卡 */
-.mag-duo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin: 16px 24px 0;
-}
-.mag-duo-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px 18px;
-}
-.mag-duo-num {
+.hero-title2 {
   display: block;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
 }
-.mag-duo-label {
+.hero-subtitle {
   display: block;
-  margin-top: 4px;
   font-size: 12px;
   color: var(--text-secondary);
-}
-
-/* 功能介绍网格 */
-.features-section {
-  padding: 24px 24px 0;
-}
-.features-section-title {
-  display: block;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 14px;
-}
-.mag-feature-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.mag-feature-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px 14px;
-}
-.mag-feature-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-.mag-feature-icon.orange { background: rgba(255, 61, 0, 0.18); }
-.mag-feature-icon.green { background: rgba(204, 255, 0, 0.15); }
-.mag-feature-icon.blue { background: rgba(80, 180, 255, 0.18); }
-.mag-feature-icon.purple { background: rgba(180, 100, 255, 0.18); }
-.mag-feature-title {
-  display: block;
-  font-size: 14px;
   font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 4px;
-}
-.mag-feature-desc {
-  display: block;
-  font-size: 11px;
-  color: var(--text-secondary);
-  line-height: 1.5;
+  letter-spacing: 2px;
 }
 
-/* 档案卡片（沿用原结构） */
-.profile-header-mod {
+/* 基本资料模块 */
+.profile-section {
+  padding: 24px;
+  margin-top: -40px;
+  position: relative;
+  z-index: 2;
+}
+.profile-card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid var(--border);
+}
+.profile-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -166,28 +90,141 @@
   font-weight: 700;
   color: var(--text-primary);
 }
+.profile-title-icon {
+  width: 24px;
+  height: 24px;
+  background: var(--primary-light);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-action {
+  font-size: 13px;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
 .profile-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px 20px;
 }
+.profile-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .profile-item.full {
   grid-column: span 2;
 }
+.profile-label {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+.profile-value {
+  font-size: 15px;
+  color: var(--text-primary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.profile-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid rgba(204,255,0,0.3);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
 .profile-tag.male {
-  background: rgba(22, 93, 255, 0.1);
-  color: #165DFF;
+  background: rgba(54,207,201,0.12);
+  color: #36CFC9;
+  border-color: rgba(54,207,201,0.3);
 }
 .profile-tag.female {
-  background: rgba(236, 72, 153, 0.1);
-  color: #EC4899;
+  background: rgba(255,61,0,0.15);
+  color: #FF3D00;
+  border-color: rgba(255,61,0,0.3);
 }
 
-/* 隐私说明 */
+/* 功能特点（横向卡片） */
+.features-section {
+  padding: 16px 24px 24px;
+}
+.features-section-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+.feature-card {
+  background: #242424;
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid var(--border);
+}
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+.feature-icon.orange { background: var(--primary-light); }
+.feature-icon.green { background: rgba(255,61,0,0.18); }
+.feature-icon.blue { background: rgba(54,207,201,0.12); }
+.feature-icon.purple { background: rgba(139,92,246,0.18); }
+.feature-text {
+  flex: 1;
+  min-width: 0;
+}
+.feature-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+.feature-desc {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* 底部操作 */
+.bottom-cta {
+  padding: 8px 24px 32px;
+}
+.bottom-cta .btn-primary {
+  width: 100%;
+  background: var(--primary);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  box-shadow: 0 0 30px rgba(204,255,0,0.5);
+}
 .privacy-note {
   display: block;
   text-align: center;
   font-size: 12px;
   color: var(--text-secondary);
-  padding: 20px 24px 32px;
+  margin-top: 12px;
 }
