@@ -437,7 +437,7 @@ page {
   display: flex; align-items: center; justify-content: center; padding: 24px;
 }
 .modal {
-  background: var(--card); border-radius: var(--radius-lg); width: 100%; max-width: 380px;
+  background: #1A1A1A; border-radius: var(--radius-lg); width: 100%; max-width: 380px;
   box-shadow: var(--shadow-card-lg);
 }
 .modal-header {

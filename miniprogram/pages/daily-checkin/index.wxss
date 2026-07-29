@@ -158,7 +158,7 @@
   display: flex;
 }
 .modal {
-  background: var(--card);
+  background: #1A1A1A;
   border-radius: 16px;
   width: 100%;
   max-width: 380px;

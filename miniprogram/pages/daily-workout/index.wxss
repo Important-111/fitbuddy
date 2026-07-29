@@ -340,7 +340,7 @@
   justify-content: center;
 }
 .swap-content {
-  background: var(--card);
+  background: #1A1A1A;
   border-radius: 20px 20px 0 0;
   width: 100%;
   max-width: 430px;

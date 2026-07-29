@@ -5,8 +5,10 @@
   right: 0;
   height: calc(56px + env(safe-area-inset-bottom));
   padding-bottom: env(safe-area-inset-bottom);
-  background: var(--card, rgba(10,10,10,0.95));
-  border-top: 1px solid var(--border, rgba(255,255,255,0.08));
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255,255,255,0.10);
   display: flex;
   align-items: stretch;
   z-index: 1000;
