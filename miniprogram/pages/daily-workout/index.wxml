@@ -125,12 +125,14 @@
     <view class="phase-title">
       <text class="phase-icon stretch">🧘</text>
       <text>训练后拉伸（8分钟）</text>
+      <view class="phase-edit" catchtap="openStretchSelect">选择动作 ›</view>
     </view>
-    <view wx:for="{{stretches}}" wx:for-index="idx" wx:key="name" class="stretch-card">
+    <view wx:for="{{stretches}}" wx:for-index="idx" wx:key="id" class="stretch-card">
       <view class="exercise-num">{{idx + 1}}</view>
       <view class="exercise-info">
-        <view class="exercise-name">{{item.name}}</view>
+        <view class="exercise-name"><text class="ex-emoji">{{item.emoji}}</text>{{item.name}}</view>
         <view class="exercise-detail">{{item.detail}}</view>
+        <view class="exercise-sets" wx:if="{{item.sets}}">{{item.sets}}</view>
       </view>
 
       <!-- 倒计时器 -->
@@ -151,6 +153,9 @@
           <block wx:else>已完成 {{item.completedSets}} 次</block>
         </view>
       </view>
+
+      <!-- 拉伸卡「换」按钮（镜像热身/正式训练，打开拉伸选择弹窗重新勾选） -->
+      <view class="swap-btn" catchtap="openStretchSelect">换</view>
     </view>
   </view>
 
@@ -262,6 +267,34 @@
         </view>
       </scroll-view>
       <button class="btn-primary swap-confirm" catchtap="confirmWarmup">确定（{{warmupSelectedCount}}）</button>
+    </view>
+  </view>
+
+  <!-- 训练后拉伸：选择拉伸动作弹窗（镜像热身选择弹窗结构） -->
+  <view class="swap-modal {{stretchSelectShow ? 'show' : ''}}" wx:if="{{stretchSelectShow}}">
+    <view class="swap-content warmup-content">
+      <view class="swap-header">
+        <view class="swap-title">选择拉伸动作</view>
+        <view class="swap-close" catchtap="closeStretchSelect">×</view>
+      </view>
+      <view class="warmup-tip">勾选本次训练后要做的拉伸项目，点「确定」应用到今日训练</view>
+      <scroll-view scroll-y class="warmup-list">
+        <view
+          wx:for="{{stretchCandidates}}"
+          wx:key="id"
+          class="warmup-opt {{item.selected ? 'on' : ''}}"
+          catchtap="toggleStretch"
+          data-id="{{item.id}}"
+        >
+          <view class="warmup-opt-emoji">{{item.emoji}}</view>
+          <view class="warmup-opt-info">
+            <view class="warmup-opt-name">{{item.name}}</view>
+            <view class="warmup-opt-detail">{{item.detail}} · {{item.sets}}</view>
+          </view>
+          <view class="warmup-check {{item.selected ? 'checked' : ''}}">{{item.selected ? '✓' : ''}}</view>
+        </view>
+      </scroll-view>
+      <button class="btn-primary swap-confirm" catchtap="confirmStretch">确定（{{stretchSelectedCount}}）</button>
     </view>
   </view>
 

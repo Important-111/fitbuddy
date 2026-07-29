@@ -76,6 +76,33 @@ const WARMUP_POOL = [
 ];
 const WARMUP_DEFAULT = ['jumping-jack', 'high-knees', 'hip-circles', 'ankle-circles'];
 
+// 训练后拉伸：可选拉伸动作池（点「选择动作」弹出，可勾选本次要做的项目）
+// 与原型 stretch swap-group 完全对齐（10 选 N · 8 分钟）
+const STRETCH_POOL = [
+  { id: 'stretch-quad',      name: '股四头肌拉伸', emoji: '🦵', detail: '站姿屈膝抓脚踝，拉伸大腿前侧',           sets: '每侧 30秒 × 2组', sec: 30 },
+  { id: 'stretch-hamstring', name: '腘绳肌拉伸',   emoji: '🦵', detail: '坐姿前屈或站姿体前屈，拉伸大腿后侧',     sets: '每侧 30秒 × 2组', sec: 30 },
+  { id: 'stretch-glute',     name: '臀大肌拉伸',   emoji: '🍑', detail: '仰卧4字拉伸，缓解臀部深层紧张',           sets: '每侧 30秒 × 2组', sec: 30 },
+  { id: 'stretch-child',     name: '婴儿式放松',   emoji: '🧘', detail: '跪姿臀部坐脚跟，前倾延伸背部',             sets: '60秒',              sec: 60 },
+  { id: 'stretch-calf',      name: '小腿拉伸',     emoji: '🦶', detail: '弓步推墙或台阶拉伸，缓解小腿紧绷',         sets: '每侧 30秒 × 2组', sec: 30 },
+  { id: 'stretch-hip',       name: '髋屈肌拉伸',   emoji: '🔄', detail: '弓步下沉髋部，打开髋关节前侧',             sets: '每侧 30秒 × 2组', sec: 30 },
+  { id: 'stretch-spine',     name: '猫牛式',       emoji: '🐈', detail: '四足跪姿脊柱流动，舒缓腰背紧张',           sets: '10次缓慢流动',     sec: 30 },
+  { id: 'stretch-cobra',     name: '眼镜蛇式',     emoji: '🐍', detail: '俯卧撑起上身，伸展腹直肌与前链',           sets: '保持 30秒 × 2组', sec: 30 },
+  { id: 'stretch-shoulder',  name: '肩部拉伸',     emoji: '💪', detail: '交叉手臂跨胸前，放松三角肌后束',           sets: '每侧 30秒 × 2组', sec: 30 },
+  { id: 'stretch-pigeon',    name: '鸽子式',       emoji: '🕊️', detail: '深度打开髋关节，进阶拉伸臀外旋肌',         sets: '每侧 45秒',       sec: 45 }
+];
+const STRETCH_DEFAULT = ['stretch-quad', 'stretch-hamstring', 'stretch-glute', 'stretch-child'];
+
+function buildStretches(selectedIds) {
+  const picked = (selectedIds && selectedIds.length) ? selectedIds : STRETCH_DEFAULT.slice();
+  const items = picked.map(function(id, idx) {
+    const s = STRETCH_POOL.find(function(x) { return x.id === id; }) || STRETCH_POOL[0];
+    // detail 兼容旧字段：原型拉伸卡片 detail = "每侧保持30秒 × 2组 · 缓解..."
+    const detail = s.sets + ' · ' + s.detail.replace(/，.*/, '');
+    return { id: s.id, name: s.name, emoji: s.emoji, detail: detail, rest: s.sets, sets: s.sets, done: false, num: idx + 1 };
+  });
+  return withTimer(items, DEFAULT_TIMER_SEC);
+}
+
 function buildWarmups(selectedIds) {
   const picked = (selectedIds && selectedIds.length) ? selectedIds : WARMUP_DEFAULT.slice();
   const items = picked.map(function(id, idx) {
@@ -164,7 +191,11 @@ Page({
     // 动态热身：选择热身动作
     warmupSelectShow: false,
     warmupCandidates: [],
-    warmupSelectedCount: 0
+    warmupSelectedCount: 0,
+    // 训练后拉伸：选择拉伸动作（镜像热身选择范式）
+    stretchSelectShow: false,
+    stretchCandidates: [],
+    stretchSelectedCount: 0
   },
 
   onLoad() {
@@ -207,12 +238,8 @@ Page({
         { num: 3, exId: 'jump-squat', name: '深蹲跳', detail: '爆发力训练，燃烧大量热量', sets: '3组 × 12次', rest: '组间休息 30秒' },
         { num: 4, exId: 'mountain-climber', name: '登山跑', detail: '核心+全身综合燃脂动作', sets: '3组 × 30秒', rest: '组间休息 15秒' }
       ];
-      stretches = [
-        { name: '股四头肌拉伸', detail: '每侧保持30秒 × 2组' },
-        { name: '腘绳肌拉伸', detail: '每侧保持30秒 × 2组' },
-        { name: '小腿拉伸', detail: '每侧保持30秒 × 2组' },
-        { name: '婴儿式放松', detail: '保持60秒，深呼吸放松全身' }
-      ];
+      // 默认拉伸由 STRETCH_POOL 生成（与原型一致：股四/腘绳/小腿/婴儿式）
+      stretches = buildStretches(['stretch-quad', 'stretch-hamstring', 'stretch-calf', 'stretch-child']);
 
       this.setData({
         workoutName: 'HIIT 燃脂训练',
@@ -228,12 +255,8 @@ Page({
         { num: 3, exId: 'lunge', name: '弓步蹲', detail: '单侧训练动作，改善腿部不平衡，加强核心稳定', sets: '3组 × 12次（每侧）', rest: '组间休息 60秒' },
         { num: 4, exId: 'side-leg', name: '侧卧抬腿', detail: '训练臀中肌，改善髋部稳定性和臀部侧方线条', sets: '3组 × 15次（每侧）', rest: '组间休息 30秒' }
       ];
-      stretches = [
-        { name: '股四头肌拉伸', detail: '每侧保持30秒 × 2组' },
-        { name: '腘绳肌拉伸', detail: '每侧保持30秒 × 2组' },
-        { name: '臀大肌拉伸', detail: '每侧保持30秒 × 2组' },
-        { name: '婴儿式放松', detail: '保持60秒，深呼吸放松全身' }
-      ];
+      // 默认拉伸用 STRETCH_POOL 默认 4 项（与原型一致：股四/腘绳/臀大肌/婴儿式）
+      stretches = buildStretches();
 
       this.setData({
         workoutName: '臀腿力量训练',
@@ -249,7 +272,8 @@ Page({
         swaps: SWAP_POOL[e.exId] || []
       });
     });
-    stretches = withTimer(stretches);
+    // stretches 已由 buildStretches 注入 timer 字段，无需再 withTimer
+    stretches = stretches;
     warmups = warmups;
 
     // 计算总组数
@@ -556,5 +580,53 @@ Page({
     const warmups = buildWarmups(selectedIds);
     this.setData({ warmups: warmups, warmupSelectShow: false });
     wx.showToast({ title: '已更新热身动作', icon: 'success' });
+  },
+
+  // ===== 训练后拉伸：选择拉伸动作（100% 镜像热身选择范式） =====
+  openStretchSelect() {
+    const curIds = (this.data.stretches || []).map(function(s) { return s.id; });
+    const candidates = STRETCH_POOL.map(function(s) {
+      return {
+        id: s.id,
+        name: s.name,
+        emoji: s.emoji,
+        detail: s.detail,
+        sets: s.sets,
+        selected: curIds.indexOf(s.id) >= 0
+      };
+    });
+    const count = candidates.filter(function(c) { return c.selected; }).length;
+    this.setData({
+      stretchSelectShow: true,
+      stretchCandidates: candidates,
+      stretchSelectedCount: count
+    });
+  },
+
+  toggleStretch(e) {
+    const id = e.currentTarget.dataset.id;
+    const candidates = (this.data.stretchCandidates || []).slice();
+    const idx = candidates.findIndex(function(c) { return c.id === id; });
+    if (idx < 0) return;
+    candidates[idx] = Object.assign({}, candidates[idx], { selected: !candidates[idx].selected });
+    const count = candidates.filter(function(c) { return c.selected; }).length;
+    this.setData({ stretchCandidates: candidates, stretchSelectedCount: count });
+  },
+
+  closeStretchSelect() {
+    this.setData({ stretchSelectShow: false });
+  },
+
+  confirmStretch() {
+    const selectedIds = (this.data.stretchCandidates || [])
+      .filter(function(c) { return c.selected; })
+      .map(function(c) { return c.id; });
+    if (!selectedIds.length) {
+      wx.showToast({ title: '请至少选择 1 个拉伸动作', icon: 'none' });
+      return;
+    }
+    const stretches = buildStretches(selectedIds);
+    this.setData({ stretches: stretches, stretchSelectShow: false });
+    wx.showToast({ title: '已更新拉伸动作', icon: 'success' });
   }
 });
