@@ -1,39 +1,39 @@
-/* ===== 飞特八弟 · 杂志编辑风设计系统 ===== */
+/* ===== 飞特八弟 · 暗黑力量（Dark Athletic）设计系统 ===== */
 page {
-  /* 品牌色 */
-  --primary: #ED5A2E;
-  --primary-light: rgba(237, 90, 46, 0.08);
-  --primary-hover: #D94E24;
-  --primary-soft: #FBEDE7;
-  --accent: #2BB3A3;
-  --accent-light: rgba(43, 179, 163, 0.10);
+  /* 品牌色：电光黄绿 */
+  --primary: #CCFF00;
+  --primary-light: rgba(204, 255, 0, 0.12);
+  --primary-hover: #B8E600;
+  --primary-soft: rgba(204, 255, 0, 0.10);
+  --accent: #FF3D00;
+  --accent-light: rgba(255, 61, 0, 0.18);
 
-  /* 背景 / 卡片 */
-  --bg: #FBF7F2;
-  --card: #FFFFFF;
-  --paper: #F6F1EA;
+  /* 背景 / 卡片：纯黑底 + 半透玻璃态 */
+  --bg: #0A0A0A;
+  --card: rgba(255, 255, 255, 0.06);
+  --paper: #1A1A1A;
 
-  /* 文字 */
-  --text-primary: #2A2622;
-  --text-secondary: #6B6259;
-  --text-tertiary: #A89E92;
+  /* 文字：白 / 浅灰 / 中灰 */
+  --text-primary: #FFFFFF;
+  --text-secondary: #B0B0B0;
+  --text-tertiary: #808080;
 
   /* 线条 / 状态 */
-  --border: #ECE4D8;
-  --success: #16A06B;
-  --warning: #E08A1E;
-  --danger: #DB4D3A;
+  --border: rgba(255, 255, 255, 0.08);
+  --success: #CCFF00;
+  --warning: #FF3D00;
+  --danger: #FF3D00;
 
-  /* 圆角 / 阴影 */
+  /* 圆角 / 阴影（暗黑风：绿色辉光） */
   --radius-lg: 22px;
   --radius-md: 18px;
   --radius-sm: 12px;
-  --shadow-card: 0 4px 18px rgba(170, 140, 110, 0.08);
-  --shadow-card-lg: 0 10px 32px rgba(170, 140, 110, 0.12);
+  --shadow-card: 0 4px 18px rgba(0, 0, 0, 0.40);
+  --shadow-card-lg: 0 8px 28px rgba(204, 255, 0, 0.18);
 
   margin: 0; padding: 0;
   box-sizing: border-box;
-  background: var(--paper);
+  background: var(--bg);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -106,7 +106,7 @@ page {
   width: 100%; height: 52px; background: var(--primary); color: #FFF;
   border: none; border-radius: var(--radius-sm); font-size: 16px; font-weight: 700;
   font-family: inherit;
-  box-shadow: 0 6px 18px rgba(237, 90, 46, 0.22);
+  box-shadow: 0 6px 18px rgba(204, 255, 0, 0.22);
 }
 .btn-primary:active { opacity: 0.92; }
 
@@ -129,7 +129,7 @@ page {
   width: 100%; height: 48px; background: var(--primary); color: #FFF;
   border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 700;
   font-family: inherit;
-  box-shadow: 0 6px 18px rgba(237, 90, 46, 0.22);
+  box-shadow: 0 6px 18px rgba(204, 255, 0, 0.22);
 }
 .btn-submit {
   width: 100%; height: 50px; background: var(--primary); color: #FFF;
@@ -223,17 +223,17 @@ page {
   pointer-events: none; z-index: 9999;
 }
 .toast-content {
-  background: rgba(42, 38, 34, 0.95); color: #FFF;
+  background: rgba(0, 0, 0, 0.92); color: #FFF; border: 1px solid var(--border);
   padding: 14px 22px; border-radius: 14px; font-size: 14px;
   max-width: 80%; text-align: center;
 }
 
-/* ===== 安全提醒 ===== */
+/* ===== 安全提醒（暗黑警告色） ===== */
 .health-warning {
-  background: #FDF3EF; border: 1px solid #F6D9CD; border-radius: 14px;
+  background: var(--accent-light); border: 1px solid rgba(255, 61, 0, 0.45); border-radius: 14px;
   padding: 12px 14px; margin: 0 20px 18px;
 }
-.health-warning text { font-size: 12px; color: #B4472B; line-height: 1.6; }
+.health-warning text { font-size: 12px; color: #FF8A65; line-height: 1.6; }
 
 /* ===== 统一 Hero 卡（珊瑚橙实底 + 白字） ===== */
 .hero-card {
@@ -354,7 +354,7 @@ page {
 .info-section { padding: 0 20px; margin-bottom: 18px; }
 .info-title { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
 .info-card { background: var(--card); border-radius: var(--radius-md); padding: 18px; border: 1px solid var(--border); box-shadow: var(--shadow-card); margin-bottom: 10px; }
-.info-row { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid #F3EEE7; }
+.info-row { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); }
 .info-row:last-child { border-bottom: none; }
 
 /* ===== 打卡 ===== */
@@ -433,7 +433,7 @@ page {
 /* ===== Modal ===== */
 .modal-overlay {
   position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(42, 38, 34, 0.45); z-index: 1000;
+  background: rgba(0, 0, 0, 0.70); z-index: 1000;
   display: flex; align-items: center; justify-content: center; padding: 24px;
 }
 .modal {

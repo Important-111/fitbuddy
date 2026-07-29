@@ -60,7 +60,7 @@
 .day-meta-item {
   font-size: 11px;
   color: var(--primary);
-  background: rgba(255,107,53,0.08);
+  background: rgba(204, 255, 0,0.08);
   padding: 2px 10px;
   border-radius: 4px;
 }

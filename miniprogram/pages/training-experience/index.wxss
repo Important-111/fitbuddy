@@ -70,15 +70,15 @@
   background: var(--primary-light);
 }
 .health-warning {
-  background: #FEF2F2;
-  border: 1px solid #FECACA;
+  background: rgba(255, 61, 0, 0.12);
+  border: 1px solid rgba(255, 61, 0, 0.45);
   border-radius: 10px;
   padding: 12px 14px;
   margin-bottom: 18px;
 }
 .health-warning text {
   font-size: 12px;
-  color: #B91C1C;
+  color: #FF8A65;
   line-height: 1.5;
 }
 .bottom-nav {

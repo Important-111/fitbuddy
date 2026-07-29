@@ -1,7 +1,7 @@
 .agreement-page {
   width: 100%;
   min-height: 100vh;
-  background: #FFFFFF;
+  background: var(--bg);
   display: flex;
   flex-direction: column;
 }
@@ -10,8 +10,8 @@
   padding: 24rpx 32rpx;
   display: flex;
   align-items: center;
-  background: #FFFFFF;
-  border-bottom: 1rpx solid var(--paper);
+  background: var(--bg);
+  border-bottom: 1rpx solid var(--border);
   position: sticky;
   top: 0;
   z-index: 10;

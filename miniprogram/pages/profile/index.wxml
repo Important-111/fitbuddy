@@ -8,7 +8,7 @@
   </view>
 
   <!-- Profile Header -->
-  <view class="profile-header-card" style="background:linear-gradient(135deg,#FF6B35,#E55A2B)">
+  <view class="profile-header-card" style="background:linear-gradient(135deg,#CCFF00,#B8E600)">
     <view class="profile-avatar">{{avatar}}</view>
     <view class="profile-info" style="flex:1">
       <text class="profile-name">{{nickname}}</text>
@@ -165,19 +165,19 @@
       <view class="modal-body">
         <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
           <text style="font-size:14px;color:var(--text-primary)">训练提醒</text>
-          <switch checked="{{settings.trainReminder}}" bindchange="onToggleSetting" data-key="trainReminder" color="#FF6B35" />
+          <switch checked="{{settings.trainReminder}}" bindchange="onToggleSetting" data-key="trainReminder" color="#CCFF00" />
         </view>
         <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
           <text style="font-size:14px;color:var(--text-primary)">饮食提醒</text>
-          <switch checked="{{settings.dietReminder}}" bindchange="onToggleSetting" data-key="dietReminder" color="#FF6B35" />
+          <switch checked="{{settings.dietReminder}}" bindchange="onToggleSetting" data-key="dietReminder" color="#CCFF00" />
         </view>
         <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
           <text style="font-size:14px;color:var(--text-primary)">喝水提醒</text>
-          <switch checked="{{settings.waterReminder}}" bindchange="onToggleSetting" data-key="waterReminder" color="#FF6B35" />
+          <switch checked="{{settings.waterReminder}}" bindchange="onToggleSetting" data-key="waterReminder" color="#CCFF00" />
         </view>
         <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0">
           <text style="font-size:14px;color:var(--text-primary)">夜间勿扰模式</text>
-          <switch checked="{{settings.nightMode}}" bindchange="onToggleSetting" data-key="nightMode" color="#FF6B35" />
+          <switch checked="{{settings.nightMode}}" bindchange="onToggleSetting" data-key="nightMode" color="#CCFF00" />
         </view>
 
         <view class="settings-divider" style="height:8px;background:var(--bg);margin:8px -16px 0;"></view>

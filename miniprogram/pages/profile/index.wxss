@@ -98,7 +98,7 @@
 .logout-btn {
   width: 100%;
   height: 50px;
-  border: 1px solid rgba(237,90,46,0.55);
+  border: 1px solid rgba(204,255,0,0.55);
   border-radius: 12px;
   background: rgba(255,255,255,0.06);
   color: var(--primary);
@@ -107,14 +107,14 @@
   letter-spacing: 0.5px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 0 18px rgba(237,90,46,0.20), inset 0 0 12px rgba(237,90,46,0.05);
+  box-shadow: 0 0 18px rgba(204,255,0,0.20), inset 0 0 12px rgba(204,255,0,0.05);
   transition: all 0.2s;
 }
 .logout-btn:active {
-  background: rgba(237,90,46,0.10);
+  background: rgba(204,255,0,0.10);
   border-color: var(--primary);
   color: var(--primary);
-  box-shadow: 0 0 28px rgba(237,90,46,0.40), inset 0 0 16px rgba(237,90,46,0.10);
+  box-shadow: 0 0 28px rgba(204,255,0,0.40), inset 0 0 16px rgba(204,255,0,0.10);
   transform: scale(0.98);
 }
 .info-section .info-item:last-child {

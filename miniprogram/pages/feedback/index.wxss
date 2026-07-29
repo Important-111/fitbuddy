@@ -27,7 +27,7 @@
 }
 .type-chip.selected {
   border-color: var(--primary);
-  background: rgba(255, 107, 53, 0.08);
+  background: rgba(204, 255, 0, 0.08);
 }
 .type-emoji {
   font-size: 22px;
@@ -120,7 +120,7 @@
   font-weight: 600;
   color: var(--primary);
   padding: 2px 8px;
-  background: rgba(255, 107, 53, 0.08);
+  background: rgba(204, 255, 0, 0.08);
   border-radius: 4px;
 }
 .history-status {
@@ -199,7 +199,7 @@
 .check-box {
   width: 18px;
   height: 18px;
-  border: 1.5px solid #D1D5DB;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
   border-radius: 4px;
   margin-right: 8px;
   display: flex;
@@ -207,7 +207,7 @@
   justify-content: center;
   flex-shrink: 0;
   margin-top: 2px;
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.04);
   transition: all 0.2s;
 }
 

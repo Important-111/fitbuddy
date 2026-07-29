@@ -8,7 +8,7 @@
   </view>
 
   <!-- 动作主图区 -->
-  <view class="exercise-hero" style="background:linear-gradient(135deg,#FF6B35,#FF8F65);">
+  <view class="exercise-hero" style="background:linear-gradient(135deg,#CCFF00,#B8E600);">
     {{exerciseEmoji}}
   </view>
 

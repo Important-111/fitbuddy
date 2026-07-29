@@ -35,7 +35,7 @@
   line-height: 1;
 }
 .tab-item.active .tab-label {
-  color: var(--primary, #FF6B35);
+  color: var(--primary, #CCFF00);
   font-weight: 600;
 }
 
@@ -75,10 +75,10 @@
   border-bottom: 5px solid var(--text-secondary, #999);
 }
 .tab-item.active .icon-house.filled::after {
-  border-bottom-color: var(--primary, #FF6B35);
+  border-bottom-color: var(--primary, #CCFF00);
 }
 .tab-item.active .icon-house.filled::before {
-  border-color: var(--primary, #FF6B35);
+  border-color: var(--primary, #CCFF00);
 }
 
 /* 训练 - 哑铃 */
@@ -117,7 +117,7 @@
 }
 .tab-item.active .icon-dumbbell.filled .bar,
 .tab-item.active .icon-dumbbell.filled .weight {
-  background: var(--primary, #FF6B35);
+  background: var(--primary, #CCFF00);
 }
 
 /* 进度 - 柱状图 */
@@ -139,7 +139,7 @@
 .icon-chart .chart-bar.b2 { height: 10px; }
 .icon-chart .chart-bar.b3 { height: 14px; }
 .tab-item.active .icon-chart.filled .chart-bar {
-  background: var(--primary, #FF6B35);
+  background: var(--primary, #CCFF00);
 }
 
 /* 饮食 - 盘子 */
@@ -157,7 +157,7 @@
 }
 .tab-item.active .icon-plate.filled,
 .tab-item.active .icon-plate.filled .plate-inner {
-  border-color: var(--primary, #FF6B35);
+  border-color: var(--primary, #CCFF00);
 }
 
 /* 我的 - 用户 */
@@ -188,5 +188,5 @@
 }
 .tab-item.active .icon-user.filled .user-head,
 .tab-item.active .icon-user.filled .user-body {
-  border-color: var(--primary, #FF6B35);
+  border-color: var(--primary, #CCFF00);
 }

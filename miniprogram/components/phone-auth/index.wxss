@@ -14,13 +14,14 @@
 }
 
 .phone-auth-card {
-  background: #FFFFFF;
+  background: #1A1A1A;
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 24rpx;
   padding: 48rpx 32rpx 32rpx;
   width: 100%;
   max-width: 600rpx;
   position: relative;
-  box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.60);
 }
 
 .card-close {
@@ -69,21 +70,21 @@
 .card-title {
   font-size: 36rpx;
   font-weight: 700;
-  color: #1F2937;
+  color: #FFFFFF;
   text-align: center;
   margin-bottom: 20rpx;
 }
 
 .card-desc {
   font-size: 26rpx;
-  color: #6B7280;
+  color: #B0B0B0;
   line-height: 1.6;
   margin-bottom: 24rpx;
   text-align: justify;
 }
 
 .card-list {
-  background: #F9FAFB;
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 16rpx;
   padding: 20rpx 24rpx;
   margin-bottom: 32rpx;
@@ -109,7 +110,7 @@
 
 .bullet-text {
   font-size: 24rpx;
-  color: #4B5563;
+  color: #D0D0D0;
   line-height: 1.5;
   flex: 1;
 }
@@ -123,7 +124,7 @@
 .check-box {
   width: 36rpx;
   height: 36rpx;
-  border: 2rpx solid #D1D5DB;
+  border: 2rpx solid rgba(255, 255, 255, 0.25);
   border-radius: 8rpx;
   margin-right: 16rpx;
   display: flex;
@@ -131,7 +132,7 @@
   justify-content: center;
   flex-shrink: 0;
   margin-top: 2rpx;
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.04);
   transition: all 0.2s;
 }
 
@@ -148,7 +149,7 @@
 
 .agree-text {
   font-size: 24rpx;
-  color: #6B7280;
+  color: #B0B0B0;
   line-height: 1.5;
   flex: 1;
 }
@@ -176,8 +177,8 @@
 }
 
 .card-btn-primary.disabled {
-  background: #D1D5DB;
-  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
+  color: #808080;
 }
 
 .card-btn-secondary {
@@ -187,13 +188,13 @@
   align-items: center;
   justify-content: center;
   font-size: 28rpx;
-  color: #6B7280;
+  color: #B0B0B0;
   margin-bottom: 16rpx;
 }
 
 .card-tip {
   font-size: 22rpx;
-  color: #9CA3AF;
+  color: #808080;
   text-align: center;
   line-height: 1.5;
 }

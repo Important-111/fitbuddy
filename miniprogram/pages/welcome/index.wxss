@@ -1,6 +1,6 @@
-/* Welcome page - 杂志编辑风 */
+/* Welcome page - 暗黑力量 */
 .page-container.welcome-magazine {
-  background: var(--paper);
+  background: var(--bg);
   min-height: 100vh;
 }
 
@@ -64,7 +64,7 @@
 }
 .mag-cover-btn {
   margin-top: 18px;
-  background: #FFFFFF;
+  background: #0A0A0A;
   color: var(--primary);
   font-size: 15px;
   font-weight: 600;
@@ -81,7 +81,8 @@
   margin: 16px 24px 0;
 }
 .mag-duo-card {
-  background: #F1EFE8;
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 16px 18px;
 }
@@ -106,7 +107,7 @@
   display: block;
   font-size: 16px;
   font-weight: 700;
-  color: #26215C;
+  color: var(--text-primary);
   margin-bottom: 14px;
 }
 .mag-feature-grid {
@@ -115,7 +116,7 @@
   gap: 12px;
 }
 .mag-feature-card {
-  background: #FFFFFF;
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 16px 14px;
@@ -130,10 +131,10 @@
   font-size: 22px;
   margin-bottom: 10px;
 }
-.mag-feature-icon.orange { background: #FAECE7; }
-.mag-feature-icon.green { background: #E1F5EE; }
-.mag-feature-icon.blue { background: #E6F1FB; }
-.mag-feature-icon.purple { background: #EEEDFE; }
+.mag-feature-icon.orange { background: rgba(255, 61, 0, 0.18); }
+.mag-feature-icon.green { background: rgba(204, 255, 0, 0.15); }
+.mag-feature-icon.blue { background: rgba(80, 180, 255, 0.18); }
+.mag-feature-icon.purple { background: rgba(180, 100, 255, 0.18); }
 .mag-feature-title {
   display: block;
   font-size: 14px;

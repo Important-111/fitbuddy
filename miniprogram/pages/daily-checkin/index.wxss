@@ -115,8 +115,8 @@
   gap: 8px;
   padding: 10px 12px;
   border-radius: 10px;
-  background: rgba(237,90,46,0.06);
-  border: 1px dashed rgba(237,90,46,0.45);
+  background: rgba(204,255,0,0.06);
+  border: 1px dashed rgba(204,255,0,0.45);
   box-sizing: border-box;
 }
 .pain-custom-wrap.show {
