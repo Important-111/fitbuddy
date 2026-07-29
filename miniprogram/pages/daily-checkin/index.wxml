@@ -92,11 +92,24 @@
       <view
         wx:for="{{painOptions}}"
         wx:key="val"
-        class="pain-tag {{item.selected ? 'selected' : ''}} {{item.isNone ? 'none' : ''}}"
+        class="pain-tag {{item.selected ? 'selected' : ''}} {{item.isNone ? 'none' : ''}} {{item.isOther ? 'other' : ''}}"
         data-index="{{index}}"
         bindtap="onTogglePain"
       >
         <text>{{item.label}}</text>
+      </view>
+      <!-- 自定义疼痛输入框（点击"其它"展开） -->
+      <view class="pain-custom-wrap {{showPainCustom ? 'show' : ''}}">
+        <input
+          class="pain-custom-input"
+          type="text"
+          maxlength="12"
+          placeholder="输入自定义部位（如：小腿、背部）"
+          value="{{customPainText}}"
+          bindinput="onPainCustomInput"
+          bindconfirm="onConfirmPainCustom"
+        />
+        <view class="pain-custom-confirm" catchtap="onConfirmPainCustom">确定</view>
       </view>
     </view>
   </view>

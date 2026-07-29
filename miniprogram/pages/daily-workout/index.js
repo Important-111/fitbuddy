@@ -78,10 +78,11 @@ const WARMUP_DEFAULT = ['jumping-jack', 'high-knees', 'hip-circles', 'ankle-circ
 
 function buildWarmups(selectedIds) {
   const picked = (selectedIds && selectedIds.length) ? selectedIds : WARMUP_DEFAULT.slice();
-  const items = picked.map(function(id) {
+  const items = picked.map(function(id, idx) {
     const w = WARMUP_POOL.find(function(x) { return x.id === id; }) || WARMUP_POOL[0];
     const dur = w.sec + '秒';
-    return { id: w.id, name: w.name, emoji: w.emoji, detail: w.detail, rest: dur, sets: dur, done: false };
+    // phase 内连续编号（与原型对齐：热身动作按 1/2/3... 显示）
+    return { id: w.id, name: w.name, emoji: w.emoji, detail: w.detail, rest: dur, sets: dur, done: false, num: idx + 1 };
   });
   return withTimer(items, WARMUP_TIMER_SEC);
 }

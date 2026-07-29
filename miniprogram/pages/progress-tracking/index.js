@@ -22,7 +22,8 @@ Page({
       completionRate: 0
     },
     chartData: {
-      bars: [],
+      points: [],
+      targetWeight: null,
       count: 0
     },
     milestones: [],
@@ -53,6 +54,10 @@ Page({
 
   onLoad() {
     this.loadData();
+  },
+
+  onReady() {
+    this.drawWeightChart();
   },
 
   onShow() {
@@ -94,30 +99,26 @@ Page({
       completionRate
     };
 
-    // Chart bars
+    // Chart curve points (canvas)
     const displayWeights = filteredWeightHistory.slice(-7);
-    const bars = [];
+    const points = [];
     if (displayWeights.length === 0) {
-      // Placeholder bars
-      const labels = ['--', '--', '--', '--', '--'];
-      const heights = [90, 85, 80, 75, 70];
-      for (let i = 0; i < 5; i++) {
-        bars.push({ height: heights[i], label: labels[i], key: 'p' + i });
-      }
+      // 无数据时不绘制曲线
     } else {
-      let maxW = 0, minW = Infinity;
       displayWeights.forEach(w => {
-        if (w.weight > maxW) maxW = w.weight;
-        if (w.weight < minW) minW = w.weight;
-      });
-      const range = (maxW - minW) || 1;
-      displayWeights.forEach((w, idx) => {
-        const h = 40 + ((maxW - w.weight) / range) * 60;
-        bars.push({ height: Math.round(h), label: String(w.weight.toFixed(1)), key: 'b' + idx });
+        points.push({
+          weight: w.weight,
+          date: w.date,
+          label: this.formatChartDate(w.date)
+        });
       });
     }
 
-    const chartData = { bars, count: Math.max(displayWeights.length, 5) };
+    const chartData = {
+      points,
+      targetWeight: p.targetWeight || null,
+      count: Math.max(displayWeights.length, 5)
+    };
 
     // Milestones
     const milestoneDefs = [
@@ -208,7 +209,190 @@ Page({
       analysis,
       targetWeight: p.targetWeight || null,
       profile: p
+    }, () => {
+      // 数据更新后重绘曲线
+      this.drawWeightChart();
     });
+  },
+
+  // 格式化日期为 M/D
+  formatChartDate(dateStr) {
+    if (!dateStr) return '';
+    const parts = String(dateStr).split('-');
+    if (parts.length >= 3) {
+      return parseInt(parts[1], 10) + '/' + parseInt(parts[2], 10);
+    }
+    return dateStr;
+  },
+
+  // 使用旧版 Canvas API 绘制体重曲线（兼容性最佳，基础库 1.0.0+）
+  drawWeightChart() {
+    const points = (this.data.chartData && this.data.chartData.points) || [];
+    const targetWeight = (this.data.chartData && this.data.chartData.targetWeight) || null;
+    const ctx = wx.createCanvasContext('weightChart', this);
+
+    // 画布逻辑尺寸：与 wxml canvas 的 width/height 一致
+    const W = 320;
+    const H = 170;
+    // 绘图区内边距：left/right 留出 Y 标签空间，bottom 留出 X 轴日期
+    const padL = 14;
+    const padR = 14;
+    const padT = 18;
+    const padB = 24;
+    const plotW = W - padL - padR;
+    const plotH = H - padT - padB;
+
+    // 清空
+    ctx.clearRect(0, 0, W, H);
+
+    if (points.length === 0) {
+      // 无数据占位
+      ctx.setFillStyle('#9A9A9A');
+      ctx.setFontSize(12);
+      ctx.setTextAlign('center');
+      ctx.setTextBaseline('middle');
+      ctx.fillText('暂无体重数据', W / 2, H / 2);
+      ctx.draw();
+      return;
+    }
+
+    // 计算 Y 轴范围：加入目标线作为参考，确保曲线与目标线都可见
+    let minW = Infinity, maxW = -Infinity;
+    points.forEach(p => {
+      if (p.weight < minW) minW = p.weight;
+      if (p.weight > maxW) maxW = p.weight;
+    });
+    if (targetWeight) {
+      if (targetWeight < minW) minW = targetWeight;
+      if (targetWeight > maxW) maxW = targetWeight;
+    }
+    // 上下扩展一点空间避免曲线贴边
+    const span = (maxW - minW) || 1;
+    const yMin = minW - span * 0.15;
+    const yMax = maxW + span * 0.15;
+    const yRange = (yMax - yMin) || 1;
+
+    // X 坐标
+    const xStep = points.length > 1 ? plotW / (points.length - 1) : 0;
+    const coords = points.map((p, i) => ({
+      x: padL + (points.length === 1 ? plotW / 2 : i * xStep),
+      y: padT + ((yMax - p.weight) / yRange) * plotH,
+      weight: p.weight,
+      label: p.label
+    }));
+
+    // === 横向网格线 ===
+    ctx.setStrokeStyle('rgba(255,255,255,0.08)');
+    ctx.setLineWidth(1);
+    [0.25, 0.5, 0.75].forEach(ratio => {
+      const y = padT + plotH * ratio;
+      ctx.beginPath();
+      ctx.moveTo(padL, y);
+      ctx.lineTo(W - padR, y);
+      ctx.stroke();
+    });
+
+    // === 目标线（虚线） ===
+    if (targetWeight) {
+      const targetY = padT + ((yMax - targetWeight) / yRange) * plotH;
+      ctx.setStrokeStyle('rgba(204,255,0,0.55)');
+      ctx.setLineWidth(1);
+      ctx.setLineDash([4, 3], 0);
+      ctx.beginPath();
+      ctx.moveTo(padL, targetY);
+      ctx.lineTo(W - padR, targetY);
+      ctx.stroke();
+      ctx.setLineDash([], 0);
+      // 目标值标签
+      ctx.setFillStyle('rgba(204,255,0,0.85)');
+      ctx.setFontSize(10);
+      ctx.setTextAlign('right');
+      ctx.setTextBaseline('bottom');
+      ctx.fillText('目标 ' + this.formatNum(targetWeight) + 'kg', W - padR, targetY - 2);
+    }
+
+    // === Catmull-Rom → 贝塞尔 平滑曲线 ===
+    // 区域填充（渐变模拟：用半透明色）
+    ctx.beginPath();
+    ctx.moveTo(coords[0].x, padT + plotH);
+    ctx.lineTo(coords[0].x, coords[0].y);
+    this.drawSmoothPath(ctx, coords);
+    ctx.lineTo(coords[coords.length - 1].x, padT + plotH);
+    ctx.closePath();
+    // 旧版 canvas 不支持渐变 fill，用半透明主色模拟区域填充
+    ctx.setFillStyle('rgba(204,255,0,0.16)');
+    ctx.fill();
+
+    // 曲线线条
+    ctx.beginPath();
+    ctx.moveTo(coords[0].x, coords[0].y);
+    this.drawSmoothPath(ctx, coords);
+    ctx.setStrokeStyle('#CCFF00');
+    ctx.setLineWidth(2);
+    ctx.setLineDash([], 0);
+    ctx.stroke();
+
+    // === 数据点 ===
+    coords.forEach((c, i) => {
+      const isLast = i === coords.length - 1;
+      // 外圈
+      ctx.beginPath();
+      ctx.arc(c.x, c.y, isLast ? 5 : 3.5, 0, 2 * Math.PI);
+      ctx.setFillStyle(isLast ? '#CCFF00' : '#0A0A0A');
+      ctx.fill();
+      // 内圈 / 边框
+      ctx.beginPath();
+      ctx.arc(c.x, c.y, isLast ? 5 : 3.5, 0, 2 * Math.PI);
+      ctx.setStrokeStyle('#CCFF00');
+      ctx.setLineWidth(isLast ? 2 : 1.5);
+      ctx.stroke();
+      // 最后一点标注最新值
+      if (isLast) {
+        ctx.setFillStyle('#CCFF00');
+        ctx.setFontSize(11);
+        ctx.setTextAlign('right');
+        ctx.setTextBaseline('bottom');
+        ctx.fillText(this.formatNum(c.weight), c.x, c.y - 8);
+      }
+    });
+
+    // === X 轴日期 ===
+    ctx.setFillStyle('#9A9A9A');
+    ctx.setFontSize(10);
+    ctx.setTextAlign('center');
+    ctx.setTextBaseline('top');
+    coords.forEach(c => {
+      ctx.fillText(c.label, c.x, H - padB + 6);
+    });
+
+    ctx.draw();
+  },
+
+  // Catmull-Rom 转 三次贝塞尔（标准 0.5 张力），ctx 上累积 path
+  drawSmoothPath(ctx, coords) {
+    if (coords.length < 2) return;
+    if (coords.length === 2) {
+      ctx.lineTo(coords[1].x, coords[1].y);
+      return;
+    }
+    for (let i = 0; i < coords.length - 1; i++) {
+      const p0 = coords[i - 1] || coords[i];
+      const p1 = coords[i];
+      const p2 = coords[i + 1];
+      const p3 = coords[i + 2] || p2;
+      const cp1x = p1.x + (p2.x - p0.x) / 6;
+      const cp1y = p1.y + (p2.y - p0.y) / 6;
+      const cp2x = p2.x - (p3.x - p1.x) / 6;
+      const cp2y = p2.y - (p3.y - p1.y) / 6;
+      ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, p2.x, p2.y);
+    }
+  },
+
+  // 数字格式化（保留 1 位小数，去掉多余 0）
+  formatNum(n) {
+    if (n === null || n === undefined) return '';
+    const v = parseFloat(n);
+    return v.toFixed(1);
   },
 
   onSwitchFilter(e) {

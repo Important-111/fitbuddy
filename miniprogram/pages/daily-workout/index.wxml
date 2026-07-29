@@ -44,8 +44,7 @@
       class="exercise-card {{item.done ? 'completed' : ''}}"
     >
       <view class="exercise-num">
-        <text wx:if="{{item.done}}">✓</text>
-        <text wx:else>W</text>
+        <text>{{item.num}}</text>
       </view>
       <view class="exercise-info">
         <view class="exercise-name"><text class="ex-emoji">{{item.emoji}}</text>{{item.name}}</view>

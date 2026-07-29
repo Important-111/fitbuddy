@@ -75,15 +75,8 @@
         <text class="chart-title">体重变化趋势</text>
         <text class="chart-period">近{{chartData.count}}天</text>
       </view>
-      <view class="chart-placeholder">
-        <view
-          wx:for="{{chartData.bars}}"
-          wx:key="key"
-          class="chart-bar-wrap"
-        >
-          <view class="chart-bar" style="height:{{item.height}}%"></view>
-          <text class="chart-bar-label">{{item.label}}</text>
-        </view>
+      <view class="chart-canvas-wrap">
+        <canvas canvas-id="weightChart" id="weightChart" class="weight-chart-canvas"></canvas>
       </view>
       <view class="chart-legend">
         <view class="chart-legend-item">

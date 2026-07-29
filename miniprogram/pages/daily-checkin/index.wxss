@@ -100,10 +100,46 @@
   color: var(--primary);
   background: var(--primary-light);
 }
+/* "没有疼痛" 默认态不再特殊，与普通按钮一致；选中态保留绿色 */
 .pain-tag.none.selected {
   border-color: var(--success);
   color: var(--success);
   background: rgba(16,185,129,0.08);
+}
+/* 自定义疼痛输入框：点击"其它"展开 */
+.pain-custom-wrap {
+  display: none;
+  margin-top: 10px;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(237,90,46,0.06);
+  border: 1px dashed rgba(237,90,46,0.45);
+  box-sizing: border-box;
+}
+.pain-custom-wrap.show {
+  display: flex;
+}
+.pain-custom-input {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 500;
+}
+.pain-custom-confirm {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
 }
 .modal-overlay {
   position: fixed;
