@@ -32,18 +32,18 @@
 }
 
 .tag-level {
-  background: #FEF3C7;
-  color: #D97706;
+  background: rgba(255,61,0,0.16);
+  color: var(--accent);
 }
 
 .tag-muscle {
-  background: #DBEAFE;
-  color: #2563EB;
+  background: rgba(54,207,201,0.16);
+  color: #36CFC9;
 }
 
 .tag-type {
-  background: #F3E8FF;
-  color: #7C3AED;
+  background: rgba(204,255,0,0.14);
+  color: var(--primary);
 }
 
 .muscle-group {

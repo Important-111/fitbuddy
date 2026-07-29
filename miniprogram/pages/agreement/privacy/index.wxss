@@ -57,7 +57,7 @@
 
 .notice-box {
   background: rgba(255, 61, 0, 0.10);
-  border: 1rpx solid #FDE68A;
+  border: 1rpx solid rgba(255,61,0,0.35);
   border-radius: 16rpx;
   padding: 24rpx;
   margin-bottom: 32rpx;
@@ -66,13 +66,13 @@
 .notice-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #92400E;
+  color: var(--accent);
   margin-bottom: 12rpx;
 }
 
 .notice-text {
   font-size: 26rpx;
-  color: #A16207;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
