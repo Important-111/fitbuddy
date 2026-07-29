@@ -1,11 +1,18 @@
 .profile-header-card {
   margin: 16px 20px;
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 24px;
   color: #FFF;
   display: flex;
   align-items: center;
   gap: 16px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse 320rpx 160rpx at 100% 0%, rgba(204,255,0,0.18), transparent 70%),
+    radial-gradient(ellipse 240rpx 140rpx at 0% 100%, rgba(255,61,0,0.16), transparent 70%),
+    linear-gradient(135deg, #242424 0%, #1A1A1A 100%);
 }
 .profile-avatar {
   width: 64px;

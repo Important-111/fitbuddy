@@ -8,7 +8,7 @@
   </view>
 
   <!-- Profile Header -->
-  <view class="profile-header-card" style="background:linear-gradient(135deg,#CCFF00,#B8E600)">
+  <view class="profile-header-card">
     <view class="profile-avatar">{{avatar}}</view>
     <view class="profile-info" style="flex:1">
       <text class="profile-name">{{nickname}}</text>
@@ -107,7 +107,7 @@
     <view class="section-title">功能设置</view>
     <view class="menu-card">
       <view class="menu-item" bindtap="onMenuTap" data-menu="reminder">
-        <view class="menu-icon" style="background:#E0F2FE">🔔</view>
+        <view class="menu-icon" style="background:rgba(80,180,255,0.16)">🔔</view>
         <view class="menu-text">
           <text class="menu-title">训练提醒</text>
           <text class="menu-desc">每日训练时间提醒</text>
@@ -153,7 +153,7 @@
   <view style="padding:8px 20px 16px">
     <button class="logout-btn" bindtap="onLogout">退出登录</button>
   </view>
-  <view class="version-text">FitBuddy v1.0.0 · AI Fitness Coach</view>
+  <view class="version-text">飞特八弟 v1.0.0 · AI Fitness Coach</view>
 
   <!-- Settings Panel Modal -->
   <view class="modal-overlay {{settingsShow ? 'show' : ''}}" bindtap="onCloseSettingsOuter">
