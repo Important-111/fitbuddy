@@ -133,8 +133,8 @@
   color: #F59E0B;
 }
 .status-replied {
-  background: rgba(16, 185, 129, 0.1);
-  color: #10B981;
+  background: rgba(204, 255, 0, 0.10);
+  color: var(--success);
 }
 .history-content {
   font-size: 13px;
@@ -151,14 +151,14 @@
 .history-reply {
   margin-top: 8px;
   padding: 8px 10px;
-  background: rgba(16, 185, 129, 0.06);
-  border-left: 2px solid #10B981;
+  background: rgba(204, 255, 0, 0.06);
+  border-left: 2px solid var(--success);
   border-radius: 4px;
   font-size: 12px;
   line-height: 1.5;
 }
 .reply-label {
-  color: #10B981;
+  color: var(--success);
   font-weight: 600;
 }
 .reply-text {
@@ -171,7 +171,9 @@
   right: 0;
   padding: 12px 20px;
   padding-bottom: calc(12px + env(safe-area-inset-bottom));
-  background: var(--card);
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-top: 1px solid var(--border);
 }
 .bottom-bar .btn-primary {
@@ -246,7 +248,7 @@
   display: flex;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .contact-row:last-child {

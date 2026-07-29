@@ -77,7 +77,9 @@
   right: 0;
   padding: 12px 20px;
   padding-bottom: calc(12px + env(safe-area-inset-bottom));
-  background: var(--card);
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-top: 1px solid var(--border);
   display: flex;
   gap: 12px;
@@ -127,7 +129,7 @@
   gap: 4px;
   padding: 6px 8px;
   border-radius: 10px;
-  background: rgba(0,0,0,0.04);
+  background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
   min-width: 78px;
 }
@@ -139,7 +141,7 @@
   border-color: var(--primary);
 }
 .exercise-timer.finished {
-  background: rgba(16,185,129,0.12);
+  background: rgba(204, 255, 0, 0.12);
   border-color: var(--success);
 }
 .exercise-timer.finished .timer-display {
@@ -226,7 +228,7 @@
   justify-content: center;
 }
 .set-progress-content {
-  background: var(--card);
+  background: #1A1A1A;
   border-radius: 20px;
   padding: 28px 24px 20px;
   text-align: center;
@@ -250,7 +252,7 @@
   margin-top: 4px;
 }
 .set-progress-bar-wrap {
-  background: rgba(0,0,0,0.04);
+  background: rgba(255,255,255,0.04);
   height: 10px;
   border-radius: 5px;
   overflow: hidden;
@@ -289,7 +291,7 @@
   justify-content: center;
 }
 .set-progress-actions .btn-secondary {
-  background: rgba(0,0,0,0.04);
+  background: rgba(255,255,255,0.04);
   color: var(--text-primary);
 }
 .set-progress-actions .btn-primary-cta {
@@ -368,7 +370,7 @@
   width: 32px;
   height: 32px;
   border: none;
-  background: rgba(0,0,0,0.04);
+  background: rgba(255,255,255,0.04);
   border-radius: 50%;
   font-size: 20px;
   line-height: 32px;
@@ -493,7 +495,7 @@
   font-size: 11px;
   padding: 2px 8px;
   border-radius: 10px;
-  background: rgba(0,0,0,0.04);
+  background: rgba(255,255,255,0.04);
   color: var(--text-secondary);
 }
 
