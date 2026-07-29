@@ -72,8 +72,8 @@
           <svg width="140" height="140" viewBox="0 0 36 36">
             <circle cx="18" cy="18" r="{{macro.ringR}}" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>
             <circle cx="18" cy="18" r="{{macro.ringR}}" fill="none" stroke="#CCFF00" stroke-width="3" transform="rotate(-90 18 18)" stroke-dasharray="{{macro.proteinStroke}}" stroke-dashoffset="0"/>
-            <circle cx="18" cy="18" r="{{macro.ringR}}" fill="none" stroke="#FFB300" stroke-width="3" transform="rotate(-90 18 18)" stroke-dasharray="{{macro.carbStroke}}" stroke-dashoffset="{{macro.carbOffset}}"/>
-            <circle cx="18" cy="18" r="{{macro.ringR}}" fill="none" stroke="#FF3D00" stroke-width="3" transform="rotate(-90 18 18)" stroke-dasharray="{{macro.fatStroke}}" stroke-dashoffset="{{macro.fatOffset}}"/>
+            <circle cx="18" cy="18" r="{{macro.ringR}}" fill="none" stroke="#FFC53D" stroke-width="3" transform="rotate(-90 18 18)" stroke-dasharray="{{macro.carbStroke}}" stroke-dashoffset="{{macro.carbOffset}}"/>
+            <circle cx="18" cy="18" r="{{macro.ringR}}" fill="none" stroke="#36CFC9" stroke-width="3" transform="rotate(-90 18 18)" stroke-dasharray="{{macro.fatStroke}}" stroke-dashoffset="{{macro.fatOffset}}"/>
             <text x="18" y="17" text-anchor="middle" font-size="5" font-weight="bold" fill="var(--text-primary)">{{nutrition.calories}}</text>
             <text x="18" y="22" text-anchor="middle" font-size="2.8" fill="var(--text-secondary)">kcal</text>
           </svg>
@@ -84,11 +84,11 @@
             <text>蛋白质 {{macro.proteinPct}}%</text>
           </view>
           <view class="ring-legend-item">
-            <view class="ring-dot" style="background:#FFB300"></view>
+            <view class="ring-dot" style="background:#FFC53D"></view>
             <text>碳水 {{macro.carbPct}}%</text>
           </view>
           <view class="ring-legend-item">
-            <view class="ring-dot" style="background:#FF3D00"></view>
+            <view class="ring-dot" style="background:#36CFC9"></view>
             <text>脂肪 {{macro.fatPct}}%</text>
           </view>
         </view>

@@ -121,7 +121,7 @@
 .milestone-card.achieved {
   opacity: 1;
   border-color: var(--success);
-  background: rgba(16,185,129,0.04);
+  background: rgba(204, 255, 0, 0.08);
 }
 .milestone-icon {
   font-size: 24px;
@@ -202,11 +202,11 @@
   flex-shrink: 0;
 }
 .analysis-status.status-good {
-  background: rgba(16,185,129,0.1);
+  background: rgba(204, 255, 0, 0.12);
   color: var(--success);
 }
 .analysis-status.status-warn {
-  background: rgba(239,68,68,0.1);
+  background: rgba(255, 61, 0, 0.16);
   color: var(--danger);
 }
 

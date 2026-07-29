@@ -160,13 +160,13 @@
   border-radius: 4px;
 }
 .macro-bar.protein {
-  background: var(--primary);
+  background: linear-gradient(90deg, var(--primary), rgba(204, 255, 0, 0.65));
 }
 .macro-bar.carb {
-  background: var(--warning);
+  background: linear-gradient(90deg, #FFC53D, rgba(255, 197, 61, 0.65));
 }
 .macro-bar.fat {
-  background: var(--accent);
+  background: linear-gradient(90deg, #36CFC9, rgba(54, 207, 201, 0.65));
 }
 .macro-value {
   min-width: 100px;

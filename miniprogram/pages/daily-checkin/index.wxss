@@ -104,7 +104,7 @@
 .pain-tag.none.selected {
   border-color: var(--success);
   color: var(--success);
-  background: rgba(16,185,129,0.08);
+  background: rgba(204, 255, 0, 0.08);
 }
 /* 自定义疼痛输入框：点击"其它"展开 */
 .pain-custom-wrap {
