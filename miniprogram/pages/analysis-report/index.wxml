@@ -125,9 +125,9 @@
       <text style="width:3px;height:14px;background:var(--primary);border-radius:2px;display:inline-block;"></text>
       注意事项
     </text>
-    <view class="caution-box" style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:14px 16px;margin-top:16px;">
-      <text style="font-size:14px;font-weight:600;color:#92400E;display:block;margin-bottom:6px;">⚠️ 重要提示</text>
-      <text style="font-size:13px;color:#A16207;line-height:1.5;display:block;">
+    <view class="caution-box" style="background:rgba(255,61,0,0.10);border:1px solid rgba(255,61,0,0.35);border-radius:10px;padding:14px 16px;margin-top:16px;">
+      <text style="font-size:14px;font-weight:600;color:var(--accent);display:block;margin-bottom:6px;">⚠️ 重要提示</text>
+      <text style="font-size:13px;color:var(--text-secondary);line-height:1.5;display:block;">
         1. 新手期以动作标准为首要目标，不追求重量和次数
         2. 每次训练前充分热身，训练后认真拉伸
         3. 保持每日饮水量2L以上
