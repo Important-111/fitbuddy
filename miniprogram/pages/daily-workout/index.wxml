@@ -8,11 +8,11 @@
   </view>
 
   <!-- 训练头部渐变区 -->
-  <view class="workout-header" style="background:linear-gradient(135deg,#CCFF00,#B8E600);">
+  <view class="workout-header" style="background:var(--paper);color:var(--text-primary);border:1px solid var(--border);box-shadow:var(--shadow-card);">
     <view class="workout-header-top">
       <view>
-        <text style="font-size:20px;font-weight:700;">{{workoutName}}</text>
-        <text style="font-size:13px;opacity:0.9;display:block;margin-top:4px;">{{workoutSub}}</text>
+        <text style="font-size:22px;font-weight:800;color:var(--text-primary);letter-spacing:0.5px;">{{workoutName}}</text>
+        <text style="font-size:13px;color:var(--text-secondary);display:block;margin-top:6px;">{{workoutSub}}</text>
       </view>
     </view>
     <view class="workout-meta">
@@ -42,6 +42,8 @@
       wx:for="{{warmups}}"
       wx:key="name"
       class="exercise-card {{item.done ? 'completed' : ''}}"
+      bindtap="navigateTo"
+      data-url="/pages/exercise-detail/index?id={{item.id}}"
     >
       <view class="exercise-num">
         <text>{{item.num}}</text>
@@ -127,7 +129,7 @@
       <text>训练后拉伸（8分钟）</text>
       <view class="phase-edit" catchtap="openStretchSelect">选择动作 ›</view>
     </view>
-    <view wx:for="{{stretches}}" wx:for-index="idx" wx:key="id" class="stretch-card">
+    <view wx:for="{{stretches}}" wx:for-index="idx" wx:key="id" class="stretch-card" bindtap="navigateTo" data-url="/pages/exercise-detail/index?id={{item.id}}">
       <view class="exercise-num">{{idx + 1}}</view>
       <view class="exercise-info">
         <view class="exercise-name"><text class="ex-emoji">{{item.emoji}}</text>{{item.name}}</view>
@@ -313,8 +315,16 @@
         <view class="set-progress-bar" style="width:{{setProgress.percent}}%"></view>
       </view>
       <view class="set-progress-labels">
-        <text>已完成 <strong>{{setProgress.done}}</strong> 组</text>
-        <text>共 <strong>{{setProgress.total > 0 ? setProgress.total : '—'}}</strong> 组</text>
+        <view class="set-progress-label">
+          <text>已完成 </text>
+          <text class="set-progress-num">{{setProgress.done}}</text>
+          <text> 组</text>
+        </view>
+        <view class="set-progress-label">
+          <text>共 </text>
+          <text class="set-progress-num">{{setProgress.total > 0 ? setProgress.total : '—'}}</text>
+          <text> 组</text>
+        </view>
       </view>
       <view class="set-progress-actions">
         <view class="btn-secondary" bindtap="closeSetProgress">查看动作</view>

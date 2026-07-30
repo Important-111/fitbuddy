@@ -23,17 +23,17 @@
   <view class="goal-cards" style="padding:0 20px;margin-bottom:16px">
     <view class="goal-cards-row" style="display:flex;gap:10px">
       <view class="goal-card-mini" style="flex:1;background:var(--card);border-radius:12px;padding:14px;text-align:center;border:1px solid var(--border)" bindtap="onGoalCardTap" data-goal="减脂">
-        <view class="goal-card-icon" style="background:rgba(255,61,0,0.16);width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 8px">🔥</view>
+        <view class="goal-card-icon" style="background:var(--primary-light);width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 8px">🔥</view>
         <text class="goal-card-title" style="font-size:14px;font-weight:600;color:var(--text-primary);display:block">减脂</text>
         <text class="goal-card-desc" style="font-size:11px;color:var(--text-secondary);display:block;margin-top:2px">燃烧脂肪 · 塑造线条</text>
       </view>
       <view class="goal-card-mini" style="flex:1;background:var(--card);border-radius:12px;padding:14px;text-align:center;border:1px solid var(--border)" bindtap="onGoalCardTap" data-goal="增肌">
-        <view class="goal-card-icon" style="background:rgba(54,207,201,0.16);width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 8px">💪</view>
+        <view class="goal-card-icon" style="background:var(--primary-light);width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 8px">💪</view>
         <text class="goal-card-title" style="font-size:14px;font-weight:600;color:var(--text-primary);display:block">增肌</text>
         <text class="goal-card-desc" style="font-size:11px;color:var(--text-secondary);display:block;margin-top:2px">增加肌肉 · 提升力量</text>
       </view>
       <view class="goal-card-mini" style="flex:1;background:var(--card);border-radius:12px;padding:14px;text-align:center;border:1px solid var(--border)" bindtap="onGoalCardTap" data-goal="塑形">
-        <view class="goal-card-icon" style="background:rgba(204,255,0,0.12);width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 8px">🌟</view>
+        <view class="goal-card-icon" style="background:var(--primary-light);width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 8px">🌟</view>
         <text class="goal-card-title" style="font-size:14px;font-weight:600;color:var(--text-primary);display:block">塑形</text>
         <text class="goal-card-desc" style="font-size:11px;color:var(--text-secondary);display:block;margin-top:2px">优化体态 · 完美曲线</text>
       </view>
@@ -84,8 +84,8 @@
         <text class="info-key" style="font-size:14px;color:var(--text-secondary)">BMI</text>
         <text class="info-value" style="font-size:14px;color:var(--text-primary);font-weight:500">{{profileData.bmi}}</text>
       </view>
-      <view style="padding:6px 16px 10px;background:var(--accent-light, rgba(255,61,0,0.10));border-bottom:1px solid var(--border)">
-        <text style="font-size:11px;color:var(--text-tertiary);display:block;line-height:1.4;">BMI 正常范围 18.5-24，超出或低于此范围请关注。</text>
+      <view style="padding:8px 16px 10px;background:var(--primary-soft);border-bottom:1px solid var(--border)">
+        <text style="font-size:12px;color:#D0D0D0;display:block;line-height:1.5;">BMI 正常范围 18.5-24，超出或低于此范围请关注。</text>
       </view>
       <view wx:if="{{profile.waist}}" class="info-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)">
         <text class="info-key" style="font-size:14px;color:var(--text-secondary)">腰围 / 臀围</text>
@@ -107,7 +107,7 @@
     <view class="section-title">功能设置</view>
     <view class="menu-card">
       <view class="menu-item" bindtap="onMenuTap" data-menu="reminder">
-        <view class="menu-icon" style="background:rgba(80,180,255,0.16)">🔔</view>
+        <view class="menu-icon" style="background:var(--primary-light)">🔔</view>
         <view class="menu-text">
           <text class="menu-title">训练提醒</text>
           <text class="menu-desc">每日训练时间提醒</text>
@@ -115,7 +115,7 @@
         <view class="menu-arrow">›</view>
       </view>
       <view class="menu-item" bindtap="onMenuTap" data-menu="export">
-        <view class="menu-icon" style="background:rgba(255,61,0,0.14)">📊</view>
+        <view class="menu-icon" style="background:var(--primary-light)">📊</view>
         <view class="menu-text">
           <text class="menu-title">数据导出</text>
           <text class="menu-desc">导出训练和身体数据</text>
@@ -131,7 +131,7 @@
         <view class="menu-arrow">›</view>
       </view>
       <view class="menu-item" bindtap="jumpToFeedback" style="position:relative;">
-        <view class="menu-icon" style="background:rgba(54,207,201,0.14)">💬</view>
+        <view class="menu-icon" style="background:var(--primary-light)">💬</view>
         <view class="menu-text">
           <text class="menu-title">反馈建议</text>
           <text class="menu-desc">帮助我们做得更好</text>
@@ -139,7 +139,7 @@
         <view class="menu-arrow">›</view>
       </view>
       <view class="menu-item" bindtap="onMenuTap" data-menu="help">
-        <view class="menu-icon" style="background:rgba(255,61,0,0.14)">❓</view>
+        <view class="menu-icon" style="background:var(--primary-light)">❓️</view>
         <view class="menu-text">
           <text class="menu-title">帮助与支持</text>
           <text class="menu-desc">常见问题和联系客服</text>

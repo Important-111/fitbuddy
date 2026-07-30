@@ -14,8 +14,9 @@
 }
 .filter-tab.active {
   background: var(--primary);
-  color: #FFF;
+  color: #000;
   border-color: var(--primary);
+  font-weight: 800;
 }
 .overview-cards {
   display: grid;

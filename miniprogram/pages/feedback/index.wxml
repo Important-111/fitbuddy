@@ -82,8 +82,8 @@
   <view class="info-tip">
     <text class="info-tip-icon">💡</text>
     <view class="info-tip-text">
-      <text style="font-weight:600;display:block;margin-bottom:2px;">你的反馈对我们很重要</text>
-      <text style="font-size:12px;color:var(--text-secondary);display:block;line-height:1.5;">所有反馈都会被认真阅读，常见问题会优先在下个版本改进～</text>
+      <text style="font-weight:600;color:var(--primary);display:block;margin-bottom:2px;">你的反馈对我们很重要</text>
+      <text style="font-size:13px;color:#D0D0D0;display:block;line-height:1.5;">所有反馈都会被认真阅读，常见问题会优先在下个版本改进～</text>
     </view>
   </view>
 

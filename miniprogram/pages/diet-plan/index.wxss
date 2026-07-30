@@ -1,15 +1,16 @@
 .nutri-banner {
   margin: 16px 20px;
-  border-radius: 16px;
-  padding: 22px;
-  color: #FFF;
-  box-shadow: 0 4px 20px rgba(204, 255, 0,0.25);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  border-radius: 14px;
+  padding: 24px 22px 22px;
+  color: #000;
+  box-shadow: 0 4px 20px rgba(204, 255, 0, 0.25);
 }
-.nutri-banner h2 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 12px;
+.nutri-banner-title {
+  font-size: 20px;
+  font-weight: 800;
+  display: block;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
 }
 .nutri-row {
   display: flex;
@@ -19,15 +20,19 @@
   text-align: center;
 }
 .nutri-val {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 800;
   display: block;
+  letter-spacing: -0.3px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
 }
 .nutri-lbl {
   font-size: 11px;
-  opacity: 0.85;
-  margin-top: 2px;
+  color: rgba(0, 0, 0, 0.62);
+  margin-top: 4px;
   display: block;
+  letter-spacing: 0.3px;
 }
 .goal-tab {
   flex: 1;
@@ -38,13 +43,16 @@
   align-items: center;
   justify-content: center;
   font-size: 13px;
+  font-weight: 600;
   background: var(--card);
   color: var(--text-secondary);
 }
 .goal-tab.active {
   background: var(--primary);
-  color: #FFF;
+  color: #000;
   border-color: var(--primary);
+  font-weight: 800;
+  box-shadow: 0 4px 14px rgba(204, 255, 0, 0.35);
 }
 .meal-section {
   padding: 0 20px;

@@ -222,7 +222,7 @@ function getGoalEmoji(goal) {
     '腹肌': '🦬',
     '腿部塑形': '🧍',
     '全身紧致': '🌟',
-    '康复训练': '🏥'
+    '恢复训练': '💆'
   };
   return map[goal] || '🎯';
 }

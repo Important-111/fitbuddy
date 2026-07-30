@@ -63,16 +63,16 @@ const SWAP_POOL = {
 
 // 动态热身：可选热身动作池（点「选择动作」弹出，可勾选本次要做的项目）
 const WARMUP_POOL = [
-  { id: 'jumping-jack',  name: '开合跳',     emoji: '⚡', detail: '全身燃脂热身，快速提升心率', sec: 30 },
-  { id: 'high-knees',    name: '高抬腿',     emoji: '🔥', detail: '核心与下肢联动，激活心肺功能', sec: 30 },
-  { id: 'hip-circles',   name: '髋关节环绕', emoji: '🔄', detail: '活动髋关节，预防运动损伤', sec: 30 },
-  { id: 'ankle-circles', name: '踝关节活动', emoji: '🦶', detail: '唤醒踝关节，提升落地稳定性', sec: 20 },
-  { id: 'jog-in-place',  name: '原地慢跑',   emoji: '🏃', detail: '低强度有氧，逐步升高体温', sec: 45 },
-  { id: 'arm-circles',   name: '手臂环绕',   emoji: '🤸', detail: '放松肩袖肌群，改善肩关节活动度', sec: 20 },
-  { id: 'chest-open',    name: '扩胸运动',   emoji: '💪', detail: '打开胸廓，激活胸背肌群', sec: 20 },
-  { id: 'calf-raise',    name: '提踵',       emoji: '🦵', detail: '激活小腿与跟腱，增强踝关节刚性', sec: 20 },
-  { id: 'cat-cow',       name: '猫牛式',     emoji: '🐱', detail: '脊柱灵活热身，舒缓腰背', sec: 30 },
-  { id: 'side-shuffle',  name: '侧滑步',     emoji: '↔️', detail: '动态横向移动，激活臀中肌', sec: 30 }
+  { id: 'jumping-jack',  name: '开合跳',     emoji: '⚡', detail: '全身燃脂热身，快速提升心率', sec: 30, sets: '1组 × 30秒' },
+  { id: 'high-knees',    name: '高抬腿',     emoji: '🔥', detail: '核心与下肢联动，激活心肺功能', sec: 30, sets: '1组 × 30秒' },
+  { id: 'hip-circles',   name: '髋关节环绕', emoji: '🔄', detail: '活动髋关节，预防运动损伤', sec: 30, sets: '1组 × 30秒' },
+  { id: 'ankle-circles', name: '踝关节活动', emoji: '🦶', detail: '唤醒踝关节，提升落地稳定性', sec: 20, sets: '1组 × 20秒' },
+  { id: 'jog-in-place',  name: '原地慢跑',   emoji: '🏃', detail: '低强度有氧，逐步升高体温', sec: 45, sets: '1组 × 45秒' },
+  { id: 'arm-circles',   name: '手臂环绕',   emoji: '🤸', detail: '放松肩袖肌群，改善肩关节活动度', sec: 20, sets: '1组 × 20秒' },
+  { id: 'chest-open',    name: '扩胸运动',   emoji: '💪', detail: '打开胸廓，激活胸背肌群', sec: 20, sets: '1组 × 20秒' },
+  { id: 'calf-raise',    name: '提踵',       emoji: '🦵', detail: '激活小腿与跟腱，增强踝关节刚性', sec: 20, sets: '1组 × 20秒' },
+  { id: 'cat-cow',       name: '拳击出拳',   emoji: '🥊', detail: '原地交替直拳摆拳，激活肩部与上肢爆发力', sec: 30, sets: '1组 × 30秒' },
+  { id: 'side-shuffle',  name: '侧滑步',     emoji: '⛹️', detail: '动态横向移动，激活臀中肌', sec: 30, sets: '1组 × 30秒' }
 ];
 const WARMUP_DEFAULT = ['jumping-jack', 'high-knees', 'hip-circles', 'ankle-circles'];
 
@@ -82,13 +82,13 @@ const STRETCH_POOL = [
   { id: 'stretch-quad',      name: '股四头肌拉伸', emoji: '🦵', detail: '站姿屈膝抓脚踝，拉伸大腿前侧',           sets: '每侧 30秒 × 2组', sec: 30 },
   { id: 'stretch-hamstring', name: '腘绳肌拉伸',   emoji: '🦵', detail: '坐姿前屈或站姿体前屈，拉伸大腿后侧',     sets: '每侧 30秒 × 2组', sec: 30 },
   { id: 'stretch-glute',     name: '臀大肌拉伸',   emoji: '🍑', detail: '仰卧4字拉伸，缓解臀部深层紧张',           sets: '每侧 30秒 × 2组', sec: 30 },
-  { id: 'stretch-child',     name: '婴儿式放松',   emoji: '🧘', detail: '跪姿臀部坐脚跟，前倾延伸背部',             sets: '60秒',              sec: 60 },
+  { id: 'stretch-child',     name: '婴儿式放松',   emoji: '🧘', detail: '跪姿臀部坐脚跟，前倾延伸背部',             sets: '1组 × 60秒',              sec: 60 },
   { id: 'stretch-calf',      name: '小腿拉伸',     emoji: '🦶', detail: '弓步推墙或台阶拉伸，缓解小腿紧绷',         sets: '每侧 30秒 × 2组', sec: 30 },
   { id: 'stretch-hip',       name: '髋屈肌拉伸',   emoji: '🔄', detail: '弓步下沉髋部，打开髋关节前侧',             sets: '每侧 30秒 × 2组', sec: 30 },
-  { id: 'stretch-spine',     name: '猫牛式',       emoji: '🐈', detail: '四足跪姿脊柱流动，舒缓腰背紧张',           sets: '10次缓慢流动',     sec: 30 },
+  { id: 'stretch-spine',     name: '猫牛式',       emoji: '🐈', detail: '四足跪姿脊柱流动，舒缓腰背紧张',           sets: '1组 × 10次缓慢流动',     sec: 30 },
   { id: 'stretch-cobra',     name: '眼镜蛇式',     emoji: '🐍', detail: '俯卧撑起上身，伸展腹直肌与前链',           sets: '保持 30秒 × 2组', sec: 30 },
   { id: 'stretch-shoulder',  name: '肩部拉伸',     emoji: '💪', detail: '交叉手臂跨胸前，放松三角肌后束',           sets: '每侧 30秒 × 2组', sec: 30 },
-  { id: 'stretch-pigeon',    name: '鸽子式',       emoji: '🕊️', detail: '深度打开髋关节，进阶拉伸臀外旋肌',         sets: '每侧 45秒',       sec: 45 }
+  { id: 'stretch-pigeon',    name: '鸽子式',       emoji: '🕊️', detail: '深度打开髋关节，进阶拉伸臀外旋肌',         sets: '每侧 45秒 × 1组',       sec: 45 }
 ];
 const STRETCH_DEFAULT = ['stretch-quad', 'stretch-hamstring', 'stretch-glute', 'stretch-child'];
 
@@ -108,8 +108,10 @@ function buildWarmups(selectedIds) {
   const items = picked.map(function(id, idx) {
     const w = WARMUP_POOL.find(function(x) { return x.id === id; }) || WARMUP_POOL[0];
     const dur = w.sec + '秒';
+    // 保留 WARMUP_POOL 里已注入的 "N组 × N秒" 组数字段；兼容历史数据，若无则按"1组 × N秒"构造
+    const setsLabel = w.sets && w.sets.indexOf('组') >= 0 ? w.sets : ('1组 × ' + dur);
     // phase 内连续编号（与原型对齐：热身动作按 1/2/3... 显示）
-    return { id: w.id, name: w.name, emoji: w.emoji, detail: w.detail, rest: dur, sets: dur, done: false, num: idx + 1 };
+    return { id: w.id, name: w.name, emoji: w.emoji, detail: w.detail, rest: dur, sets: setsLabel, done: false, num: idx + 1 };
   });
   return withTimer(items, WARMUP_TIMER_SEC);
 }
@@ -128,6 +130,8 @@ function parseTotalSets(item) {
     const m = String(sources[i]).match(/(\d+)\s*组/);
     if (m) return parseInt(m[1]);
   }
+  // 计时类（热身/拉伸）没有明确组数时，按 1 组兜底，避免弹窗显示 "—"
+  if (item.sec && item.sec > 0) return 1;
   return 0;
 }
 
@@ -293,6 +297,54 @@ Page({
 
   noop() {},
 
+  // —— 动作倒计时声音提示（Web Audio 实时合成，无需音频文件）——
+  initAudio() {
+    if (this._audioCtx) {
+      // 已被挂起时尝试唤醒（部分机型需用户手势后 resume）
+      if (this._audioCtx.resume && this._audioCtx.state === 'suspended') {
+        try { this._audioCtx.resume(); } catch (e) {}
+      }
+      return this._audioCtx;
+    }
+    try {
+      if (wx.createWebAudioContext) {
+        this._audioCtx = wx.createWebAudioContext();
+        if (this._audioCtx && this._audioCtx.resume) {
+          try { this._audioCtx.resume(); } catch (e) {}
+        }
+      }
+    } catch (e) {
+      this._audioCtx = null;
+    }
+    return this._audioCtx || null;
+  },
+
+  // 合成单个提示音：freq 频率 / duration 时长(秒) / type 波形 / delay 延迟(秒)
+  playTone(freq, duration, type, delay) {
+    const ctx = this.initAudio();
+    if (!ctx) return;
+    try {
+      const t0 = (ctx.currentTime || 0) + (delay || 0);
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type || 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.0001, t0);
+      gain.gain.linearRampToValueAtTime(0.5, t0 + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(t0);
+      osc.stop(t0 + duration + 0.02);
+    } catch (e) {}
+  },
+
+  // 完成提示音：两声升调「叮咚」，与倒数滴声明显区分
+  playFinishSound() {
+    this.playTone(880, 0.18, 'sine', 0);        // 第一声
+    this.playTone(1318.5, 0.38, 'sine', 0.18);  // 第二声（升调）
+  },
+
   _keyOf(list, idx) {
     return list + '-' + idx;
   },
@@ -313,6 +365,8 @@ Page({
         clearInterval(this._timers[k]);
         this._timers[k] = null;
       }
+      // 关闭可能残留的全屏倒数遮罩（最后5秒内暂停时）
+      this.setData({ countdownShow: false, countdownPulse: false });
     } else {
       // start: if finished or 0, reset to default
       let startSec = parseInt(it.timerSec);
@@ -323,6 +377,7 @@ Page({
       it.timerDisplay = formatTimer(startSec);
       it.timerState = 'running';
       it.timerBtnLabel = '暂停';
+      this.initAudio();
 
       const self = this;
       const tickKey = k;
@@ -336,6 +391,13 @@ Page({
         // 最后5秒全屏倒数
         if (curItem.timerSec > 0 && curItem.timerSec <= 5) {
           self.showCountdownPulse(curItem.timerSec);
+          if (curItem.timerSec === 1) {
+            // 最后一秒：加强提醒（升调双声「滴-嘟」，比前4秒更紧迫）
+            self.playTone(1046.5, 0.15, 'triangle', 0);
+            self.playTone(1568, 0.32, 'triangle', 0.14);
+          } else {
+            self.playTone(880, 0.12, 'sine'); // 普通倒数滴声
+          }
         }
 
         if (curItem.timerSec <= 0) {
@@ -358,6 +420,7 @@ Page({
           self.setData(dataPatch);
           // 关闭倒数层，弹组进度
           self.setData({ countdownShow: false, countdownPulse: false });
+          self.playFinishSound(); // 完成提示音
           self.showSetProgress(list, idx);
           return;
         }
@@ -387,8 +450,12 @@ Page({
     const items = this.data[list] || [];
     const it = items[idx];
     if (!it) return;
-    const total = parseInt(it.totalSets) || 0;
-    const done = parseInt(it.completedSets) || 0;
+    let total = parseInt(it.totalSets) || 0;
+    let done = parseInt(it.completedSets) || 0;
+    // 兜底：热身/拉伸是计时类（多数 1 组），若 totalSets 未正确赋值，按 1 组渲染
+    if (total <= 0 && (list === 'warmups' || list === 'stretches')) {
+      total = 1;
+    }
     const isLast = total > 0 && done >= total;
     const percent = total > 0 ? Math.min(100, Math.round((done / total) * 100)) : 100;
     this._activeList = list;
@@ -420,8 +487,12 @@ Page({
     const items = (this.data[list] || []).slice();
     const it = Object.assign({}, items[idx]);
     // 若已完成全部组数 — 仅关闭弹窗，不跳转
-    const total = parseInt(it.totalSets) || 0;
-    const done = parseInt(it.completedSets) || 0;
+    let total = parseInt(it.totalSets) || 0;
+    let done = parseInt(it.completedSets) || 0;
+    // 兜底：热身/拉伸未赋 totalSets 时按 1 组计算
+    if (total <= 0 && (list === 'warmups' || list === 'stretches')) {
+      total = 1;
+    }
     if (total > 0 && done >= total) {
       this.setData({ setProgressShow: false });
       return;

@@ -8,7 +8,7 @@
   <view class="checkin-hero" style="background:linear-gradient(135deg,#CCFF00,#B8E600)">
     <view class="checkin-hero-emoji">🏋️‍♀️</view>
     <text class="checkin-hero-title">今天的训练完成了吗？</text>
-    <text class="checkin-hero-desc">记录你的训练数据，让FitBuddy更好地为你调整计划</text>
+    <text class="checkin-hero-desc">记录你的训练数据，让飞特八弟更好地为你调整计划</text>
   </view>
 
   <!-- Completion Rating -->

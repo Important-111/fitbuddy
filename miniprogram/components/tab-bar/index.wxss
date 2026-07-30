@@ -20,20 +20,35 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 6px 0 4px;
-  gap: 3px;
+  padding: 8px 0 6px;
+  gap: 4px;
+  position: relative;
 }
 .tab-icon {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
 }
 .tab-label {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
-  color: var(--text-secondary, #999);
+  color: #B0B0B0;
   line-height: 1;
+  letter-spacing: 0.2px;
 }
 .tab-item.active .tab-label {
   color: var(--primary, #CCFF00);
-  font-weight: 600;
+  font-weight: 700;
+}
+/* 顶部激活指示器（小圆点） */
+.tab-item.active::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--primary, #CCFF00);
+  box-shadow: 0 0 8px rgba(204, 255, 0, 0.6);
 }

@@ -5,8 +5,8 @@ const EXERCISE_DATA = {
     "eng": "Bodyweight Squat",
     "emoji": "🧍",
     "level": "⭐ 初级",
-    "muscle_label": "下肢训练",
-    "type_label": "自重训练",
+    "muscle_label": "💪 下肢训练",
+    "type_label": "🎯 自重训练",
     "purpose": "增强下肢力量，提升核心稳定",
     "primary_muscle": "臀大肌、股四头肌",
     "secondary_muscle": "核心肌群、腘绳肌、小腿肌群",
@@ -55,8 +55,8 @@ const EXERCISE_DATA = {
     "eng": "Glute Bridge",
     "emoji": "🧎",
     "level": "⭐ 初级",
-    "muscle_label": "臀部训练",
-    "type_label": "自重训练",
+    "muscle_label": "💪 臀部训练",
+    "type_label": "🎯 自重训练",
     "purpose": "激活臀大肌，改善臀部形态与下背痛",
     "primary_muscle": "臀大肌",
     "secondary_muscle": "腘绳肌、核心肌群",
@@ -104,8 +104,8 @@ const EXERCISE_DATA = {
     "eng": "Lunge",
     "emoji": "🏃",
     "level": "⭐⭐ 中级",
-    "muscle_label": "下肢训练",
-    "type_label": "自重训练",
+    "muscle_label": "💪 下肢训练",
+    "type_label": "🎯 自重训练",
     "purpose": "单侧腿部训练，改善不平衡与核心稳定",
     "primary_muscle": "股四头肌、臀大肌",
     "secondary_muscle": "腘绳肌、小腿肌群、核心肌群",
@@ -154,8 +154,8 @@ const EXERCISE_DATA = {
     "eng": "Side Lying Leg Raise",
     "emoji": "🛌",
     "level": "⭐ 初级",
-    "muscle_label": "臀部训练",
-    "type_label": "自重训练",
+    "muscle_label": "💪 臀部训练",
+    "type_label": "🎯 自重训练",
     "purpose": "训练臀中肌，改善髋部稳定性与臀部侧方线条",
     "primary_muscle": "臀中肌",
     "secondary_muscle": "臀小肌、阔筋膜张肌",
@@ -203,8 +203,8 @@ const EXERCISE_DATA = {
     "eng": "Jumping Jack",
     "emoji": "🤸",
     "level": "⭐ 初级",
-    "muscle_label": "全身燃脂",
-    "type_label": "有氧训练",
+    "muscle_label": "💪 全身燃脂",
+    "type_label": "🎯 有氧训练",
     "purpose": "快速提升心率，全身燃脂热身",
     "primary_muscle": "心肺系统",
     "secondary_muscle": "肩部、小腿、核心肌群",
@@ -253,8 +253,8 @@ const EXERCISE_DATA = {
     "eng": "High Knees",
     "emoji": "🏃",
     "level": "⭐ 初级",
-    "muscle_label": "核心+下肢",
-    "type_label": "有氧训练",
+    "muscle_label": "💪 核心+下肢",
+    "type_label": "🎯 有氧训练",
     "purpose": "提升心肺与下肢爆发力，核心稳定",
     "primary_muscle": "髂腰肌、腹直肌",
     "secondary_muscle": "股四头肌、小腿、心肺",
@@ -303,8 +303,8 @@ const EXERCISE_DATA = {
     "eng": "Jump Squat",
     "emoji": "🦘",
     "level": "⭐⭐ 中级",
-    "muscle_label": "下肢爆发力",
-    "type_label": "增强式训练",
+    "muscle_label": "💪 下肢爆发力",
+    "type_label": "🎯 增强式训练",
     "purpose": "下肢爆发力训练，大量消耗热量",
     "primary_muscle": "股四头肌、臀大肌",
     "secondary_muscle": "小腿、核心肌群",
@@ -353,8 +353,8 @@ const EXERCISE_DATA = {
     "eng": "Mountain Climber",
     "emoji": "🏔️",
     "level": "⭐⭐ 中级",
-    "muscle_label": "核心+全身",
-    "type_label": "有氧+核心",
+    "muscle_label": "💪 核心+全身",
+    "type_label": "🎯 有氧+核心",
     "purpose": "核心稳定与全身燃脂的综合动作",
     "primary_muscle": "腹直肌、腹横肌",
     "secondary_muscle": "肩部、股四头肌、心肺",
@@ -403,13 +403,13 @@ const EXERCISE_DATA = {
     "eng": "Wall Sit",
     "emoji": "🧱",
     "level": "⭐⭐ 中级",
-    "muscle_label": "下肢训练",
-    "type_label": "静力训练",
+    "muscle_label": "💪 下肢训练",
+    "type_label": "🎯 静力训练",
     "purpose": "静态强化股四头肌与耐力，保护膝关节",
     "primary_muscle": "股四头肌",
     "secondary_muscle": "臀大肌、小腿肌群、核心肌群",
     "level_value": "⭐⭐ 中级",
-    "fit_for": "想提升腿部耐力、康复护膝人群",
+    "fit_for": "想提升腿部耐力、膝盖养护人群",
     "sets": "3组 × 45秒",
     "rest": "45秒",
     "tags": [
@@ -452,8 +452,8 @@ const EXERCISE_DATA = {
     "eng": "Bulgarian Split Squat",
     "emoji": "🦵",
     "level": "⭐⭐⭐ 高级",
-    "muscle_label": "下肢训练",
-    "type_label": "自重训练",
+    "muscle_label": "💪 下肢训练",
+    "type_label": "🎯 自重训练",
     "purpose": "单腿力量与平衡，深度刺激臀腿",
     "primary_muscle": "股四头肌、臀大肌",
     "secondary_muscle": "腘绳肌、核心肌群",
@@ -502,8 +502,8 @@ const EXERCISE_DATA = {
     "eng": "Sumo Squat",
     "emoji": "🧘",
     "level": "⭐⭐ 中级",
-    "muscle_label": "下肢训练",
-    "type_label": "自重训练",
+    "muscle_label": "💪 下肢训练",
+    "type_label": "🎯 自重训练",
     "purpose": "强化大腿内侧与臀部，改善内收肌力量",
     "primary_muscle": "股四头肌、内收肌",
     "secondary_muscle": "臀大肌、腘绳肌",
@@ -551,8 +551,8 @@ const EXERCISE_DATA = {
     "eng": "Single-Leg Glute Bridge",
     "emoji": "🦵",
     "level": "⭐⭐ 中级",
-    "muscle_label": "臀部训练",
-    "type_label": "自重训练",
+    "muscle_label": "💪 臀部训练",
+    "type_label": "🎯 自重训练",
     "purpose": "单侧臀部激活，改善左右不平衡",
     "primary_muscle": "臀大肌",
     "secondary_muscle": "腘绳肌、核心肌群",
@@ -600,8 +600,8 @@ const EXERCISE_DATA = {
     "eng": "Clamshell",
     "emoji": "🐚",
     "level": "⭐ 初级",
-    "muscle_label": "臀部训练",
-    "type_label": "自重训练",
+    "muscle_label": "💪 臀部训练",
+    "type_label": "🎯 自重训练",
     "purpose": "激活臀中肌，改善髋部稳定性",
     "primary_muscle": "臀中肌",
     "secondary_muscle": "臀小肌",
@@ -649,8 +649,8 @@ const EXERCISE_DATA = {
     "eng": "Kneeling Kickback",
     "emoji": "🧎",
     "level": "⭐ 初级",
-    "muscle_label": "臀部训练",
-    "type_label": "自重训练",
+    "muscle_label": "💪 臀部训练",
+    "type_label": "🎯 自重训练",
     "purpose": "孤立臀大肌，改善臀部形态",
     "primary_muscle": "臀大肌",
     "secondary_muscle": "腘绳肌、核心肌群",
@@ -697,8 +697,8 @@ const EXERCISE_DATA = {
     "eng": "Barbell Glute Bridge",
     "emoji": "🏋️",
     "level": "⭐⭐⭐ 高级",
-    "muscle_label": "臀部训练",
-    "type_label": "负重训练",
+    "muscle_label": "💪 臀部训练",
+    "type_label": "🎯 负重训练",
     "purpose": "进阶强化臀大肌，提升臀部力量",
     "primary_muscle": "臀大肌",
     "secondary_muscle": "腘绳肌、核心肌群",
@@ -746,8 +746,8 @@ const EXERCISE_DATA = {
     "eng": "Reverse Lunge",
     "emoji": "🚶",
     "level": "⭐⭐ 中级",
-    "muscle_label": "下肢训练",
-    "type_label": "自重训练",
+    "muscle_label": "💪 下肢训练",
+    "type_label": "🎯 自重训练",
     "purpose": "减少膝盖压力，深度刺激臀腿",
     "primary_muscle": "股四头肌、臀大肌",
     "secondary_muscle": "腘绳肌、核心肌群",
@@ -795,8 +795,8 @@ const EXERCISE_DATA = {
     "eng": "Side Lunge",
     "emoji": "↔️",
     "level": "⭐⭐ 中级",
-    "muscle_label": "下肢训练",
-    "type_label": "自重训练",
+    "muscle_label": "💪 下肢训练",
+    "type_label": "🎯 自重训练",
     "purpose": "训练大腿内侧与单侧臀部",
     "primary_muscle": "股四头肌、内收肌",
     "secondary_muscle": "臀中肌、腘绳肌",
@@ -844,8 +844,8 @@ const EXERCISE_DATA = {
     "eng": "Walking Lunge",
     "emoji": "🚶",
     "level": "⭐⭐ 中级",
-    "muscle_label": "下肢训练",
-    "type_label": "功能性训练",
+    "muscle_label": "💪 下肢训练",
+    "type_label": "🎯 功能性训练",
     "purpose": "动态训练下肢，提升平衡与协调",
     "primary_muscle": "股四头肌、臀大肌",
     "secondary_muscle": "腘绳肌、核心肌群",
@@ -893,8 +893,8 @@ const EXERCISE_DATA = {
     "eng": "Jump Lunge",
     "emoji": "💥",
     "level": "⭐⭐⭐ 高级",
-    "muscle_label": "下肢训练",
-    "type_label": "爆发力训练",
+    "muscle_label": "💪 下肢训练",
+    "type_label": "🎯 爆发力训练",
     "purpose": "爆发力训练，提升下肢功率与心肺",
     "primary_muscle": "股四头肌、臀大肌",
     "secondary_muscle": "小腿肌群、核心肌群",
@@ -943,8 +943,8 @@ const EXERCISE_DATA = {
     "eng": "Resistance Band Clamshell",
     "emoji": "🐚",
     "level": "⭐⭐ 中级",
-    "muscle_label": "臀部训练",
-    "type_label": "阻力带训练",
+    "muscle_label": "💪 臀部训练",
+    "type_label": "🎯 阻力带训练",
     "purpose": "进阶激活臀中肌，提升髋部稳定",
     "primary_muscle": "臀中肌",
     "secondary_muscle": "臀小肌",
@@ -992,8 +992,8 @@ const EXERCISE_DATA = {
     "eng": "Side Plank Leg Lift",
     "emoji": "📏",
     "level": "⭐⭐⭐ 高级",
-    "muscle_label": "核心训练",
-    "type_label": "复合训练",
+    "muscle_label": "💪 核心训练",
+    "type_label": "🎯 复合训练",
     "purpose": "强化核心稳定与臀中肌，多肌群协同",
     "primary_muscle": "腹斜肌、臀中肌",
     "secondary_muscle": "腹横肌、肩部肌群",
@@ -1041,8 +1041,8 @@ const EXERCISE_DATA = {
     "eng": "Standing Side Leg Raise",
     "emoji": "🧍",
     "level": "⭐ 初级",
-    "muscle_label": "臀部训练",
-    "type_label": "自重训练",
+    "muscle_label": "💪 臀部训练",
+    "type_label": "🎯 自重训练",
     "purpose": "训练臀中肌，改善髋部稳定与平衡",
     "primary_muscle": "臀中肌",
     "secondary_muscle": "臀小肌、核心肌群",
@@ -1090,8 +1090,8 @@ const EXERCISE_DATA = {
     "eng": "Resistance Band Lateral Walk",
     "emoji": "🚶",
     "level": "⭐⭐ 中级",
-    "muscle_label": "臀部训练",
-    "type_label": "阻力带训练",
+    "muscle_label": "💪 臀部训练",
+    "type_label": "🎯 阻力带训练",
     "purpose": "深度激活臀中肌，改善髋部稳定",
     "primary_muscle": "臀中肌",
     "secondary_muscle": "臀小肌、阔筋膜张肌",
@@ -1138,42 +1138,521 @@ const EXERCISE_DATA = {
 
 // 替换动作动作库：让 exercise-detail 能识别每个替换动作
 const EXERCISE_EXTRA = {
-  "sumo-squat": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "下肢训练", "type_label": "自重训练", "fit_for": "所有健身水平，特别适合新手", "breath_in": "下蹲时", "breath_in_text": "用鼻子深吸气，感受腹部扩张", "breath_out": "站起时", "breath_out_text": "用嘴巴缓缓呼气，收紧核心", "mistakes": [["膝盖内扣", "下蹲时膝盖向内塌陷，容易伤到膝关节。保持膝盖与脚尖方向一致"], ["弓背弯腰", "背部弯曲导致腰椎压力过大。全程保持背部挺直，核心收紧"], ["脚跟离地", "重心前移导致脚跟抬起。全程保持全脚掌着地"], ["下蹲过浅", "只做半程动作，效果大打折扣。尽量蹲至大腿与地面平行"]],  "name": "相扑深蹲", "eng": "Sumo Squat", "emoji": "🦵", "purpose": "宽站距深蹲，重点刺激大腿内侧与臀部", "primary_muscle": "大腿内收肌、臀大肌", "secondary_muscle": "股四头肌、腘绳肌", "sets": "3组 × 15次", "rest": "45秒", "points": ["双脚大幅宽站，脚尖向外约 45 度", "保持背部挺直，核心收紧", "下蹲时膝盖沿脚尖方向，臀部垂直向下坐", "蹲至大腿与地面平行或更低", "脚跟发力站起，顶部夹紧臀部"], "tags": ["内收肌", "臀大肌", "股四头肌"]},
-  "jump-squat": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "下肢训练", "type_label": "爆发力训练", "fit_for": "有一定基础，想提升下肢爆发力者", "breath_in": "下蹲时", "breath_in_text": "吸气，屈髋屈膝蓄力", "breath_out": "跳起时", "breath_out_text": "呼气，臀部和腿部爆发向上跳起", "mistakes": [["落地不缓冲", "冲击膝关节。落地时膝盖微屈，前脚掌先着地"], ["下蹲过浅", "爆发力不足。蹲至大腿接近平行"], ["膝盖内扣", "增加膝关节扭力。膝盖沿脚尖方向"], ["躯干松散", "核心未收紧。保持背部挺直，腹部发力"]],  "name": "跳跃深蹲", "eng": "Jump Squat", "emoji": "⚡", "purpose": "爆发力训练，提升心率与下肢力量", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "腓肠肌、核心肌群", "sets": "3组 × 12次", "rest": "45秒", "points": ["双脚与肩同宽，背部挺直", "下蹲至大腿与地面平行蓄力", "爆发向上跳起，手臂自然上摆", "落地时前脚掌先着地，膝盖微屈缓冲", "保持稳定后立刻进入下一次"], "tags": ["爆发力", "臀大肌", "股四头肌"]},
-  "box-squat": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "下肢训练", "type_label": "自重训练", "fit_for": "所有健身水平，特别适合新手", "breath_in": "下蹲时", "breath_in_text": "用鼻子深吸气，感受腹部扩张", "breath_out": "站起时", "breath_out_text": "用嘴巴缓缓呼气，收紧核心", "mistakes": [["膝盖内扣", "下蹲时膝盖向内塌陷，容易伤到膝关节。保持膝盖与脚尖方向一致"], ["弓背弯腰", "背部弯曲导致腰椎压力过大。全程保持背部挺直，核心收紧"], ["脚跟离地", "重心前移导致脚跟抬起。全程保持全脚掌着地"], ["下蹲过浅", "只做半程动作，效果大打折扣。尽量蹲至大腿与地面平行"]],  "name": "箱式深蹲", "eng": "Box Squat", "emoji": "📦", "purpose": "坐椅式下蹲，强化离心控制与蹲到底的感觉", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "核心肌群、腘绳肌", "sets": "3组 × 12次", "rest": "45秒", "points": ["身后放椅子或矮箱，双脚与肩同宽", "臀部向后坐，轻触椅面但不用力坐下", "保持背部挺直，膝盖沿脚尖方向", "触箱后立刻用脚跟发力站起", "全程核心收紧，避免身体前倾"], "tags": ["控制", "臀大肌", "股四头肌"]},
-  "pause-squat": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "下肢训练", "type_label": "自重训练", "fit_for": "所有健身水平，特别适合新手", "breath_in": "下蹲时", "breath_in_text": "用鼻子深吸气，感受腹部扩张", "breath_out": "站起时", "breath_out_text": "用嘴巴缓缓呼气，收紧核心", "mistakes": [["膝盖内扣", "下蹲时膝盖向内塌陷，容易伤到膝关节。保持膝盖与脚尖方向一致"], ["弓背弯腰", "背部弯曲导致腰椎压力过大。全程保持背部挺直，核心收紧"], ["脚跟离地", "重心前移导致脚跟抬起。全程保持全脚掌着地"], ["下蹲过浅", "只做半程动作，效果大打折扣。尽量蹲至大腿与地面平行"]],  "name": "暂停深蹲", "eng": "Pause Squat", "emoji": "⏸️", "purpose": "底部停顿增加肌张力，突破力量瓶颈", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "核心肌群、腘绳肌", "sets": "3组 × 10次", "rest": "60秒", "points": ["双脚与肩同宽，脚尖微外展", "有控制地下蹲至大腿与地面平行", "最低点静止保持 2-3 秒，保持核心紧绷", "用脚跟发力推起，不要弹起", "全程保持背部挺直，膝盖不内扣"], "tags": ["肌张力", "臀大肌", "股四头肌"]},
-  "single-leg-bridge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "臀部训练", "type_label": "自重训练", "fit_for": "久坐人群、臀部松弛者、新手", "breath_in": "上抬时", "breath_in_text": "呼气，臀部发力向上推", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["过度挺腰", "用腰部代偿发力导致下背痛。顶部应收紧臀部而非腰部"], ["脚跟离地", "抬髋时脚跟离地减弱臀部发力。脚跟全程踩实"], ["未到顶", "臀部抬得不够高，肌肉刺激不足。顶部身体成一条直线"], ["速度过快", "靠惯性起落。应 2 秒上抬，2 秒下落"]],  "name": "单腿臀桥", "eng": "Single Leg Bridge", "emoji": "🍑", "purpose": "单腿支撑顶髋，改善臀部力量不平衡", "primary_muscle": "臀大肌", "secondary_muscle": "腘绳肌、核心肌群", "sets": "3组 × 12次（每侧）", "rest": "45秒", "points": ["仰卧屈膝，一腿伸直抬起", "支撑脚脚跟靠近臀部", "核心收紧，用臀部发力将髋部顶起", "顶部身体从肩到膝成一条直线", "有控制地下落，完成一侧后换边"], "tags": ["臀大肌", "腘绳肌", "核心"]},
-  "feet-elevated-bridge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "臀部训练", "type_label": "自重训练", "fit_for": "久坐人群、臀部松弛者、新手", "breath_in": "上抬时", "breath_in_text": "呼气，臀部发力向上推", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["过度挺腰", "用腰部代偿发力导致下背痛。顶部应收紧臀部而非腰部"], ["脚跟离地", "抬髋时脚跟离地减弱臀部发力。脚跟全程踩实"], ["未到顶", "臀部抬得不够高，肌肉刺激不足。顶部身体成一条直线"], ["速度过快", "靠惯性起落。应 2 秒上抬，2 秒下落"]],  "name": "高位臀桥", "eng": "Feet Elevated Bridge", "emoji": "🪑", "purpose": "双脚垫高，增大臀大肌拉伸幅度", "primary_muscle": "臀大肌", "secondary_muscle": "腘绳肌、下背部", "sets": "3组 × 15次", "rest": "45秒", "points": ["仰卧，双脚踩在椅子或矮箱边缘", "双脚与肩同宽，膝盖微外展", "臀部发力将髋部顶至最高点", "顶部夹紧臀部，身体成一条直线", "缓慢下落至臀部轻触地面"], "tags": ["臀大肌", "拉伸", "腘绳肌"]},
-  "frog-bridge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "臀部训练", "type_label": "自重训练", "fit_for": "久坐人群、臀部松弛者、新手", "breath_in": "上抬时", "breath_in_text": "呼气，臀部发力向上推", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["过度挺腰", "用腰部代偿发力导致下背痛。顶部应收紧臀部而非腰部"], ["脚跟离地", "抬髋时脚跟离地减弱臀部发力。脚跟全程踩实"], ["未到顶", "臀部抬得不够高，肌肉刺激不足。顶部身体成一条直线"], ["速度过快", "靠惯性起落。应 2 秒上抬，2 秒下落"]],  "name": "蛙式臀桥", "eng": "Frog Bridge", "emoji": "🐸", "purpose": "脚心相对，强化臀中肌与臀部外旋能力", "primary_muscle": "臀中肌、臀大肌", "secondary_muscle": "核心肌群、内收肌", "sets": "3组 × 15次", "rest": "30秒", "points": ["仰卧，脚心相对，膝盖向两侧打开", "脚跟尽量靠近臀部", "臀部发力向上顶髋，膝盖保持外展", "顶部收紧臀部，停顿 1 秒", "有控制地下落，感受臀部拉伸"], "tags": ["臀中肌", "臀大肌", "内收肌"]},
-  "hold-bridge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "臀部训练", "type_label": "自重训练", "fit_for": "久坐人群、臀部松弛者、新手", "breath_in": "上抬时", "breath_in_text": "呼气，臀部发力向上推", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["过度挺腰", "用腰部代偿发力导致下背痛。顶部应收紧臀部而非腰部"], ["脚跟离地", "抬髋时脚跟离地减弱臀部发力。脚跟全程踩实"], ["未到顶", "臀部抬得不够高，肌肉刺激不足。顶部身体成一条直线"], ["速度过快", "靠惯性起落。应 2 秒上抬，2 秒下落"]],  "name": "静止臀桥", "eng": "Hold Bridge", "emoji": "⏱️", "purpose": "顶峰收缩保持，提升臀部耐力与募集感", "primary_muscle": "臀大肌", "secondary_muscle": "腘绳肌、核心肌群", "sets": "3组 × 45秒", "rest": "30秒", "points": ["仰卧屈膝，双脚踩实地面", "臀部发力顶髋至肩-膝成直线", "顶部主动夹紧臀部，保持目标时长", "保持均匀呼吸，不要憋气", "若腰部代偿，稍微降低高度"], "tags": ["臀大肌", "耐力", "核心"]},
-  "reverse-lunge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "下肢训练", "type_label": "自重训练", "fit_for": "想改善下肢力量与平衡者", "breath_in": "下蹲时", "breath_in_text": "吸气，有控制地下降", "breath_out": "站起时", "breath_out_text": "呼气，前脚发力推起", "mistakes": [["前膝超脚尖过多", "增加膝关节压力。调整前后脚距离"], ["上身前倾", "重心前移失去平衡。躯干保持直立"], ["后膝砸地", "控制不足。后膝轻触地面即起"], ["左右不稳", "核心未收紧。目视前方，腹部发力"]],  "name": "反向弓步蹲", "eng": "Reverse Lunge", "emoji": "🔙", "purpose": "后撤步弓步，对膝盖压力小于前弓步", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "腘绳肌、核心肌群", "sets": "3组 × 12次（每侧）", "rest": "60秒", "points": ["双脚并拢站立，核心收紧", "一腿向后撤一大步，同时下蹲", "前膝约 90 度，后膝轻触地面", "前脚脚跟发力推起回到站立", "保持躯干直立，完成一侧后换边"], "tags": ["臀大肌", "股四头肌", "护膝盖"]},
-  "side-lunge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "下肢训练", "type_label": "自重训练", "fit_for": "想改善下肢力量与平衡者", "breath_in": "下蹲时", "breath_in_text": "吸气，有控制地下降", "breath_out": "站起时", "breath_out_text": "呼气，前脚发力推起", "mistakes": [["前膝超脚尖过多", "增加膝关节压力。调整前后脚距离"], ["上身前倾", "重心前移失去平衡。躯干保持直立"], ["后膝砸地", "控制不足。后膝轻触地面即起"], ["左右不稳", "核心未收紧。目视前方，腹部发力"]],  "name": "侧弓步蹲", "eng": "Side Lunge", "emoji": "↔️", "purpose": "侧向跨步下蹲，刺激大腿内侧与臀部", "primary_muscle": "大腿内收肌、臀大肌", "secondary_muscle": "股四头肌、核心肌群", "sets": "3组 × 12次（每侧）", "rest": "45秒", "points": ["双脚并拢站立，一腿向侧方迈出一大步", "重心移向迈出的腿，臀部向后坐", "保持伸直腿膝盖微屈，不锁死", "下蹲腿大腿尽量与地面平行", "用下蹲腿脚跟发力推回站立"], "tags": ["内收肌", "臀大肌", "股四头肌"]},
-  "walking-lunge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "下肢训练", "type_label": "自重训练", "fit_for": "想改善下肢力量与平衡者", "breath_in": "下蹲时", "breath_in_text": "吸气，有控制地下降", "breath_out": "站起时", "breath_out_text": "呼气，前脚发力推起", "mistakes": [["前膝超脚尖过多", "增加膝关节压力。调整前后脚距离"], ["上身前倾", "重心前移失去平衡。躯干保持直立"], ["后膝砸地", "控制不足。后膝轻触地面即起"], ["左右不稳", "核心未收紧。目视前方，腹部发力"]],  "name": "行走弓步蹲", "eng": "Walking Lunge", "emoji": "🚶", "purpose": "行进间交替弓步，提升平衡与下肢耐力", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "腘绳肌、小腿肌群", "sets": "3组 × 20步", "rest": "60秒", "points": ["站立，核心收紧，目视前方", "向前迈一步下蹲成弓步", "后膝轻触地，前膝约 90 度", "前脚发力站起，紧接着迈出下一步", "保持躯干直立，步伐稳定有控制"], "tags": ["臀大肌", "股四头肌", "平衡"]},
-  "jump-lunge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "下肢训练", "type_label": "自重训练", "fit_for": "想改善下肢力量与平衡者", "breath_in": "下蹲时", "breath_in_text": "吸气，有控制地下降", "breath_out": "站起时", "breath_out_text": "呼气，前脚发力推起", "mistakes": [["前膝超脚尖过多", "增加膝关节压力。调整前后脚距离"], ["上身前倾", "重心前移失去平衡。躯干保持直立"], ["后膝砸地", "控制不足。后膝轻触地面即起"], ["左右不稳", "核心未收紧。目视前方，腹部发力"]],  "name": "跳跃弓步蹲", "eng": "Jump Lunge", "emoji": "⚡", "purpose": "弓步跳换，爆发力与燃脂双效", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "腓肠肌、核心肌群", "sets": "3组 × 10次（每侧）", "rest": "60秒", "points": ["前后分腿成弓步，核心收紧", "下蹲蓄力后爆发跳起", "空中交换前后腿位置", "落地时膝盖微屈缓冲", "保持节奏稳定，落地即起"], "tags": ["爆发力", "燃脂", "股四头肌"]},
-  "clamshell": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "臀部训练", "type_label": "自重训练", "fit_for": "想改善臀中肌、髋部稳定者", "breath_in": "上抬时", "breath_in_text": "呼气，臀外侧发力向侧方抬", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["身体侧倾", "代偿发力。保持身体直立"], ["抬腿过高", "腰椎代偿。45 度即可"], ["脚尖朝上", "变成股四头肌发力。脚尖朝前"], ["速度太快", "靠惯性。用 2 秒上抬，2 秒下落"]],  "name": "蚌式开合", "eng": "Clamshell", "emoji": "🦪", "purpose": "侧卧屈膝开合，激活臀中肌", "primary_muscle": "臀中肌", "secondary_muscle": "臀小肌、阔筋膜张肌", "sets": "3组 × 20次（每侧）", "rest": "30秒", "points": ["侧卧，双膝弯曲约 90 度，脚跟并拢", "保持骨盆中立，核心收紧", "上方膝盖像贝壳一样向上打开", "顶部感受臀外侧收缩，停顿 1 秒", "有控制地合拢，不要借助惯性"], "tags": ["臀中肌", "臀小肌", "激活"]},
-  "side-plank-leg": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "臀部训练", "type_label": "自重训练", "fit_for": "想改善臀中肌、髋部稳定者", "breath_in": "上抬时", "breath_in_text": "呼气，臀外侧发力向侧方抬", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["身体侧倾", "代偿发力。保持身体直立"], ["抬腿过高", "腰椎代偿。45 度即可"], ["脚尖朝上", "变成股四头肌发力。脚尖朝前"], ["速度太快", "靠惯性。用 2 秒上抬，2 秒下落"]],  "name": "侧平板抬腿", "eng": "Side Plank Leg", "emoji": "📊", "purpose": "侧平板支撑姿态下抬上侧腿，核心与臀中肌同时训练", "primary_muscle": "臀中肌、腹斜肌", "secondary_muscle": "肩袖肌群、核心肌群", "sets": "3组 × 12次（每侧）", "rest": "45秒", "points": ["侧平板支撑，手肘在肩正下方", "身体成一条直线，核心收紧", "上侧腿伸直，向侧上方抬起", "顶部感受臀外侧与侧腹收紧", "有控制地下落，保持身体稳定"], "tags": ["臀中肌", "核心", "高强度"]},
-  "standing-side-leg": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "臀部训练", "type_label": "自重训练", "fit_for": "想改善臀中肌、髋部稳定者", "breath_in": "上抬时", "breath_in_text": "呼气，臀外侧发力向侧方抬", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["身体侧倾", "代偿发力。保持身体直立"], ["抬腿过高", "腰椎代偿。45 度即可"], ["脚尖朝上", "变成股四头肌发力。脚尖朝前"], ["速度太快", "靠惯性。用 2 秒上抬，2 秒下落"]],  "name": "站姿侧抬腿", "eng": "Standing Side Leg", "emoji": "🧍", "purpose": "站立位侧向抬腿，可扶墙保持平衡", "primary_muscle": "臀中肌", "secondary_muscle": "核心肌群、股四头肌", "sets": "3组 × 15次（每侧）", "rest": "30秒", "points": ["双脚并拢站立，可扶墙保持平衡", "核心收紧，保持身体直立", "一腿伸直向侧方抬起约 45 度", "顶部感受臀外侧收缩，脚尖朝前", "有控制地下落，完成一侧后换边"], "tags": ["臀中肌", "核心", "简单"]},
-  "kneeling-side-leg": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "臀部训练", "type_label": "自重训练", "fit_for": "想改善臀中肌、髋部稳定者", "breath_in": "上抬时", "breath_in_text": "呼气，臀外侧发力向侧方抬", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["身体侧倾", "代偿发力。保持身体直立"], ["抬腿过高", "腰椎代偿。45 度即可"], ["脚尖朝上", "变成股四头肌发力。脚尖朝前"], ["速度太快", "靠惯性。用 2 秒上抬，2 秒下落"]],  "name": "跪姿侧抬腿", "eng": "Kneeling Side Leg", "emoji": "🧎", "purpose": "四点支撑位侧向抬腿，更稳定地激活臀中肌", "primary_muscle": "臀中肌", "secondary_muscle": "核心肌群、肩袖肌群", "sets": "3组 × 15次（每侧）", "rest": "30秒", "points": ["四点跪撑，手腕在肩正下方，膝盖在髋正下方", "核心收紧，背部保持平直", "一腿向侧方抬起，膝盖保持 90 度", "顶部感受臀外侧收紧，骨盆不要翻转", "有控制地下落，完成一侧后换边"], "tags": ["臀中肌", "核心", "稳定"]},
-  "side-jack": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "全身有氧", "type_label": "自重训练", "fit_for": "所有健身水平，快速提升心率", "breath_in": "跳开时", "breath_in_text": "吸气，手脚同时向两侧展开", "breath_out": "跳回时", "breath_out_text": "呼气，双脚并拢回到起始位", "mistakes": [["落地过重", "增加关节冲击。前脚掌先着地，膝盖微屈缓冲"], ["手臂无力", "只做腿部动作。手臂配合 overhead 击掌"], ["节奏混乱", "手脚不同步。先慢后快，找到节奏"], ["憋气", "容易头晕。保持均匀呼吸"]],  "name": "侧向开合跳", "eng": "Side Jack", "emoji": "⚡", "purpose": "左右脚交替侧向开合，减少肩部冲击", "primary_muscle": "小腿肌群、股四头肌", "secondary_muscle": "肩部、心肺", "sets": "3组 × 30秒", "rest": "15秒", "points": ["双脚并拢站立，手臂自然下垂", "向侧方跳开双脚，同时手臂上举", "再跳回并拢，手臂下落", "落地时前脚掌先着地，膝盖微屈", "保持节奏稳定，呼吸均匀"], "tags": ["小腿", "股四头肌", "低冲击"]},
-  "cross-jack": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "全身有氧", "type_label": "自重训练", "fit_for": "所有健身水平，快速提升心率", "breath_in": "跳开时", "breath_in_text": "吸气，手脚同时向两侧展开", "breath_out": "跳回时", "breath_out_text": "呼气，双脚并拢回到起始位", "mistakes": [["落地过重", "增加关节冲击。前脚掌先着地，膝盖微屈缓冲"], ["手臂无力", "只做腿部动作。手臂配合 overhead 击掌"], ["节奏混乱", "手脚不同步。先慢后快，找到节奏"], ["憋气", "容易头晕。保持均匀呼吸"]],  "name": "交叉开合跳", "eng": "Cross Jack", "emoji": "🔥", "purpose": "手脚交叉开合，增加协调难度", "primary_muscle": "股四头肌、小腿肌群", "secondary_muscle": "肩部、核心肌群", "sets": "3组 × 30秒", "rest": "15秒", "points": ["双脚并拢，双手自然下垂", "跳开时双脚分开、双臂侧平举", "跳回时双脚交叉、双臂在胸前交叉", "下一次交换前后交叉腿", "保持轻快的节奏和均匀呼吸"], "tags": ["协调", "股四头肌", "燃脂"]},
-  "squat-jack": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "全身有氧", "type_label": "自重训练", "fit_for": "所有健身水平，快速提升心率", "breath_in": "跳开时", "breath_in_text": "吸气，手脚同时向两侧展开", "breath_out": "跳回时", "breath_out_text": "呼气，双脚并拢回到起始位", "mistakes": [["落地过重", "增加关节冲击。前脚掌先着地，膝盖微屈缓冲"], ["手臂无力", "只做腿部动作。手臂配合 overhead 击掌"], ["节奏混乱", "手脚不同步。先慢后快，找到节奏"], ["憋气", "容易头晕。保持均匀呼吸"]],  "name": "深蹲开合跳", "eng": "Squat Jack", "emoji": "🦵", "purpose": "开合同时加入深蹲，强化下肢", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "小腿肌群、心肺", "sets": "3组 × 20次", "rest": "20秒", "points": ["双脚并拢站立", "跳开双脚的同时下蹲至大腿平行", "跳回时站起恢复站立", "下蹲时膝盖沿脚尖方向", "落地缓冲，保持连续节奏"], "tags": ["臀大肌", "股四头肌", "燃脂"]},
-  "clap-jack": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "全身有氧", "type_label": "自重训练", "fit_for": "所有健身水平，快速提升心率", "breath_in": "跳开时", "breath_in_text": "吸气，手脚同时向两侧展开", "breath_out": "跳回时", "breath_out_text": "呼气，双脚并拢回到起始位", "mistakes": [["落地过重", "增加关节冲击。前脚掌先着地，膝盖微屈缓冲"], ["手臂无力", "只做腿部动作。手臂配合 overhead 击掌"], ["节奏混乱", "手脚不同步。先慢后快，找到节奏"], ["憋气", "容易头晕。保持均匀呼吸"]],  "name": "击掌开合跳", "eng": "Clap Jack", "emoji": "👏", "purpose": "跳起在头顶击掌，增加上肢参与", "primary_muscle": "肩部、股四头肌", "secondary_muscle": "小腿肌群、心肺", "sets": "3组 × 30秒", "rest": "15秒", "points": ["双脚并拢，手臂垂于身体两侧", "跳开双脚同时双臂上举在头顶击掌", "跳回时双脚并拢，手臂下落", "核心收紧，保持身体直立", "落地轻盈，呼吸配合动作节奏"], "tags": ["肩部", "股四头肌", "燃脂"]},
-  "fast-knee": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "全身有氧", "type_label": "自重训练", "fit_for": "所有健身水平，提升心肺与下肢耐力", "breath_in": "抬膝时", "breath_in_text": "吸气，核心收紧抬膝", "breath_out": "落脚时", "breath_out_text": "呼气，前脚掌轻缓落地", "mistakes": [["含胸驼背", "上半身前倾。保持躯干直立，目视前方"], ["抬膝过低", "强度不够。尽量抬至髋部高度"], ["全掌砸地", "冲击过大。前脚掌着地，轻盈有弹性"], ["手臂僵硬", "摆臂不自然。屈肘 90 度前后摆动"]],  "name": "快速高抬腿", "eng": "Fast Knee", "emoji": "⚡", "purpose": "加快频率高抬膝，冲刺感强", "primary_muscle": "股四头肌、髂腰肌", "secondary_muscle": "核心肌群、小腿肌群", "sets": "3组 × 20秒", "rest": "15秒", "points": ["原地站立，核心收紧", "以最快速度交替抬膝至髋部高度", "前脚掌快速落地反弹", "摆臂配合腿部，屈肘 90 度", "保持上身稳定，不要后仰"], "tags": ["股四头肌", "髂腰肌", "高强度"]},
-  "march-knee": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "全身有氧", "type_label": "自重训练", "fit_for": "所有健身水平，提升心肺与下肢耐力", "breath_in": "抬膝时", "breath_in_text": "吸气，核心收紧抬膝", "breath_out": "落脚时", "breath_out_text": "呼气，前脚掌轻缓落地", "mistakes": [["含胸驼背", "上半身前倾。保持躯干直立，目视前方"], ["抬膝过低", "强度不够。尽量抬至髋部高度"], ["全掌砸地", "冲击过大。前脚掌着地，轻盈有弹性"], ["手臂僵硬", "摆臂不自然。屈肘 90 度前后摆动"]],  "name": "原地高抬腿", "eng": "March Knee", "emoji": "🔥", "purpose": "控制节奏原地抬膝，稳定心肺", "primary_muscle": "股四头肌、髂腰肌", "secondary_muscle": "核心肌群、小腿肌群", "sets": "3组 × 45秒", "rest": "15秒", "points": ["原地站立，躯干直立", "缓慢交替抬膝至髋部高度", "前脚掌着地，落地轻盈", "手臂自然前后摆动", "保持均匀呼吸，不憋气"], "tags": ["股四头肌", "髂腰肌", "低冲击"]},
-  "punch-knee": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "全身有氧", "type_label": "自重训练", "fit_for": "所有健身水平，提升心肺与下肢耐力", "breath_in": "抬膝时", "breath_in_text": "吸气，核心收紧抬膝", "breath_out": "落脚时", "breath_out_text": "呼气，前脚掌轻缓落地", "mistakes": [["含胸驼背", "上半身前倾。保持躯干直立，目视前方"], ["抬膝过低", "强度不够。尽量抬至髋部高度"], ["全掌砸地", "冲击过大。前脚掌着地，轻盈有弹性"], ["手臂僵硬", "摆臂不自然。屈肘 90 度前后摆动"]],  "name": "高抬腿冲拳", "eng": "Punch Knee", "emoji": "👊", "purpose": "抬膝同时对侧出拳，激活上肢与核心", "primary_muscle": "股四头肌、肩部", "secondary_muscle": "核心肌群、小腿肌群", "sets": "3组 × 30秒", "rest": "15秒", "points": ["原地站立，核心收紧", "抬左膝时右手向前冲拳", "抬右膝时左手向前冲拳", "保持节奏稳定，手脚协调", "出拳有力，抬膝至髋高"], "tags": ["股四头肌", "肩部", "协调"]},
-  "side-knee": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "全身有氧", "type_label": "自重训练", "fit_for": "所有健身水平，提升心肺与下肢耐力", "breath_in": "抬膝时", "breath_in_text": "吸气，核心收紧抬膝", "breath_out": "落脚时", "breath_out_text": "呼气，前脚掌轻缓落地", "mistakes": [["含胸驼背", "上半身前倾。保持躯干直立，目视前方"], ["抬膝过低", "强度不够。尽量抬至髋部高度"], ["全掌砸地", "冲击过大。前脚掌着地，轻盈有弹性"], ["手臂僵硬", "摆臂不自然。屈肘 90 度前后摆动"]],  "name": "侧向高抬腿", "eng": "Side Knee", "emoji": "↔️", "purpose": "左右转体抬膝，强化侧腹与髋部灵活", "primary_muscle": "腹斜肌、髂腰肌", "secondary_muscle": "股四头肌、核心肌群", "sets": "3组 × 30秒", "rest": "15秒", "points": ["原地站立，双手抱头或叉腰", "抬左膝同时身体向右转体", "抬右膝同时身体向左转体", "保持骨盆稳定，不要左右摇摆", "控制节奏，感受侧腹收缩"], "tags": ["侧腹", "髂腰肌", "协调"]},
-  "continuous-jump-squat": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "下肢训练", "type_label": "爆发力训练", "fit_for": "有一定基础，想提升下肢爆发力者", "breath_in": "下蹲时", "breath_in_text": "吸气，屈髋屈膝蓄力", "breath_out": "跳起时", "breath_out_text": "呼气，臀部和腿部爆发向上跳起", "mistakes": [["落地不缓冲", "冲击膝关节。落地时膝盖微屈，前脚掌先着地"], ["下蹲过浅", "爆发力不足。蹲至大腿接近平行"], ["膝盖内扣", "增加膝关节扭力。膝盖沿脚尖方向"], ["躯干松散", "核心未收紧。保持背部挺直，腹部发力"]],  "name": "连续跳跃深蹲", "eng": "Continuous Jump Squat", "emoji": "🔥", "purpose": "落地即起，保持连续爆发", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "腓肠肌、核心肌群", "sets": "3组 × 15次", "rest": "30秒", "points": ["双脚与肩同宽，背部挺直", "下蹲至大腿与地面平行", "爆发跳起，落地立即下蹲", "尽量减少地面停留时间", "全程核心收紧，膝盖沿脚尖方向"], "tags": ["爆发力", "臀大肌", "燃脂"]},
-  "turn-jump-squat": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "下肢训练", "type_label": "爆发力训练", "fit_for": "有一定基础，想提升下肢爆发力者", "breath_in": "下蹲时", "breath_in_text": "吸气，屈髋屈膝蓄力", "breath_out": "跳起时", "breath_out_text": "呼气，臀部和腿部爆发向上跳起", "mistakes": [["落地不缓冲", "冲击膝关节。落地时膝盖微屈，前脚掌先着地"], ["下蹲过浅", "爆发力不足。蹲至大腿接近平行"], ["膝盖内扣", "增加膝关节扭力。膝盖沿脚尖方向"], ["躯干松散", "核心未收紧。保持背部挺直，腹部发力"]],  "name": "转体深蹲跳", "eng": "Turn Jump Squat", "emoji": "🔄", "purpose": "跳起转体 180 度，增加方向控制与协调", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "核心肌群、腓肠肌", "sets": "3组 × 12次", "rest": "30秒", "points": ["双脚与肩同宽站立", "下蹲蓄力后向上跳起并转体 180 度", "落地时膝盖微屈缓冲", "保持身体直立，核心收紧", "落地稳定后再进行下一次转体"], "tags": ["协调", "爆发力", "核心"]},
-  "single-leg-jump-squat": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "下肢训练", "type_label": "爆发力训练", "fit_for": "有一定基础，想提升下肢爆发力者", "breath_in": "下蹲时", "breath_in_text": "吸气，屈髋屈膝蓄力", "breath_out": "跳起时", "breath_out_text": "呼气，臀部和腿部爆发向上跳起", "mistakes": [["落地不缓冲", "冲击膝关节。落地时膝盖微屈，前脚掌先着地"], ["下蹲过浅", "爆发力不足。蹲至大腿接近平行"], ["膝盖内扣", "增加膝关节扭力。膝盖沿脚尖方向"], ["躯干松散", "核心未收紧。保持背部挺直，腹部发力"]],  "name": "单腿深蹲跳", "eng": "Single Leg Jump Squat", "emoji": "🦵", "purpose": "单腿落地缓冲，提升单侧爆发与稳定", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "核心肌群、腓肠肌", "sets": "3组 × 8次（每侧）", "rest": "30秒", "points": ["单腿站立，另一腿微屈抬起", "支撑腿下蹲至可控深度", "爆发向上跳起", "同一条腿落地并立刻缓冲", "保持骨盆水平，核心稳定，完成一侧换边"], "tags": ["单侧", "爆发力", "平衡"]},
-  "hands-behind-jump-squat": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "下肢训练", "type_label": "爆发力训练", "fit_for": "有一定基础，想提升下肢爆发力者", "breath_in": "下蹲时", "breath_in_text": "吸气，屈髋屈膝蓄力", "breath_out": "跳起时", "breath_out_text": "呼气，臀部和腿部爆发向上跳起", "mistakes": [["落地不缓冲", "冲击膝关节。落地时膝盖微屈，前脚掌先着地"], ["下蹲过浅", "爆发力不足。蹲至大腿接近平行"], ["膝盖内扣", "增加膝关节扭力。膝盖沿脚尖方向"], ["躯干松散", "核心未收紧。保持背部挺直，腹部发力"]],  "name": "抱头深蹲跳", "eng": "Hands Behind Jump Squat", "emoji": "🤲", "purpose": "双手抱头深蹲跳，增加核心参与", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "核心肌群、腓肠肌", "sets": "3组 × 12次", "rest": "30秒", "points": ["双脚与肩同宽，双手抱于脑后", "下蹲至大腿与地面平行", "爆发向上跳起，保持躯干直立", "落地时膝盖微屈缓冲", "核心收紧，避免身体前倾或后仰"], "tags": ["核心", "爆发力", "臀大肌"]},
-  "spider-climber": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "核心+全身", "type_label": "有氧+核心", "fit_for": "有基础者，提升核心稳定与心肺", "breath_in": "伸腿时", "breath_in_text": "吸气，配合腿部伸展", "breath_out": "收腿时", "breath_out_text": "呼气，膝盖向胸部靠拢", "mistakes": [["塌腰", "腰部下沉导致腰椎压力。核心收紧，身体保持一条直线"], ["臀部过高", "臀部翘起减少核心发力。臀部与身体齐平"], ["手肘外翻", "手肘向外翻影响稳定。手肘微向内夹"], ["节奏过快失去控制", "盲目求快动作变形。保持中等节奏，动作完整优先"]],  "name": "蜘蛛式登山跑", "eng": "Spider Climber", "emoji": "🕷️", "purpose": "膝盖外展提膝，侧腹训练", "primary_muscle": "腹斜肌、腹直肌", "secondary_muscle": "肩部、股四头肌", "sets": "3组 × 30秒", "rest": "15秒", "points": ["俯卧撑姿势，双手撑地与肩同宽", "身体从头到脚成一条直线", "一腿屈膝向同侧肘部外侧提膝", "回到起始位，快速换另一侧", "保持上身稳定，臀部不要过高"], "tags": ["侧腹", "核心", "燃脂"]},
-  "side-climber": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "核心+全身", "type_label": "有氧+核心", "fit_for": "有基础者，提升核心稳定与心肺", "breath_in": "伸腿时", "breath_in_text": "吸气，配合腿部伸展", "breath_out": "收腿时", "breath_out_text": "呼气，膝盖向胸部靠拢", "mistakes": [["塌腰", "腰部下沉导致腰椎压力。核心收紧，身体保持一条直线"], ["臀部过高", "臀部翘起减少核心发力。臀部与身体齐平"], ["手肘外翻", "手肘向外翻影响稳定。手肘微向内夹"], ["节奏过快失去控制", "盲目求快动作变形。保持中等节奏，动作完整优先"]],  "name": "侧向登山跑", "eng": "Side Climber", "emoji": "🔥", "purpose": "膝盖向同侧肘部提，旋转核心", "primary_muscle": "腹斜肌、腹直肌", "secondary_muscle": "肩部、股四头肌", "sets": "3组 × 30秒", "rest": "15秒", "points": ["俯卧撑姿势，核心收紧", "一腿屈膝向同侧肘部内侧提膝", "感受侧腹与核心旋转收缩", "快速回到起始位换另一侧", "保持呼吸节奏，不要塌腰"], "tags": ["旋转", "核心", "燃脂"]},
-  "cross-climber": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "核心+全身", "type_label": "有氧+核心", "fit_for": "有基础者，提升核心稳定与心肺", "breath_in": "伸腿时", "breath_in_text": "吸气，配合腿部伸展", "breath_out": "收腿时", "breath_out_text": "呼气，膝盖向胸部靠拢", "mistakes": [["塌腰", "腰部下沉导致腰椎压力。核心收紧，身体保持一条直线"], ["臀部过高", "臀部翘起减少核心发力。臀部与身体齐平"], ["手肘外翻", "手肘向外翻影响稳定。手肘微向内夹"], ["节奏过快失去控制", "盲目求快动作变形。保持中等节奏，动作完整优先"]],  "name": "交叉登山跑", "eng": "Cross Climber", "emoji": "⚡", "purpose": "膝盖对角提膝，全身协调", "primary_muscle": "腹直肌、腹斜肌", "secondary_muscle": "肩部、股四头肌", "sets": "3组 × 30秒", "rest": "15秒", "points": ["俯卧撑姿势，手臂伸直", "右膝向左肘方向提膝", "回到起始位，左膝向右肘方向提膝", "保持核心收紧，身体稳定", "控制节奏，动作完整优先"], "tags": ["协调", "核心", "燃脂"]},
-  "slow-climber": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "核心+全身", "type_label": "有氧+核心", "fit_for": "有基础者，提升核心稳定与心肺", "breath_in": "伸腿时", "breath_in_text": "吸气，配合腿部伸展", "breath_out": "收腿时", "breath_out_text": "呼气，膝盖向胸部靠拢", "mistakes": [["塌腰", "腰部下沉导致腰椎压力。核心收紧，身体保持一条直线"], ["臀部过高", "臀部翘起减少核心发力。臀部与身体齐平"], ["手肘外翻", "手肘向外翻影响稳定。手肘微向内夹"], ["节奏过快失去控制", "盲目求快动作变形。保持中等节奏，动作完整优先"]],  "name": "慢速登山跑", "eng": "Slow Climber", "emoji": "🐢", "purpose": "慢速控制提膝，强化核心稳定", "primary_muscle": "腹直肌", "secondary_muscle": "肩部、核心肌群", "sets": "3组 × 30秒", "rest": "15秒", "points": ["俯卧撑姿势，身体成一条直线", "缓慢将一膝向胸部方向提", "顶部停顿 1-2 秒，感受核心收紧", "缓慢收回，换另一侧", "全程控制速度，不要借助惯性"], "tags": ["核心", "低冲击", "控制"]}};
+  "sumo-squat": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 下肢训练", "type_label": "🎯 自重训练", "fit_for": "所有健身水平，特别适合新手", "breath_in": "下蹲时", "breath_in_text": "用鼻子深吸气，感受腹部扩张", "breath_out": "站起时", "breath_out_text": "用嘴巴缓缓呼气，收紧核心", "mistakes": [["膝盖内扣", "下蹲时膝盖向内塌陷，容易伤到膝关节。保持膝盖与脚尖方向一致"], ["弓背弯腰", "背部弯曲导致腰椎压力过大。全程保持背部挺直，核心收紧"], ["脚跟离地", "重心前移导致脚跟抬起。全程保持全脚掌着地"], ["下蹲过浅", "只做半程动作，效果大打折扣。尽量蹲至大腿与地面平行"]],  "name": "相扑深蹲", "eng": "Sumo Squat", "emoji": "🦵", "purpose": "宽站距深蹲，重点刺激大腿内侧与臀部", "primary_muscle": "大腿内收肌、臀大肌", "secondary_muscle": "股四头肌、腘绳肌", "sets": "3组 × 15次", "rest": "45秒", "points": ["双脚大幅宽站，脚尖向外约 45 度", "保持背部挺直，核心收紧", "下蹲时膝盖沿脚尖方向，臀部垂直向下坐", "蹲至大腿与地面平行或更低", "脚跟发力站起，顶部夹紧臀部"], "tags": ["内收肌", "臀大肌", "股四头肌"]},
+  "jump-squat": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "💪 下肢训练", "type_label": "🎯 爆发力训练", "fit_for": "有一定基础，想提升下肢爆发力者", "breath_in": "下蹲时", "breath_in_text": "吸气，屈髋屈膝蓄力", "breath_out": "跳起时", "breath_out_text": "呼气，臀部和腿部爆发向上跳起", "mistakes": [["落地不缓冲", "冲击膝关节。落地时膝盖微屈，前脚掌先着地"], ["下蹲过浅", "爆发力不足。蹲至大腿接近平行"], ["膝盖内扣", "增加膝关节扭力。膝盖沿脚尖方向"], ["躯干松散", "核心未收紧。保持背部挺直，腹部发力"]],  "name": "跳跃深蹲", "eng": "Jump Squat", "emoji": "⚡", "purpose": "爆发力训练，提升心率与下肢力量", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "腓肠肌、核心肌群", "sets": "3组 × 12次", "rest": "45秒", "points": ["双脚与肩同宽，背部挺直", "下蹲至大腿与地面平行蓄力", "爆发向上跳起，手臂自然上摆", "落地时前脚掌先着地，膝盖微屈缓冲", "保持稳定后立刻进入下一次"], "tags": ["爆发力", "臀大肌", "股四头肌"]},
+  "box-squat": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 下肢训练", "type_label": "🎯 自重训练", "fit_for": "所有健身水平，特别适合新手", "breath_in": "下蹲时", "breath_in_text": "用鼻子深吸气，感受腹部扩张", "breath_out": "站起时", "breath_out_text": "用嘴巴缓缓呼气，收紧核心", "mistakes": [["膝盖内扣", "下蹲时膝盖向内塌陷，容易伤到膝关节。保持膝盖与脚尖方向一致"], ["弓背弯腰", "背部弯曲导致腰椎压力过大。全程保持背部挺直，核心收紧"], ["脚跟离地", "重心前移导致脚跟抬起。全程保持全脚掌着地"], ["下蹲过浅", "只做半程动作，效果大打折扣。尽量蹲至大腿与地面平行"]],  "name": "箱式深蹲", "eng": "Box Squat", "emoji": "📦", "purpose": "坐椅式下蹲，强化离心控制与蹲到底的感觉", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "核心肌群、腘绳肌", "sets": "3组 × 12次", "rest": "45秒", "points": ["身后放椅子或矮箱，双脚与肩同宽", "臀部向后坐，轻触椅面但不用力坐下", "保持背部挺直，膝盖沿脚尖方向", "触箱后立刻用脚跟发力站起", "全程核心收紧，避免身体前倾"], "tags": ["控制", "臀大肌", "股四头肌"]},
+  "pause-squat": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 下肢训练", "type_label": "🎯 自重训练", "fit_for": "所有健身水平，特别适合新手", "breath_in": "下蹲时", "breath_in_text": "用鼻子深吸气，感受腹部扩张", "breath_out": "站起时", "breath_out_text": "用嘴巴缓缓呼气，收紧核心", "mistakes": [["膝盖内扣", "下蹲时膝盖向内塌陷，容易伤到膝关节。保持膝盖与脚尖方向一致"], ["弓背弯腰", "背部弯曲导致腰椎压力过大。全程保持背部挺直，核心收紧"], ["脚跟离地", "重心前移导致脚跟抬起。全程保持全脚掌着地"], ["下蹲过浅", "只做半程动作，效果大打折扣。尽量蹲至大腿与地面平行"]],  "name": "暂停深蹲", "eng": "Pause Squat", "emoji": "⏸️", "purpose": "底部停顿增加肌张力，突破力量瓶颈", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "核心肌群、腘绳肌", "sets": "3组 × 10次", "rest": "60秒", "points": ["双脚与肩同宽，脚尖微外展", "有控制地下蹲至大腿与地面平行", "最低点静止保持 2-3 秒，保持核心紧绷", "用脚跟发力推起，不要弹起", "全程保持背部挺直，膝盖不内扣"], "tags": ["肌张力", "臀大肌", "股四头肌"]},
+  "single-leg-bridge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 臀部训练", "type_label": "🎯 自重训练", "fit_for": "久坐人群、臀部松弛者、新手", "breath_in": "上抬时", "breath_in_text": "呼气，臀部发力向上推", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["过度挺腰", "用腰部代偿发力导致下背痛。顶部应收紧臀部而非腰部"], ["脚跟离地", "抬髋时脚跟离地减弱臀部发力。脚跟全程踩实"], ["未到顶", "臀部抬得不够高，肌肉刺激不足。顶部身体成一条直线"], ["速度过快", "靠惯性起落。应 2 秒上抬，2 秒下落"]],  "name": "单腿臀桥", "eng": "Single Leg Bridge", "emoji": "🍑", "purpose": "单腿支撑顶髋，改善臀部力量不平衡", "primary_muscle": "臀大肌", "secondary_muscle": "腘绳肌、核心肌群", "sets": "3组 × 12次（每侧）", "rest": "45秒", "points": ["仰卧屈膝，一腿伸直抬起", "支撑脚脚跟靠近臀部", "核心收紧，用臀部发力将髋部顶起", "顶部身体从肩到膝成一条直线", "有控制地下落，完成一侧后换边"], "tags": ["臀大肌", "腘绳肌", "核心"]},
+  "feet-elevated-bridge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 臀部训练", "type_label": "🎯 自重训练", "fit_for": "久坐人群、臀部松弛者、新手", "breath_in": "上抬时", "breath_in_text": "呼气，臀部发力向上推", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["过度挺腰", "用腰部代偿发力导致下背痛。顶部应收紧臀部而非腰部"], ["脚跟离地", "抬髋时脚跟离地减弱臀部发力。脚跟全程踩实"], ["未到顶", "臀部抬得不够高，肌肉刺激不足。顶部身体成一条直线"], ["速度过快", "靠惯性起落。应 2 秒上抬，2 秒下落"]],  "name": "高位臀桥", "eng": "Feet Elevated Bridge", "emoji": "🪑", "purpose": "双脚垫高，增大臀大肌拉伸幅度", "primary_muscle": "臀大肌", "secondary_muscle": "腘绳肌、下背部", "sets": "3组 × 15次", "rest": "45秒", "points": ["仰卧，双脚踩在椅子或矮箱边缘", "双脚与肩同宽，膝盖微外展", "臀部发力将髋部顶至最高点", "顶部夹紧臀部，身体成一条直线", "缓慢下落至臀部轻触地面"], "tags": ["臀大肌", "拉伸", "腘绳肌"]},
+  "frog-bridge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 臀部训练", "type_label": "🎯 自重训练", "fit_for": "久坐人群、臀部松弛者、新手", "breath_in": "上抬时", "breath_in_text": "呼气，臀部发力向上推", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["过度挺腰", "用腰部代偿发力导致下背痛。顶部应收紧臀部而非腰部"], ["脚跟离地", "抬髋时脚跟离地减弱臀部发力。脚跟全程踩实"], ["未到顶", "臀部抬得不够高，肌肉刺激不足。顶部身体成一条直线"], ["速度过快", "靠惯性起落。应 2 秒上抬，2 秒下落"]],  "name": "蛙式臀桥", "eng": "Frog Bridge", "emoji": "🐸", "purpose": "脚心相对，强化臀中肌与臀部外旋能力", "primary_muscle": "臀中肌、臀大肌", "secondary_muscle": "核心肌群、内收肌", "sets": "3组 × 15次", "rest": "30秒", "points": ["仰卧，脚心相对，膝盖向两侧打开", "脚跟尽量靠近臀部", "臀部发力向上顶髋，膝盖保持外展", "顶部收紧臀部，停顿 1 秒", "有控制地下落，感受臀部拉伸"], "tags": ["臀中肌", "臀大肌", "内收肌"]},
+  "hold-bridge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 臀部训练", "type_label": "🎯 自重训练", "fit_for": "久坐人群、臀部松弛者、新手", "breath_in": "上抬时", "breath_in_text": "呼气，臀部发力向上推", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["过度挺腰", "用腰部代偿发力导致下背痛。顶部应收紧臀部而非腰部"], ["脚跟离地", "抬髋时脚跟离地减弱臀部发力。脚跟全程踩实"], ["未到顶", "臀部抬得不够高，肌肉刺激不足。顶部身体成一条直线"], ["速度过快", "靠惯性起落。应 2 秒上抬，2 秒下落"]],  "name": "静止臀桥", "eng": "Hold Bridge", "emoji": "⏱️", "purpose": "顶峰收缩保持，提升臀部耐力与募集感", "primary_muscle": "臀大肌", "secondary_muscle": "腘绳肌、核心肌群", "sets": "3组 × 45秒", "rest": "30秒", "points": ["仰卧屈膝，双脚踩实地面", "臀部发力顶髋至肩-膝成直线", "顶部主动夹紧臀部，保持目标时长", "保持均匀呼吸，不要憋气", "若腰部代偿，稍微降低高度"], "tags": ["臀大肌", "耐力", "核心"]},
+  "reverse-lunge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 下肢训练", "type_label": "🎯 自重训练", "fit_for": "想改善下肢力量与平衡者", "breath_in": "下蹲时", "breath_in_text": "吸气，有控制地下降", "breath_out": "站起时", "breath_out_text": "呼气，前脚发力推起", "mistakes": [["前膝超脚尖过多", "增加膝关节压力。调整前后脚距离"], ["上身前倾", "重心前移失去平衡。躯干保持直立"], ["后膝砸地", "控制不足。后膝轻触地面即起"], ["左右不稳", "核心未收紧。目视前方，腹部发力"]],  "name": "反向弓步蹲", "eng": "Reverse Lunge", "emoji": "🔙", "purpose": "后撤步弓步，对膝盖压力小于前弓步", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "腘绳肌、核心肌群", "sets": "3组 × 12次（每侧）", "rest": "60秒", "points": ["双脚并拢站立，核心收紧", "一腿向后撤一大步，同时下蹲", "前膝约 90 度，后膝轻触地面", "前脚脚跟发力推起回到站立", "保持躯干直立，完成一侧后换边"], "tags": ["臀大肌", "股四头肌", "护膝盖"]},
+  "side-lunge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 下肢训练", "type_label": "🎯 自重训练", "fit_for": "想改善下肢力量与平衡者", "breath_in": "下蹲时", "breath_in_text": "吸气，有控制地下降", "breath_out": "站起时", "breath_out_text": "呼气，前脚发力推起", "mistakes": [["前膝超脚尖过多", "增加膝关节压力。调整前后脚距离"], ["上身前倾", "重心前移失去平衡。躯干保持直立"], ["后膝砸地", "控制不足。后膝轻触地面即起"], ["左右不稳", "核心未收紧。目视前方，腹部发力"]],  "name": "侧弓步蹲", "eng": "Side Lunge", "emoji": "↔️", "purpose": "侧向跨步下蹲，刺激大腿内侧与臀部", "primary_muscle": "大腿内收肌、臀大肌", "secondary_muscle": "股四头肌、核心肌群", "sets": "3组 × 12次（每侧）", "rest": "45秒", "points": ["双脚并拢站立，一腿向侧方迈出一大步", "重心移向迈出的腿，臀部向后坐", "保持伸直腿膝盖微屈，不锁死", "下蹲腿大腿尽量与地面平行", "用下蹲腿脚跟发力推回站立"], "tags": ["内收肌", "臀大肌", "股四头肌"]},
+  "walking-lunge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 下肢训练", "type_label": "🎯 自重训练", "fit_for": "想改善下肢力量与平衡者", "breath_in": "下蹲时", "breath_in_text": "吸气，有控制地下降", "breath_out": "站起时", "breath_out_text": "呼气，前脚发力推起", "mistakes": [["前膝超脚尖过多", "增加膝关节压力。调整前后脚距离"], ["上身前倾", "重心前移失去平衡。躯干保持直立"], ["后膝砸地", "控制不足。后膝轻触地面即起"], ["左右不稳", "核心未收紧。目视前方，腹部发力"]],  "name": "行走弓步蹲", "eng": "Walking Lunge", "emoji": "🚶", "purpose": "行进间交替弓步，提升平衡与下肢耐力", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "腘绳肌、小腿肌群", "sets": "3组 × 20步", "rest": "60秒", "points": ["站立，核心收紧，目视前方", "向前迈一步下蹲成弓步", "后膝轻触地，前膝约 90 度", "前脚发力站起，紧接着迈出下一步", "保持躯干直立，步伐稳定有控制"], "tags": ["臀大肌", "股四头肌", "平衡"]},
+  "jump-lunge": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 下肢训练", "type_label": "🎯 自重训练", "fit_for": "想改善下肢力量与平衡者", "breath_in": "下蹲时", "breath_in_text": "吸气，有控制地下降", "breath_out": "站起时", "breath_out_text": "呼气，前脚发力推起", "mistakes": [["前膝超脚尖过多", "增加膝关节压力。调整前后脚距离"], ["上身前倾", "重心前移失去平衡。躯干保持直立"], ["后膝砸地", "控制不足。后膝轻触地面即起"], ["左右不稳", "核心未收紧。目视前方，腹部发力"]],  "name": "跳跃弓步蹲", "eng": "Jump Lunge", "emoji": "⚡", "purpose": "弓步跳换，爆发力与燃脂双效", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "腓肠肌、核心肌群", "sets": "3组 × 10次（每侧）", "rest": "60秒", "points": ["前后分腿成弓步，核心收紧", "下蹲蓄力后爆发跳起", "空中交换前后腿位置", "落地时膝盖微屈缓冲", "保持节奏稳定，落地即起"], "tags": ["爆发力", "燃脂", "股四头肌"]},
+  "clamshell": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 臀部训练", "type_label": "🎯 自重训练", "fit_for": "想改善臀中肌、髋部稳定者", "breath_in": "上抬时", "breath_in_text": "呼气，臀外侧发力向侧方抬", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["身体侧倾", "代偿发力。保持身体直立"], ["抬腿过高", "腰椎代偿。45 度即可"], ["脚尖朝上", "变成股四头肌发力。脚尖朝前"], ["速度太快", "靠惯性。用 2 秒上抬，2 秒下落"]],  "name": "蚌式开合", "eng": "Clamshell", "emoji": "🦪", "purpose": "侧卧屈膝开合，激活臀中肌", "primary_muscle": "臀中肌", "secondary_muscle": "臀小肌、阔筋膜张肌", "sets": "3组 × 20次（每侧）", "rest": "30秒", "points": ["侧卧，双膝弯曲约 90 度，脚跟并拢", "保持骨盆中立，核心收紧", "上方膝盖像贝壳一样向上打开", "顶部感受臀外侧收缩，停顿 1 秒", "有控制地合拢，不要借助惯性"], "tags": ["臀中肌", "臀小肌", "激活"]},
+  "side-plank-leg": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 臀部训练", "type_label": "🎯 自重训练", "fit_for": "想改善臀中肌、髋部稳定者", "breath_in": "上抬时", "breath_in_text": "呼气，臀外侧发力向侧方抬", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["身体侧倾", "代偿发力。保持身体直立"], ["抬腿过高", "腰椎代偿。45 度即可"], ["脚尖朝上", "变成股四头肌发力。脚尖朝前"], ["速度太快", "靠惯性。用 2 秒上抬，2 秒下落"]],  "name": "侧平板抬腿", "eng": "Side Plank Leg", "emoji": "📊", "purpose": "侧平板支撑姿态下抬上侧腿，核心与臀中肌同时训练", "primary_muscle": "臀中肌、腹斜肌", "secondary_muscle": "肩袖肌群、核心肌群", "sets": "3组 × 12次（每侧）", "rest": "45秒", "points": ["侧平板支撑，手肘在肩正下方", "身体成一条直线，核心收紧", "上侧腿伸直，向侧上方抬起", "顶部感受臀外侧与侧腹收紧", "有控制地下落，保持身体稳定"], "tags": ["臀中肌", "核心", "高强度"]},
+  "standing-side-leg": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 臀部训练", "type_label": "🎯 自重训练", "fit_for": "想改善臀中肌、髋部稳定者", "breath_in": "上抬时", "breath_in_text": "呼气，臀外侧发力向侧方抬", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["身体侧倾", "代偿发力。保持身体直立"], ["抬腿过高", "腰椎代偿。45 度即可"], ["脚尖朝上", "变成股四头肌发力。脚尖朝前"], ["速度太快", "靠惯性。用 2 秒上抬，2 秒下落"]],  "name": "站姿侧抬腿", "eng": "Standing Side Leg", "emoji": "🧍", "purpose": "站立位侧向抬腿，可扶墙保持平衡", "primary_muscle": "臀中肌", "secondary_muscle": "核心肌群、股四头肌", "sets": "3组 × 15次（每侧）", "rest": "30秒", "points": ["双脚并拢站立，可扶墙保持平衡", "核心收紧，保持身体直立", "一腿伸直向侧方抬起约 45 度", "顶部感受臀外侧收缩，脚尖朝前", "有控制地下落，完成一侧后换边"], "tags": ["臀中肌", "核心", "简单"]},
+  "kneeling-side-leg": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 臀部训练", "type_label": "🎯 自重训练", "fit_for": "想改善臀中肌、髋部稳定者", "breath_in": "上抬时", "breath_in_text": "呼气，臀外侧发力向侧方抬", "breath_out": "下落时", "breath_out_text": "吸气，缓慢有控制地下落", "mistakes": [["身体侧倾", "代偿发力。保持身体直立"], ["抬腿过高", "腰椎代偿。45 度即可"], ["脚尖朝上", "变成股四头肌发力。脚尖朝前"], ["速度太快", "靠惯性。用 2 秒上抬，2 秒下落"]],  "name": "跪姿侧抬腿", "eng": "Kneeling Side Leg", "emoji": "🧎", "purpose": "四点支撑位侧向抬腿，更稳定地激活臀中肌", "primary_muscle": "臀中肌", "secondary_muscle": "核心肌群、肩袖肌群", "sets": "3组 × 15次（每侧）", "rest": "30秒", "points": ["四点跪撑，手腕在肩正下方，膝盖在髋正下方", "核心收紧，背部保持平直", "一腿向侧方抬起，膝盖保持 90 度", "顶部感受臀外侧收紧，骨盆不要翻转", "有控制地下落，完成一侧后换边"], "tags": ["臀中肌", "核心", "稳定"]},
+  "side-jack": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 全身有氧", "type_label": "🎯 自重训练", "fit_for": "所有健身水平，快速提升心率", "breath_in": "跳开时", "breath_in_text": "吸气，手脚同时向两侧展开", "breath_out": "跳回时", "breath_out_text": "呼气，双脚并拢回到起始位", "mistakes": [["落地过重", "增加关节冲击。前脚掌先着地，膝盖微屈缓冲"], ["手臂无力", "只做腿部动作。手臂配合 overhead 击掌"], ["节奏混乱", "手脚不同步。先慢后快，找到节奏"], ["憋气", "容易头晕。保持均匀呼吸"]],  "name": "侧向开合跳", "eng": "Side Jack", "emoji": "⚡", "purpose": "左右脚交替侧向开合，减少肩部冲击", "primary_muscle": "小腿肌群、股四头肌", "secondary_muscle": "肩部、心肺", "sets": "3组 × 30秒", "rest": "15秒", "points": ["双脚并拢站立，手臂自然下垂", "向侧方跳开双脚，同时手臂上举", "再跳回并拢，手臂下落", "落地时前脚掌先着地，膝盖微屈", "保持节奏稳定，呼吸均匀"], "tags": ["小腿", "股四头肌", "低冲击"]},
+  "cross-jack": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 全身有氧", "type_label": "🎯 自重训练", "fit_for": "所有健身水平，快速提升心率", "breath_in": "跳开时", "breath_in_text": "吸气，手脚同时向两侧展开", "breath_out": "跳回时", "breath_out_text": "呼气，双脚并拢回到起始位", "mistakes": [["落地过重", "增加关节冲击。前脚掌先着地，膝盖微屈缓冲"], ["手臂无力", "只做腿部动作。手臂配合 overhead 击掌"], ["节奏混乱", "手脚不同步。先慢后快，找到节奏"], ["憋气", "容易头晕。保持均匀呼吸"]],  "name": "交叉开合跳", "eng": "Cross Jack", "emoji": "🔥", "purpose": "手脚交叉开合，增加协调难度", "primary_muscle": "股四头肌、小腿肌群", "secondary_muscle": "肩部、核心肌群", "sets": "3组 × 30秒", "rest": "15秒", "points": ["双脚并拢，双手自然下垂", "跳开时双脚分开、双臂侧平举", "跳回时双脚交叉、双臂在胸前交叉", "下一次交换前后交叉腿", "保持轻快的节奏和均匀呼吸"], "tags": ["协调", "股四头肌", "燃脂"]},
+  "squat-jack": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 全身有氧", "type_label": "🎯 自重训练", "fit_for": "所有健身水平，快速提升心率", "breath_in": "跳开时", "breath_in_text": "吸气，手脚同时向两侧展开", "breath_out": "跳回时", "breath_out_text": "呼气，双脚并拢回到起始位", "mistakes": [["落地过重", "增加关节冲击。前脚掌先着地，膝盖微屈缓冲"], ["手臂无力", "只做腿部动作。手臂配合 overhead 击掌"], ["节奏混乱", "手脚不同步。先慢后快，找到节奏"], ["憋气", "容易头晕。保持均匀呼吸"]],  "name": "深蹲开合跳", "eng": "Squat Jack", "emoji": "🦵", "purpose": "开合同时加入深蹲，强化下肢", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "小腿肌群、心肺", "sets": "3组 × 20次", "rest": "20秒", "points": ["双脚并拢站立", "跳开双脚的同时下蹲至大腿平行", "跳回时站起恢复站立", "下蹲时膝盖沿脚尖方向", "落地缓冲，保持连续节奏"], "tags": ["臀大肌", "股四头肌", "燃脂"]},
+  "clap-jack": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 全身有氧", "type_label": "🎯 自重训练", "fit_for": "所有健身水平，快速提升心率", "breath_in": "跳开时", "breath_in_text": "吸气，手脚同时向两侧展开", "breath_out": "跳回时", "breath_out_text": "呼气，双脚并拢回到起始位", "mistakes": [["落地过重", "增加关节冲击。前脚掌先着地，膝盖微屈缓冲"], ["手臂无力", "只做腿部动作。手臂配合 overhead 击掌"], ["节奏混乱", "手脚不同步。先慢后快，找到节奏"], ["憋气", "容易头晕。保持均匀呼吸"]],  "name": "击掌开合跳", "eng": "Clap Jack", "emoji": "👏", "purpose": "跳起在头顶击掌，增加上肢参与", "primary_muscle": "肩部、股四头肌", "secondary_muscle": "小腿肌群、心肺", "sets": "3组 × 30秒", "rest": "15秒", "points": ["双脚并拢，手臂垂于身体两侧", "跳开双脚同时双臂上举在头顶击掌", "跳回时双脚并拢，手臂下落", "核心收紧，保持身体直立", "落地轻盈，呼吸配合动作节奏"], "tags": ["肩部", "股四头肌", "燃脂"]},
+  "fast-knee": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 全身有氧", "type_label": "🎯 自重训练", "fit_for": "所有健身水平，提升心肺与下肢耐力", "breath_in": "抬膝时", "breath_in_text": "吸气，核心收紧抬膝", "breath_out": "落脚时", "breath_out_text": "呼气，前脚掌轻缓落地", "mistakes": [["含胸驼背", "上半身前倾。保持躯干直立，目视前方"], ["抬膝过低", "强度不够。尽量抬至髋部高度"], ["全掌砸地", "冲击过大。前脚掌着地，轻盈有弹性"], ["手臂僵硬", "摆臂不自然。屈肘 90 度前后摆动"]],  "name": "快速高抬腿", "eng": "Fast Knee", "emoji": "⚡", "purpose": "加快频率高抬膝，冲刺感强", "primary_muscle": "股四头肌、髂腰肌", "secondary_muscle": "核心肌群、小腿肌群", "sets": "3组 × 20秒", "rest": "15秒", "points": ["原地站立，核心收紧", "以最快速度交替抬膝至髋部高度", "前脚掌快速落地反弹", "摆臂配合腿部，屈肘 90 度", "保持上身稳定，不要后仰"], "tags": ["股四头肌", "髂腰肌", "高强度"]},
+  "march-knee": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 全身有氧", "type_label": "🎯 自重训练", "fit_for": "所有健身水平，提升心肺与下肢耐力", "breath_in": "抬膝时", "breath_in_text": "吸气，核心收紧抬膝", "breath_out": "落脚时", "breath_out_text": "呼气，前脚掌轻缓落地", "mistakes": [["含胸驼背", "上半身前倾。保持躯干直立，目视前方"], ["抬膝过低", "强度不够。尽量抬至髋部高度"], ["全掌砸地", "冲击过大。前脚掌着地，轻盈有弹性"], ["手臂僵硬", "摆臂不自然。屈肘 90 度前后摆动"]],  "name": "原地高抬腿", "eng": "March Knee", "emoji": "🔥", "purpose": "控制节奏原地抬膝，稳定心肺", "primary_muscle": "股四头肌、髂腰肌", "secondary_muscle": "核心肌群、小腿肌群", "sets": "3组 × 45秒", "rest": "15秒", "points": ["原地站立，躯干直立", "缓慢交替抬膝至髋部高度", "前脚掌着地，落地轻盈", "手臂自然前后摆动", "保持均匀呼吸，不憋气"], "tags": ["股四头肌", "髂腰肌", "低冲击"]},
+  "punch-knee": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 全身有氧", "type_label": "🎯 自重训练", "fit_for": "所有健身水平，提升心肺与下肢耐力", "breath_in": "抬膝时", "breath_in_text": "吸气，核心收紧抬膝", "breath_out": "落脚时", "breath_out_text": "呼气，前脚掌轻缓落地", "mistakes": [["含胸驼背", "上半身前倾。保持躯干直立，目视前方"], ["抬膝过低", "强度不够。尽量抬至髋部高度"], ["全掌砸地", "冲击过大。前脚掌着地，轻盈有弹性"], ["手臂僵硬", "摆臂不自然。屈肘 90 度前后摆动"]],  "name": "高抬腿冲拳", "eng": "Punch Knee", "emoji": "👊", "purpose": "抬膝同时对侧出拳，激活上肢与核心", "primary_muscle": "股四头肌、肩部", "secondary_muscle": "核心肌群、小腿肌群", "sets": "3组 × 30秒", "rest": "15秒", "points": ["原地站立，核心收紧", "抬左膝时右手向前冲拳", "抬右膝时左手向前冲拳", "保持节奏稳定，手脚协调", "出拳有力，抬膝至髋高"], "tags": ["股四头肌", "肩部", "协调"]},
+  "side-knee": {"level": "⭐ 初级", "level_value": "⭐ 初级", "muscle_label": "💪 全身有氧", "type_label": "🎯 自重训练", "fit_for": "所有健身水平，提升心肺与下肢耐力", "breath_in": "抬膝时", "breath_in_text": "吸气，核心收紧抬膝", "breath_out": "落脚时", "breath_out_text": "呼气，前脚掌轻缓落地", "mistakes": [["含胸驼背", "上半身前倾。保持躯干直立，目视前方"], ["抬膝过低", "强度不够。尽量抬至髋部高度"], ["全掌砸地", "冲击过大。前脚掌着地，轻盈有弹性"], ["手臂僵硬", "摆臂不自然。屈肘 90 度前后摆动"]],  "name": "侧向高抬腿", "eng": "Side Knee", "emoji": "↔️", "purpose": "左右转体抬膝，强化侧腹与髋部灵活", "primary_muscle": "腹斜肌、髂腰肌", "secondary_muscle": "股四头肌、核心肌群", "sets": "3组 × 30秒", "rest": "15秒", "points": ["原地站立，双手抱头或叉腰", "抬左膝同时身体向右转体", "抬右膝同时身体向左转体", "保持骨盆稳定，不要左右摇摆", "控制节奏，感受侧腹收缩"], "tags": ["侧腹", "髂腰肌", "协调"]},
+  "continuous-jump-squat": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "💪 下肢训练", "type_label": "🎯 爆发力训练", "fit_for": "有一定基础，想提升下肢爆发力者", "breath_in": "下蹲时", "breath_in_text": "吸气，屈髋屈膝蓄力", "breath_out": "跳起时", "breath_out_text": "呼气，臀部和腿部爆发向上跳起", "mistakes": [["落地不缓冲", "冲击膝关节。落地时膝盖微屈，前脚掌先着地"], ["下蹲过浅", "爆发力不足。蹲至大腿接近平行"], ["膝盖内扣", "增加膝关节扭力。膝盖沿脚尖方向"], ["躯干松散", "核心未收紧。保持背部挺直，腹部发力"]],  "name": "连续跳跃深蹲", "eng": "Continuous Jump Squat", "emoji": "🔥", "purpose": "落地即起，保持连续爆发", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "腓肠肌、核心肌群", "sets": "3组 × 15次", "rest": "30秒", "points": ["双脚与肩同宽，背部挺直", "下蹲至大腿与地面平行", "爆发跳起，落地立即下蹲", "尽量减少地面停留时间", "全程核心收紧，膝盖沿脚尖方向"], "tags": ["爆发力", "臀大肌", "燃脂"]},
+  "turn-jump-squat": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "💪 下肢训练", "type_label": "🎯 爆发力训练", "fit_for": "有一定基础，想提升下肢爆发力者", "breath_in": "下蹲时", "breath_in_text": "吸气，屈髋屈膝蓄力", "breath_out": "跳起时", "breath_out_text": "呼气，臀部和腿部爆发向上跳起", "mistakes": [["落地不缓冲", "冲击膝关节。落地时膝盖微屈，前脚掌先着地"], ["下蹲过浅", "爆发力不足。蹲至大腿接近平行"], ["膝盖内扣", "增加膝关节扭力。膝盖沿脚尖方向"], ["躯干松散", "核心未收紧。保持背部挺直，腹部发力"]],  "name": "转体深蹲跳", "eng": "Turn Jump Squat", "emoji": "🔄", "purpose": "跳起转体 180 度，增加方向控制与协调", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "核心肌群、腓肠肌", "sets": "3组 × 12次", "rest": "30秒", "points": ["双脚与肩同宽站立", "下蹲蓄力后向上跳起并转体 180 度", "落地时膝盖微屈缓冲", "保持身体直立，核心收紧", "落地稳定后再进行下一次转体"], "tags": ["协调", "爆发力", "核心"]},
+  "single-leg-jump-squat": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "💪 下肢训练", "type_label": "🎯 爆发力训练", "fit_for": "有一定基础，想提升下肢爆发力者", "breath_in": "下蹲时", "breath_in_text": "吸气，屈髋屈膝蓄力", "breath_out": "跳起时", "breath_out_text": "呼气，臀部和腿部爆发向上跳起", "mistakes": [["落地不缓冲", "冲击膝关节。落地时膝盖微屈，前脚掌先着地"], ["下蹲过浅", "爆发力不足。蹲至大腿接近平行"], ["膝盖内扣", "增加膝关节扭力。膝盖沿脚尖方向"], ["躯干松散", "核心未收紧。保持背部挺直，腹部发力"]],  "name": "单腿深蹲跳", "eng": "Single Leg Jump Squat", "emoji": "🦵", "purpose": "单腿落地缓冲，提升单侧爆发与稳定", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "核心肌群、腓肠肌", "sets": "3组 × 8次（每侧）", "rest": "30秒", "points": ["单腿站立，另一腿微屈抬起", "支撑腿下蹲至可控深度", "爆发向上跳起", "同一条腿落地并立刻缓冲", "保持骨盆水平，核心稳定，完成一侧换边"], "tags": ["单侧", "爆发力", "平衡"]},
+  "hands-behind-jump-squat": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "💪 下肢训练", "type_label": "🎯 爆发力训练", "fit_for": "有一定基础，想提升下肢爆发力者", "breath_in": "下蹲时", "breath_in_text": "吸气，屈髋屈膝蓄力", "breath_out": "跳起时", "breath_out_text": "呼气，臀部和腿部爆发向上跳起", "mistakes": [["落地不缓冲", "冲击膝关节。落地时膝盖微屈，前脚掌先着地"], ["下蹲过浅", "爆发力不足。蹲至大腿接近平行"], ["膝盖内扣", "增加膝关节扭力。膝盖沿脚尖方向"], ["躯干松散", "核心未收紧。保持背部挺直，腹部发力"]],  "name": "抱头深蹲跳", "eng": "Hands Behind Jump Squat", "emoji": "🤲", "purpose": "双手抱头深蹲跳，增加核心参与", "primary_muscle": "臀大肌、股四头肌", "secondary_muscle": "核心肌群、腓肠肌", "sets": "3组 × 12次", "rest": "30秒", "points": ["双脚与肩同宽，双手抱于脑后", "下蹲至大腿与地面平行", "爆发向上跳起，保持躯干直立", "落地时膝盖微屈缓冲", "核心收紧，避免身体前倾或后仰"], "tags": ["核心", "爆发力", "臀大肌"]},
+  "spider-climber": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "💪 核心+全身", "type_label": "🎯 有氧+核心", "fit_for": "有基础者，提升核心稳定与心肺", "breath_in": "伸腿时", "breath_in_text": "吸气，配合腿部伸展", "breath_out": "收腿时", "breath_out_text": "呼气，膝盖向胸部靠拢", "mistakes": [["塌腰", "腰部下沉导致腰椎压力。核心收紧，身体保持一条直线"], ["臀部过高", "臀部翘起减少核心发力。臀部与身体齐平"], ["手肘外翻", "手肘向外翻影响稳定。手肘微向内夹"], ["节奏过快失去控制", "盲目求快动作变形。保持中等节奏，动作完整优先"]],  "name": "蜘蛛式登山跑", "eng": "Spider Climber", "emoji": "🕷️", "purpose": "膝盖外展提膝，侧腹训练", "primary_muscle": "腹斜肌、腹直肌", "secondary_muscle": "肩部、股四头肌", "sets": "3组 × 30秒", "rest": "15秒", "points": ["俯卧撑姿势，双手撑地与肩同宽", "身体从头到脚成一条直线", "一腿屈膝向同侧肘部外侧提膝", "回到起始位，快速换另一侧", "保持上身稳定，臀部不要过高"], "tags": ["侧腹", "核心", "燃脂"]},
+  "side-climber": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "💪 核心+全身", "type_label": "🎯 有氧+核心", "fit_for": "有基础者，提升核心稳定与心肺", "breath_in": "伸腿时", "breath_in_text": "吸气，配合腿部伸展", "breath_out": "收腿时", "breath_out_text": "呼气，膝盖向胸部靠拢", "mistakes": [["塌腰", "腰部下沉导致腰椎压力。核心收紧，身体保持一条直线"], ["臀部过高", "臀部翘起减少核心发力。臀部与身体齐平"], ["手肘外翻", "手肘向外翻影响稳定。手肘微向内夹"], ["节奏过快失去控制", "盲目求快动作变形。保持中等节奏，动作完整优先"]],  "name": "侧向登山跑", "eng": "Side Climber", "emoji": "🔥", "purpose": "膝盖向同侧肘部提，旋转核心", "primary_muscle": "腹斜肌、腹直肌", "secondary_muscle": "肩部、股四头肌", "sets": "3组 × 30秒", "rest": "15秒", "points": ["俯卧撑姿势，核心收紧", "一腿屈膝向同侧肘部内侧提膝", "感受侧腹与核心旋转收缩", "快速回到起始位换另一侧", "保持呼吸节奏，不要塌腰"], "tags": ["旋转", "核心", "燃脂"]},
+  "cross-climber": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "💪 核心+全身", "type_label": "🎯 有氧+核心", "fit_for": "有基础者，提升核心稳定与心肺", "breath_in": "伸腿时", "breath_in_text": "吸气，配合腿部伸展", "breath_out": "收腿时", "breath_out_text": "呼气，膝盖向胸部靠拢", "mistakes": [["塌腰", "腰部下沉导致腰椎压力。核心收紧，身体保持一条直线"], ["臀部过高", "臀部翘起减少核心发力。臀部与身体齐平"], ["手肘外翻", "手肘向外翻影响稳定。手肘微向内夹"], ["节奏过快失去控制", "盲目求快动作变形。保持中等节奏，动作完整优先"]],  "name": "交叉登山跑", "eng": "Cross Climber", "emoji": "⚡", "purpose": "膝盖对角提膝，全身协调", "primary_muscle": "腹直肌、腹斜肌", "secondary_muscle": "肩部、股四头肌", "sets": "3组 × 30秒", "rest": "15秒", "points": ["俯卧撑姿势，手臂伸直", "右膝向左肘方向提膝", "回到起始位，左膝向右肘方向提膝", "保持核心收紧，身体稳定", "控制节奏，动作完整优先"], "tags": ["协调", "核心", "燃脂"]},
+  "slow-climber": {"level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级", "muscle_label": "💪 核心+全身", "type_label": "🎯 有氧+核心", "fit_for": "有基础者，提升核心稳定与心肺", "breath_in": "伸腿时", "breath_in_text": "吸气，配合腿部伸展", "breath_out": "收腿时", "breath_out_text": "呼气，膝盖向胸部靠拢", "mistakes": [["塌腰", "腰部下沉导致腰椎压力。核心收紧，身体保持一条直线"], ["臀部过高", "臀部翘起减少核心发力。臀部与身体齐平"], ["手肘外翻", "手肘向外翻影响稳定。手肘微向内夹"], ["节奏过快失去控制", "盲目求快动作变形。保持中等节奏，动作完整优先"]],  "name": "慢速登山跑", "eng": "Slow Climber", "emoji": "🐢", "purpose": "慢速控制提膝，强化核心稳定", "primary_muscle": "腹直肌", "secondary_muscle": "肩部、核心肌群", "sets": "3组 × 30秒", "rest": "15秒", "points": ["俯卧撑姿势，身体成一条直线", "缓慢将一膝向胸部方向提", "顶部停顿 1-2 秒，感受核心收紧", "缓慢收回，换另一侧", "全程控制速度，不要借助惯性"], "tags": ["核心", "低冲击", "控制"]}};
+
+// 热身动作数据（与 daily-workout WARMUP_POOL 对齐）
+const WARMUP_DATA = {
+  "hip-circles": {
+    "name": "髋关节环绕", "eng": "Hip Circles", "emoji": "🔄",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 髋部热身", "type_label": "🎯 动态热身",
+    "purpose": "活动髋关节，预防运动损伤",
+    "primary_muscle": "髋关节周围肌群",
+    "secondary_muscle": "臀大肌、臀中肌、腰腹",
+    "fit_for": "所有健身水平，必做热身动作",
+    "sets": "1组 × 30秒", "rest": "无",
+    "tags": ["髋部", "关节", "预防损伤"],
+    "points": [
+      "双脚站立，与肩同宽，双手叉腰",
+      "腰部以上保持稳定不动",
+      "以髋关节为轴，向前/后/左/右画大圆",
+      "顺时针 15 秒后逆时针 15 秒",
+      "幅度由小到大，逐步打开髋部"
+    ],
+    "breath_in": "画圈时", "breath_in_text": "自然吸气，保持均匀节奏",
+    "breath_out": "换方向时", "breath_out_text": "呼气并调整呼吸",
+    "mistakes": [
+      ["腰部代偿", "腰椎过度弯曲。保持核心稳定，髋部主导发力"],
+      ["幅度过小", "髋部未充分活动。画大圆充分展开"],
+      ["节奏过快", "失去热身效果。缓慢有控制"],
+      ["上身晃动", "保持躯干直立稳定"]
+    ]
+  },
+  "ankle-circles": {
+    "name": "踝关节活动", "eng": "Ankle Circles", "emoji": "🦶",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 踝关节热身", "type_label": "🎯 动态热身",
+    "purpose": "唤醒踝关节，提升落地稳定性",
+    "primary_muscle": "踝关节周围肌群",
+    "secondary_muscle": "小腿肌群、跟腱",
+    "fit_for": "所有健身水平，跑步跳跃前必做",
+    "sets": "1组 × 20秒", "rest": "无",
+    "tags": ["踝关节", "稳定性", "跟腱"],
+    "points": [
+      "单脚站立，另一脚离地，可扶墙保持平衡",
+      "抬起脚脚尖先向上勾起",
+      "脚踝缓慢画大圆 10 秒",
+      "换方向再画 10 秒",
+      "完成后换另一只脚"
+    ],
+    "breath_in": "画圈时", "breath_in_text": "自然呼吸，节奏稳定",
+    "breath_out": "换脚时", "breath_out_text": "呼气并切换",
+    "mistakes": [
+      ["脚趾绷直", "失去活动度。脚尖保持灵活放松"],
+      ["幅度过小", "未充分活动踝关节"],
+      ["身体倾斜", "扶墙或椅子保持平衡"],
+      ["动作过快", "控制速度，感受关节活动"]
+    ]
+  },
+  "jog-in-place": {
+    "name": "原地慢跑", "eng": "Jog in Place", "emoji": "🏃",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 全身热身", "type_label": "🎯 有氧热身",
+    "purpose": "低强度有氧，逐步升高体温",
+    "primary_muscle": "心肺系统、下肢肌群",
+    "secondary_muscle": "肩部、核心肌群",
+    "fit_for": "所有健身水平，渐进式热身",
+    "sets": "1组 × 45秒", "rest": "无",
+    "tags": ["心肺", "下肢", "全身"],
+    "points": [
+      "原地站立，躯干保持直立",
+      "前脚掌着地，交替抬腿轻跑",
+      "抬腿幅度小于高抬腿，保持低强度",
+      "手臂自然前后摆动配合",
+      "保持稳定节奏，呼吸均匀"
+    ],
+    "breath_in": "抬腿时", "breath_in_text": "吸气，配合腿部节奏",
+    "breath_out": "落脚时", "breath_out_text": "呼气，保持稳定",
+    "mistakes": [
+      ["抬腿过高", "变成高抬腿。保持低幅度低强度"],
+      ["脚跟着地", "冲击大且不稳。前脚掌轻跑"],
+      ["节奏过快", "心率上升过快难控。保持中等节奏"],
+      ["躯干前倾后仰", "保持躯干直立稳定"]
+    ]
+  },
+  "arm-circles": {
+    "name": "手臂环绕", "eng": "Arm Circles", "emoji": "🤸",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 肩部热身", "type_label": "🎯 动态热身",
+    "purpose": "放松肩袖肌群，改善肩关节活动度",
+    "primary_muscle": "肩袖肌群、三角肌",
+    "secondary_muscle": "上背部肌群",
+    "fit_for": "所有健身水平，上肢训练前必做",
+    "sets": "1组 × 20秒", "rest": "无",
+    "tags": ["肩部", "肩袖", "活动度"],
+    "points": [
+      "双脚站立，肩膀放松下沉",
+      "双臂侧平举，与肩同高",
+      "以肩关节为轴，缓慢画小到大圆",
+      "向前 10 秒后向后 10 秒",
+      "幅度由小到大逐步展开"
+    ],
+    "breath_in": "画圈时", "breath_in_text": "自然呼吸，节奏稳定",
+    "breath_out": "换方向时", "breath_out_text": "呼气并调整",
+    "mistakes": [
+      ["耸肩紧张", "肩部代偿紧张。保持肩膀下沉放松"],
+      ["幅度过小", "肩部未充分活动"],
+      ["肘部锁死", "微屈肘保持灵活"],
+      ["只做单一方向", "前后都要做，全方位热身"]
+    ]
+  },
+  "chest-open": {
+    "name": "扩胸运动", "eng": "Chest Open", "emoji": "💪",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 胸背热身", "type_label": "🎯 动态热身",
+    "purpose": "打开胸廓，激活胸背肌群",
+    "primary_muscle": "胸大肌、背阔肌",
+    "secondary_muscle": "肩部肌群、菱形肌",
+    "fit_for": "久坐人群、上肢训练前必做",
+    "sets": "1组 × 20秒", "rest": "无",
+    "tags": ["胸廓", "胸背", "打开"],
+    "points": [
+      "双脚站立，双手在背后交叉握紧",
+      "挺胸收腹，肩膀后夹下沉",
+      "双臂用力向后下方拉伸",
+      "保持 2-3 秒后放松",
+      "重复 10 次，感受胸廓充分打开"
+    ],
+    "breath_in": "拉伸时", "breath_in_text": "吸气，挺胸拉伸",
+    "breath_out": "放松时", "breath_out_text": "呼气，自然放松",
+    "mistakes": [
+      ["弓背弯腰", "腰椎代偿。保持挺胸收腹"],
+      ["耸肩紧张", "肩膀下沉放松再拉伸"],
+      ["颈部前伸", "保持头颈中立位"],
+      ["拉伸过快", "保持 2-3 秒再放松"]
+    ]
+  },
+  "calf-raise": {
+    "name": "提踵", "eng": "Calf Raise", "emoji": "🦵",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 小腿热身", "type_label": "🎯 动态热身",
+    "purpose": "激活小腿与跟腱，增强踝关节刚性",
+    "primary_muscle": "腓肠肌、比目鱼肌",
+    "secondary_muscle": "跟腱、踝关节",
+    "fit_for": "所有健身水平，跑跳训练前必做",
+    "sets": "1组 × 20秒", "rest": "无",
+    "tags": ["小腿", "跟腱", "踝关节"],
+    "points": [
+      "双脚站立，与髋同宽",
+      "前脚掌着力，脚跟抬离地面",
+      "提至最高点停顿 1 秒",
+      "缓慢有控制地下落",
+      "连续重复 15-20 次"
+    ],
+    "breath_in": "提踵时", "breath_in_text": "吸气，用力向上提",
+    "breath_out": "下落时", "breath_out_text": "呼气，缓慢下落",
+    "mistakes": [
+      ["下落过快", "失去张力。缓慢下落感受拉伸"],
+      ["膝盖弯曲", "保持膝盖伸直"],
+      ["幅度过小", "脚跟抬得不够高。充分提至最高点"],
+      ["身体前倾", "保持躯干直立"]
+    ]
+  },
+  "cat-cow": {
+    "name": "拳击出拳", "eng": "Shadow Boxing", "emoji": "🥊",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 肩部与上肢热身", "type_label": "🎯 动态热身",
+    "purpose": "原地交替直拳摆拳，激活肩部与上肢爆发力",
+    "primary_muscle": "三角肌、肱三头肌",
+    "secondary_muscle": "核心肌群、背部肌群",
+    "fit_for": "上肢训练前必做，拳击/搏击/球类运动前热身",
+    "sets": "1组 × 30秒", "rest": "无",
+    "tags": ["肩部", "上肢", "爆发"],
+    "points": [
+      "双脚与肩同宽站立，膝盖微屈，核心收紧",
+      "双手握拳举至下颌两侧，肘部夹紧肋骨",
+      "交替向前快速打出直拳（左直拳 → 右直拳）",
+      "收拳时快速回到下颌防守位",
+      "保持节奏稳定，肩膀放松不耸"
+    ],
+    "breath_in": "收拳时", "breath_in_text": "自然吸气回位",
+    "breath_out": "出拳时", "breath_out_text": "短促呼气发力",
+    "mistakes": [
+      ["耸肩紧张", "肩膀下沉放松，避免颈肩僵硬"],
+      ["肘部外翻", "肘部贴紧肋骨，保护肩关节"],
+      ["弓背驼背", "核心收紧，躯干保持直立"],
+      ["只动手臂", "腿部蹬地传导力量，协同发力"]
+    ]
+  },
+  "side-shuffle": {
+    "name": "侧滑步", "eng": "Side Shuffle", "emoji": "⛹️",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 臀中肌热身", "type_label": "🎯 动态热身",
+    "purpose": "动态横向移动，激活臀中肌",
+    "primary_muscle": "臀中肌、内收肌",
+    "secondary_muscle": "股四头肌、心肺",
+    "fit_for": "所有水平，侧向运动前必做",
+    "sets": "1组 × 30秒", "rest": "无",
+    "tags": ["臀中肌", "侧向", "协调"],
+    "points": [
+      "半蹲姿势，双脚略宽于肩",
+      "保持低重心，向侧方快速移动两步",
+      "再快速向另一方向移动两步",
+      "手臂自然摆动保持平衡",
+      "保持臀中肌持续发力"
+    ],
+    "breath_in": "迈步时", "breath_in_text": "吸气，配合步伐",
+    "breath_out": "换方向时", "breath_out_text": "呼气并稳定",
+    "mistakes": [
+      ["直立行走", "失去热身效果。保持半蹲姿势"],
+      ["膝盖内扣", "保持膝盖沿脚尖方向"],
+      ["步幅过小", "侧向移动幅度不够"],
+      ["重心过高", "保持低重心臀中肌发力"]
+    ]
+  }
+};
+
+// 拉伸动作数据（与 daily-workout STRETCH_POOL 对齐）
+const STRETCH_DATA = {
+  "stretch-quad": {
+    "name": "股四头肌拉伸", "eng": "Quad Stretch", "emoji": "🦵",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 下肢拉伸", "type_label": "🎯 静态拉伸",
+    "purpose": "站姿屈膝抓脚踝，拉伸大腿前侧股四头肌",
+    "primary_muscle": "股四头肌",
+    "secondary_muscle": "髂腰肌、髋屈肌",
+    "fit_for": "所有健身水平，跑步/跳跃后必做",
+    "sets": "每侧 30秒 × 2组", "rest": "换侧无间隔",
+    "tags": ["股四头肌", "髋屈肌", "大腿前侧"],
+    "points": [
+      "单脚站立，可扶墙保持平衡",
+      "同侧手抓住同侧脚踝",
+      "脚跟尽量靠近臀部",
+      "保持双膝并拢，髋部向前推",
+      "保持 30 秒，感受大腿前侧充分拉伸"
+    ],
+    "breath_in": "保持时", "breath_in_text": "深呼吸，放松进入拉伸",
+    "breath_out": "保持时", "breath_out_text": "呼气，加深拉伸",
+    "mistakes": [
+      ["膝盖外展", "降低拉伸效果。保持双膝并拢"],
+      ["弓背弯腰", "保持躯干直立"],
+      ["脚跟远离臀部", "拉伸不足。脚跟尽量靠近"],
+      ["憋气", "保持自然呼吸加深拉伸"]
+    ]
+  },
+  "stretch-hamstring": {
+    "name": "腘绳肌拉伸", "eng": "Hamstring Stretch", "emoji": "🦵",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 下肢拉伸", "type_label": "🎯 静态拉伸",
+    "purpose": "坐姿前屈或站姿体前屈，拉伸大腿后侧腘绳肌",
+    "primary_muscle": "腘绳肌",
+    "secondary_muscle": "臀大肌、小腿肌群",
+    "fit_for": "所有健身水平，久坐人群必做",
+    "sets": "每侧 30秒 × 2组", "rest": "换侧无间隔",
+    "tags": ["腘绳肌", "大腿后侧", "久坐"],
+    "points": [
+      "坐姿，一条腿伸直，另一条屈膝",
+      "保持背部挺直，从髋部向前折叠",
+      "双手尽量触碰伸直腿的脚尖",
+      "保持 30 秒，感受大腿后侧拉伸",
+      "换另一条腿重复"
+    ],
+    "breath_in": "准备时", "breath_in_text": "吸气，挺直背部",
+    "breath_out": "前屈时", "breath_out_text": "呼气，从髋部前屈",
+    "mistakes": [
+      ["弓背弯腰", "失去拉伸效果。保持背部挺直从髋部折叠"],
+      ["膝盖弯曲", "降低拉伸效果。伸直腿膝盖保持伸直"],
+      ["用力过猛", "避免拉伤。循序渐进加深"],
+      ["脚尖方向", "脚尖朝上更有利于腘绳肌拉伸"]
+    ]
+  },
+  "stretch-glute": {
+    "name": "臀大肌拉伸", "eng": "Glute Stretch", "emoji": "🍑",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 臀部拉伸", "type_label": "🎯 静态拉伸",
+    "purpose": "仰卧4字拉伸，缓解臀部深层紧张",
+    "primary_muscle": "臀大肌、梨状肌",
+    "secondary_muscle": "髋外旋肌群",
+    "fit_for": "所有健身水平，久坐人群必做",
+    "sets": "每侧 30秒 × 2组", "rest": "换侧无间隔",
+    "tags": ["臀大肌", "梨状肌", "臀部"],
+    "points": [
+      "仰卧，双膝弯曲",
+      "将右脚踝放在左大腿上，呈「4」字形",
+      "双手抱住左大腿后侧向胸口方向拉",
+      "保持 30 秒，感受右臀充分拉伸",
+      "换另一侧重复"
+    ],
+    "breath_in": "保持时", "breath_in_text": "深呼吸放松",
+    "breath_out": "加深时", "breath_out_text": "呼气轻微加深",
+    "mistakes": [
+      ["头颈抬起", "保持头颈贴地放松"],
+      ["腰部代偿", "保持骨盆中立位"],
+      ["拉伸力过大", "适度即可，避免拉伤"],
+      ["脚踝位置不当", "脚踝在膝盖上方对准位置"]
+    ]
+  },
+  "stretch-child": {
+    "name": "婴儿式放松", "eng": "Child's Pose", "emoji": "🧘",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 腰背放松", "type_label": "🎯 静态拉伸",
+    "purpose": "跪姿臀部坐脚跟，前倾延伸背部，深度放松",
+    "primary_muscle": "腰背部肌群",
+    "secondary_muscle": "臀部、肩膀",
+    "fit_for": "所有健身水平，训练后放松必做",
+    "sets": "60秒", "rest": "无",
+    "tags": ["腰背", "放松", "全身"],
+    "points": [
+      "跪姿，双膝分开与髋同宽",
+      "臀部向后坐向脚跟",
+      "上半身向前折叠，胸口贴近大腿",
+      "双臂自然向前延伸或放在身体两侧",
+      "保持 60 秒，深度放松腰背"
+    ],
+    "breath_in": "吸气时", "breath_in_text": "吸气，感觉背部延展",
+    "breath_out": "呼气时", "breath_out_text": "呼气，深度放松下沉",
+    "mistakes": [
+      ["臀部离开脚跟", "降低放松效果。臀部坐实脚跟"],
+      ["耸肩紧张", "肩膀下沉放松，远离耳朵"],
+      ["膝盖过度分开", "保持与髋同宽，避免膝关节压力"],
+      ["憋气", "保持自然深呼吸加深放松"]
+    ]
+  },
+  "stretch-calf": {
+    "name": "小腿拉伸", "eng": "Calf Stretch", "emoji": "🦶",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 下肢拉伸", "type_label": "🎯 静态拉伸",
+    "purpose": "弓步推墙或台阶拉伸，缓解小腿紧绷",
+    "primary_muscle": "腓肠肌、比目鱼肌",
+    "secondary_muscle": "跟腱、踝关节",
+    "fit_for": "所有健身水平，跑跳后必做",
+    "sets": "每侧 30秒 × 2组", "rest": "换侧无间隔",
+    "tags": ["小腿", "腓肠肌", "跟腱"],
+    "points": [
+      "面对墙站立，双手推墙",
+      "一腿后撤一大步，脚跟踩实地面",
+      "前腿弯曲，后腿伸直",
+      "重心前移，感受后腿小腿拉伸",
+      "保持 30 秒，换另一侧"
+    ],
+    "breath_in": "保持时", "breath_in_text": "深呼吸放松",
+    "breath_out": "加深时", "breath_out_text": "呼气轻微加深",
+    "mistakes": [
+      ["后腿弯曲", "降低拉伸效果。后腿伸直膝盖不弯"],
+      ["脚跟离地", "脚跟必须踩实地面"],
+      ["上身过度前倾", "保持后腿、髋部、肩部成一条直线"],
+      ["脚尖内扣", "脚尖正对前方或微外旋"]
+    ]
+  },
+  "stretch-hip": {
+    "name": "髋屈肌拉伸", "eng": "Hip Flexor Stretch", "emoji": "🔄",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 髋部拉伸", "type_label": "🎯 静态拉伸",
+    "purpose": "弓步下沉髋部，打开髋关节前侧",
+    "primary_muscle": "髂腰肌、髋屈肌",
+    "secondary_muscle": "股四头肌前侧",
+    "fit_for": "久坐人群必做，深度激活髋部",
+    "sets": "每侧 30秒 × 2组", "rest": "换侧无间隔",
+    "tags": ["髋屈肌", "髂腰肌", "久坐"],
+    "points": [
+      "弓步姿势，前脚屈膝 90 度",
+      "后腿膝盖跪地（或脚尖撑地）",
+      "骨盆向前推，髋部下沉",
+      "双手放在前腿大腿上方",
+      "保持 30 秒，感受髋前侧充分拉伸"
+    ],
+    "breath_in": "准备时", "breath_in_text": "吸气，挺直躯干",
+    "breath_out": "下沉时", "breath_out_text": "呼气，髋部下沉加深",
+    "mistakes": [
+      ["骨盆后倾", "降低拉伸效果。骨盆保持中立向前推"],
+      ["腰部过度前凸", "收紧腹部保护腰椎"],
+      ["前膝超脚尖", "保持前膝在脚踝正上方"],
+      ["后腿膝盖痛", "垫瑜伽垫保护膝盖"]
+    ]
+  },
+  "stretch-spine": {
+    "name": "猫牛式", "eng": "Cat-Cow", "emoji": "🐈",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 脊柱拉伸", "type_label": "🎯 动态拉伸",
+    "purpose": "四足跪姿脊柱流动，舒缓腰背紧张",
+    "primary_muscle": "脊柱周围肌群",
+    "secondary_muscle": "核心肌群、背部",
+    "fit_for": "所有健身水平，腰背僵硬必做",
+    "sets": "10次缓慢流动", "rest": "无",
+    "tags": ["脊柱", "腰背", "灵活"],
+    "points": [
+      "四点跪撑，手在肩下，膝在髋下",
+      "吸气：塌腰翘臀，抬头看前方（牛式）",
+      "呼气：拱背低头，下巴收向胸部（猫式）",
+      "配合呼吸缓慢流畅地交替",
+      "感受脊柱逐节屈伸"
+    ],
+    "breath_in": "牛式时", "breath_in_text": "吸气，塌腰抬头",
+    "breath_out": "猫式时", "breath_out_text": "呼气，拱背低头",
+    "mistakes": [
+      ["动作过快", "失去拉伸效果。配合呼吸缓慢"],
+      ["手腕肩膀痛", "微调手腕位置或加垫子"],
+      ["膝盖不适", "在膝盖下方垫毛巾"],
+      ["肩颈紧张", "保持肩膀下沉远离耳朵"]
+    ]
+  },
+  "stretch-cobra": {
+    "name": "眼镜蛇式", "eng": "Cobra Stretch", "emoji": "🐍",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 腰腹拉伸", "type_label": "🎯 静态拉伸",
+    "purpose": "俯卧撑起上身，伸展腹直肌与前链",
+    "primary_muscle": "腹直肌、前链",
+    "secondary_muscle": "髂腰肌、胸大肌",
+    "fit_for": "久坐人群、训练后必做",
+    "sets": "保持 30秒 × 2组", "rest": "组间休息 10秒",
+    "tags": ["腹直肌", "前链", "腰腹"],
+    "points": [
+      "俯卧，双腿伸直，脚背贴地",
+      "双手放在胸部两侧",
+      "吸气，用背部力量慢慢撑起上身",
+      "髋部保持贴地，肘部微屈",
+      "保持 30 秒，感受腹部充分拉伸"
+    ],
+    "breath_in": "撑起时", "breath_in_text": "吸气，背部发力撑起",
+    "breath_out": "保持时", "breath_out_text": "呼气，深度拉伸",
+    "mistakes": [
+      ["用手臂硬撑", "用背部肌群主导，手臂辅助"],
+      ["髋部离地", "髋部必须贴地拉伸腹部"],
+      ["耸肩紧张", "肩膀下沉放松，远离耳朵"],
+      ["颈部过度后仰", "目视前方或微收下巴"]
+    ]
+  },
+  "stretch-shoulder": {
+    "name": "肩部拉伸", "eng": "Shoulder Stretch", "emoji": "💪",
+    "level": "⭐ 初级", "level_value": "⭐ 初级",
+    "muscle_label": "💪 肩部拉伸", "type_label": "🎯 静态拉伸",
+    "purpose": "交叉手臂跨胸前，放松三角肌后束",
+    "primary_muscle": "三角肌后束",
+    "secondary_muscle": "肩袖肌群、上背部",
+    "fit_for": "所有健身水平，上肢训练后必做",
+    "sets": "每侧 30秒 × 2组", "rest": "换侧无间隔",
+    "tags": ["三角肌后束", "肩袖", "上背部"],
+    "points": [
+      "站立或坐姿，背部挺直",
+      "右臂横过胸前向左伸",
+      "左手扶住右肘轻轻向左拉",
+      "保持右肩充分拉伸 30 秒",
+      "换另一侧重复"
+    ],
+    "breath_in": "保持时", "breath_in_text": "深呼吸放松",
+    "breath_out": "加深时", "breath_out_text": "呼气轻微加深",
+    "mistakes": [
+      ["耸肩紧张", "肩膀下沉放松"],
+      ["弓背弯腰", "保持背部挺直"],
+      ["拉伸力过大", "适度即可"],
+      ["没有扶肘", "扶肘位置以增加拉伸力"]
+    ]
+  },
+  "stretch-pigeon": {
+    "name": "鸽子式", "eng": "Pigeon Pose", "emoji": "🕊️",
+    "level": "⭐⭐ 中级", "level_value": "⭐⭐ 中级",
+    "muscle_label": "💪 髋部深度拉伸", "type_label": "🎯 静态拉伸",
+    "purpose": "深度打开髋关节，进阶拉伸臀外旋肌",
+    "primary_muscle": "臀外旋肌群、髋关节",
+    "secondary_muscle": "臀大肌、髂腰肌",
+    "fit_for": "有瑜伽基础者、深度髋部打开",
+    "sets": "每侧 45秒", "rest": "换侧无间隔",
+    "tags": ["髋部", "臀外旋", "进阶"],
+    "points": [
+      "从四点跪姿开始",
+      "右膝向前放在右手腕后方，小腿横放",
+      "左腿向后伸直",
+      "上身慢慢向前折叠，手肘着地",
+      "保持 45 秒，感受髋外侧深度拉伸"
+    ],
+    "breath_in": "保持时", "breath_in_text": "深呼吸放松进入",
+    "breath_out": "加深时", "breath_out_text": "呼气加深前屈",
+    "mistakes": [
+      ["膝盖内扣", "调整小腿位置与髋部平行"],
+      ["骨盆歪斜", "保持两侧髋部水平"],
+      ["上身直立强行拉伸", "前屈上身减轻强度"],
+      ["膝盖不适", "在膝盖下方垫毛巾"]
+    ]
+  }
+};
 
 function buildExerciseData(exId) {
   if (EXERCISE_DATA[exId]) return EXERCISE_DATA[exId];
-  return EXERCISE_EXTRA[exId] || EXERCISE_DATA["squat"];
+  if (EXERCISE_EXTRA[exId]) return EXERCISE_EXTRA[exId];
+  if (WARMUP_DATA[exId]) return WARMUP_DATA[exId];
+  if (STRETCH_DATA[exId]) return STRETCH_DATA[exId];
+  return EXERCISE_DATA["squat"];
 }
 
 function findExercise(exId) {
@@ -1236,7 +1715,7 @@ Page({
     wx.navigateBack({
       delta: 1,
       fail: function() {
-        wx.switchTab({ url: '/pages/dashboard/index' });
+        wx.reLaunch({ url: '/pages/dashboard/index' });
       }
     });
   }

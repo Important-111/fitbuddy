@@ -25,25 +25,28 @@
 }
 
 .exercise-tag {
-  padding: 5px 12px;
-  border-radius: 20px;
+  padding: 6px 12px;
+  border-radius: 999px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  line-height: 1;
 }
 
 .tag-level {
-  background: rgba(255,61,0,0.16);
-  color: var(--accent);
+  background: var(--primary);
+  color: #000;
+  font-weight: 800;
+  padding: 6px 14px;
+  box-shadow: 0 2px 10px rgba(204, 255, 0, 0.3);
 }
-
-.tag-muscle {
-  background: rgba(54,207,201,0.16);
-  color: #36CFC9;
-}
-
+.tag-muscle,
 .tag-type {
-  background: rgba(204,255,0,0.14);
-  color: var(--primary);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .muscle-group {
@@ -56,9 +59,11 @@
   padding: 8px 16px;
   background: var(--primary-light);
   color: var(--primary);
+  border: 1px solid rgba(204, 255, 0, 0.18);
   border-radius: 10px;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.2px;
 }
 
 .points-list {
@@ -69,9 +74,9 @@
   display: flex;
   gap: 10px;
   margin-bottom: 12px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-primary);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .points-list > view:last-child {
@@ -84,9 +89,9 @@
   min-width: 22px;
   border-radius: 50%;
   background: var(--primary);
-  color: #FFF;
+  color: #000;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,17 +101,24 @@
 
 .caution-list .point-num {
   background: var(--danger);
+  color: #FFF;
 }
 
 .exercise-hero {
   margin: 16px 20px;
-  border-radius: 14px;
+  border-radius: 16px;
   height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFF;
-  font-size: 48px;
+  font-size: 72px;
+  background: var(--paper) !important;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4),
+              0 0 60px rgba(204, 255, 0, 0.08);
+  position: relative;
+  overflow: hidden;
 }
 
 .breath-row {

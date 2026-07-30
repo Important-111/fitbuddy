@@ -223,7 +223,7 @@ Page({
       content: '确认退出登录？所有数据将被保留在本地。',
       success: (res) => {
         if (res.confirm) {
-          wx.navigateTo({ url: '/pages/welcome/index' });
+          wx.reLaunch({ url: '/pages/welcome/index' });
         }
       }
     });

@@ -46,3 +46,14 @@
     <view class="card-tip">点击「授权手机号」将调用微信官方接口，由微信安全地向本小程序返回您的手机号</view>
   </view>
 </view>
+
+<!-- 微信隐私保护指引授权弹窗：调用隐私接口前由平台触发，必须主动同意才放行 -->
+<view class="privacy-mask" wx:if="{{showPrivacy}}" catchtap="noop">
+  <view class="privacy-card">
+    <view class="privacy-icon">🔒</view>
+    <view class="privacy-title">隐私保护指引</view>
+    <view class="privacy-desc">在使用手机号等个人敏感信息相关功能前，请阅读并同意<text class="link" catchtap="openPrivacyContract">《隐私保护指引》</text>。我们仅在必要范围内收集信息，用于账号安全与必要服务通知，绝不用于营销或转售给第三方。</view>
+    <button class="privacy-btn" bindtap="agreePrivacy">同意并继续</button>
+    <view class="privacy-cancel" bindtap="rejectPrivacy">暂不同意</view>
+  </view>
+</view>

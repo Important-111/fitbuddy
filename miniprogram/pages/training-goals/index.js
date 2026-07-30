@@ -11,7 +11,7 @@ const ALL_GOALS = [
   { name: '腹肌', emoji: '🦬' },
   { name: '腿部塑形', emoji: '🧍' },
   { name: '全身紧致', emoji: '🌟' },
-  { name: '康复训练', emoji: '🏥' },
+  { name: '恢复训练', emoji: '💆' },
   { name: '其它', emoji: '📋' }
 ];
 

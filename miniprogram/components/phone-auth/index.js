@@ -3,7 +3,27 @@ Component({
     visible: { type: Boolean, value: false }
   },
   data: {
-    agreed: false
+    agreed: false,
+    showPrivacy: false
+  },
+  lifetimes: {
+    attached() {
+      const that = this;
+      // 注册微信隐私授权监听：调用 getPhoneNumber 等隐私接口且用户尚未授权时触发
+      this._privacyHandler = function (resolve) {
+        that.privacyResolve = resolve;
+        that.setData({ showPrivacy: true });
+      };
+      if (typeof wx.onNeedPrivacyAuthorize === 'function') {
+        wx.onNeedPrivacyAuthorize(this._privacyHandler);
+      }
+    },
+    detached() {
+      // 组件卸载时注销监听，避免重复注册导致多实例叠加
+      if (this._privacyHandler && typeof wx.offNeedPrivacyAuthorize === 'function') {
+        wx.offNeedPrivacyAuthorize(this._privacyHandler);
+      }
+    }
   },
   methods: {
     noop() {},
@@ -23,6 +43,26 @@ Component({
     openPrivacy() {
       wx.navigateTo({ url: '/pages/agreement/privacy/index' });
     },
+
+    /* ===== 微信隐私保护指引授权弹窗 ===== */
+    openPrivacyContract() {
+      wx.navigateTo({ url: '/pages/agreement/privacy/index' });
+    },
+    agreePrivacy() {
+      if (this.privacyResolve) {
+        try {
+          this.privacyResolve({ event: 'agree' });
+        } catch (e) {
+          console.log('[phone-auth] privacy resolve failed', e);
+        }
+      }
+      this.setData({ showPrivacy: false });
+    },
+    rejectPrivacy() {
+      this.setData({ showPrivacy: false });
+      wx.showToast({ title: '需先同意隐私保护指引', icon: 'none' });
+    },
+
     onGetPhoneNumber(e) {
       if (!this.data.agreed) {
         wx.showToast({ title: '请先勾选同意协议', icon: 'none' });

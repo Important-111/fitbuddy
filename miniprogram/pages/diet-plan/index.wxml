@@ -5,8 +5,8 @@
   </view>
 
   <!-- Nutrition Banner -->
-  <view class="nutri-banner" style="background:linear-gradient(135deg,#CCFF00,#9FCC00);">
-    <text style="font-size:18px;font-weight:700;display:block;margin-bottom:12px;text-shadow:0 1px 3px rgba(0,0,0,0.12)">今日营养目标</text>
+  <view class="nutri-banner" style="background:linear-gradient(135deg,#CCFF00,#B8E600);">
+    <text class="nutri-banner-title">今日营养目标</text>
     <view class="nutri-row">
       <view class="nutri-item">
         <text class="nutri-val">{{nutrition.calories}}</text>

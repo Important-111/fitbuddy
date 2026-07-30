@@ -84,7 +84,7 @@
           <text>体重 (kg)</text>
         </view>
         <view wx:if="{{targetWeight}}" class="chart-legend-item">
-          <view class="chart-legend-dot accent"></view>
+          <view class="chart-legend-dot primary" style="border:1.5px dashed var(--primary);background:transparent;"></view>
           <text>目标 ({{targetWeight}}kg)</text>
         </view>
       </view>

@@ -81,7 +81,7 @@
       <view class="quick-action-text">进度</view>
     </view>
     <view class="quick-action" bindtap="navigateTo" data-url="/pages/profile/index">
-      <view class="quick-action-icon">⚙</view>
+      <view class="quick-action-icon">⚙️</view>
       <view class="quick-action-text">我的</view>
     </view>
   </view>

@@ -63,15 +63,15 @@
 
 /* 基本资料模块 */
 .profile-section {
-  padding: 24px;
-  margin-top: -40px;
+  padding: 20px 24px 12px;
+  margin: 0 0 8px;
   position: relative;
   z-index: 2;
 }
 .profile-card {
   background: var(--card);
   border-radius: 20px;
-  padding: 20px;
+  padding: 22px 22px 26px;
   border: 1px solid var(--border);
 }
 .profile-header {
@@ -142,15 +142,11 @@
   font-weight: 700;
   letter-spacing: 0.5px;
 }
-.profile-tag.male {
-  background: rgba(54,207,201,0.12);
-  color: #36CFC9;
-  border-color: rgba(54,207,201,0.3);
-}
+.profile-tag.male,
 .profile-tag.female {
-  background: rgba(255,61,0,0.15);
-  color: #FF3D00;
-  border-color: rgba(255,61,0,0.3);
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: rgba(204, 255, 0, 0.3);
 }
 
 /* 功能特点（横向卡片） */
@@ -208,23 +204,28 @@
 
 /* 底部操作 */
 .bottom-cta {
-  padding: 8px 24px 32px;
+  padding: 12px 24px 36px;
 }
 .bottom-cta .btn-primary {
   width: 100%;
+  height: 58px;
+  line-height: 58px;
   background: var(--primary);
   color: #000;
   border: none;
-  border-radius: 12px;
-  font-size: 14px;
+  border-radius: 14px;
+  font-size: 17px;
   font-weight: 800;
-  letter-spacing: 2px;
-  box-shadow: 0 0 30px rgba(204,255,0,0.5);
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 0;
+  box-shadow: 0 6px 24px rgba(204,255,0,0.45);
 }
 .privacy-note {
   display: block;
   text-align: center;
   font-size: 12px;
   color: var(--text-secondary);
-  margin-top: 12px;
+  margin-top: 16px;
+  line-height: 1.5;
 }
