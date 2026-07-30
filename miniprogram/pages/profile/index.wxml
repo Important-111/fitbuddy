@@ -255,7 +255,7 @@
           <view class="form-group">
             <text class="form-label">体重</text>
             <view class="input-with-unit">
-              <input class="form-input" type="number" value="{{editForm.weight}}" bindinput="onEditFormInput" data-field="weight" />
+              <input class="form-input" type="digit" value="{{editForm.weight}}" bindinput="onEditFormInput" data-field="weight" />
               <text class="input-unit">kg</text>
             </view>
           </view>

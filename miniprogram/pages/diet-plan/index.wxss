@@ -132,6 +132,38 @@
   color: var(--text-primary);
   margin-bottom: 8px;
 }
+.ring-pct { font-weight: 700; color: #FFFFFF; }
+/* ===== 纯 CSS 环形图（替代 SVG，兼容小程序真机） ===== */
+.macro-ring {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
+}
+.macro-ring-inner {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ring-cal-num {
+  font-size: 22px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.1;
+}
+.ring-cal-unit {
+  font-size: 12px;
+  color: #B0B0B0;
+  margin-top: 2px;
+}
 .ring-dot {
   width: 10px;
   height: 10px;
@@ -153,7 +185,8 @@
 .macro-label {
   min-width: 60px;
   font-size: 13px;
-  color: var(--text-secondary);
+  color: var(--text-primary);
+  font-weight: 500;
 }
 .macro-bar-wrap {
   flex: 1;
@@ -178,9 +211,10 @@
 }
 .macro-value {
   min-width: 100px;
-  font-size: 12px;
-  color: var(--text-secondary);
+  font-size: 13px;
+  color: #D8D8D8;
   text-align: right;
+  font-weight: 500;
 }
 .diet-log-meal {
   margin-bottom: 10px;

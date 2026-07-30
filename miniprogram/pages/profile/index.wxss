@@ -127,6 +127,16 @@
 .info-section .info-item:last-child {
   border-bottom: none !important;
 }
+.input-with-unit { position: relative; }
+.input-unit {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--text-secondary);
+  pointer-events: none;
+}
 .modal-overlay {
   position: fixed;
   top: 0;

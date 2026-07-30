@@ -22,6 +22,10 @@ Page({
     if (profile && profile.nickname) {
       const bmi = calcBMI(profile.weight, profile.height);
       const bmiTagInfo = this.getBmiTagInfo(bmi);
+      // 兼容旧档案：若没有 profile.goal，从 goals[] 取第一个
+      if (!profile.goal && Array.isArray(profile.goals) && profile.goals.length) {
+        profile.goal = profile.goals[0];
+      }
       this.setData({
         hasProfile: true,
         profile,
@@ -65,7 +69,7 @@ Page({
   },
 
   onEditProfile() {
-    wx.navigateTo({ url: '/pages/profile/index' });
+    wx.navigateTo({ url: '/pages/profile/index?edit=1' });
   },
 
 });

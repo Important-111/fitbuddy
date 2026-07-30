@@ -55,9 +55,13 @@ Page({
     phoneAuthShow: false
   },
 
-  onLoad() {
+  onLoad(options) {
     this.loadData();
     this.loadPhoneBinding();
+    // 从欢迎页"编辑"进入：自动打开编辑弹窗
+    if (options && options.edit === '1') {
+      setTimeout(() => this.onQuickEdit(), 150);
+    }
   },
 
   onShow() {
@@ -287,7 +291,7 @@ Page({
     p.gender = form.gender;
     p.age = parseInt(form.age) || 0;
     p.height = parseInt(form.height) || 0;
-    p.weight = parseInt(form.weight) || 0;
+    p.weight = parseFloat(form.weight) || 0;
     p.goal = this.data.goalOptions[form.goalIndex];
 
     Store.saveProfile(p);
