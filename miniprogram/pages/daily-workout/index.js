@@ -116,10 +116,15 @@ function buildWarmups(selectedIds) {
   return withTimer(items, WARMUP_TIMER_SEC);
 }
 
-function parseRestSeconds(text, fallback) {
-  if (!text) return (fallback !== undefined ? fallback : DEFAULT_TIMER_SEC);
-  const m = String(text).match(/(\d+)\s*秒/);
-  if (m) return Math.max(5, parseInt(m[1]));
+function parseSetDuration(item, fallback) {
+  // 1) 热身/拉伸：用 sec 字段作为每组时长
+  if (item && item.sec && item.sec > 0) return item.sec;
+  // 2) 正式训练：从 sets 解析"X秒"（如 "3组 × 30秒"、"每侧 30秒 × 2组"、"保持 30秒 × 2组"）
+  if (item && item.sets) {
+    const m = String(item.sets).match(/(\d+)\s*秒/);
+    if (m) return Math.max(5, parseInt(m[1]));
+  }
+  // 3) 兜底（如 "3组 × 12次" 这类次数型训练，无明确秒数）
   return (fallback !== undefined ? fallback : DEFAULT_TIMER_SEC);
 }
 
@@ -144,7 +149,7 @@ function formatTimer(s) {
 
 function withTimer(items, fallback) {
   return (items || []).map(it => {
-    const sec = parseRestSeconds(it.rest || it.detail, fallback);
+    const sec = parseSetDuration(it, fallback);
     const total = parseTotalSets(it);
     return Object.assign({}, it, {
       timerDefaultSec: sec,
