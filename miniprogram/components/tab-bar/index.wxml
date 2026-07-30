@@ -7,36 +7,11 @@
     data-key="{{item.key}}"
     data-url="{{item.url}}"
   >
-    <view class="tab-icon">
-      <view wx:if="{{item.key === 'dashboard'}}" class="icon-svg">
-        <view class="icon-house {{active === item.key ? 'filled' : ''}}"></view>
-      </view>
-      <view wx:elif="{{item.key === 'training-plan'}}" class="icon-svg">
-        <view class="icon-dumbbell {{active === item.key ? 'filled' : ''}}">
-          <view class="bar"></view>
-          <view class="weight left"></view>
-          <view class="weight right"></view>
-        </view>
-      </view>
-      <view wx:elif="{{item.key === 'progress-tracking'}}" class="icon-svg">
-        <view class="icon-chart {{active === item.key ? 'filled' : ''}}">
-          <view class="chart-bar b1"></view>
-          <view class="chart-bar b2"></view>
-          <view class="chart-bar b3"></view>
-        </view>
-      </view>
-      <view wx:elif="{{item.key === 'diet-plan'}}" class="icon-svg">
-        <view class="icon-plate {{active === item.key ? 'filled' : ''}}">
-          <view class="plate-inner"></view>
-        </view>
-      </view>
-      <view wx:elif="{{item.key === 'profile'}}" class="icon-svg">
-        <view class="icon-user {{active === item.key ? 'filled' : ''}}">
-          <view class="user-head"></view>
-          <view class="user-body"></view>
-        </view>
-      </view>
-    </view>
+    <image
+      class="tab-icon"
+      src="{{active === item.key ? item.iconActive : item.icon}}"
+      mode="aspectFit"
+    ></image>
     <text class="tab-label">{{item.label}}</text>
   </view>
 </view>
