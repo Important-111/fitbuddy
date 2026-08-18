@@ -1,24 +1,27 @@
 .checkin-hero {
   margin: 16px 20px;
   border-radius: 14px;
-  padding: 24px;
+  padding: 28px 24px;
   text-align: center;
-  color: #FFF;
+  color: #000;
 }
 .checkin-hero-emoji {
-  font-size: 48px;
-  margin-bottom: 8px;
+  font-size: 52px;
+  margin-bottom: 10px;
+  line-height: 1;
 }
 .checkin-hero-title {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 800;
   display: block;
+  letter-spacing: 0.5px;
 }
 .checkin-hero-desc {
   font-size: 13px;
-  opacity: 0.9;
+  color: rgba(0, 0, 0, 0.72);
   display: block;
-  margin-top: 4px;
+  margin-top: 6px;
+  line-height: 1.5;
 }
 .rating-section {
   padding: 0 20px;

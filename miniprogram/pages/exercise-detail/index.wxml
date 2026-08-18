@@ -8,7 +8,7 @@
   </view>
 
   <!-- 动作主图区 -->
-  <view class="exercise-hero" style="background:linear-gradient(135deg,#CCFF00,#B8E600);">
+  <view class="exercise-hero">
     {{exerciseEmoji}}
   </view>
 
@@ -17,9 +17,9 @@
     <view class="exercise-main-name">{{exerciseName}}</view>
     <view class="exercise-eng-name">{{exerciseEng}}</view>
     <view class="exercise-tags">
-      <text class="exercise-tag tag-level">🏆{{levelLabel}}</text>
-      <text class="exercise-tag tag-muscle">💪{{muscleLabel}}</text>
-      <text class="exercise-tag tag-type">🎯{{typeLabel}}</text>
+      <text class="exercise-tag tag-level">{{levelLabel}}</text>
+      <text class="exercise-tag tag-muscle">{{muscleLabel}}</text>
+      <text class="exercise-tag tag-type">{{typeLabel}}</text>
     </view>
   </view>
 
@@ -29,7 +29,7 @@
     <view class="info-card">
       <view wx:for="{{infoRows}}" wx:key="key" class="info-row">
         <text class="info-key">{{item.key}}</text>
-        <text class="info-value" style="{{item.highlight ? 'color:var(--primary);font-weight:600;' : ''}}">{{item.value}}</text>
+        <text class="info-value" style="{{item.highlight ? 'color:var(--primary);font-weight:800;font-size:15px;letter-spacing:0.3px;' : ''}}">{{item.value}}</text>
       </view>
     </view>
   </view>

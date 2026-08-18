@@ -146,11 +146,15 @@ Page({
       fat
     };
 
+    const pPlusC = (parseFloat(pPct) + parseFloat(cPct)).toFixed(1);
+    const ringGradient = `conic-gradient(#CCFF00 0% ${pPct}%, #FFC53D ${pPct}% ${pPlusC}%, #36CFC9 ${pPlusC}% 100%)`;
+
     const macro = {
       ringR,
       proteinPct: pPct,
       carbPct: cPct,
       fatPct: fPct,
+      ringGradient,
       proteinStroke: proteinSeg.strokeDasharray,
       carbStroke: carbSeg.strokeDasharray,
       carbOffset: carbSeg.strokeDashoffset,

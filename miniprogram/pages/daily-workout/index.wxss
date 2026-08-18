@@ -267,12 +267,20 @@
 .set-progress-labels {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+.set-progress-label {
+  display: inline-flex;
+  align-items: baseline;
   font-size: 12px;
   color: var(--text-secondary);
 }
-.set-progress-labels strong {
+.set-progress-num {
   color: var(--primary);
   font-weight: 700;
+  font-size: 13px;
+  margin: 0 2px;
 }
 .set-progress-actions {
   display: flex;
@@ -285,7 +293,7 @@
   height: 44px;
   border-radius: 10px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -296,7 +304,8 @@
 }
 .set-progress-actions .btn-primary-cta {
   background: var(--primary);
-  color: #FFF;
+  color: #000;
+  box-shadow: 0 4px 14px rgba(204, 255, 0, 0.25);
 }
 
 /* === v1.10 快速打卡按钮完成态 === */
@@ -327,7 +336,7 @@
 }
 .exercise-card.swapping {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(54,207,201,0.18);
+  box-shadow: 0 0 0 3px rgba(255, 61, 0, 0.18);
   transition: all 0.5s ease;
 }
 
@@ -530,11 +539,11 @@
 .warmup-opt {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 12px 14px;
+  border-radius: 14px;
+  padding: 14px 16px;
   margin-bottom: 10px;
 }
 .warmup-opt.on {
@@ -542,23 +551,36 @@
   background: var(--primary-light);
 }
 .warmup-opt-emoji {
-  font-size: 22px;
+  font-size: 26px;
   flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.warmup-opt.on .warmup-opt-emoji {
+  background: rgba(204, 255, 0, 0.12);
 }
 .warmup-opt-info {
   flex: 1;
   min-width: 0;
 }
 .warmup-opt-name {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
   color: var(--text-primary);
+  letter-spacing: 0.3px;
+  line-height: 1.3;
 }
 .warmup-opt-detail {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-secondary);
-  margin-top: 2px;
-  line-height: 1.4;
+  margin-top: 5px;
+  line-height: 1.5;
+  word-break: break-all;
 }
 .warmup-check {
   width: 22px;
@@ -578,11 +600,23 @@
 }
 .swap-confirm {
   width: 100%;
-  margin-top: 8px;
+  height: 48px;
+  line-height: 48px;
+  margin-top: 14px;
+  padding: 0;
   background: var(--primary);
-  color: #fff;
+  color: #000;
+  border: none;
   border-radius: 999px;
   font-size: 15px;
-  font-weight: 600;
-  padding: 12px 0;
+  font-weight: 800;
+  letter-spacing: 1px;
+  box-shadow: 0 6px 22px rgba(204, 255, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.swap-confirm::after {
+  border: none;
 }
