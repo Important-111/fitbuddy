@@ -9,7 +9,7 @@
     <text class="hero-subtitle">陪你达成每一个目标</text>
   </view>
 
-  <!-- 已有档案：基本资料卡片 -->
+  <!-- 已有档案：基本资料卡片（对齐原型 v32235 档案 6+1 字段 grid） -->
   <view wx:if="{{hasProfile}}" class="profile-section">
     <view class="profile-card">
       <view class="profile-header">
@@ -19,7 +19,7 @@
           </view>
           <text>我的基本资料</text>
         </view>
-        <view class="profile-action" bindtap="onEditProfile">
+        <view class="profile-action" bindtap="openEditModal">
           <text>✏️ 编辑</text>
         </view>
       </view>
@@ -50,7 +50,7 @@
           <text class="profile-label">BMI</text>
           <view class="profile-value">
             <text>{{bmi.value}}</text>
-            <text class="profile-tag {{bmiTagClass}}" style="{{bmiTagStyle}}">{{bmi.categoryCN}}</text>
+            <text class="profile-tag" style="{{bmiTagStyle}}">{{bmi.categoryCN}}</text>
           </view>
         </view>
         <view class="profile-item full">
@@ -99,5 +99,58 @@
     <button wx:if="{{hasProfile}}" class="btn-primary" bindtap="goToAnalysis">查看我的分析报告</button>
     <button wx:else class="btn-primary" bindtap="goToBasicInfo">开始建档</button>
     <text class="privacy-note">你的数据仅用于制定训练计划，不会被分享</text>
+  </view>
+</view>
+
+<!-- 编辑基本资料弹窗（对齐原型 v32235 modal） -->
+<view wx:if="{{showEditModal}}" class="modal-overlay" bindtap="closeEditModal">
+  <view class="modal" catchtap="noop">
+    <view class="modal-header">
+      <text class="modal-title">编辑基本资料</text>
+      <view class="modal-close" catchtap="closeEditModal">
+        <text class="modal-close-x">×</text>
+      </view>
+    </view>
+    <view class="modal-body">
+      <view class="form-row">
+        <text class="form-label">昵称</text>
+        <input class="form-input" type="nickname" value="{{editForm.nickname}}" maxlength="20" placeholder="请输入昵称" bindinput="onEditInput" data-field="nickname" />
+      </view>
+      <view class="form-row">
+        <text class="form-label">性别</text>
+        <picker class="form-picker" range="{{genderOptions}}" value="{{editForm.genderIndex}}" bindchange="onGenderChange">
+          <view class="form-input picker-value">
+            <text>{{genderOptions[editForm.genderIndex]}}</text>
+          </view>
+        </picker>
+      </view>
+      <view class="form-row">
+        <text class="form-label">年龄</text>
+        <input class="form-input" type="number" value="{{editForm.age}}" placeholder="10-100" bindinput="onEditInput" data-field="age" />
+        <text class="form-hint">单位：岁</text>
+      </view>
+      <view class="form-row">
+        <text class="form-label">身高</text>
+        <input class="form-input" type="number" value="{{editForm.height}}" placeholder="100-250" bindinput="onEditInput" data-field="height" />
+        <text class="form-hint">单位：cm</text>
+      </view>
+      <view class="form-row">
+        <text class="form-label">体重</text>
+        <input class="form-input" type="number" value="{{editForm.weight}}" placeholder="30-300" bindinput="onEditInput" data-field="weight" />
+        <text class="form-hint">单位：kg</text>
+      </view>
+      <view class="form-row">
+        <text class="form-label">健身目标</text>
+        <picker class="form-picker" range="{{goalOptions}}" value="{{editForm.goalIndex}}" bindchange="onGoalChange">
+          <view class="form-input picker-value">
+            <text>{{goalOptions[editForm.goalIndex]}}</text>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="modal-footer">
+      <button class="btn-secondary" catchtap="closeEditModal">取消</button>
+      <button class="btn-confirm" catchtap="saveProfile">保存</button>
+    </view>
   </view>
 </view>
