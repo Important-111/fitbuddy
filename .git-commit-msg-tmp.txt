@@ -1,8 +1,0 @@
-merge: 合并 github/main 三提交，welcome 保持 v32235 原型对齐
-
-- github 侧 84e57ad(全站同步)、fb525a3(计时器修复)、7684c5f(配色与编辑体验) 并入
-- welcome index.js 冲突以本地 v32235 编辑弹窗版为准，并保留 7684c5f 的旧档案 goals[] 兼容回填逻辑
-- welcome wxss 自动合并混入的旧样式（58px 大按钮、性别 tag 绿色系、profile-section 边距）修正回 v32235 原型规格：52px 级主按钮、男=青#36CFC9、女=橙红#FF3D00、卡片上叠 -40px
-- store.js 保留 github 侧"恢复训练"emoji 修正
-
-Co-Authored-By: Claude <noreply@anthropic.com>
