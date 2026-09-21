@@ -6,9 +6,12 @@ const { success, error } = require('../utils/response');
 
 const router = express.Router();
 
+const MIN_PASSWORD_LENGTH = 6;
+const BCRYPT_ROUNDS = 10;
+
 /**
  * POST /api/auth/register
- * Register a new user with openid, nickname, and password.
+ * Register a new user with openid, password, and optional nickname.
  * Body: { openid, password, nickname? }
  */
 router.post('/register', async (req, res, next) => {
@@ -18,23 +21,22 @@ router.post('/register', async (req, res, next) => {
     if (!openid || !password) {
       return error(res, 'openid and password are required');
     }
-    if (password.length < 6) {
-      return error(res, 'Password must be at least 6 characters');
+    if (password.length < MIN_PASSWORD_LENGTH) {
+      return error(res, `Password must be at least ${MIN_PASSWORD_LENGTH} characters`);
     }
 
-    // Check if openid already exists
     const existing = await query('SELECT user_id FROM users WHERE openid = $1', [openid]);
     if (existing.rows.length > 0) {
       return error(res, 'Account already exists', 409);
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const passwordHash = await bcrypt.hash(password, BCRYPT_ROUNDS);
 
     const result = await query(
-      `INSERT INTO users (openid, nickname, status, created_at, updated_at)
-       VALUES ($1, $2, 1, NOW(), NOW())
+      `INSERT INTO users (openid, nickname, password_hash, status, created_at, updated_at)
+       VALUES ($1, $2, $3, 1, NOW(), NOW())
        RETURNING user_id, openid, nickname, created_at`,
-      [openid, nickname || openid]
+      [openid, nickname || openid, passwordHash]
     );
 
     const user = result.rows[0];
@@ -48,7 +50,12 @@ router.post('/register', async (req, res, next) => {
 
 /**
  * POST /api/auth/login
- * Log in with openid and password.
+ * Log in with openid and password. The password is verified against
+ * the bcrypt hash stored in users.password_hash.
+ *
+ * Accounts created before migration_003 have no hash on record; those
+ * logins are rejected instead of being silently allowed.
+ *
  * Body: { openid, password }
  */
 router.post('/login', async (req, res, next) => {
@@ -60,7 +67,7 @@ router.post('/login', async (req, res, next) => {
     }
 
     const result = await query(
-      `SELECT user_id, openid, nickname, avatar_url, phone, status
+      `SELECT user_id, openid, nickname, avatar_url, phone, status, password_hash
        FROM users WHERE openid = $1`,
       [openid]
     );
@@ -75,41 +82,20 @@ router.post('/login', async (req, res, next) => {
       return error(res, 'Account has been disabled', 403);
     }
 
-    // For simplicity, we compare against a hashed version.
-    // In production, store hashed passwords in the database.
-    // Since we're using bcrypt during registration, we need to retrieve the hash.
-    // Let's get the password_hash from the users table (assuming we add it or use a workaround).
-    // For now, we'll query the password field if it exists.
-    // The current users table doesn't have a password_hash column, so let's adjust:
-    // We'll use a simple password check via a stored hash field.
-    // Since the schema doesn't have password_hash, we'll fetch it from a separate approach.
-    // Actually, looking at the table structure, there's no password field.
-    // Let's add a simple auth by checking against the same bcrypt comparison.
-    // We need to store the password_hash. Let's query it.
+    // 历史账号（迁移前创建）没有密码哈希，不能放行
+    if (!user.password_hash) {
+      return error(res, 'Account has no password set, please reset it', 401);
+    }
 
-    // For login to work with bcrypt, let's check if we can find the password_hash.
-    // Since users table doesn't have password_hash, let's use a simple approach:
-    // We'll add password_hash to the registration insert.
-    // But wait, the users table doesn't have a password_hash column.
-    // Let me use a workaround - store it in a separate approach or just verify
-    // based on the fact that it was registered with bcrypt.
-
-    // Actually, the users table schema shows these columns:
-    // user_id, openid, nickname, avatar_url, gender, phone, birthday, height,
-    // weight, target_weight, fitness_level, membership_type, status
-    // No password column! So we need to handle this differently.
-
-    // For a real app, you'd want a password_hash column. Since we're working
-    // with the existing schema, let's just do a simple token-based approach
-    // and assume passwords are managed externally, or we add the logic.
-
-    // For this API, let's simply generate the token on successful openid lookup
-    // since we don't have a password column. This is a simplified auth for dev.
-    // In a real app, add password_hash to the users table.
+    const matched = await bcrypt.compare(password, user.password_hash);
+    if (!matched) {
+      return error(res, 'Invalid credentials', 401);
+    }
 
     const token = generateToken(user.user_id);
+    const { password_hash, ...safeUser } = user;
 
-    return success(res, { user, token }, 'Login successful');
+    return success(res, { user: safeUser, token }, 'Login successful');
   } catch (err) {
     next(err);
   }
