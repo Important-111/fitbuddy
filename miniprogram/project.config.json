@@ -1,5 +1,5 @@
 {
-  "description": "FitBuddy 健身教练 - 原生小程序版",
+  "description": "FitBuddy 健身助手 - 原生小程序版",
   "packOptions": {
     "ignore": [],
     "include": []
@@ -36,7 +36,7 @@
   "compileType": "miniprogram",
   "libVersion": "3.7.3",
   "appid": "wxf89088e51a471eef",
-  "projectname": "FitBuddy健身教练",
+  "projectname": "FitBuddy健身助手",
   "condition": {},
   "editorSetting": {
     "tabIndent": "insertSpaces",

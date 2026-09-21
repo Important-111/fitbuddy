@@ -40,7 +40,7 @@
   <view class="today-section">
     <view class="section-header">
       <text class="section-title-inline">今日训练</text>
-      <text class="section-link" bindtap="navigateTo" data-url="/pages/training-plan/index">查看周计划</text>
+      <text class="section-link" bindtap="navigateTo" data-url="/pages/training-plan/index">查看周记录</text>
     </view>
     <view class="today-card">
       <view class="today-card-header">

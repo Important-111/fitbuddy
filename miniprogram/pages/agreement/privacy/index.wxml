@@ -12,7 +12,7 @@
 
     <view class="notice-box">
       <view class="notice-title">⚠ 重要提示</view>
-      <view class="notice-text">本指引适用于 FitBuddy 健身教练小程序收集、使用、存储和保护您个人信息的相关行为。请仔细阅读，特别是加粗显示的条款。</view>
+      <view class="notice-text">本指引适用于 FitBuddy 健身助手小程序收集、使用、存储和保护您个人信息的相关行为。请仔细阅读，特别是加粗显示的条款。</view>
     </view>
 
     <view class="section">
@@ -32,7 +32,7 @@
         </view>
         <view class="info-row">
           <view class="info-cell cell-type">基础身体信息（性别、年龄、身高、体重、目标）</view>
-          <view class="info-cell cell-purpose">用于生成个性化训练计划、计算 BMI 与基础代谢率、推荐每日热量与蛋白质摄入</view>
+          <view class="info-cell cell-purpose">用于生成训练参考、计算 BMI 与基础代谢率、推荐每日热量与蛋白质摄入</view>
           <view class="info-cell cell-action">您主动填写</view>
         </view>
         <view class="info-row">
@@ -52,12 +52,12 @@
         </view>
       </view>
 
-      <view class="paragraph" style="margin-top:24rpx;">我们严格遵循「最小必要」原则收集信息。拒绝提供基础身体信息将导致无法生成训练计划，但不影响您浏览其他功能；拒绝授权手机号仅影响账号安全相关通知，不影响核心训练功能使用。</view>
+      <view class="paragraph" style="margin-top:24rpx;">我们严格遵循「最小必要」原则收集信息。拒绝提供基础身体信息将导致无法生成训练参考，但不影响您浏览其他功能；拒绝授权手机号仅影响账号安全相关通知，不影响核心训练功能使用。</view>
     </view>
 
     <view class="section">
       <view class="section-title">二、我们如何使用您的信息</view>
-      <view class="paragraph">1. 为您提供本服务所承诺的健身辅助功能，包括训练计划生成、进度追踪、数据分析等；</view>
+      <view class="paragraph">1. 为您提供本服务所承诺的健身辅助功能，包括训练记录生成、进度追踪、数据分析等；</view>
       <view class="paragraph">2. 为改进我们的产品和服务，进行必要的数据统计与分析（仅汇总分析，不针对您个人）；</view>
       <view class="paragraph">3. 在取得您单独同意的前提下，向您发送服务通知（如训练提醒、系统公告）；</view>
       <view class="paragraph">4. 在法律法规允许的范围内，保障服务安全、防止欺诈、配合监管要求；</view>

@@ -48,7 +48,7 @@
 
   <!-- Meal Cards (dynamic based on goal tab) -->
   <view class="meal-section">
-    <view class="section-title">今日饮食方案</view>
+    <view class="section-title">饮食参考</view>
 
     <view class="meal-card" wx:for="{{mealPlan}}" wx:key="name">
       <view class="meal-header">

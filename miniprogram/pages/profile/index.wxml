@@ -126,7 +126,7 @@
         <view class="menu-icon" style="background:var(--primary-light)">🎯</view>
         <view class="menu-text">
           <text class="menu-title">重新设定目标</text>
-          <text class="menu-desc">修改训练目标和计划</text>
+          <text class="menu-desc">修改训练目标和安排</text>
         </view>
         <view class="menu-arrow">›</view>
       </view>

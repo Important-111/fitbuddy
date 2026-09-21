@@ -23,7 +23,7 @@
   <!-- 表单 -->
   <view class="form-section">
     <text class="section-title-inline">基础信息</text>
-    <text class="section-desc">请如实填写以下信息，这将帮助我们为你制定最合适的训练计划</text>
+    <text class="section-desc">请如实填写以下信息，这将帮助我们为你生成最合适的训练参考</text>
 
     <!-- 性别 -->
     <view class="form-group">

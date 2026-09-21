@@ -23,7 +23,7 @@
   <!-- 训练目标 -->
   <view class="form-section">
     <text class="section-title-inline">训练目标</text>
-    <text class="section-desc">选择你想要达成的目标，AI将据此制定个性化训练计划</text>
+    <text class="section-desc">选择你想要达成的目标，AI将据此生成训练参考</text>
 
     <view class="goal-grid">
       <view wx:for="{{goals}}" wx:key="name" class="goal-card {{item.selected ? 'selected' : ''}}" bindtap="toggleGoal" data-index="{{index}}">
