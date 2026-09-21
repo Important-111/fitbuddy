@@ -84,22 +84,6 @@ CREATE TABLE IF NOT EXISTS workout_plans (
 CREATE INDEX IF NOT EXISTS idx_workout_plans_user_id ON workout_plans(user_id);
 CREATE INDEX IF NOT EXISTS idx_workout_plans_status ON workout_plans(status);
 
--- 计划详情（每天的训练动作安排）
-CREATE TABLE IF NOT EXISTS plan_details (
-    detail_id       BIGSERIAL PRIMARY KEY,
-    plan_id         BIGINT NOT NULL REFERENCES workout_plans(plan_id) ON DELETE CASCADE,
-    day_number      INTEGER NOT NULL,   -- 第几天
-    exercise_id     BIGINT NOT NULL REFERENCES exercises(exercise_id),
-    sets            INTEGER,            -- 组数
-    reps            INTEGER,            -- 每组次数
-    duration_seconds INTEGER,           -- 时长(秒)
-    rest_seconds    INTEGER,            -- 组间休息(秒)
-    sort_order      INTEGER,
-    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-CREATE INDEX IF NOT EXISTS idx_plan_details_plan_id ON plan_details(plan_id);
-CREATE INDEX IF NOT EXISTS idx_plan_details_exercise_id ON plan_details(exercise_id);
-
 -- ==================== 动作库 ====================
 
 -- 动作分类
@@ -130,6 +114,22 @@ CREATE TABLE IF NOT EXISTS exercises (
 );
 CREATE INDEX IF NOT EXISTS idx_exercises_type_id ON exercises(type_id);
 CREATE INDEX IF NOT EXISTS idx_exercises_difficulty ON exercises(difficulty_level);
+
+-- 计划详情（每天的训练动作安排）
+CREATE TABLE IF NOT EXISTS plan_details (
+    detail_id       BIGSERIAL PRIMARY KEY,
+    plan_id         BIGINT NOT NULL REFERENCES workout_plans(plan_id) ON DELETE CASCADE,
+    day_number      INTEGER NOT NULL,   -- 第几天
+    exercise_id     BIGINT NOT NULL REFERENCES exercises(exercise_id),
+    sets            INTEGER,            -- 组数
+    reps            INTEGER,            -- 每组次数
+    duration_seconds INTEGER,           -- 时长(秒)
+    rest_seconds    INTEGER,            -- 组间休息(秒)
+    sort_order      INTEGER,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_plan_details_plan_id ON plan_details(plan_id);
+CREATE INDEX IF NOT EXISTS idx_plan_details_exercise_id ON plan_details(exercise_id);
 
 -- 用户收藏动作
 CREATE TABLE IF NOT EXISTS exercise_favorites (
