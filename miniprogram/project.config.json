@@ -34,7 +34,7 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "3.7.3",
+  "libVersion": "3.17.0",
   "appid": "wxf89088e51a471eef",
   "projectname": "FitBuddy健身助手",
   "condition": {},
