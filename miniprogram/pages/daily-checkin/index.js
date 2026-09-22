@@ -10,6 +10,7 @@ const {
   getAvatarEmoji,
   getGoalEmoji
 } = require('../../utils/store');
+const { pullCheckins, mergeCheckins, pushCheckin } = require('../../utils/cloudSync');
 
 Page({
   data: {
@@ -67,6 +68,21 @@ Page({
   },
 
   loadCheckinData() {
+    this.renderCheckinData();
+    this.syncFromCloud();
+  },
+
+  syncFromCloud() {
+    const self = this;
+    return pullCheckins().then(function (cloudList) {
+      if (!cloudList) return;
+      const merged = mergeCheckins(Store.getCheckins(), cloudList);
+      Store.saveCheckins(merged);
+      self.renderCheckinData();
+    });
+  },
+
+  renderCheckinData() {
     const today = getDateStr(new Date());
     const existingRecord = Store.getCheckinByDate(today);
     const p = Store.getProfile() || {};
@@ -256,6 +272,7 @@ Page({
 
     Store.addCheckin(record);
     Store.markWorkoutDone(record.date);
+    pushCheckin(record);
 
     // Update user weight
     const p = Store.getProfile() || {};
