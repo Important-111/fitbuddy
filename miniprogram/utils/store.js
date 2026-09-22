@@ -1,5 +1,7 @@
 /* ===== FitBuddy 数据存储层 (微信缓存) ===== */
 
+const cloudSync = require('./cloudSync');
+
 const PREFIX = 'fitbuddy_';
 
 function getData(key) {
@@ -21,7 +23,15 @@ const Store = {
   getProfile() {
     return getData('profile');
   },
+  // 保存资料：写本地 + 异步推送云端（云不可用时静默降级，不影响本地）
   saveProfile(profile) {
+    if (!profile) return;
+    const p = Object.assign({}, profile, { updatedAt: Date.now() });
+    setData('profile', p);
+    cloudSync.pushProfile(p);
+  },
+  // 仅写本地，不触发云端推送（用于启动时把云端数据合并回本地，避免回写循环）
+  saveProfileSilent(profile) {
     setData('profile', profile);
   },
 

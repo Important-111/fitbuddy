@@ -6,13 +6,14 @@
  *  3. 任何云操作失败都静默降级，绝不打断用户操作
  *  4. 未开通云开发 / 集合不存在时，小程序与改造前完全一致
  *
- * 需要的云数据库集合：checkins
+ * 需要的云数据库集合：checkins（打卡记录）、profiles（用户资料）
  * 建议权限：仅创建者可读写（默认值，正好符合个人数据场景）
  *
  * 注意：项目未开启增强编译，故全部使用 Promise 链而非 async/await。
  */
 
 const COLLECTION = 'checkins';
+const PROFILE_COLLECTION = 'profiles';
 const PAGE_SIZE = 20;      // 小程序端单次读取上限为 20 条
 const MAX_PAGES = 30;      // 最多同步 600 条，防止异常时死循环
 
@@ -131,10 +132,84 @@ function pushCheckin(record) {
     });
 }
 
+/* ==================== 用户资料（profiles 集合，单文档） ==================== */
+
+function stripProfileMeta(p) {
+  const clean = {};
+  Object.keys(p || {}).forEach(function (k) {
+    if (k !== '_id' && k !== '_openid' && k !== 'updatedAt') clean[k] = p[k];
+  });
+  return clean;
+}
+
+/**
+ * 拉取云端的用户资料（当前用户仅有一份）
+ * @returns {Promise<Object|null>} 云端资料（含 updatedAt）或 null（无数据/失败/未开通）
+ */
+function pullProfile() {
+  if (!isAvailable()) return Promise.resolve(null);
+  return Promise.resolve()
+    .then(function () {
+      return getDb().collection(PROFILE_COLLECTION).limit(1).get();
+    })
+    .then(function (res) {
+      const doc = res && res.data && res.data[0];
+      return doc ? stripProfileMeta(doc) : null;
+    })
+    .catch(function (e) {
+      console.warn('[cloudSync] 拉取资料失败：', e && e.errMsg);
+      return null;
+    });
+}
+
+/**
+ * 合并本地与云端资料：updatedAt 较新者胜出
+ * @returns {Object|null} null 表示无可合并数据
+ */
+function mergeProfile(localProfile, cloudProfile) {
+  if (!cloudProfile) return localProfile || null;
+  if (!localProfile) return cloudProfile;
+  return (cloudProfile.updatedAt || 0) >= (localProfile.updatedAt || 0)
+    ? cloudProfile
+    : localProfile;
+}
+
+/**
+ * 推送用户资料到云端（单文档 upsert）
+ * @returns {Promise<boolean>}
+ */
+function pushProfile(profile) {
+  if (!isAvailable() || !profile) return Promise.resolve(false);
+  const payload = Object.assign(stripProfileMeta(profile), { updatedAt: Date.now() });
+
+  return Promise.resolve()
+    .then(function () {
+      const db = getDb();
+      return db.collection(PROFILE_COLLECTION)
+        .limit(1)
+        .get()
+        .then(function (res) {
+          if (res && res.data && res.data.length) {
+            return db.collection(PROFILE_COLLECTION).doc(res.data[0]._id).update({ data: payload });
+          }
+          return db.collection(PROFILE_COLLECTION).add({ data: payload });
+        });
+    })
+    .then(function () { return true; })
+    .catch(function (e) {
+      console.warn('[cloudSync] 推送资料失败，数据已存本地：', e && e.errMsg);
+      return false;
+    });
+}
+
 module.exports = {
   isAvailable: isAvailable,
   pullCheckins: pullCheckins,
   mergeCheckins: mergeCheckins,
   pushCheckin: pushCheckin,
-  COLLECTION: COLLECTION
+  pullProfile: pullProfile,
+  mergeProfile: mergeProfile,
+  pushProfile: pushProfile,
+  COLLECTION: COLLECTION,
+  PROFILE_COLLECTION: PROFILE_COLLECTION
 };
