@@ -41,18 +41,13 @@
           <view class="info-cell cell-action">您使用本服务过程中自动生成</view>
         </view>
         <view class="info-row">
-          <view class="info-cell cell-type">手机号</view>
-          <view class="info-cell cell-purpose">用于账号安全验证、重要服务通知（如系统升级、隐私政策变更）、紧急联系。我们不会将您的手机号用于营销推送或转售给任何第三方</view>
-          <view class="info-cell cell-action">仅在您主动点击「授权手机号」按钮并明确同意后，通过微信官方 <text class="code">getPhoneNumber</text> 接口获取</view>
-        </view>
-        <view class="info-row">
           <view class="info-cell cell-type">设备信息（系统版本、屏幕尺寸）</view>
           <view class="info-cell cell-purpose">用于优化小程序显示效果与适配</view>
           <view class="info-cell cell-action">微信框架自动读取，不主动收集</view>
         </view>
       </view>
 
-      <view class="paragraph" style="margin-top:24rpx;">我们严格遵循「最小必要」原则收集信息。拒绝提供基础身体信息将导致无法生成训练参考，但不影响您浏览其他功能；拒绝授权手机号仅影响账号安全相关通知，不影响核心训练功能使用。</view>
+      <view class="paragraph" style="margin-top:24rpx;">我们严格遵循「最小必要」原则收集信息。拒绝提供基础身体信息将导致无法生成训练参考，但不影响您浏览其他功能。我们不收集您的手机号。</view>
     </view>
 
     <view class="section">

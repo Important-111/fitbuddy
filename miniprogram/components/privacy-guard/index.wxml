@@ -1,0 +1,9 @@
+<view class="privacy-mask" wx:if="{{showPrivacy}}" catchtouchmove="noop">
+  <view class="privacy-card">
+    <view class="privacy-icon">🔒</view>
+    <view class="privacy-title">隐私保护指引</view>
+    <view class="privacy-desc">在使用涉及个人信息的系统功能（如复制到剪贴板）前，请阅读并同意<text class="link" catchtap="openPrivacyContract">《隐私保护指引》</text>。我们仅在必要范围内使用这些信息，绝不用于营销或转售给第三方。</view>
+    <button class="privacy-btn" bindtap="agreePrivacy">同意并继续</button>
+    <view class="privacy-cancel" bindtap="rejectPrivacy">暂不同意</view>
+  </view>
+</view>

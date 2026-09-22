@@ -49,15 +49,11 @@ Page({
       weight: '',
       goalIndex: 0,
       goalLabel: '增肌塑形'
-    },
-    phoneBound: false,
-    phoneDisplay: '未绑定',
-    phoneAuthShow: false
+    }
   },
 
   onLoad(options) {
     this.loadData();
-    this.loadPhoneBinding();
     // 从欢迎页"编辑"进入：自动打开编辑弹窗
     if (options && options.edit === '1') {
       setTimeout(() => this.onQuickEdit(), 150);
@@ -66,20 +62,6 @@ Page({
 
   onShow() {
     this.loadData();
-    this.loadPhoneBinding();
-  },
-
-  loadPhoneBinding() {
-    try {
-      const phone = wx.getStorageSync('user_phone_masked') || '';
-      if (phone) {
-        this.setData({ phoneBound: true, phoneDisplay: phone });
-      } else {
-        this.setData({ phoneBound: false, phoneDisplay: '未绑定' });
-      }
-    } catch (e) {
-      this.setData({ phoneBound: false, phoneDisplay: '未绑定' });
-    }
   },
 
   loadData() {
@@ -302,56 +284,6 @@ Page({
     wx.showToast({ title: '资料已保存', icon: 'none' });
   },
 
-  onBindPhone() {
-    if (this.data.phoneBound) {
-      wx.showModal({
-        title: '手机号管理',
-        content: '当前已绑定 ' + this.data.phoneDisplay + '。如需更换，请继续操作；如需解绑，请通过反馈功能联系我们。',
-        confirmText: '更换手机号',
-        cancelText: '关闭',
-        success: (res) => {
-          if (res.confirm) {
-            this.setData({ phoneAuthShow: true });
-          }
-        }
-      });
-    } else {
-      this.setData({ phoneAuthShow: true });
-    }
-  },
-
-  onClosePhoneAuth() {
-    this.setData({ phoneAuthShow: false });
-  },
-
-  onPhoneAuthorized(e) {
-    const { encryptedData, iv, code } = e.detail || {};
-    try {
-      wx.showLoading({ title: '绑定中...', mask: true });
-      const phoneMasked = '138****' + (Math.floor(1000 + Math.random() * 9000));
-      wx.setStorageSync('user_phone_masked', phoneMasked);
-      wx.setStorageSync('user_phone_authorized_at', Date.now());
-      console.log('[Phone Auth] encryptedData length:', encryptedData ? encryptedData.length : 0, 'iv:', iv ? 'present' : 'absent', 'code:', code || 'absent');
-      this.setData({ phoneBound: true, phoneDisplay: phoneMasked, phoneAuthShow: false });
-      wx.hideLoading();
-      wx.showToast({ title: '手机号绑定成功', icon: 'success' });
-    } catch (err) {
-      wx.hideLoading();
-      wx.showToast({ title: '绑定失败，请重试', icon: 'none' });
-      console.error('[Phone Auth] bind error:', err);
-    }
-  },
-
-  onPhoneDeny() {
-    this.setData({ phoneAuthShow: false });
-    wx.showToast({ title: '已拒绝授权，可稍后再绑定', icon: 'none' });
-  },
-
-  onPhoneError(e) {
-    this.setData({ phoneAuthShow: false });
-    console.error('[Phone Auth] error:', e.detail);
-  },
-
   onOpenService() {
     wx.navigateTo({ url: '/pages/agreement/service/index' });
   },
@@ -363,7 +295,7 @@ Page({
   onDeleteAccount() {
     wx.showModal({
       title: '注销账号',
-      content: '注销后您的所有数据（基础信息、训练记录、手机号绑定等）将被永久删除且不可恢复。是否继续？',
+      content: '注销后您的所有数据（基础信息、训练记录等）将被永久删除且不可恢复。是否继续？',
       confirmText: '确认注销',
       confirmColor: '#EF4444',
       cancelText: '取消',

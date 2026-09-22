@@ -182,13 +182,6 @@
 
         <view class="settings-divider" style="height:8px;background:var(--bg);margin:8px -16px 0;"></view>
 
-        <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)" bindtap="onBindPhone">
-          <text style="font-size:14px;color:var(--text-primary)">手机号</text>
-          <view style="display:flex;align-items:center;gap:6px;">
-            <text style="font-size:13px;color:{{phoneBound ? 'var(--primary)' : 'var(--text-tertiary)'}}">{{phoneDisplay}}</text>
-            <text style="font-size:12px;color:var(--text-tertiary)">›</text>
-          </view>
-        </view>
         <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)" bindtap="onOpenService">
           <text style="font-size:14px;color:var(--text-primary)">用户服务协议</text>
           <text style="font-size:12px;color:var(--text-tertiary)">›</text>
@@ -273,6 +266,5 @@
       </view>
     </view>
   </view>
-<phone-auth visible="{{phoneAuthShow}}" bind:close="onClosePhoneAuth" bind:authorized="onPhoneAuthorized" bind:deny="onPhoneDeny" bind:error="onPhoneError"></phone-auth>
 <tab-bar active="profile"></tab-bar>
 </view>

@@ -52,7 +52,7 @@
 
     <view class="section">
       <view class="section-title">六、用户信息的收集与保护</view>
-      <view class="paragraph">关于我们收集、使用、存储和保护您个人信息（包括手机号、联系方式等）的详细规则，请参阅 <text class="inline-link" bindtap="goPrivacy">《隐私保护指引》</text>。本协议在此不重复赘述。</view>
+      <view class="paragraph">关于我们收集、使用、存储和保护您个人信息（如身体数据、训练记录、设备信息等）的详细规则，请参阅 <text class="inline-link" bindtap="goPrivacy">《隐私保护指引》</text>。本协议在此不重复赘述。</view>
     </view>
 
     <view class="section">

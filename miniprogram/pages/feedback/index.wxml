@@ -110,4 +110,7 @@
   <view class="bottom-bar">
     <button class="btn-primary" bindtap="onSubmit" disabled="{{submitting || !form.agreed}}">{{submitting ? '提交中...' : (form.agreed ? '提交反馈' : '请先勾选同意协议')}}</button>
   </view>
+
+  <!-- 剪贴板属隐私接口，复制联系方式前需先同意隐私保护指引 -->
+  <privacy-guard />
 </view>
