@@ -30,6 +30,34 @@ App({
       }
     });
 
+    // 启动时合并云端饮食记录：并集合并 + 本地独有记录补推（覆盖离线期间产生的数据）
+    cloudSync.pullDietLogs().then(function (cloudLogs) {
+      if (!cloudLogs) return;
+      const local = Store.getDietLogs();
+      const merged = cloudSync.mergeDietLogs(local, cloudLogs);
+      if (merged.length !== local.length) {
+        Store.saveDietLogsSilent(merged);
+      }
+      const cloudIds = {};
+      cloudLogs.forEach(function (r) { if (r && r.id) cloudIds[r.id] = true; });
+      (local || []).forEach(function (r) {
+        if (r && r.id && !cloudIds[r.id]) cloudSync.pushDietLog(r);
+      });
+    });
+
+    // 启动时合并云端训练完成进度：完成标记取并集 + 本地独有日期补推
+    cloudSync.pullWorkoutProgress().then(function (cloudProgress) {
+      if (!cloudProgress) return;
+      const local = Store.getWorkoutProgress();
+      const merged = cloudSync.mergeWorkoutProgress(local, cloudProgress);
+      if (Object.keys(merged).length !== Object.keys(local).length) {
+        Store.saveWorkoutProgressSilent(merged);
+      }
+      Object.keys(local || {}).forEach(function (date) {
+        if (!cloudProgress[date]) cloudSync.pushWorkoutProgress(date);
+      });
+    });
+
     const windowInfo = wx.getWindowInfo();
     const deviceInfo = wx.getDeviceInfo();
     const appBaseInfo = wx.getAppBaseInfo();

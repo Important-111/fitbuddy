@@ -14,6 +14,8 @@
 
 const COLLECTION = 'checkins';
 const PROFILE_COLLECTION = 'profiles';
+const DIET_COLLECTION = 'diet_logs';
+const WORKOUT_COLLECTION = 'workout_progress';
 const PAGE_SIZE = 20;      // 小程序端单次读取上限为 20 条
 const MAX_PAGES = 30;      // 最多同步 600 条，防止异常时死循环
 
@@ -202,6 +204,202 @@ function pushProfile(profile) {
     });
 }
 
+/* ==================== 饮食记录（diet_logs 集合，按 id upsert） ==================== */
+
+const DIET_FIELDS = ['foodName', 'mealType', 'calories', 'protein', 'carbs', 'fat', 'createdAt'];
+
+function stripDietMeta(r) {
+  const clean = { id: r.id };
+  DIET_FIELDS.forEach(function (k) { clean[k] = r[k]; });
+  clean.updatedAt = r.updatedAt || 0;
+  return clean;
+}
+
+/**
+ * 分页拉取云端全部饮食记录
+ * @returns {Promise<Array|null>}
+ */
+function pullDietLogs() {
+  if (!isAvailable()) return Promise.resolve(null);
+  let all = [];
+  let page = 0;
+
+  function nextPage() {
+    return getDb().collection(DIET_COLLECTION)
+      .orderBy('createdAt', 'desc')
+      .skip(page * PAGE_SIZE)
+      .limit(PAGE_SIZE)
+      .get()
+      .then(function (res) {
+        const batch = res && res.data ? res.data : [];
+        all = all.concat(batch);
+        page++;
+        if (batch.length < PAGE_SIZE || page >= MAX_PAGES) {
+          return all.map(stripDietMeta);
+        }
+        return nextPage();
+      });
+  }
+
+  return Promise.resolve()
+    .then(nextPage)
+    .catch(function (e) {
+      console.warn('[cloudSync] 拉取饮食记录失败，改用本地数据：', e && e.errMsg);
+      return null;
+    });
+}
+
+/**
+ * 合并本地与云端饮食记录：以 id 为键，取 updatedAt 较新的一方
+ * @returns {Array} 合并后按 id 升序
+ */
+function mergeDietLogs(localList, cloudList) {
+  if (!cloudList || !cloudList.length) return localList || [];
+  const map = {};
+  (localList || []).forEach(function (r) { if (r && r.id) map[r.id] = r; });
+  cloudList.forEach(function (r) {
+    if (!r || !r.id) return;
+    const old = map[r.id];
+    if (!old || (r.updatedAt || 0) >= (old.updatedAt || 0)) map[r.id] = r;
+  });
+  return Object.keys(map)
+    .sort(function (a, b) { return Number(a) - Number(b); })
+    .map(function (k) { return map[k]; });
+}
+
+/**
+ * 推送单条饮食记录到云端（按 id upsert）
+ * @returns {Promise<boolean>}
+ */
+function pushDietLog(record) {
+  if (!isAvailable() || !record || !record.id) return Promise.resolve(false);
+  const payload = Object.assign(stripDietMeta(record), { updatedAt: Date.now() });
+
+  return Promise.resolve()
+    .then(function () {
+      const db = getDb();
+      return db.collection(DIET_COLLECTION)
+        .where({ id: record.id })
+        .limit(1)
+        .get()
+        .then(function (res) {
+          if (res && res.data && res.data.length) {
+            return db.collection(DIET_COLLECTION).doc(res.data[0]._id).update({ data: payload });
+          }
+          return db.collection(DIET_COLLECTION).add({ data: payload });
+        });
+    })
+    .then(function () { return true; })
+    .catch(function (e) {
+      console.warn('[cloudSync] 推送饮食记录失败，数据已存本地：', e && e.errMsg);
+      return false;
+    });
+}
+
+/**
+ * 删除云端对应饮食记录（本地删除已成功后调用）
+ * @returns {Promise<boolean>}
+ */
+function removeDietLog(id) {
+  if (!isAvailable() || !id) return Promise.resolve(false);
+  return Promise.resolve()
+    .then(function () {
+      const db = getDb();
+      return db.collection(DIET_COLLECTION)
+        .where({ id: id })
+        .limit(1)
+        .get()
+        .then(function (res) {
+          if (res && res.data && res.data.length) {
+            return db.collection(DIET_COLLECTION).doc(res.data[0]._id).remove();
+          }
+          return null;
+        });
+    })
+    .then(function () { return true; })
+    .catch(function (e) {
+      console.warn('[cloudSync] 删除云端饮食记录失败：', e && e.errMsg);
+      return false;
+    });
+}
+
+/* ==================== 训练进度（workout_progress 集合，按日期单文档） ==================== */
+
+/**
+ * 拉取云端训练完成进度
+ * @returns {Promise<Object|null>} { '2026-09-22': { done: true } } 或 null
+ */
+function pullWorkoutProgress() {
+  if (!isAvailable()) return Promise.resolve(null);
+  let out = {};
+  let page = 0;
+
+  function nextPage() {
+    return getDb().collection(WORKOUT_COLLECTION)
+      .skip(page * PAGE_SIZE)
+      .limit(PAGE_SIZE)
+      .get()
+      .then(function (res) {
+        const batch = res && res.data ? res.data : [];
+        batch.forEach(function (r) {
+          if (r && r.date) out[r.date] = { done: !!r.done, updatedAt: r.updatedAt || 0 };
+        });
+        page++;
+        if (batch.length < PAGE_SIZE || page >= MAX_PAGES) return out;
+        return nextPage();
+      });
+  }
+
+  return Promise.resolve()
+    .then(nextPage)
+    .catch(function (e) {
+      console.warn('[cloudSync] 拉取训练进度失败，改用本地数据：', e && e.errMsg);
+      return null;
+    });
+}
+
+/**
+ * 合并本地与云端训练进度：任一标记完成即视为完成
+ * @returns {Object}
+ */
+function mergeWorkoutProgress(local, cloud) {
+  const out = Object.assign({}, local || {});
+  if (!cloud) return out;
+  Object.keys(cloud).forEach(function (date) {
+    out[date] = { done: true, updatedAt: cloud[date].updatedAt || 0 };
+  });
+  return out;
+}
+
+/**
+ * 标记某天训练完成并推送云端（按 date upsert）
+ * @returns {Promise<boolean>}
+ */
+function pushWorkoutProgress(date) {
+  if (!isAvailable() || !date) return Promise.resolve(false);
+  const payload = { date: date, done: true, updatedAt: Date.now() };
+
+  return Promise.resolve()
+    .then(function () {
+      const db = getDb();
+      return db.collection(WORKOUT_COLLECTION)
+        .where({ date: date })
+        .limit(1)
+        .get()
+        .then(function (res) {
+          if (res && res.data && res.data.length) {
+            return db.collection(WORKOUT_COLLECTION).doc(res.data[0]._id).update({ data: payload });
+          }
+          return db.collection(WORKOUT_COLLECTION).add({ data: payload });
+        });
+    })
+    .then(function () { return true; })
+    .catch(function (e) {
+      console.warn('[cloudSync] 推送训练进度失败，数据已存本地：', e && e.errMsg);
+      return false;
+    });
+}
+
 module.exports = {
   isAvailable: isAvailable,
   pullCheckins: pullCheckins,
@@ -210,6 +408,15 @@ module.exports = {
   pullProfile: pullProfile,
   mergeProfile: mergeProfile,
   pushProfile: pushProfile,
+  pullDietLogs: pullDietLogs,
+  mergeDietLogs: mergeDietLogs,
+  pushDietLog: pushDietLog,
+  removeDietLog: removeDietLog,
+  pullWorkoutProgress: pullWorkoutProgress,
+  mergeWorkoutProgress: mergeWorkoutProgress,
+  pushWorkoutProgress: pushWorkoutProgress,
   COLLECTION: COLLECTION,
-  PROFILE_COLLECTION: PROFILE_COLLECTION
+  PROFILE_COLLECTION: PROFILE_COLLECTION,
+  DIET_COLLECTION: DIET_COLLECTION,
+  WORKOUT_COLLECTION: WORKOUT_COLLECTION
 };

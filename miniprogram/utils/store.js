@@ -111,10 +111,15 @@ const Store = {
   getWorkoutProgress() {
     return getData('workout_progress') || {};
   },
+  // 仅写本地，不触发云端推送（用于启动时把云端数据合并回本地，避免回写循环）
+  saveWorkoutProgressSilent(progress) {
+    setData('workout_progress', progress);
+  },
   markWorkoutDone(date) {
     const progress = Store.getWorkoutProgress();
-    progress[date] = { done: true };
+    progress[date] = { done: true, updatedAt: Date.now() };
     Store.saveWorkoutProgress(progress);
+    cloudSync.pushWorkoutProgress(date);
   },
 
   getDietLogs() {
