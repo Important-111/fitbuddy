@@ -141,14 +141,28 @@ Page({
 
   getDeviceInfo() {
     try {
-      const sys = wx.getSystemInfoSync();
-      return JSON.stringify({
-        brand: sys.brand,
-        model: sys.model,
-        system: sys.system,
-        version: sys.version,
-        SDKVersion: sys.SDKVersion
-      });
+      // wx.getSystemInfoSync 官方已废弃，优先用拆分后的新接口，旧环境自动回退
+      let brand = '', model = '', system = '', version = '', SDKVersion = '';
+      if (typeof wx.getDeviceInfo === 'function') {
+        const d = wx.getDeviceInfo() || {};
+        brand = d.brand || '';
+        model = d.model || '';
+        system = d.system || '';
+      }
+      if (typeof wx.getAppBaseInfo === 'function') {
+        const a = wx.getAppBaseInfo() || {};
+        version = a.version || '';
+        SDKVersion = a.SDKVersion || '';
+      }
+      if (!brand && typeof wx.getSystemInfoSync === 'function') {
+        const sys = wx.getSystemInfoSync() || {};
+        brand = sys.brand || '';
+        model = sys.model || '';
+        system = sys.system || '';
+        version = sys.version || '';
+        SDKVersion = sys.SDKVersion || '';
+      }
+      return JSON.stringify({ brand, model, system, version, SDKVersion });
     } catch (e) {
       return '';
     }
