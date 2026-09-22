@@ -10,18 +10,26 @@ Component({
     attached() {
       const that = this;
       // 注册微信隐私授权监听：调用 getPhoneNumber 等隐私接口且用户尚未授权时触发
+      // 注意：官方接口名是 onNeedPrivacyAuthorization（带 -ization），
+      // 写成 onNeedPrivacyAuthorize 会导致 typeof 判断为 false、监听永远注册不上
       this._privacyHandler = function (resolve) {
         that.privacyResolve = resolve;
         that.setData({ showPrivacy: true });
+        // 告知平台自定义弹窗已展示（官方推荐，便于统计曝光）
+        try {
+          resolve({ event: 'exposureAuthorization' });
+        } catch (e) {
+          console.log('[phone-auth] privacy exposure failed', e);
+        }
       };
-      if (typeof wx.onNeedPrivacyAuthorize === 'function') {
-        wx.onNeedPrivacyAuthorize(this._privacyHandler);
+      if (typeof wx.onNeedPrivacyAuthorization === 'function') {
+        wx.onNeedPrivacyAuthorization(this._privacyHandler);
       }
     },
     detached() {
       // 组件卸载时注销监听，避免重复注册导致多实例叠加
-      if (this._privacyHandler && typeof wx.offNeedPrivacyAuthorize === 'function') {
-        wx.offNeedPrivacyAuthorize(this._privacyHandler);
+      if (this._privacyHandler && typeof wx.offNeedPrivacyAuthorization === 'function') {
+        wx.offNeedPrivacyAuthorization(this._privacyHandler);
       }
     }
   },
@@ -49,9 +57,11 @@ Component({
       wx.navigateTo({ url: '/pages/agreement/privacy/index' });
     },
     agreePrivacy() {
-      if (this.privacyResolve) {
+      const resolve = this.privacyResolve;
+      this.privacyResolve = null;
+      if (resolve) {
         try {
-          this.privacyResolve({ event: 'agree' });
+          resolve({ event: 'agree' });
         } catch (e) {
           console.log('[phone-auth] privacy resolve failed', e);
         }
@@ -59,6 +69,16 @@ Component({
       this.setData({ showPrivacy: false });
     },
     rejectPrivacy() {
+      // 必须回调 disagree，否则被挂起的隐私接口会一直 pending，既不放行也不报错
+      const resolve = this.privacyResolve;
+      this.privacyResolve = null;
+      if (resolve) {
+        try {
+          resolve({ event: 'disagree' });
+        } catch (e) {
+          console.log('[phone-auth] privacy resolve failed', e);
+        }
+      }
       this.setData({ showPrivacy: false });
       wx.showToast({ title: '需先同意隐私保护指引', icon: 'none' });
     },
