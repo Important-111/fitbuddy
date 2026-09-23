@@ -16,6 +16,7 @@ const COLLECTION = 'checkins';
 const PROFILE_COLLECTION = 'profiles';
 const DIET_COLLECTION = 'diet_logs';
 const WORKOUT_COLLECTION = 'workout_progress';
+const FEEDBACK_COLLECTION = 'feedback';
 const PAGE_SIZE = 20;      // 小程序端单次读取上限为 20 条
 const MAX_PAGES = 30;      // 最多同步 600 条，防止异常时死循环
 
@@ -446,7 +447,7 @@ function clearCollection(name) {
  */
 function clearAllData() {
   if (!isAvailable()) return Promise.resolve(false);
-  const collections = [COLLECTION, PROFILE_COLLECTION, DIET_COLLECTION, WORKOUT_COLLECTION];
+  const collections = [COLLECTION, PROFILE_COLLECTION, DIET_COLLECTION, WORKOUT_COLLECTION, FEEDBACK_COLLECTION];
   let allOk = true;
 
   return Promise.resolve()
@@ -466,8 +467,156 @@ function clearAllData() {
     });
 }
 
+/* ===== 用户反馈 =====
+ * 改造前「提交反馈」只把内容写进本地缓存 + 弹「反馈已提交」，而全项目没有任何地方
+ * 消费那条队列，开发者永远收不到 —— 属虚假功能。
+ * 现在真正写进云数据库 feedback 集合；开发者在云开发控制台即可看到全部提交
+ * （控制台有管理员权限，不受「仅创建者可读写」限制）。
+ * 同时该集合也是「开发者回复」的回显来源：后台改 status / admin_reply，客户端能读到。
+ */
+
+function stripFeedbackMeta(r) {
+  return {
+    feedback_id_local: r.feedback_id_local,
+    user_id: r.user_id || '',
+    nickname: r.nickname || '',
+    type: r.type || 'other',
+    content: r.content || '',
+    contact: r.contact || '',
+    device_info: r.device_info || '',
+    ts: r.ts || 0,
+    status: r.status || 'pending'
+  };
+}
+
+/**
+ * 提交一条反馈到云端
+ * @returns {Promise<boolean>} false 表示未送达，调用方应入重试队列并如实告知用户
+ */
+function pushFeedback(record) {
+  if (!isAvailable() || !record || !record.feedback_id_local) return Promise.resolve(false);
+  const payload = Object.assign(stripFeedbackMeta(record), { updatedAt: Date.now() });
+
+  return Promise.resolve()
+    .then(function () {
+      const db = getDb();
+      return db.collection(FEEDBACK_COLLECTION)
+        .where({ feedback_id_local: record.feedback_id_local })
+        .limit(1)
+        .get()
+        .then(function (res) {
+          if (res && res.data && res.data.length) {
+            return db.collection(FEEDBACK_COLLECTION).doc(res.data[0]._id).update({ data: payload });
+          }
+          return db.collection(FEEDBACK_COLLECTION).add({ data: payload });
+        });
+    })
+    .then(function () { return true; })
+    .catch(function (e) {
+      console.warn('[cloudSync] 提交反馈失败，已入重试队列：', e && e.errMsg);
+      return false;
+    });
+}
+
+/**
+ * 拉取本人提交过的反馈（含开发者在后台填写的 status / admin_reply）
+ */
+function pullFeedback() {
+  if (!isAvailable()) return Promise.resolve(null);
+  let all = [];
+  let page = 0;
+
+  function nextPage() {
+    const db = getDb();
+    return db.collection(FEEDBACK_COLLECTION)
+      .orderBy('ts', 'desc')
+      .skip(page * PAGE_SIZE)
+      .limit(PAGE_SIZE)
+      .get()
+      .then(function (res) {
+        const batch = res && res.data ? res.data : [];
+        all = all.concat(batch);
+        page++;
+        if (batch.length < PAGE_SIZE || page >= 5) return all;
+        return nextPage();
+      });
+  }
+
+  return Promise.resolve()
+    .then(nextPage)
+    .catch(function (e) {
+      console.warn('[cloudSync] 拉取反馈失败，改用本地记录：', e && e.errMsg);
+      return null;
+    });
+}
+
+/**
+ * 合并反馈记录：处理状态与开发者回复以云端为准（这两项只由开发者在后台修改），
+ * 其余字段保留本地版本，避免刚提交、云端还没回读时把内容覆盖成空。
+ */
+function mergeFeedback(localList, cloudList) {
+  const map = {};
+  (localList || []).forEach(function (r) {
+    if (r && r.feedback_id_local) map[r.feedback_id_local] = r;
+  });
+
+  (cloudList || []).forEach(function (c) {
+    if (!c || !c.feedback_id_local) return;
+    const local = map[c.feedback_id_local] || {};
+    map[c.feedback_id_local] = Object.assign({}, local, {
+      ts: local.ts || c.ts || 0,
+      type: local.type || c.type || 'other',
+      content: local.content || c.content || '',
+      status: c.status || local.status || 'pending',
+      admin_reply: c.admin_reply || local.admin_reply || ''
+    });
+  });
+
+  const out = Object.keys(map).map(function (k) { return map[k]; });
+  out.sort(function (a, b) { return (b.ts || 0) - (a.ts || 0); });
+  return out;
+}
+
+/**
+ * 重试此前未送达的反馈（由 app 启动时调用），成功后从队列移除
+ * @returns {Promise<number>} 本次成功送达的条数
+ */
+function flushPendingFeedback() {
+  if (!isAvailable()) return Promise.resolve(0);
+  let list = [];
+  try {
+    list = wx.getStorageSync('pending_feedback_sync') || [];
+  } catch (e) {
+    list = [];
+  }
+  if (!list.length) return Promise.resolve(0);
+
+  const sentIds = [];
+  return list.reduce(function (chain, rec) {
+    return chain.then(function () {
+      return pushFeedback(rec).then(function (ok) {
+        if (ok) sentIds.push(rec.feedback_id_local);
+        return ok;
+      });
+    });
+  }, Promise.resolve()).then(function () {
+    const rest = list.filter(function (r) {
+      return sentIds.indexOf(r.feedback_id_local) < 0;
+    });
+    try {
+      wx.setStorageSync('pending_feedback_sync', rest);
+    } catch (e) {}
+    return sentIds.length;
+  });
+}
+
 module.exports = {
   isAvailable: isAvailable,
+  FEEDBACK_COLLECTION: FEEDBACK_COLLECTION,
+  pushFeedback: pushFeedback,
+  pullFeedback: pullFeedback,
+  mergeFeedback: mergeFeedback,
+  flushPendingFeedback: flushPendingFeedback,
   clearAllData: clearAllData,
   pullCheckins: pullCheckins,
   mergeCheckins: mergeCheckins,

@@ -58,6 +58,11 @@ App({
       });
     });
 
+    // 补交此前未送达的用户反馈（弱网或云不可用时入的队列）
+    cloudSync.flushPendingFeedback().then(function (sent) {
+      if (sent > 0) console.log('[FitBuddy] 补交反馈 ' + sent + ' 条');
+    });
+
     const windowInfo = wx.getWindowInfo();
     const deviceInfo = wx.getDeviceInfo();
     const appBaseInfo = wx.getAppBaseInfo();

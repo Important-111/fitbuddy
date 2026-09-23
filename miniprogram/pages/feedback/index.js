@@ -1,4 +1,5 @@
 const { Store } = require('../../utils/store');
+const cloudSync = require('../../utils/cloudSync');
 
 const FEEDBACK_TYPES = [
   { value: 'bug', emoji: '🐛', label: 'Bug 反馈' },
@@ -47,13 +48,44 @@ Page({
   },
 
   loadHistory() {
-    const list = wx.getStorageSync('user_feedback_history') || [];
-    const enriched = list.map(it => Object.assign({}, it, {
+    this.renderHistory(this.readLocalHistory());
+
+    // 云端有记录时，处理状态与开发者回复以云端为准（这两项只在后台修改）
+    cloudSync.pullFeedback().then((cloudList) => {
+      if (!cloudList || !cloudList.length) return;
+      const merged = cloudSync.mergeFeedback(this.readLocalHistory(), cloudList);
+      try { wx.setStorageSync('user_feedback_history', merged); } catch (e) {}
+      this.renderHistory(merged);
+    });
+  },
+
+  readLocalHistory() {
+    try {
+      return wx.getStorageSync('user_feedback_history') || [];
+    } catch (e) {
+      return [];
+    }
+  },
+
+  renderHistory(list) {
+    const enriched = (list || []).map(it => Object.assign({}, it, {
       typeLabel: TYPE_LABEL_MAP[it.type] || '其他',
       statusLabel: STATUS_LABEL_MAP[it.status] || '待处理',
-      timeLabel: formatTime(it.ts)
+      // WXML 读的是 adminReply，而这里过去只写入 admin_reply（下划线命名），
+      // 导致「开发者回复」区块即使后台填了内容也永远不显示
+      adminReply: it.admin_reply || '',
+      timeLabel: formatTime(it.ts || Date.now())
     }));
     this.setData({ history: enriched });
+  },
+
+  // 未送达的反馈入重试队列，由 app 启动时统一补交
+  enqueuePending(record) {
+    try {
+      const q = wx.getStorageSync('pending_feedback_sync') || [];
+      q.push(record);
+      wx.setStorageSync('pending_feedback_sync', q);
+    } catch (e) {}
   },
 
   onTypeSelect(e) {
@@ -111,32 +143,27 @@ Page({
       device_info: this.getDeviceInfo()
     };
 
-    const list = wx.getStorageSync('user_feedback_history') || [];
+    // 先落本地：弱网下用户输入不丢，历史列表立刻可见
+    const list = this.readLocalHistory();
     list.unshift(record);
     if (list.length > 50) list.length = 50;
-    wx.setStorageSync('user_feedback_history', list);
+    try { wx.setStorageSync('user_feedback_history', list); } catch (e) {}
 
-    // 同步至全局待上报队列（后端 API 接入后由 app.js 统一上报）
-    const pendingSync = wx.getStorageSync('pending_feedback_sync') || [];
-    pendingSync.push(record);
-    wx.setStorageSync('pending_feedback_sync', pendingSync);
-
-    setTimeout(() => {
+    // 真正提交到云数据库。改造前这里只写本地 + 弹「反馈已提交」，
+    // 而那条 pending 队列全项目无人消费，开发者永远收不到。
+    // 现在送达失败会入重试队列，并把提示语改成实情，不再假装成功。
+    cloudSync.pushFeedback(record).then((ok) => {
+      if (!ok) this.enqueuePending(record);
       this.setData({
         submitting: false,
         form: { type: 'suggestion', content: '', agreed: false }
       });
       this.loadHistory();
-      wx.showToast({ title: '反馈已提交，感谢支持', icon: 'success' });
-
-      // 同时唤起微信客服会话，让开发者即时收到
-      // 需在小程序后台「客服」处绑定客服微信号
-      try {
-        if (wx.openCustomerServiceChat) {
-          // eslint-disable-next-line no-undef
-        }
-      } catch (e) {}
-    }, 600);
+      wx.showToast({
+        title: ok ? '反馈已提交，感谢支持' : '已保存，联网后自动提交',
+        icon: ok ? 'success' : 'none'
+      });
+    });
   },
 
   getDeviceInfo() {
