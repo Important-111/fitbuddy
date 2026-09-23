@@ -23,31 +23,54 @@
     >全部</view>
   </view>
 
-  <!-- Overview Cards -->
-  <view class="overview-cards">
-    <view class="overview-card">
-      <text class="overview-val">{{overview.streak}}</text>
-      <text class="overview-lbl">连续打卡</text>
+  <!-- 累计数据：终身口径，切换筛选时不变 -->
+  <view class="stat-section">
+    <view class="section-title">累计数据</view>
+    <view class="overview-cards">
+      <view class="overview-card">
+        <text class="overview-val">{{overview.streak}}</text>
+        <text class="overview-lbl">连续打卡</text>
+      </view>
+      <view class="overview-card">
+        <text class="overview-val">{{overview.workouts}}</text>
+        <text class="overview-lbl">累计次数</text>
+      </view>
+      <view class="overview-card">
+        <text class="overview-val">{{overview.minutes}}</text>
+        <text class="overview-lbl">累计时长(分)</text>
+      </view>
+      <view class="overview-card">
+        <text class="overview-val">{{overview.calories}}</text>
+        <text class="overview-lbl">累计消耗(kcal)</text>
+      </view>
+      <view class="overview-card">
+        <text class="overview-val">{{overview.completionRate}}%</text>
+        <text class="overview-lbl">平均完成率</text>
+      </view>
     </view>
-    <view class="overview-card">
-      <text class="overview-val">{{overview.workouts}}</text>
-      <text class="overview-lbl">累计次数</text>
-    </view>
-    <view class="overview-card">
-      <text class="overview-val">{{overview.minutes}}</text>
-      <text class="overview-lbl">累计时长</text>
-    </view>
-    <view class="overview-card">
-      <text class="overview-val">{{overview.calories}}</text>
-      <text class="overview-lbl">累计消耗(kcal)</text>
-    </view>
-    <view class="overview-card">
-      <text class="overview-val">{{overview.completionRate}}%</text>
-      <text class="overview-lbl">完成率</text>
-    </view>
-    <view class="overview-card">
-      <text class="overview-val">{{overview.streak}}</text>
-      <text class="overview-lbl">连续打卡</text>
+    <view class="stat-note">时长与消耗按每次 35 分钟 / 280 kcal 估算，非实测值</view>
+  </view>
+
+  <!-- 本期统计：跟随上方的 本周 / 本月 / 全部 筛选 -->
+  <view class="stat-section">
+    <view class="section-title">{{periodStats.label}}</view>
+    <view class="overview-cards period-cards">
+      <view class="overview-card">
+        <text class="overview-val">{{periodStats.workouts}}</text>
+        <text class="overview-lbl">训练次数</text>
+      </view>
+      <view class="overview-card">
+        <text class="overview-val">{{periodStats.minutes}}</text>
+        <text class="overview-lbl">训练时长(分)</text>
+      </view>
+      <view class="overview-card">
+        <text class="overview-val">{{periodStats.calories}}</text>
+        <text class="overview-lbl">消耗(kcal)</text>
+      </view>
+      <view class="overview-card">
+        <text class="overview-val">{{periodStats.completionRate}}%</text>
+        <text class="overview-lbl">平均完成率</text>
+      </view>
     </view>
   </view>
 

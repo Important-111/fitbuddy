@@ -14,8 +14,17 @@ const {
 Page({
   data: {
     periodFilter: 'week',
+    // 累计（终身，不随筛选变化）
     overview: {
       streak: 0,
+      workouts: 0,
+      minutes: '0',
+      calories: '0',
+      completionRate: 0
+    },
+    // 本期（跟随 本周 / 本月 / 全部）
+    periodStats: {
+      label: '本周统计',
       workouts: 0,
       minutes: '0',
       calories: '0',
@@ -82,24 +91,34 @@ Page({
     const filteredRecords = records.filter(r => new Date(r.date) >= filterDate);
     const filteredWeightHistory = weightHistory.filter(w => new Date(w.date) >= filterDate);
 
-    const totalWorkouts = filteredRecords.length;
-    const totalMinutes = totalWorkouts * 35;
-    const totalCal = totalWorkouts * 280;
-    let compSum = 0;
-    filteredRecords.forEach(r => { compSum += (r.completion || 100); });
-    const completionRate = filteredRecords.length > 0 ? Math.round(compSum / filteredRecords.length) : 0;
     const streak = Store.getStreakDays();
     // 里程碑是终身成就，必须用累计数，不能跟着「本周/本月」筛选走，
     // 否则切到「本月」时「累计100次」会退回未达成。
     const totalAll = Store.getTotalWorkouts();
 
-    // Overview
+    // === 累计口径（终身，与筛选无关）===
+    // 一律取 store 的累计方法，不要用 filteredRecords 自己算——
+    // 卡片标着「累计」就必须是全部历史，否则切筛选时数字会缩水。
+    const totalCalAll = Store.getTotalCaloriesBurned();
     const overview = {
       streak,
-      workouts: totalWorkouts,
-      minutes: String(totalMinutes),
-      calories: totalCal.toLocaleString ? totalCal.toLocaleString() : String(totalCal),
-      completionRate
+      workouts: totalAll,
+      minutes: String(Store.getTotalMinutes()),
+      calories: totalCalAll.toLocaleString ? totalCalAll.toLocaleString() : String(totalCalAll),
+      completionRate: Store.getCompletionRate()
+    };
+
+    // === 本期口径（跟随「本周 / 本月 / 全部」）===
+    const periodWorkouts = filteredRecords.length;
+    let periodCompSum = 0;
+    filteredRecords.forEach(r => { periodCompSum += (r.completion || 100); });
+    const periodCal = periodWorkouts * 280;
+    const periodStats = {
+      label: filter === 'week' ? '本周统计' : (filter === 'month' ? '本月统计' : '全部记录'),
+      workouts: periodWorkouts,
+      minutes: String(periodWorkouts * 35),
+      calories: periodCal.toLocaleString ? periodCal.toLocaleString() : String(periodCal),
+      completionRate: periodWorkouts > 0 ? Math.round(periodCompSum / periodWorkouts) : 0
     };
 
     // Chart curve points (canvas)
@@ -208,6 +227,7 @@ Page({
 
     this.setData({
       overview,
+      periodStats,
       chartData,
       milestones,
       measurements,
