@@ -12,7 +12,10 @@
   <view class="month-goal-card">
     <view class="month-goal-header">
       <text class="month-goal-title">{{monthTitle}}</text>
-      <text class="month-goal-badge">{{monthRate}}%</text>
+      <view class="month-goal-header-right">
+        <text class="month-goal-edit" bindtap="goEditGoal">改目标 ›</text>
+        <text class="month-goal-badge">{{monthRate}}%</text>
+      </view>
     </view>
     <view class="month-goal-main">{{monthGoal}}</view>
     <view class="month-goal-sub">{{monthSub}}</view>

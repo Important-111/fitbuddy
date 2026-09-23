@@ -17,11 +17,15 @@ const ALL_GOALS = [
 
 Page({
   data: {
+    // 编辑态：从训练计划页的「改目标」进来时为 true。此时不显示建档进度条，
+    // 保存后回到来源页而不是继续往建档链下游走。
+    editMode: false,
     goals: [],
     selectedCount: 0
   },
 
-  onLoad() {
+  onLoad(options) {
+    const editMode = !!(options && options.from === 'plan');
     const profile = Store.getProfile() || {};
     const selectedGoals = profile.goals || [];
     const goals = ALL_GOALS.map(g => ({
@@ -29,7 +33,7 @@ Page({
       selected: selectedGoals.indexOf(g.name) >= 0
     }));
     const selectedCount = goals.filter(g => g.selected).length;
-    this.setData({ goals, selectedCount });
+    this.setData({ editMode, goals, selectedCount });
   },
 
   toggleGoal(e) {
@@ -53,6 +57,14 @@ Page({
     profile.goals = selected;
     profile.goal = selected[0];
     Store.saveProfile(profile);
+
+    // 编辑态：直接回到来源页（训练计划页 onShow 会按新目标重算周计划），
+    // 不再往建档链下游的「训练条件」推——那是建档流程的走法。
+    if (this.data.editMode) {
+      wx.showToast({ title: '已保存，计划已更新', icon: 'none' });
+      setTimeout(function () { wx.navigateBack(); }, 700);
+      return;
+    }
 
     wx.navigateTo({ url: '/pages/training-experience/index' });
   },

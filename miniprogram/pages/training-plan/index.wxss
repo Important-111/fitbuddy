@@ -19,6 +19,23 @@
   align-items: center;
 }
 
+/* 头部右侧簇：「改目标」+ 完成率徽章。
+   包一层是为了让 space-between 仍然是「标题在左、徽章在右」 */
+.month-goal-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 「改目标」入口：与顶栏 .top-edit 同一文字按钮语言，不抢主 CTA 的注意力。
+   纵向 6px 内边距让高度贴近右侧徽章，同时把点击热区撑到可用的尺寸 */
+.month-goal-edit {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  padding: 6px 2px;
+}
+
 .month-goal-badge {
   font-size: 12px;
   font-weight: 700;

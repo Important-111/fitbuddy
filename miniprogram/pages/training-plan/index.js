@@ -170,6 +170,12 @@ Page({
     wx.navigateTo({ url: '/pages/training-experience/index?from=plan' });
   },
 
+  // 月目标卡片上的「改目标」：只改训练目标（减脂/增肌…），与「编辑条件」分开，
+  // 各自贴着它所编辑的内容。同样带 from=plan，保存后回本页重算。
+  goEditGoal() {
+    wx.navigateTo({ url: '/pages/training-goals/index?from=plan' });
+  },
+
   onDayCardTap(e) {
     const ds = e.currentTarget.dataset;
     if (ds.rest === 'true') return;
