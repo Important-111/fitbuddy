@@ -56,6 +56,9 @@ const HEALTH_OPTIONS = [
 
 Page({
   data: {
+    // 编辑态：从训练计划页进入时为 true。建档流程的标题/进度条/按钮文案都不该出现，
+    // 保存后也返回来源页而不是把用户带去分析报告。
+    editMode: false,
     experienceOptions: [],
     locationOptions: [],
     equipOptions: [],
@@ -71,7 +74,8 @@ Page({
     healthIssues: []
   },
 
-  onLoad() {
+  onLoad(options) {
+    const editMode = !!(options && options.from === 'plan');
     const p = Store.getProfile() || {};
 
     // Initialize chip states from profile
@@ -106,6 +110,7 @@ Page({
     }));
 
     this.setData({
+      editMode,
       experienceOptions,
       locationOptions,
       equipOptions,
@@ -236,6 +241,14 @@ Page({
     profile.minutesPerSession = minutesPerSession;
     profile.healthIssues = healthIssues;
     Store.saveProfile(profile);
+
+    // 编辑态：直接回到来源页（训练计划页 onShow 会按新档案重算周计划），
+    // 不再把用户推去分析报告——那是建档流程的终点，不是编辑的终点。
+    if (this.data.editMode) {
+      wx.showToast({ title: '已保存，计划已更新', icon: 'none' });
+      setTimeout(function () { wx.navigateBack(); }, 700);
+      return;
+    }
 
     wx.navigateTo({ url: '/pages/analysis-report/index' });
   },

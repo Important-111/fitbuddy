@@ -4,11 +4,11 @@
     <view class="btn-back" bindtap="goBack">
       <text style="font-size:20px;">‹</text>
     </view>
-    <text class="top-bar-title">建立你的档案</text>
+    <text class="top-bar-title">{{editMode ? '编辑训练条件' : '建立你的档案'}}</text>
   </view>
 
-  <!-- 进度条 -->
-  <view class="progress-bar-wrap">
+  <!-- 进度条：只在建档流程显示，编辑态不是「步骤 3/3」 -->
+  <view wx:if="{{!editMode}}" class="progress-bar-wrap">
     <view class="progress-steps">
       <view class="progress-step done">✓</view>
       <view class="progress-step done">✓</view>
@@ -23,7 +23,7 @@
   <!-- 表单 -->
   <view class="form-section">
     <text class="section-title-inline">训练条件</text>
-    <text class="section-desc">最后一步，让我们了解你的训练环境和身体状况</text>
+    <text class="section-desc">{{editMode ? '改动会立即用于重新生成你的训练参考' : '最后一步，让我们了解你的训练环境和身体状况'}}</text>
 
     <!-- 训练经验 -->
     <view class="form-group">
@@ -108,6 +108,6 @@
 
   <!-- 底部操作栏 -->
   <view class="bottom-nav">
-    <button class="btn-primary" bindtap="saveExperience">完成建档，查看分析报告</button>
+    <button class="btn-primary" bindtap="saveExperience">{{editMode ? '保存修改' : '完成建档，查看分析报告'}}</button>
   </view>
 </view>

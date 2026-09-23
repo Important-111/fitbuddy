@@ -1,5 +1,17 @@
 /* 训练计划页 - 补充样式 */
 
+/* ===== 顶栏「编辑条件」入口 =====
+   与欢迎页 .profile-action 同一视觉语言：主色文字按钮，不抢主 CTA 的注意力 */
+.top-edit {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 0;
+}
+
 /* ===== 月目标卡片增强 ===== */
 .month-goal-header {
   display: flex;

@@ -163,6 +163,13 @@ Page({
     this.buildWeekSchedule(offset);
   },
 
+  // 直达「训练条件与健康状况」编辑，不必重走建档三屏。
+  // 带 from=plan，编辑页会切成编辑态：保存后返回本页而不是跳分析报告；
+  // 本页 onShow 会重新 loadData，周计划随即按新档案重算。
+  goEditProfile() {
+    wx.navigateTo({ url: '/pages/training-experience/index?from=plan' });
+  },
+
   onDayCardTap(e) {
     const ds = e.currentTarget.dataset;
     if (ds.rest === 'true') return;
