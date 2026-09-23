@@ -31,6 +31,12 @@
     </view>
   </view>
 
+  <!-- 健康调整说明：训练内容因健康状况被改过时，必须在开始训练前告知 -->
+  <view wx:if="{{safetyNotice}}" class="safety-banner">
+    <view class="safety-banner-title">⚠️ 已按健康状况调整本次训练</view>
+    <view class="safety-banner-text">{{safetyNotice}}</view>
+  </view>
+
   <!-- 热身激活阶段 -->
   <view class="phase-section">
     <view class="phase-title">

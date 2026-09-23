@@ -40,6 +40,12 @@
     >{{item.label}}</view>
   </view>
 
+  <!-- 健康调整说明：选了健康问题时，必须让用户看到计划被改了什么 -->
+  <view wx:if="{{safetyNotice}}" class="safety-banner">
+    <view class="safety-banner-title">⚠️ 已按健康状况调整计划</view>
+    <view class="safety-banner-text">{{safetyNotice}}</view>
+  </view>
+
   <!-- 周日程 -->
   <view class="week-schedule">
     <view
@@ -48,6 +54,8 @@
       class="{{item.cardClass}}"
       bindtap="onDayCardTap"
       data-rest="{{item.isRest}}"
+      data-type="{{item.typeKey}}"
+      data-slot="{{item.slot}}"
     >
       <view class="day-num">
         <text class="day-num-name">{{item.weekday}}</text>

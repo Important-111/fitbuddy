@@ -1,7 +1,7 @@
 const { Store } = require('../../utils/store');
+const engine = require('../../utils/trainingEngine');
 
 const DEFAULT_TIMER_SEC = 30;
-const WARMUP_TIMER_SEC = 300;
 
 // 动作 emoji（用于换动作弹窗的「当前动作」展示）
 const EX_EMOJI = {
@@ -61,107 +61,20 @@ const SWAP_POOL = {
   ]
 };
 
-// 动态热身：可选热身动作池（点「选择动作」弹出，可勾选本次要做的项目）
-const WARMUP_POOL = [
-  { id: 'jumping-jack',  name: '开合跳',     emoji: '⚡', detail: '全身燃脂热身，快速提升心率', sec: 30, sets: '1组 × 30秒' },
-  { id: 'high-knees',    name: '高抬腿',     emoji: '🔥', detail: '核心与下肢联动，激活心肺功能', sec: 30, sets: '1组 × 30秒' },
-  { id: 'hip-circles',   name: '髋关节环绕', emoji: '🔄', detail: '活动髋关节，预防运动损伤', sec: 30, sets: '1组 × 30秒' },
-  { id: 'ankle-circles', name: '踝关节活动', emoji: '🦶', detail: '唤醒踝关节，提升落地稳定性', sec: 20, sets: '1组 × 20秒' },
-  { id: 'jog-in-place',  name: '原地慢跑',   emoji: '🏃', detail: '低强度有氧，逐步升高体温', sec: 45, sets: '1组 × 45秒' },
-  { id: 'arm-circles',   name: '手臂环绕',   emoji: '🤸', detail: '放松肩袖肌群，改善肩关节活动度', sec: 20, sets: '1组 × 20秒' },
-  { id: 'chest-open',    name: '扩胸运动',   emoji: '💪', detail: '打开胸廓，激活胸背肌群', sec: 20, sets: '1组 × 20秒' },
-  { id: 'calf-raise',    name: '提踵',       emoji: '🦵', detail: '激活小腿与跟腱，增强踝关节刚性', sec: 20, sets: '1组 × 20秒' },
-  { id: 'cat-cow',       name: '拳击出拳',   emoji: '🥊', detail: '原地交替直拳摆拳，激活肩部与上肢爆发力', sec: 30, sets: '1组 × 30秒' },
-  { id: 'side-shuffle',  name: '侧滑步',     emoji: '⛹️', detail: '动态横向移动，激活臀中肌', sec: 30, sets: '1组 × 30秒' }
-];
-const WARMUP_DEFAULT = ['jumping-jack', 'high-knees', 'hip-circles', 'ankle-circles'];
-
-// 训练后拉伸：可选拉伸动作池（点「选择动作」弹出，可勾选本次要做的项目）
-// 与原型 stretch swap-group 完全对齐（10 选 N · 8 分钟）
-const STRETCH_POOL = [
-  { id: 'stretch-quad',      name: '股四头肌拉伸', emoji: '🦵', detail: '站姿屈膝抓脚踝，拉伸大腿前侧',           sets: '每侧 30秒 × 2组', sec: 30 },
-  { id: 'stretch-hamstring', name: '腘绳肌拉伸',   emoji: '🦵', detail: '坐姿前屈或站姿体前屈，拉伸大腿后侧',     sets: '每侧 30秒 × 2组', sec: 30 },
-  { id: 'stretch-glute',     name: '臀大肌拉伸',   emoji: '🍑', detail: '仰卧4字拉伸，缓解臀部深层紧张',           sets: '每侧 30秒 × 2组', sec: 30 },
-  { id: 'stretch-child',     name: '婴儿式放松',   emoji: '🧘', detail: '跪姿臀部坐脚跟，前倾延伸背部',             sets: '1组 × 60秒',              sec: 60 },
-  { id: 'stretch-calf',      name: '小腿拉伸',     emoji: '🦶', detail: '弓步推墙或台阶拉伸，缓解小腿紧绷',         sets: '每侧 30秒 × 2组', sec: 30 },
-  { id: 'stretch-hip',       name: '髋屈肌拉伸',   emoji: '🔄', detail: '弓步下沉髋部，打开髋关节前侧',             sets: '每侧 30秒 × 2组', sec: 30 },
-  { id: 'stretch-spine',     name: '猫牛式',       emoji: '🐈', detail: '四足跪姿脊柱流动，舒缓腰背紧张',           sets: '1组 × 10次缓慢流动',     sec: 30 },
-  { id: 'stretch-cobra',     name: '眼镜蛇式',     emoji: '🐍', detail: '俯卧撑起上身，伸展腹直肌与前链',           sets: '保持 30秒 × 2组', sec: 30 },
-  { id: 'stretch-shoulder',  name: '肩部拉伸',     emoji: '💪', detail: '交叉手臂跨胸前，放松三角肌后束',           sets: '每侧 30秒 × 2组', sec: 30 },
-  { id: 'stretch-pigeon',    name: '鸽子式',       emoji: '🕊️', detail: '深度打开髋关节，进阶拉伸臀外旋肌',         sets: '每侧 45秒 × 1组',       sec: 45 }
-];
-const STRETCH_DEFAULT = ['stretch-quad', 'stretch-hamstring', 'stretch-glute', 'stretch-child'];
-
-function buildStretches(selectedIds) {
-  const picked = (selectedIds && selectedIds.length) ? selectedIds : STRETCH_DEFAULT.slice();
-  const items = picked.map(function(id, idx) {
-    const s = STRETCH_POOL.find(function(x) { return x.id === id; }) || STRETCH_POOL[0];
-    // detail 兼容旧字段：原型拉伸卡片 detail = "每侧保持30秒 × 2组 · 缓解..."
-    const detail = s.sets + ' · ' + s.detail.replace(/，.*/, '');
-    return { id: s.id, name: s.name, emoji: s.emoji, detail: detail, rest: s.sets, sets: s.sets, done: false, num: idx + 1 };
-  });
-  return withTimer(items, DEFAULT_TIMER_SEC);
-}
+// 热身 / 拉伸池与训练生成统一由 utils/trainingEngine 提供，本页不再自带副本。
+// 这样「健康问题/器械/经验/时长」才有唯一消费方，不会出现两处规则不一致。
+const EX_LIB = engine.EX_LIB;
 
 function buildWarmups(selectedIds) {
-  const picked = (selectedIds && selectedIds.length) ? selectedIds : WARMUP_DEFAULT.slice();
-  const items = picked.map(function(id, idx) {
-    const w = WARMUP_POOL.find(function(x) { return x.id === id; }) || WARMUP_POOL[0];
-    const dur = w.sec + '秒';
-    // 保留 WARMUP_POOL 里已注入的 "N组 × N秒" 组数字段；兼容历史数据，若无则按"1组 × N秒"构造
-    const setsLabel = w.sets && w.sets.indexOf('组') >= 0 ? w.sets : ('1组 × ' + dur);
-    // phase 内连续编号（与原型对齐：热身动作按 1/2/3... 显示）
-    return { id: w.id, name: w.name, emoji: w.emoji, detail: w.detail, rest: dur, sets: setsLabel, done: false, num: idx + 1 };
-  });
-  return withTimer(items, WARMUP_TIMER_SEC);
+  return engine.buildWarmups(selectedIds, Store.getProfile());
 }
 
-function parseSetDuration(item, fallback) {
-  // 1) 热身/拉伸：用 sec 字段作为每组时长
-  if (item && item.sec && item.sec > 0) return item.sec;
-  // 2) 正式训练：从 sets 解析"X秒"（如 "3组 × 30秒"、"每侧 30秒 × 2组"、"保持 30秒 × 2组"）
-  if (item && item.sets) {
-    const m = String(item.sets).match(/(\d+)\s*秒/);
-    if (m) return Math.max(5, parseInt(m[1]));
-  }
-  // 3) 兜底（如 "3组 × 12次" 这类次数型训练，无明确秒数）
-  return (fallback !== undefined ? fallback : DEFAULT_TIMER_SEC);
+function buildStretches(selectedIds) {
+  return engine.buildStretches(selectedIds, Store.getProfile());
 }
 
-function parseTotalSets(item) {
-  const sources = [item.sets, item.detail];
-  for (let i = 0; i < sources.length; i++) {
-    if (!sources[i]) continue;
-    const m = String(sources[i]).match(/(\d+)\s*组/);
-    if (m) return parseInt(m[1]);
-  }
-  // 计时类（热身/拉伸）没有明确组数时，按 1 组兜底，避免弹窗显示 "—"
-  if (item.sec && item.sec > 0) return 1;
-  return 0;
-}
-
-function formatTimer(s) {
-  s = Math.max(0, Math.floor(s));
-  const m = Math.floor(s / 60);
-  const sec = s % 60;
-  return (m < 10 ? '0' : '') + m + ':' + (sec < 10 ? '0' : '') + sec;
-}
-
-function withTimer(items, fallback) {
-  return (items || []).map(it => {
-    const sec = parseSetDuration(it, fallback);
-    const total = parseTotalSets(it);
-    return Object.assign({}, it, {
-      timerDefaultSec: sec,
-      timerSec: sec,
-      timerDisplay: formatTimer(sec),
-      timerState: '',
-      timerBtnLabel: '开始',
-      totalSets: total,
-      completedSets: 0
-    });
-  });
-}
+const withTimer = engine.withTimer;
+const formatTimer = engine.formatTimer;
 
 Page({
   data: {
@@ -169,6 +82,8 @@ Page({
     workoutSub: '力量训练 · 重点激活下肢肌群',
     workoutMinutes: '35',
     workoutCalories: '280',
+    // 因健康问题调整过训练构成时，页面上必须让用户看得见「调整了什么」
+    safetyNotice: '',
     totalSets: 0,
     warmups: [],
     exercises: [],
@@ -207,8 +122,11 @@ Page({
     stretchSelectedCount: 0
   },
 
-  onLoad() {
+  onLoad(options) {
     this._timers = {};
+    // 从周计划卡片进入时带当日训练类型；直接进入则取周计划里「今天」的槽位
+    this._typeKey = (options && options.type) ? decodeURIComponent(options.type) : '';
+    this._slot = (options && options.slot) ? parseInt(options.slot, 10) || 0 : 0;
     this.loadWorkoutData();
   },
 
@@ -235,64 +153,36 @@ Page({
 
   loadWorkoutData() {
     const p = Store.getProfile() || {};
-    const isFatLoss = p.goal && (p.goal.indexOf('减脂') >= 0);
+    // 训练内容全部交给训练引擎：它会消费健康问题 / 器械 / 经验 / 每次时长 四组档案字段。
+    // 改造前这里只有「减脂 → 固定 4 个燃脂动作，其它 → 固定 4 个臀腿动作」两条硬编码分支，
+    // 所以勾了「膝盖疼」照样会生成深蹲跳。
+    const typeKey = this._typeKey || engine.getTodayTypeKey(p, 0);
+    const session = engine.buildSession(p, typeKey, this._slot || 0);
 
-    let warmups, exercises, stretches;
-
-    if (isFatLoss) {
-      warmups = buildWarmups();
-      exercises = [
-        { num: 1, exId: 'jumping-jack', name: '开合跳', detail: '全身燃脂动作，快速提升心率', sets: '3组 × 30秒', rest: '组间休息 15秒' },
-        { num: 2, exId: 'high-knees', name: '高抬腿', detail: '核心+下肢燃脂，提高心肺功能', sets: '3组 × 30秒', rest: '组间休息 15秒' },
-        { num: 3, exId: 'jump-squat', name: '深蹲跳', detail: '爆发力训练，燃烧大量热量', sets: '3组 × 12次', rest: '组间休息 30秒' },
-        { num: 4, exId: 'mountain-climber', name: '登山跑', detail: '核心+全身综合燃脂动作', sets: '3组 × 30秒', rest: '组间休息 15秒' }
-      ];
-      // 默认拉伸由 STRETCH_POOL 生成（与原型一致：股四/腘绳/小腿/婴儿式）
-      stretches = buildStretches(['stretch-quad', 'stretch-hamstring', 'stretch-calf', 'stretch-child']);
-
-      this.setData({
-        workoutName: 'HIIT 燃脂训练',
-        workoutSub: '高效燃脂 · 快速代谢提升',
-        workoutMinutes: '25',
-        workoutCalories: '250'
-      });
-    } else {
-      warmups = buildWarmups();
-      exercises = [
-        { num: 1, exId: 'squat', name: '自重深蹲', detail: '经典下肢训练动作，主要训练臀大肌和股四头肌', sets: '3组 × 12次', rest: '组间休息 60秒' },
-        { num: 2, exId: 'bridge', name: '臀桥', detail: '针对臀大肌的孤立训练，改善臀部形态', sets: '3组 × 15次', rest: '组间休息 45秒' },
-        { num: 3, exId: 'lunge', name: '弓步蹲', detail: '单侧训练动作，改善腿部不平衡，加强核心稳定', sets: '3组 × 12次（每侧）', rest: '组间休息 60秒' },
-        { num: 4, exId: 'side-leg', name: '侧卧抬腿', detail: '训练臀中肌，改善髋部稳定性和臀部侧方线条', sets: '3组 × 15次（每侧）', rest: '组间休息 30秒' }
-      ];
-      // 默认拉伸用 STRETCH_POOL 默认 4 项（与原型一致：股四/腘绳/臀大肌/婴儿式）
-      stretches = buildStretches();
-
-      this.setData({
-        workoutName: '臀腿力量训练',
-        workoutSub: '力量训练 · 重点激活下肢肌群',
-        workoutMinutes: '35',
-        workoutCalories: '280'
-      });
-    }
-
-    exercises = withTimer(exercises).map(function(e) {
+    const warmups = buildWarmups(session.warmupIds);
+    const stretches = buildStretches(session.stretchIds);
+    const exercises = engine.withTimer(session.exercises).map(function (e, idx) {
       return Object.assign({}, e, {
-        emoji: EX_EMOJI[e.exId] || '💪',
-        swaps: SWAP_POOL[e.exId] || []
+        num: idx + 1,
+        emoji: e.emoji || EX_EMOJI[e.exId] || '💪',
+        // 换动作也要过一遍健康规则：不能给膝盖疼的用户换出跳跃深蹲
+        swaps: engine.filterSwaps(SWAP_POOL[e.exId] || [], p)
       });
     });
-    // stretches 已由 buildStretches 注入 timer 字段，无需再 withTimer
-    stretches = stretches;
-    warmups = warmups;
 
     // 计算总组数
     let totalSets = 0;
-    exercises.forEach(function(e) {
-      const m = e.sets.match(/(\d+)组/);
-      if (m) totalSets += parseInt(m[1]);
+    exercises.forEach(function (e) {
+      const m = String(e.sets).match(/(\d+)组/);
+      if (m) totalSets += parseInt(m[1], 10);
     });
 
     this.setData({
+      workoutName: session.name,
+      workoutSub: session.sub,
+      workoutMinutes: String(session.minutes),
+      workoutCalories: String(session.calories),
+      safetyNotice: session.safetyNotice || '',
       warmups: warmups,
       exercises: exercises,
       stretches: stretches,
@@ -614,7 +504,8 @@ Page({
   // ===== 动态热身：选择热身动作 =====
   openWarmupSelect() {
     const curIds = (this.data.warmups || []).map(function(w) { return w.id; });
-    const candidates = WARMUP_POOL.map(function(w) {
+    // 候选池按健康状况过滤：膝盖疼的用户不该在列表里看到开合跳
+    const candidates = engine.getWarmupCandidates(Store.getProfile()).map(function(w) {
       return {
         id: w.id,
         name: w.name,
@@ -661,7 +552,7 @@ Page({
   // ===== 训练后拉伸：选择拉伸动作（100% 镜像热身选择范式） =====
   openStretchSelect() {
     const curIds = (this.data.stretches || []).map(function(s) { return s.id; });
-    const candidates = STRETCH_POOL.map(function(s) {
+    const candidates = engine.getStretchCandidates(Store.getProfile()).map(function(s) {
       return {
         id: s.id,
         name: s.name,

@@ -107,3 +107,25 @@
 
 /* === tab-bar bottom padding === */
 .page-container { padding-bottom: calc(76px + env(safe-area-inset-bottom)) !important; }
+
+/* 健康调整说明条：安全类提示，用警告色，不用主色 */
+.safety-banner {
+  margin: 0 20px 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 61, 0, 0.10);
+  border: 1px solid rgba(255, 61, 0, 0.35);
+}
+.safety-banner-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--danger);
+  display: block;
+  margin-bottom: 4px;
+}
+.safety-banner-text {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  display: block;
+}

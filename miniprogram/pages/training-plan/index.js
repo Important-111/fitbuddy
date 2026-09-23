@@ -1,69 +1,9 @@
 const { Store, calcBMI, calcBMR, calcDailyCalories, getDateStr, formatDate, getMonday, getGreeting, getAvatarEmoji, getGoalEmoji } = require('../../utils/store');
 
-function getWorkoutTemplates(goal) {
-  const isFatLoss = goal && (goal.indexOf('减脂') >= 0);
-  const isMuscleGain = goal && (goal.indexOf('增肌') >= 0);
-
-  return [
-    {
-      name: isFatLoss ? 'HIIT 高效燃脂' : (isMuscleGain ? '胸部力量训练' : '臀腿力量训练'),
-      desc: isFatLoss ? 'Tabata训练 · 战绳 · 登山跑' : (isMuscleGain ? '俯卧撑 · 哑铃推举' : '深蹲 · 臀桥 · 弓步蹲'),
-      meta: [isFatLoss ? '25分钟' : '35分钟', '4个动作'],
-      minutes: isFatLoss ? 25 : 35,
-      calories: isFatLoss ? 250 : 280,
-      isRest: false
-    },
-    {
-      name: '休息 + 拉伸恢复',
-      desc: '泡沫轴放松 · 静态拉伸',
-      meta: ['20分钟'],
-      minutes: 20,
-      calories: 50,
-      isRest: true
-    },
-    {
-      name: isMuscleGain ? '背部力量训练' : '上半身力量训练',
-      desc: isMuscleGain ? '引体向上 · 划船 · 硬拉' : '俯卧撑 · 推举 · 划船',
-      meta: [isMuscleGain ? '40分钟' : '35分钟', '4个动作'],
-      minutes: isMuscleGain ? 40 : 35,
-      calories: isMuscleGain ? 320 : 280,
-      isRest: false
-    },
-    {
-      name: '休息 + 拉伸恢复',
-      desc: '泡沫轴放松 · 静态拉伸 · 瑜伽放松',
-      meta: ['20分钟'],
-      minutes: 20,
-      calories: 50,
-      isRest: true
-    },
-    {
-      name: isFatLoss ? '有氧燃脂' : (isMuscleGain ? '肩部+手臂训练' : 'HIIT 高效燃脂'),
-      desc: isFatLoss ? '慢跑 · 跳绳 · 游泳' : (isMuscleGain ? '哑铃推举 · 侧平举 · 弯举' : 'Tabata · 战绳 · 深蹲跳'),
-      meta: [isFatLoss ? '30分钟' : '25分钟', isFatLoss ? '3个动作' : '6个动作'],
-      minutes: isFatLoss ? 30 : 25,
-      calories: isFatLoss ? 200 : 250,
-      isRest: false
-    },
-    {
-      name: '全身综合训练',
-      desc: '深蹲 · 俯卧撑 · 平板支撑 · 臀桥',
-      meta: ['40分钟', '6个动作'],
-      minutes: 40,
-      calories: 320,
-      isRest: false
-    },
-    {
-      name: '完全休息',
-      desc: '充足睡眠 · 补充营养 · 轻度散步',
-      meta: ['恢复日'],
-      minutes: 0,
-      calories: 0,
-      isRest: true
-    }
-  ];
-}
-
+// 周计划改由 utils/trainingEngine 生成：训练日数量与分布跟随 daysPerWeek，
+// 内容跟随 健康问题 / 器械 / 经验 / 每次时长。原先是写死 7 天的固定模板+
+// 只读 goal 的会话名，导致「选了每周 6 天」也只排 4 天训练。
+const engine = require('../../utils/trainingEngine');
 Page({
   data: {
     weekOffset: 0,
@@ -82,6 +22,7 @@ Page({
       { label: '下下周', offset: 2 }
     ],
     dayCards: [],
+    safetyNotice: '',
     weekDone: 0,
     weekTotal: 0,
     weekMinutes: 0,
@@ -101,16 +42,18 @@ Page({
     const p = Store.getProfile() || {};
     const checkins = Store.getCheckins();
     const now = new Date();
+    // 每周天数统一走引擎，避免各处默认值不一致（此前这里是 || 4，引导页默认是 3）
+    const daysPerWeek = engine.getDaysPerWeek(p);
 
     this.setData({
       p: p,
       checkins: checkins,
       monthTitle: (now.getMonth() + 1) + '月目标',
       monthGoal: (p.goal || '减脂') + (p.targetWeight ? ' · 目标 ' + p.targetWeight + 'kg' : ''),
-      monthSub: '建立运动习惯 · 完成' + (p.daysPerWeek || 4) * 4 + '次训练',
-      monthTargetCount: (p.daysPerWeek || 4) * 4,
+      monthSub: '建立运动习惯 · 完成' + daysPerWeek * 4 + '次训练',
+      monthTargetCount: daysPerWeek * 4,
       monthDoneCount: checkins.length,
-      monthRate: checkins.length > 0 ? Math.round(checkins.length / ((p.daysPerWeek || 4) * 4) * 100) : 0,
+      monthRate: checkins.length > 0 ? Math.min(100, Math.round(checkins.length / (daysPerWeek * 4) * 100)) : 0,
       monthRemainDays: 30 - now.getDate()
     });
 
@@ -139,7 +82,9 @@ Page({
       });
     }
 
-    const templates = getWorkoutTemplates(p.goal);
+    // 训练日由 daysPerWeek 决定，内容由档案（健康/器械/经验/时长）决定
+    const plan = engine.buildWeekPlan(p);
+    const templates = plan.days;
     const today = getDateStr(new Date());
 
     let weekDone = 0, weekTotal = 0, weekCalories = 0, weekMinutes = 0;
@@ -165,8 +110,8 @@ Page({
         statusText = '已完成';
         weekDone++;
         weekTotal++;
-        weekCalories += workout.calories || 280;
-        weekMinutes += workout.minutes || 35;
+        weekCalories += workout.calories || 0;
+        weekMinutes += workout.minutes || 0;
       } else if (isToday) {
         cardClass += ' today';
         statusClass = 'status-todo';
@@ -193,7 +138,9 @@ Page({
         statusText: statusText,
         isRest: workout.isRest,
         isToday: isToday,
-        canNavigate: !workout.isRest
+        canNavigate: !workout.isRest,
+        typeKey: workout.typeKey || '',
+        slot: i
       };
     });
 
@@ -202,6 +149,7 @@ Page({
     this.setData({
       weekOffset: weekOffset,
       dayCards: dayCards,
+      safetyNotice: plan.safetyNotice || '',
       weekDone: weekDone,
       weekTotal: weekTotal,
       weekMinutes: weekMinutes,
@@ -216,9 +164,14 @@ Page({
   },
 
   onDayCardTap(e) {
-    const isRest = e.currentTarget.dataset.rest === 'true';
-    if (!isRest) {
-      wx.navigateTo({ url: '/pages/daily-workout/index' });
-    }
+    const ds = e.currentTarget.dataset;
+    if (ds.rest === 'true') return;
+    // 带上当日训练类型，保证点进去的会话与卡片上写的名字一致
+    const q = [];
+    if (ds.type) q.push('type=' + encodeURIComponent(ds.type));
+    if (ds.slot !== undefined && ds.slot !== null && ds.slot !== '') q.push('slot=' + ds.slot);
+    wx.navigateTo({
+      url: '/pages/daily-workout/index' + (q.length ? '?' + q.join('&') : '')
+    });
   }
 });

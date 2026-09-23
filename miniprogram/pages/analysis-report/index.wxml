@@ -115,7 +115,11 @@
     </view>
     <view class="advice-card" style="background:var(--card);border-radius:12px;padding:16px;margin-bottom:10px;border:1px solid var(--border);">
       <text style="font-size:14px;font-weight:600;color:var(--text-primary);display:block;margin-bottom:6px;">📋 训练安排</text>
-      <text style="font-size:13px;color:var(--text-secondary);line-height:1.6;display:block;">周一：{{mondayWorkout}} · 周三：上肢+核心 · 周五：{{fridayWorkout}} · 周六：全身综合+拉伸</text>
+      <text style="font-size:13px;color:var(--text-secondary);line-height:1.6;display:block;">{{scheduleLine}}</text>
+    </view>
+    <view wx:if="{{safetyNotice}}" style="background:rgba(255,61,0,0.10);border:1px solid rgba(255,61,0,0.35);border-radius:12px;padding:16px;margin-bottom:10px;">
+      <text style="font-size:14px;font-weight:600;color:var(--danger);display:block;margin-bottom:6px;">⚠️ 已按健康状况调整</text>
+      <text style="font-size:13px;color:var(--text-secondary);line-height:1.6;display:block;">{{safetyNotice}}</text>
     </view>
   </view>
 
