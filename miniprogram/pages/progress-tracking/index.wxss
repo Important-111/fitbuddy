@@ -183,9 +183,9 @@
   font-size: 13px;
   color: var(--text-primary);
 }
-.weekly-analysis {
-  padding: 0 20px;
-  margin-bottom: 24px;
+/* 分析卡片与上方统计卡同属一个区块，用间距区分层次即可 */
+.analysis-list {
+  margin-top: 12px;
 }
 .analysis-card {
   background: var(--card);
@@ -196,6 +196,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
+}
+.analysis-list .analysis-card:last-child {
+  margin-bottom: 0;
 }
 .analysis-icon {
   font-size: 24px;

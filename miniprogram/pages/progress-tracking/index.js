@@ -89,7 +89,6 @@ Page({
     }
 
     const filteredRecords = records.filter(r => new Date(r.date) >= filterDate);
-    const filteredWeightHistory = weightHistory.filter(w => new Date(w.date) >= filterDate);
 
     const streak = Store.getStreakDays();
     // 里程碑是终身成就，必须用累计数，不能跟着「本周/本月」筛选走，
@@ -122,7 +121,10 @@ Page({
     };
 
     // Chart curve points (canvas)
-    const displayWeights = filteredWeightHistory.slice(-7);
+    // 体重趋势固定取全量历史中最近 7 次记录，不跟随「本周/本月/全部」筛选。
+    // 筛选是「训练量」口径，体重是「身体数据」口径，两者时间跨度不同——
+    // 绑在一起会让「本周恰好没打卡」时，一张叫「体重变化趋势」的图显示「暂无数据」。
+    const displayWeights = weightHistory.slice(-7);
     const points = [];
     if (displayWeights.length === 0) {
       // 无数据时不绘制曲线
@@ -139,7 +141,8 @@ Page({
     const chartData = {
       points,
       targetWeight: p.targetWeight || null,
-      count: Math.max(displayWeights.length, 5)
+      // 用真实点数。原先补足到 5（Math.max(len,5)）会让只有 3 个点的图标注「近5天」
+      count: points.length
     };
 
     // Milestones
@@ -202,13 +205,14 @@ Page({
 
     const fatigueDesc = records.length > 0 ? '有打卡记录，状态正常' : '暂无数据';
 
+    // 文案不写死「本周/下周」——该区块跟随上方筛选，写死周期会跟筛选口径打架
     let suggestion = '开始训练吧，建立运动习惯是第一步';
     let suggestionLabel = '保持';
     if (weekWorkouts >= daysPerWeek) {
-      suggestion = '本周目标已达成，下周可以增加强度';
+      suggestion = '周期目标已达成，可适度增加强度';
       suggestionLabel = '增加';
     } else if (weekWorkouts > 0) {
-      suggestion = '完成率尚可，下周保持当前训练量';
+      suggestion = '节奏尚可，保持当前训练量';
       suggestionLabel = '保持';
     }
 
