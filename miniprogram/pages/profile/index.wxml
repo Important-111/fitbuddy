@@ -107,26 +107,11 @@
     </view>
   </view>
 
-  <!-- Menu Section -->
+  <!-- Menu Section：只保留真正能走通的入口。
+       「训练提醒」「数据导出」「帮助与支持」原先点了只弹「开发中」，属界面承诺了却没实现，已移除。 -->
   <view class="menu-section">
     <view class="section-title">功能设置</view>
     <view class="menu-card">
-      <view class="menu-item" bindtap="onMenuTap" data-menu="reminder">
-        <view class="menu-icon" style="background:var(--primary-light)">🔔</view>
-        <view class="menu-text">
-          <text class="menu-title">训练提醒</text>
-          <text class="menu-desc">每日训练时间提醒</text>
-        </view>
-        <view class="menu-arrow">›</view>
-      </view>
-      <view class="menu-item" bindtap="onMenuTap" data-menu="export">
-        <view class="menu-icon" style="background:var(--primary-light)">📊</view>
-        <view class="menu-text">
-          <text class="menu-title">数据导出</text>
-          <text class="menu-desc">导出训练和身体数据</text>
-        </view>
-        <view class="menu-arrow">›</view>
-      </view>
       <view class="menu-item" bindtap="onMenuTap" data-menu="goals">
         <view class="menu-icon" style="background:var(--primary-light)">🎯</view>
         <view class="menu-text">
@@ -140,14 +125,6 @@
         <view class="menu-text">
           <text class="menu-title">反馈建议</text>
           <text class="menu-desc">帮助我们做得更好</text>
-        </view>
-        <view class="menu-arrow">›</view>
-      </view>
-      <view class="menu-item" bindtap="onMenuTap" data-menu="help">
-        <view class="menu-icon" style="background:var(--primary-light)">❓️</view>
-        <view class="menu-text">
-          <text class="menu-title">帮助与支持</text>
-          <text class="menu-desc">常见问题和联系客服</text>
         </view>
         <view class="menu-arrow">›</view>
       </view>
@@ -168,25 +145,8 @@
         <text class="modal-close" bindtap="onCloseSettings">✕</text>
       </view>
       <view class="modal-body">
-        <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
-          <text style="font-size:14px;color:var(--text-primary)">训练提醒</text>
-          <switch checked="{{settings.trainReminder}}" bindchange="onToggleSetting" data-key="trainReminder" color="#CCFF00" />
-        </view>
-        <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
-          <text style="font-size:14px;color:var(--text-primary)">饮食提醒</text>
-          <switch checked="{{settings.dietReminder}}" bindchange="onToggleSetting" data-key="dietReminder" color="#CCFF00" />
-        </view>
-        <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
-          <text style="font-size:14px;color:var(--text-primary)">喝水提醒</text>
-          <switch checked="{{settings.waterReminder}}" bindchange="onToggleSetting" data-key="waterReminder" color="#CCFF00" />
-        </view>
-        <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0">
-          <text style="font-size:14px;color:var(--text-primary)">夜间勿扰模式</text>
-          <switch checked="{{settings.nightMode}}" bindchange="onToggleSetting" data-key="nightMode" color="#CCFF00" />
-        </view>
-
-        <view class="settings-divider" style="height:8px;background:var(--bg);margin:8px -16px 0;"></view>
-
+        <!-- 原先这里有 4 个提醒开关（训练/饮食/喝水/夜间勿扰），只改内存、不落库、
+             也不产生任何效果，属界面承诺了却没实现，已移除。设置弹窗只留真功能。 -->
         <view class="settings-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)" bindtap="onOpenService">
           <text style="font-size:14px;color:var(--text-primary)">用户服务协议</text>
           <text style="font-size:12px;color:var(--text-tertiary)">›</text>

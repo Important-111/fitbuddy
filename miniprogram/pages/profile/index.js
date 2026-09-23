@@ -32,13 +32,7 @@ Page({
       bmi: '--（--）',
       bmrValue: 0
     },
-    settingsShow: false,
-    settings: {
-      trainReminder: true,
-      dietReminder: false,
-      waterReminder: true,
-      nightMode: false
-    }
+    settingsShow: false
   },
 
   onLoad(options) {
@@ -116,36 +110,16 @@ Page({
     }
   },
 
-  onToggleSetting(e) {
-    const key = e.currentTarget.dataset.key;
-    const val = e.detail.value;
-    this.setData({ ['settings.' + key]: val });
-    const labels = {
-      trainReminder: '训练提醒',
-      dietReminder: '饮食提醒',
-      waterReminder: '喝水提醒',
-      nightMode: '夜间勿扰模式'
-    };
-    wx.showToast({ title: (val ? '开启' : '关闭') + labels[key], icon: 'none' });
-  },
-
+  // 「功能设置」菜单：只处理真实存在的入口（原先 export/help 只弹「开发中」，已移除）
   onMenuTap(e) {
     const menu = e.currentTarget.dataset.menu;
     switch (menu) {
       case 'goals':
         wx.navigateTo({ url: '/pages/training-goals/index' });
         break;
-      case 'export':
-        wx.showToast({ title: '导出功能开发中', icon: 'none' });
-        break;
       case 'feedback':
         this.jumpToFeedback();
         break;
-      case 'help':
-        wx.showToast({ title: '帮助文档开发中', icon: 'none' });
-        break;
-      default:
-        wx.showToast({ title: '功能开发中', icon: 'none' });
     }
   },
 
