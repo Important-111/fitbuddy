@@ -89,6 +89,9 @@ Page({
     filteredRecords.forEach(r => { compSum += (r.completion || 100); });
     const completionRate = filteredRecords.length > 0 ? Math.round(compSum / filteredRecords.length) : 0;
     const streak = Store.getStreakDays();
+    // 里程碑是终身成就，必须用累计数，不能跟着「本周/本月」筛选走，
+    // 否则切到「本月」时「累计100次」会退回未达成。
+    const totalAll = Store.getTotalWorkouts();
 
     // Overview
     const overview = {
@@ -122,11 +125,11 @@ Page({
 
     // Milestones
     const milestoneDefs = [
-      { key: 'first', icon: '🎉', name: '首次训练', achieved: totalWorkouts >= 1, cond: totalWorkouts >= 1, statusDone: '已达成', statusPending: '未达成' },
+      { key: 'first', icon: '🎉', name: '首次训练', achieved: totalAll >= 1, cond: totalAll >= 1, statusDone: '已达成', statusPending: '未达成' },
       { key: 'streak7', icon: '🔥', name: '连续7天', achieved: streak >= 7, cond: streak >= 7, statusDone: '已达成', statusPending: `还差 ${7 - streak} 天` },
-      { key: 'total10', icon: '⭐', name: '累计10次', achieved: totalWorkouts >= 10, cond: totalWorkouts >= 10, statusDone: '已达成', statusPending: `还差 ${10 - totalWorkouts} 次` },
+      { key: 'total10', icon: '⭐', name: '累计10次', achieved: totalAll >= 10, cond: totalAll >= 10, statusDone: '已达成', statusPending: `还差 ${10 - totalAll} 次` },
       { key: 'streak30', icon: '🎯', name: '连续30天', achieved: streak >= 30, cond: streak >= 30, statusDone: '已达成', statusPending: `还差 ${30 - streak} 天` },
-      { key: 'total100', icon: '💪', name: '累计100次', achieved: totalWorkouts >= 100, cond: totalWorkouts >= 100, statusDone: '已达成', statusPending: `还差 ${100 - totalWorkouts} 次` }
+      { key: 'total100', icon: '💪', name: '累计100次', achieved: totalAll >= 100, cond: totalAll >= 100, statusDone: '已达成', statusPending: `还差 ${100 - totalAll} 次` }
     ];
     const milestones = milestoneDefs.map(m => ({
       icon: m.icon,
@@ -166,7 +169,9 @@ Page({
       if (rd >= monday) weekWorkouts++;
     }
     const daysPerWeek = p.daysPerWeek || 4;
-    const weekRate = weekWorkouts > 0 ? Math.round(weekWorkouts / daysPerWeek * 100) : 0;
+    // 完成率封顶 100%：打卡天数超过周目标时不应出现 175% 这类数字
+    // （dashboard 的 weightProgress 同样做了封顶，此处保持一致）
+    const weekRate = weekWorkouts > 0 ? Math.min(100, Math.round(weekWorkouts / daysPerWeek * 100)) : 0;
     const weekRateClass = weekWorkouts >= Math.round(daysPerWeek * 0.6) ? 'status-good' : 'status-warn';
 
     let weightDesc = '暂无打卡记录，开始记录吧';

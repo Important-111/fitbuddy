@@ -228,6 +228,10 @@ function getMonday(d) {
   const day = date.getDay();
   const diff = date.getDate() - day + (day === 0 ? -6 : 1);
   date.setDate(diff);
+  // 归零到当天 00:00。不归零会保留当前时刻，导致「本周」筛选把周一
+  // 当天的记录误判为早于周起点而漏掉（记录日期串按 UTC 00:00 解析，
+  // 在 GMT+8 即当天 08:00，晚于 08:00 访问时周一记录会被排除）。
+  date.setHours(0, 0, 0, 0);
   return date;
 }
 
