@@ -192,6 +192,9 @@ function calcBMR(gender, weight, height, age) {
   return Math.round(10 * weight + 6.25 * height - 5 * age - 161);
 }
 
+// 每日热量目标：仅「减脂」「增肌」做明确加减，其余目标按维持热量。
+// ⚠️ 兼容写法 '减脂瘦身' / '增肌塑形' 只为读历史档案（早期「我的」页弹窗写入过这批词），
+// 现在所有目标写入都来自「训练目标」页，词汇统一为 12 个 ALL_GOALS。
 function calcDailyCalories(bmr, goal) {
   if (!bmr) return 0;
   if (goal === '减脂' || goal === '减脂瘦身') return Math.round(bmr * 1.2 - 500);
@@ -249,6 +252,8 @@ function getAvatarEmoji(gender) {
   return gender === 'male' ? '👨' : '👩';
 }
 
+// 目标 emoji 映射。'减脂瘦身'/'增肌塑形'/'提升体能'/'保持健康' 这几个键
+// 只为读历史档案（早期「我的」页弹窗写入过），新写入统一走 12 个 ALL_GOALS。
 function getGoalEmoji(goal) {
   const map = {
     '减脂': '🔥', '减脂瘦身': '🔥',

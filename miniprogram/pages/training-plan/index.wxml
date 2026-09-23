@@ -2,9 +2,15 @@
   <!-- 顶部栏 -->
   <view class="top-bar justify-between">
     <text class="top-bar-title">训练记录</text>
-    <!-- 直达「训练条件与健康状况」编辑：改完返回本页，周计划会立即按新档案重算 -->
-    <view class="top-edit" bindtap="goEditProfile">
-      <text>✏️ 编辑条件</text>
+    <!-- 建档链三页的编辑入口集中在这里，都带 from=plan 进编辑态：
+         改完各页自己返回本页，由 onShow 重算周计划，不必重走建档流程 -->
+    <view class="top-edit-group">
+      <view class="top-edit" bindtap="goEditBasic">
+        <text>编辑资料</text>
+      </view>
+      <view class="top-edit" bindtap="goEditProfile">
+        <text>编辑条件</text>
+      </view>
     </view>
   </view>
 

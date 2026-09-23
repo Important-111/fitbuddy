@@ -75,7 +75,8 @@ Page({
   },
 
   onLoad(options) {
-    const editMode = !!(options && options.from === 'plan');
+    // 契约：带 from 参数即为编辑态（三页一致，来源页由 navigateBack 决定）
+    const editMode = !!(options && options.from);
     const p = Store.getProfile() || {};
 
     // Initialize chip states from profile

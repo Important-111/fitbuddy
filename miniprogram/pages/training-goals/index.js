@@ -25,7 +25,8 @@ Page({
   },
 
   onLoad(options) {
-    const editMode = !!(options && options.from === 'plan');
+    // 契约：带 from 参数即为编辑态（三页一致，来源页由 navigateBack 决定）
+    const editMode = !!(options && options.from);
     const profile = Store.getProfile() || {};
     const selectedGoals = profile.goals || [];
     const goals = ALL_GOALS.map(g => ({

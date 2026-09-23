@@ -68,8 +68,10 @@ Page({
     wx.navigateTo({ url: '/pages/analysis-report/index' });
   },
 
+  // 编辑档案统一进 basic-info 的编辑态：字段最全，且与计划页的编辑入口同一套体验。
+  // 保存后 navigateBack 回本页，onShow 会重新载入档案。
   onEditProfile() {
-    wx.navigateTo({ url: '/pages/profile/index?edit=1' });
+    wx.navigateTo({ url: '/pages/basic-info/index?from=welcome' });
   },
 
 });

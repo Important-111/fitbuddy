@@ -62,7 +62,12 @@
 
   <!-- Body Data Info -->
   <view class="info-section" style="padding:0 20px;margin-bottom:16px">
-    <view class="section-title">身体数据档案</view>
+    <!-- 复用既有的 section-header + section-link（.section-title 带 ::before 竖条，
+         不能改成 space-between，否则竖条会和标题拉开） -->
+    <view class="section-header" style="margin-bottom:14px">
+      <view class="section-title" style="margin-bottom:0">身体数据档案</view>
+      <text class="section-link" bindtap="onQuickEdit">编辑 ›</text>
+    </view>
     <view class="info-list" style="background:var(--card);border-radius:14px;border:1px solid var(--border);overflow:hidden">
       <view class="info-item editable" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)" bindtap="onQuickEdit" data-field="nickname">
         <text class="info-key" style="font-size:14px;color:var(--text-secondary)">昵称</text>
@@ -201,70 +206,5 @@
     </view>
   </view>
 
-  <!-- Edit Profile Modal -->
-  <view class="modal-overlay {{editProfileShow ? 'show' : ''}}" bindtap="onCloseEditProfileOuter">
-    <view class="modal">
-      <view class="modal-header">
-        <text class="modal-title">编辑基本资料</text>
-        <text class="modal-close" bindtap="onCloseEditProfile">✕</text>
-      </view>
-      <view class="modal-body">
-        <view class="form-group">
-          <text class="form-label">昵称</text>
-          <input class="form-input" type="text" value="{{editForm.nickname}}" bindinput="onEditFormInput" data-field="nickname" />
-        </view>
-        <view class="form-group">
-          <text class="form-label">性别</text>
-          <view class="gender-group">
-            <view
-              class="gender-option {{editForm.gender === 'male' ? 'selected' : ''}}"
-              data-gender="male"
-              bindtap="onEditGenderSelect"
-            >男</view>
-            <view
-              class="gender-option {{editForm.gender === 'female' ? 'selected' : ''}}"
-              data-gender="female"
-              bindtap="onEditGenderSelect"
-            >女</view>
-          </view>
-        </view>
-        <view class="form-row">
-          <view class="form-group">
-            <text class="form-label">年龄</text>
-            <view class="input-with-unit">
-              <input class="form-input" type="number" value="{{editForm.age}}" bindinput="onEditFormInput" data-field="age" />
-              <text class="input-unit">岁</text>
-            </view>
-          </view>
-          <view class="form-group">
-            <text class="form-label">身高</text>
-            <view class="input-with-unit">
-              <input class="form-input" type="number" value="{{editForm.height}}" bindinput="onEditFormInput" data-field="height" />
-              <text class="input-unit">cm</text>
-            </view>
-          </view>
-        </view>
-        <view class="form-row">
-          <view class="form-group">
-            <text class="form-label">体重</text>
-            <view class="input-with-unit">
-              <input class="form-input" type="digit" value="{{editForm.weight}}" bindinput="onEditFormInput" data-field="weight" />
-              <text class="input-unit">kg</text>
-            </view>
-          </view>
-          <view class="form-group">
-            <text class="form-label">健身目标</text>
-            <picker class="form-input" mode="selector" range="{{goalOptions}}" value="{{editForm.goalIndex}}" bindchange="onEditGoalChange" style="display:flex;align-items:center">
-              <view>{{editForm.goalLabel}}</view>
-            </picker>
-          </view>
-        </view>
-      </view>
-      <view class="modal-footer">
-        <button class="btn-secondary" bindtap="onCloseEditProfile">取消</button>
-        <button class="btn-confirm" bindtap="onConfirmEditProfile">保存</button>
-      </view>
-    </view>
-  </view>
 <tab-bar active="profile"></tab-bar>
 </view>

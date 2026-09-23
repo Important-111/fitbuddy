@@ -33,30 +33,20 @@ Page({
       bmrValue: 0
     },
     settingsShow: false,
-    editProfileShow: false,
     settings: {
       trainReminder: true,
       dietReminder: false,
       waterReminder: true,
       nightMode: false
-    },
-    goalOptions: ['增肌塑形', '减脂瘦身', '提升体能', '保持健康'],
-    editForm: {
-      nickname: '',
-      gender: 'male',
-      age: '',
-      height: '',
-      weight: '',
-      goalIndex: 0,
-      goalLabel: '增肌塑形'
     }
   },
 
   onLoad(options) {
     this.loadData();
-    // 从欢迎页"编辑"进入：自动打开编辑弹窗
+    // 兼容旧的 profile?edit=1 入口（welcome 已改为直接跳 basic-info）：
+    // 用 redirectTo 转到 basic-info 的编辑态，避免返回时二次跳转
     if (options && options.edit === '1') {
-      setTimeout(() => this.onQuickEdit(), 150);
+      wx.redirectTo({ url: '/pages/basic-info/index?from=profile' });
     }
   },
 
@@ -194,10 +184,14 @@ Page({
     });
   },
 
+  // 快捷切换主目标：`goal` 是训练引擎读的主目标，`goals` 是「训练目标」页的多选列表。
+  // 两者必须同步——此前只写 goal，导致目标页仍显示旧选中态。
   onGoalCardTap(e) {
     const goal = e.currentTarget.dataset.goal;
     const p = Store.getProfile() || {};
+    const rest = (p.goals || []).filter(g => g !== goal);
     p.goal = goal;
+    p.goals = [goal].concat(rest);
     Store.saveProfile(p);
     wx.showToast({ title: '目标已切换至' + goal, icon: 'none' });
     this.loadData();
@@ -215,73 +209,10 @@ Page({
     });
   },
 
-  // Edit Profile
-  onQuickEdit(e) {
-    const p = Store.getProfile() || {};
-    const goalOptions = this.data.goalOptions;
-    let goalIndex = 0;
-    const idx = goalOptions.indexOf(p.goal);
-    if (idx >= 0) goalIndex = idx;
-
-    this.setData({
-      editProfileShow: true,
-      editForm: {
-        nickname: p.nickname || '',
-        gender: p.gender || 'male',
-        age: p.age ? String(p.age) : '',
-        height: p.height ? String(p.height) : '',
-        weight: p.weight ? String(p.weight) : '',
-        goalIndex,
-        goalLabel: goalOptions[goalIndex]
-      }
-    });
-  },
-
-  onCloseEditProfile() {
-    this.setData({ editProfileShow: false });
-  },
-
-  onCloseEditProfileOuter(e) {
-    if (e.target === e.currentTarget) {
-      this.setData({ editProfileShow: false });
-    }
-  },
-
-  onEditFormInput(e) {
-    const field = e.currentTarget.dataset.field;
-    this.setData({ ['editForm.' + field]: e.detail.value });
-  },
-
-  onEditGenderSelect(e) {
-    const gender = e.currentTarget.dataset.gender;
-    this.setData({ 'editForm.gender': gender });
-  },
-
-  onEditGoalChange(e) {
-    const idx = parseInt(e.detail.value);
-    this.setData({
-      'editForm.goalIndex': idx,
-      'editForm.goalLabel': this.data.goalOptions[idx]
-    });
-  },
-
-  onConfirmEditProfile() {
-    const form = this.data.editForm;
-    const p = Store.getProfile() || {};
-
-    p.nickname = form.nickname || '用户';
-    p.gender = form.gender;
-    p.age = parseInt(form.age) || 0;
-    p.height = parseInt(form.height) || 0;
-    p.weight = parseFloat(form.weight) || 0;
-    p.goal = this.data.goalOptions[form.goalIndex];
-
-    Store.saveProfile(p);
-
-    this.setData({ editProfileShow: false }, () => {
-      this.loadData();
-    });
-    wx.showToast({ title: '资料已保存', icon: 'none' });
+  // 编辑身体数据：统一跳 basic-info 的编辑态（字段比原弹窗更全——
+  // 多了目标体重/腰围/臀围/体脂率），保存后 navigateBack 回本页，onShow 重载
+  onQuickEdit() {
+    wx.navigateTo({ url: '/pages/basic-info/index?from=profile' });
   },
 
   onOpenService() {
