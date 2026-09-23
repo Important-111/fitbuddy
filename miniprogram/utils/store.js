@@ -128,17 +128,23 @@ const Store = {
   saveDietLogs(records) {
     setData('diet_logs', records);
   },
+  // 新增饮食记录：写本地 + 异步推送云端（云不可用时静默降级，不影响本地）
   addDietLog(record) {
     const records = Store.getDietLogs();
     record.id = Date.now();
     record.createdAt = getDateStr(new Date());
+    record.updatedAt = Date.now();
     records.push(record);
     Store.saveDietLogs(records);
+    cloudSync.pushDietLog(record);
     return records;
   },
+  // 删除饮食记录：本地删除 + 云端文档同步删除
+  // 云端必须一起删，否则下次启动合并（取并集）会把记录从云端拉回来「复活」
   removeDietLog(id) {
     let records = Store.getDietLogs().filter(r => r.id !== id);
     Store.saveDietLogs(records);
+    cloudSync.removeDietLog(id);
     return records;
   },
   getTodayDietLogs() {
@@ -146,8 +152,24 @@ const Store = {
     return Store.getDietLogs().filter(r => r.createdAt === today);
   },
 
+  // 清空全部数据：先清云端，成功后再清本地。
+  // 顺序不能反——若先清本地，云端删除一旦失败，重启后 app.onLaunch 会把数据拉回来，注销形同虚设。
+  // @returns {Promise<boolean>} true 表示云端也已清空（或云未开通，本就无云端数据）
   clearAll() {
-    ['profile', 'checkins', 'workout_progress', 'diet_logs'].forEach(k => removeData(k));
+    const clearLocal = function () {
+      try {
+        wx.clearStorageSync();
+      } catch (e) {}
+    };
+    // 云端未开通：直接清本地
+    if (!cloudSync.isAvailable()) {
+      clearLocal();
+      return Promise.resolve(true);
+    }
+    return cloudSync.clearAllData().then(function (ok) {
+      if (ok) clearLocal();
+      return ok;
+    });
   }
 };
 

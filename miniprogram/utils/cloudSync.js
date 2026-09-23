@@ -302,11 +302,13 @@ function pushDietLog(record) {
  */
 function removeDietLog(id) {
   if (!isAvailable() || !id) return Promise.resolve(false);
+  // 云端存储的 id 是数值型，这里做一次归一，避免字符串型 id 查不到文档
+  const targetId = isNaN(Number(id)) ? id : Number(id);
   return Promise.resolve()
     .then(function () {
       const db = getDb();
       return db.collection(DIET_COLLECTION)
-        .where({ id: id })
+        .where({ id: targetId })
         .limit(1)
         .get()
         .then(function (res) {
@@ -400,8 +402,73 @@ function pushWorkoutProgress(date) {
     });
 }
 
+/* ==================== 账号注销：清空云端数据 ==================== */
+
+/**
+ * 清空单个集合中属于当前用户的全部文档。
+ * 小程序端 SDK 不支持 where().remove() 批量删除，只能先查 _id 再逐条 remove。
+ *
+ * 不设总量上限：长期用户的记录可能远超几百条，按「本轮是否真有删除进展」判断终止，
+ * 这样既能删干净，又能避免异常时死循环。
+ * 删除失败不吞错——必须让调用方感知，否则会出现「云端没删干净却提示注销成功」。
+ *
+ * @returns {Promise<number>} 已删除的文档数
+ */
+function clearCollection(name) {
+  let removed = 0;
+
+  function removeBatch() {
+    const db = getDb();
+    return db.collection(name).limit(PAGE_SIZE).get().then(function (res) {
+      const batch = res && res.data ? res.data : [];
+      if (!batch.length) return removed;
+      const before = removed;
+      return Promise.all(batch.map(function (doc) {
+        return db.collection(name).doc(doc._id).remove().then(function () {
+          removed++;
+        });
+      })).then(function () {
+        // 兜底：本轮一条都没删掉，说明异常（权限/数据问题），抛错中止避免死循环
+        if (removed === before) throw new Error('清空集合无进展：' + name);
+        return removeBatch();
+      });
+    });
+  }
+
+  // 包一层，确保 getDb() 的同步抛错也变成 rejection，由调用方捕获
+  return Promise.resolve().then(removeBatch);
+}
+
+/**
+ * 清空当前用户在云端保存的全部数据（注销账号时调用）。
+ * 四个集合并行清理，单个集合失败不影响其余集合。
+ * @returns {Promise<boolean>} 是否全部清理成功
+ */
+function clearAllData() {
+  if (!isAvailable()) return Promise.resolve(false);
+  const collections = [COLLECTION, PROFILE_COLLECTION, DIET_COLLECTION, WORKOUT_COLLECTION];
+  let allOk = true;
+
+  return Promise.resolve()
+    .then(function () {
+      return Promise.all(collections.map(function (name) {
+        return clearCollection(name).catch(function (e) {
+          console.warn('[cloudSync] 清空集合失败 ' + name + '：', e && e.errMsg);
+          allOk = false;
+          return 0;
+        });
+      }));
+    })
+    .then(function () { return allOk; })
+    .catch(function (e) {
+      console.warn('[cloudSync] 清空云端数据失败：', e && e.errMsg);
+      return false;
+    });
+}
+
 module.exports = {
   isAvailable: isAvailable,
+  clearAllData: clearAllData,
   pullCheckins: pullCheckins,
   mergeCheckins: mergeCheckins,
   pushCheckin: pushCheckin,

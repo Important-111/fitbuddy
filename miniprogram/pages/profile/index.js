@@ -300,27 +300,41 @@ Page({
       confirmColor: '#EF4444',
       cancelText: '取消',
       success: (res) => {
-        if (res.confirm) {
-          wx.showModal({
-            title: '再次确认',
-            content: '此操作不可撤销，请再次确认是否注销账号。',
-            confirmText: '确定注销',
-            confirmColor: '#EF4444',
-            cancelText: '取消',
-            success: (r2) => {
-              if (r2.confirm) {
-                try {
-                  wx.clearStorageSync();
-                } catch (e) {}
-                wx.showToast({ title: '账号已注销', icon: 'none' });
-                setTimeout(() => {
-                  wx.reLaunch({ url: '/pages/welcome/index' });
-                }, 1500);
-              }
-            }
-          });
-        }
+        if (!res.confirm) return;
+        wx.showModal({
+          title: '再次确认',
+          content: '此操作不可撤销，请再次确认是否注销账号。',
+          confirmText: '确定注销',
+          confirmColor: '#EF4444',
+          cancelText: '取消',
+          success: (r2) => {
+            if (!r2.confirm) return;
+            this.doDeleteAccount();
+          }
+        });
       }
+    });
+  },
+
+  // 注销账号：清空本地与云端全部数据（Store.clearAll 内部保证先云后本地的顺序）
+  // 云端清除失败时保留本地数据并明确告知用户，避免产生「假注销」
+  doDeleteAccount() {
+    wx.showLoading({ title: '正在注销...', mask: true });
+    Store.clearAll().then(function (ok) {
+      wx.hideLoading();
+      if (!ok) {
+        wx.showModal({
+          title: '注销未完成',
+          content: '云端数据清除失败，可能是网络问题。您的数据仍完整保留，请检查网络后重试。',
+          showCancel: false,
+          confirmText: '我知道了'
+        });
+        return;
+      }
+      wx.showToast({ title: '账号已注销', icon: 'none' });
+      setTimeout(function () {
+        wx.reLaunch({ url: '/pages/welcome/index' });
+      }, 1500);
     });
   }
 });
