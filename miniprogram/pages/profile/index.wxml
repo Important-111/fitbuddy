@@ -153,7 +153,7 @@
   <view style="padding:8px 20px 16px">
     <button class="logout-btn" bindtap="onLogout">退出登录</button>
   </view>
-  <view class="version-text">飞特八弟 v1.0.0 · AI Fitness Coach</view>
+  <view class="version-text">飞特八弟 · 健身助手</view>
 
   <!-- Settings Panel Modal -->
   <view class="modal-overlay {{settingsShow ? 'show' : ''}}" bindtap="onCloseSettingsOuter">

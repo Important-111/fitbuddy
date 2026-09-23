@@ -5,7 +5,7 @@
       <text class="hero-icon-emoji">🏋️</text>
     </view>
     <text class="hero-title">飞特八弟</text>
-    <text class="hero-title2">你的AI健身助手</text>
+    <text class="hero-title2">你的健身助手</text>
     <text class="hero-subtitle">陪你达成每一个目标</text>
   </view>
 
@@ -68,14 +68,14 @@
       <view class="feature-icon orange">📊</view>
       <view class="feature-text">
         <text class="feature-title">训练记录与参考</text>
-        <text class="feature-desc">基于你的身体数据和目标，AI生成训练参考</text>
+        <text class="feature-desc">基于你的身体数据、可用器械与目标生成训练参考</text>
       </view>
     </view>
     <view class="feature-card">
       <view class="feature-icon green">🔄</view>
       <view class="feature-text">
-        <text class="feature-title">动态智能调整</text>
-        <text class="feature-desc">根据训练完成度和身体反馈，每周自动优化训练强度和内容</text>
+        <text class="feature-title">健康情况优先</text>
+        <text class="feature-desc">选了健康问题会自动避开相关的高负荷动作、排除高冲击动作并下调组数</text>
       </view>
     </view>
     <view class="feature-card">
