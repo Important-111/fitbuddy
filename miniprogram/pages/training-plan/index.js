@@ -163,14 +163,6 @@ Page({
     this.buildWeekSchedule(offset);
   },
 
-  // 直达「训练条件与健康状况」编辑，不必重走建档三屏。
-  // 带 from=plan，编辑页会切成编辑态：保存后返回本页而不是跳分析报告；
-  // 本页 onShow 会重新 loadData，周计划随即按新档案重算。
-  // 基础身体数据（昵称/性别/年龄/身高体重/目标体重/腰臀/体脂）→ 建档第 1 页
-  goEditBasic() {
-    wx.navigateTo({ url: '/pages/basic-info/index?from=plan' });
-  },
-
   // 训练条件与健康状况 → 建档第 3 页（与「改目标」分开，各自独立不串链）
   goEditProfile() {
     wx.navigateTo({ url: '/pages/training-experience/index?from=plan' });

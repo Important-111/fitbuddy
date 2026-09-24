@@ -1,23 +1,25 @@
 /* 训练计划页 - 补充样式 */
 
-/* ===== 顶栏「编辑条件」入口 =====
-   与欢迎页 .profile-action 同一视觉语言：主色文字按钮，不抢主 CTA 的注意力 */
-/* 顶栏的两个编辑入口并排（编辑资料 / 编辑条件），
-   16px 间距足以区分成两个独立按钮，又不会把标题挤掉 */
-.top-edit-group {
-  display: flex;
+/* ===== 周切换 + 编辑条件 =====
+   编辑条件从顶栏移到这里，放在周筛选右侧，与周标签同高 */
+.week-tabs {
+  justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 0;
+  overflow-x: visible;
 }
 
-.top-edit {
+.week-tab-list {
+  display: flex;
+  gap: 8px;
+}
+
+.week-edit {
   font-size: 13px;
   font-weight: 600;
   color: var(--primary);
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  padding: 4px 0;
+  padding: 9px 0;
+  white-space: nowrap;
 }
 
 /* ===== 月目标卡片增强 ===== */
